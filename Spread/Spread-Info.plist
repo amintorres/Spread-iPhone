@@ -10,8 +10,12 @@
 	<string>${EXECUTABLE_NAME}</string>
 	<key>CFBundleIconFile</key>
 	<string></string>
+	<key>CFBundleIconFiles</key>
+	<array>
+		<string>Default.png</string>
+	</array>
 	<key>CFBundleIdentifier</key>
-	<string>com.amintorres.Spread.${PRODUCT_NAME:rfc1034identifier}</string>
+	<string>com.amintorres.${PRODUCT_NAME:rfc1034identifier}</string>
 	<key>CFBundleInfoDictionaryVersion</key>
 	<string>6.0</string>
 	<key>CFBundleName</key>
