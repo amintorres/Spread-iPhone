@@ -2,8 +2,8 @@
 //  SpreadTests.m
 //  SpreadTests
 //
-//  Created by Amin Torres on 12/16/11.
-//  Copyright 2011 __MyCompanyName__. All rights reserved.
+//  Created by Joseph Lin on 12/14/11.
+//  Copyright (c) 2011 R/GA. All rights reserved.
 //
 
 #import "SpreadTests.h"
