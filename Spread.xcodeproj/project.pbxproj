@@ -23,6 +23,7 @@
 		273F244F149B0AE8001A414E /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 273F244D149B0AE8001A414E /* InfoPlist.strings */; };
 		273F2451149B0AE8001A414E /* SpreadTests.h in Resources */ = {isa = PBXBuildFile; fileRef = 273F2450149B0AE8001A414E /* SpreadTests.h */; };
 		273F2453149B0AE8001A414E /* SpreadTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 273F2452149B0AE8001A414E /* SpreadTests.m */; };
+		273F245D149B124B001A414E /* Default.png in Resources */ = {isa = PBXBuildFile; fileRef = 273F245C149B124B001A414E /* Default.png */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -40,22 +41,23 @@
 		273F2422149B0AE8001A414E /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		273F2424149B0AE8001A414E /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		273F2426149B0AE8001A414E /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
-		273F242A149B0AE8001A414E /* Spread-Info.plist */ = {isa = PBXFileReference; path = "Spread-Info.plist"; sourceTree = "<group>"; };
+		273F242A149B0AE8001A414E /* Spread-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "Spread-Info.plist"; sourceTree = "<group>"; };
 		273F242C149B0AE8001A414E /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		273F242E149B0AE8001A414E /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
-		273F2430149B0AE8001A414E /* Spread-Prefix.pch */ = {isa = PBXFileReference; path = "Spread-Prefix.pch"; sourceTree = "<group>"; };
-		273F2431149B0AE8001A414E /* SpreadAppDelegate.h */ = {isa = PBXFileReference; path = SpreadAppDelegate.h; sourceTree = "<group>"; };
+		273F2430149B0AE8001A414E /* Spread-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "Spread-Prefix.pch"; sourceTree = "<group>"; };
+		273F2431149B0AE8001A414E /* SpreadAppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SpreadAppDelegate.h; sourceTree = "<group>"; };
 		273F2432149B0AE8001A414E /* SpreadAppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SpreadAppDelegate.m; sourceTree = "<group>"; };
 		273F2435149B0AE8001A414E /* en */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = en; path = en.lproj/MainWindow.xib; sourceTree = "<group>"; };
-		273F2437149B0AE8001A414E /* SpreadViewController.h */ = {isa = PBXFileReference; path = SpreadViewController.h; sourceTree = "<group>"; };
+		273F2437149B0AE8001A414E /* SpreadViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SpreadViewController.h; sourceTree = "<group>"; };
 		273F2438149B0AE8001A414E /* SpreadViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SpreadViewController.m; sourceTree = "<group>"; };
 		273F243B149B0AE8001A414E /* en */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = en; path = en.lproj/SpreadViewController.xib; sourceTree = "<group>"; };
 		273F2442149B0AE8001A414E /* SpreadTests.octest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = SpreadTests.octest; sourceTree = BUILT_PRODUCTS_DIR; };
 		273F2443149B0AE8001A414E /* SenTestingKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SenTestingKit.framework; path = Library/Frameworks/SenTestingKit.framework; sourceTree = DEVELOPER_DIR; };
-		273F244C149B0AE8001A414E /* SpreadTests-Info.plist */ = {isa = PBXFileReference; path = "SpreadTests-Info.plist"; sourceTree = "<group>"; };
+		273F244C149B0AE8001A414E /* SpreadTests-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "SpreadTests-Info.plist"; sourceTree = "<group>"; };
 		273F244E149B0AE8001A414E /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		273F2450149B0AE8001A414E /* SpreadTests.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SpreadTests.h; sourceTree = "<group>"; };
 		273F2452149B0AE8001A414E /* SpreadTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SpreadTests.m; sourceTree = "<group>"; };
+		273F245C149B124B001A414E /* Default.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Default.png; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -86,6 +88,7 @@
 		273F2413149B0AE7001A414E = {
 			isa = PBXGroup;
 			children = (
+				273F245C149B124B001A414E /* Default.png */,
 				273F2428149B0AE8001A414E /* Spread */,
 				273F244A149B0AE8001A414E /* SpreadTests */,
 				273F2421149B0AE8001A414E /* Frameworks */,
@@ -227,6 +230,7 @@
 				273F242D149B0AE8001A414E /* InfoPlist.strings in Resources */,
 				273F2436149B0AE8001A414E /* MainWindow.xib in Resources */,
 				273F243C149B0AE8001A414E /* SpreadViewController.xib in Resources */,
+				273F245D149B124B001A414E /* Default.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
