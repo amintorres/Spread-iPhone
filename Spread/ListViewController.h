@@ -7,7 +7,13 @@
 //
 
 #import <UIKit/UIKit.h>
+#import <RestKit/RestKit.h>
 
-@interface ListViewController : UIViewController
+
+
+@interface ListViewController : UIViewController <RKObjectLoaderDelegate>
+
+@property (strong, nonatomic) IBOutlet UITableView *tableView;
+@property (strong, nonatomic) NSArray *photos;
 
 @end
