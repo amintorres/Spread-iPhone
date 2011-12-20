@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		7C9890A214A0419F009E22F1 /* Photo.m in Sources */ = {isa = PBXBuildFile; fileRef = 7C9890A114A0419F009E22F1 /* Photo.m */; };
 		7C9F93B4149960C300126908 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7C9F93B3149960C300126908 /* UIKit.framework */; };
 		7C9F93B6149960C300126908 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7C9F93B5149960C300126908 /* Foundation.framework */; };
 		7C9F93B8149960C300126908 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7C9F93B7149960C300126908 /* CoreGraphics.framework */; };
@@ -16,9 +17,7 @@
 		7C9F93C6149960C300126908 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 7C9F93C5149960C300126908 /* AppDelegate.m */; };
 		7C9F93C9149960C300126908 /* Spread.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 7C9F93C7149960C300126908 /* Spread.xcdatamodeld */; };
 		7C9F93CC149960C300126908 /* MasterViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7C9F93CB149960C300126908 /* MasterViewController.m */; };
-		7C9F93CF149960C300126908 /* DetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7C9F93CE149960C300126908 /* DetailViewController.m */; };
 		7C9F93D2149960C300126908 /* MasterViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 7C9F93D0149960C300126908 /* MasterViewController.xib */; };
-		7C9F93D5149960C400126908 /* DetailViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 7C9F93D3149960C400126908 /* DetailViewController.xib */; };
 		7C9F93DD149960C400126908 /* SenTestingKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7C9F93DC149960C400126908 /* SenTestingKit.framework */; };
 		7C9F93DE149960C400126908 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7C9F93B3149960C300126908 /* UIKit.framework */; };
 		7C9F93DF149960C400126908 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7C9F93B5149960C300126908 /* Foundation.framework */; };
@@ -86,6 +85,8 @@
 
 /* Begin PBXFileReference section */
 		7C633039149FE50800BF2049 /* RestKit.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = RestKit.xcodeproj; path = RestKit/RestKit.xcodeproj; sourceTree = "<group>"; };
+		7C9890A014A0419F009E22F1 /* Photo.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Photo.h; sourceTree = "<group>"; };
+		7C9890A114A0419F009E22F1 /* Photo.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Photo.m; sourceTree = "<group>"; };
 		7C9F93AF149960C300126908 /* Spread.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Spread.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		7C9F93B3149960C300126908 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		7C9F93B5149960C300126908 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
@@ -100,10 +101,7 @@
 		7C9F93C8149960C300126908 /* Spread.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Spread.xcdatamodel; sourceTree = "<group>"; };
 		7C9F93CA149960C300126908 /* MasterViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MasterViewController.h; sourceTree = "<group>"; };
 		7C9F93CB149960C300126908 /* MasterViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MasterViewController.m; sourceTree = "<group>"; };
-		7C9F93CD149960C300126908 /* DetailViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = DetailViewController.h; sourceTree = "<group>"; };
-		7C9F93CE149960C300126908 /* DetailViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = DetailViewController.m; sourceTree = "<group>"; };
 		7C9F93D1149960C300126908 /* en */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = en; path = en.lproj/MasterViewController.xib; sourceTree = "<group>"; };
-		7C9F93D4149960C400126908 /* en */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = en; path = en.lproj/DetailViewController.xib; sourceTree = "<group>"; };
 		7C9F93DB149960C400126908 /* SpreadTests.octest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = SpreadTests.octest; sourceTree = BUILT_PRODUCTS_DIR; };
 		7C9F93DC149960C400126908 /* SenTestingKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SenTestingKit.framework; path = Library/Frameworks/SenTestingKit.framework; sourceTree = DEVELOPER_DIR; };
 		7C9F93E5149960C400126908 /* SpreadTests-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "SpreadTests-Info.plist"; sourceTree = "<group>"; };
@@ -177,6 +175,16 @@
 			name = Products;
 			sourceTree = "<group>";
 		};
+		7C9890A314A041A8009E22F1 /* Data Model */ = {
+			isa = PBXGroup;
+			children = (
+				7C9F93C7149960C300126908 /* Spread.xcdatamodeld */,
+				7C9890A014A0419F009E22F1 /* Photo.h */,
+				7C9890A114A0419F009E22F1 /* Photo.m */,
+			);
+			name = "Data Model";
+			sourceTree = "<group>";
+		};
 		7C9F93A4149960C300126908 = {
 			isa = PBXGroup;
 			children = (
@@ -219,11 +227,8 @@
 			children = (
 				7C9F93C4149960C300126908 /* AppDelegate.h */,
 				7C9F93C5149960C300126908 /* AppDelegate.m */,
-				7CF8A604149BF974009FF755 /* Master View Controller */,
-				7C9F93CD149960C300126908 /* DetailViewController.h */,
-				7C9F93CE149960C300126908 /* DetailViewController.m */,
-				7C9F93D3149960C400126908 /* DetailViewController.xib */,
-				7C9F93C7149960C300126908 /* Spread.xcdatamodeld */,
+				7CF8A604149BF974009FF755 /* View Controller */,
+				7C9890A314A041A8009E22F1 /* Data Model */,
 				7C9F93BC149960C300126908 /* Supporting Files */,
 			);
 			path = Spread;
@@ -259,7 +264,7 @@
 			name = "Supporting Files";
 			sourceTree = "<group>";
 		};
-		7CF8A604149BF974009FF755 /* Master View Controller */ = {
+		7CF8A604149BF974009FF755 /* View Controller */ = {
 			isa = PBXGroup;
 			children = (
 				7C9F93CA149960C300126908 /* MasterViewController.h */,
@@ -269,7 +274,7 @@
 				7CF8A616149BFA74009FF755 /* Feed View */,
 				7CF8A617149BFA7D009FF755 /* Grid View */,
 			);
-			name = "Master View Controller";
+			name = "View Controller";
 			sourceTree = "<group>";
 		};
 		7CF8A615149BFA69009FF755 /* Intro View */ = {
@@ -413,7 +418,6 @@
 			files = (
 				7C9F93C0149960C300126908 /* InfoPlist.strings in Resources */,
 				7C9F93D2149960C300126908 /* MasterViewController.xib in Resources */,
-				7C9F93D5149960C400126908 /* DetailViewController.xib in Resources */,
 				7CF8A60A149BFA12009FF755 /* IntroViewController.xib in Resources */,
 				7CF8A60F149BFA2F009FF755 /* ListViewController.xib in Resources */,
 				7CF8A614149BFA3B009FF755 /* GridViewController.xib in Resources */,
@@ -455,10 +459,10 @@
 				7C9F93C6149960C300126908 /* AppDelegate.m in Sources */,
 				7C9F93C9149960C300126908 /* Spread.xcdatamodeld in Sources */,
 				7C9F93CC149960C300126908 /* MasterViewController.m in Sources */,
-				7C9F93CF149960C300126908 /* DetailViewController.m in Sources */,
 				7CF8A609149BFA12009FF755 /* IntroViewController.m in Sources */,
 				7CF8A60E149BFA2F009FF755 /* ListViewController.m in Sources */,
 				7CF8A613149BFA3B009FF755 /* GridViewController.m in Sources */,
+				7C9890A214A0419F009E22F1 /* Photo.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -500,14 +504,6 @@
 				7C9F93D1149960C300126908 /* en */,
 			);
 			name = MasterViewController.xib;
-			sourceTree = "<group>";
-		};
-		7C9F93D3149960C400126908 /* DetailViewController.xib */ = {
-			isa = PBXVariantGroup;
-			children = (
-				7C9F93D4149960C400126908 /* en */,
-			);
-			name = DetailViewController.xib;
 			sourceTree = "<group>";
 		};
 		7C9F93E6149960C400126908 /* InfoPlist.strings */ = {
