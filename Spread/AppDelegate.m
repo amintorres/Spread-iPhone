@@ -11,6 +11,7 @@
 #import "AppDelegate.h"
 #import "MasterViewController.h"
 #import "Photo.h"
+#import "SpreadAPIDefinition.h"
 
 
 
@@ -22,7 +23,7 @@
 
 - (void)setupRestKit
 {
-    RKObjectManager* objectManager = [RKObjectManager objectManagerWithBaseURL:@"http://joinspread.com"];
+    RKObjectManager* objectManager = [RKObjectManager objectManagerWithBaseURL:[SpreadAPIDefinition baseURL]];
     
     // Enable automatic network activity indicator management
     objectManager.client.requestQueue.showsNetworkActivityIndicatorWhenBusy = YES;

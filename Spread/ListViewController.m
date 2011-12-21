@@ -8,7 +8,8 @@
 
 #import "ListViewController.h"
 #import "Photo.h"
-
+#import "SpreadAPIDefinition.h"
+#import "UIImageView+WebCache.h"
 
 
 @interface ListViewController ()
@@ -58,7 +59,7 @@
     //http://joinspread.com/photos.json?user_credentials=1fofoNKbvEz0RIDwE727
  
     RKObjectManager* objectManager = [RKObjectManager sharedManager];
-    [objectManager loadObjectsAtResourcePath:@"/photos.json?user_credentials=1fofoNKbvEz0RIDwE727" delegate:self block:^(RKObjectLoader* loader) {
+    [objectManager loadObjectsAtResourcePath:[SpreadAPIDefinition allPhotosPath] delegate:self block:^(RKObjectLoader* loader) {
 
         loader.objectMapping = [objectManager.mappingProvider objectMappingForClass:[Photo class]];
     }];
@@ -106,7 +107,9 @@
     Photo* photo = [photos objectAtIndex:indexPath.row];
 	cell.textLabel.text = photo.title;
     cell.detailTextLabel.text = photo.photoDescription;
-    
+    [cell.imageView setImageWithURL:[NSURL URLWithString:photo.imageURLString]
+                   placeholderImage:[UIImage imageNamed:@"placeholder"]];
+
 	return cell;
 }
 
