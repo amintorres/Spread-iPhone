@@ -24,6 +24,9 @@
 		7C9F93E0149960C400126908 /* CoreData.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7C9F93B9149960C300126908 /* CoreData.framework */; };
 		7C9F93E8149960C400126908 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 7C9F93E6149960C400126908 /* InfoPlist.strings */; };
 		7C9F93EB149960C400126908 /* SpreadTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 7C9F93EA149960C400126908 /* SpreadTests.m */; };
+		7CE85ADF14A21804002874EA /* SpreadAPIDefinition.m in Sources */ = {isa = PBXBuildFile; fileRef = 7CE85ADE14A21804002874EA /* SpreadAPIDefinition.m */; };
+		7CE85AEB14A22330002874EA /* libSDWebImage.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 7CE85AE814A221A6002874EA /* libSDWebImage.a */; };
+		7CE85AEE14A223EB002874EA /* Placeholder.png in Resources */ = {isa = PBXBuildFile; fileRef = 7CE85AED14A223EB002874EA /* Placeholder.png */; };
 		7CF8A609149BFA12009FF755 /* IntroViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7CF8A607149BFA12009FF755 /* IntroViewController.m */; };
 		7CF8A60A149BFA12009FF755 /* IntroViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 7CF8A608149BFA12009FF755 /* IntroViewController.xib */; };
 		7CF8A60E149BFA2F009FF755 /* ListViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7CF8A60C149BFA2F009FF755 /* ListViewController.m */; };
@@ -74,6 +77,20 @@
 			remoteGlobalIDString = 7C9F93AE149960C300126908;
 			remoteInfo = Spread;
 		};
+		7CE85AE714A221A6002874EA /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 7CE85AE014A221A6002874EA /* SDWebImage.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 53922D6F148C55820056699D;
+			remoteInfo = SDWebImage;
+		};
+		7CE85AE914A22314002874EA /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 7CE85AE014A221A6002874EA /* SDWebImage.xcodeproj */;
+			proxyType = 1;
+			remoteGlobalIDString = 53922D6E148C55810056699D;
+			remoteInfo = SDWebImage;
+		};
 		7CF95578149FE5FB00786B4F /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = 7C633039149FE50800BF2049 /* RestKit.xcodeproj */;
@@ -108,6 +125,10 @@
 		7C9F93E7149960C400126908 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		7C9F93E9149960C400126908 /* SpreadTests.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SpreadTests.h; sourceTree = "<group>"; };
 		7C9F93EA149960C400126908 /* SpreadTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SpreadTests.m; sourceTree = "<group>"; };
+		7CE85ADD14A21804002874EA /* SpreadAPIDefinition.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SpreadAPIDefinition.h; sourceTree = "<group>"; };
+		7CE85ADE14A21804002874EA /* SpreadAPIDefinition.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SpreadAPIDefinition.m; sourceTree = "<group>"; };
+		7CE85AE014A221A6002874EA /* SDWebImage.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = SDWebImage.xcodeproj; path = SDWebImage/SDWebImage.xcodeproj; sourceTree = "<group>"; };
+		7CE85AED14A223EB002874EA /* Placeholder.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Placeholder.png; sourceTree = "<group>"; };
 		7CF8A606149BFA12009FF755 /* IntroViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IntroViewController.h; sourceTree = "<group>"; };
 		7CF8A607149BFA12009FF755 /* IntroViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = IntroViewController.m; sourceTree = "<group>"; };
 		7CF8A608149BFA12009FF755 /* IntroViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = IntroViewController.xib; sourceTree = "<group>"; };
@@ -129,6 +150,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				7CE85AEB14A22330002874EA /* libSDWebImage.a in Frameworks */,
 				7CF95584149FE66100786B4F /* libxml2.dylib in Frameworks */,
 				7CF95582149FE65700786B4F /* SystemConfiguration.framework in Frameworks */,
 				7CF95580149FE64D00786B4F /* Security.framework in Frameworks */,
@@ -159,6 +181,7 @@
 		7C633037149FE4FB00BF2049 /* External */ = {
 			isa = PBXGroup;
 			children = (
+				7CE85AE014A221A6002874EA /* SDWebImage.xcodeproj */,
 				7C633039149FE50800BF2049 /* RestKit.xcodeproj */,
 			);
 			name = External;
@@ -228,7 +251,9 @@
 				7C9F93C4149960C300126908 /* AppDelegate.h */,
 				7C9F93C5149960C300126908 /* AppDelegate.m */,
 				7CF8A604149BF974009FF755 /* View Controller */,
+				7CE85ADC14A217BA002874EA /* Utilities */,
 				7C9890A314A041A8009E22F1 /* Data Model */,
+				7CE85AEC14A223EB002874EA /* Images */,
 				7C9F93BC149960C300126908 /* Supporting Files */,
 			);
 			path = Spread;
@@ -262,6 +287,31 @@
 				7C9F93E6149960C400126908 /* InfoPlist.strings */,
 			);
 			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		7CE85ADC14A217BA002874EA /* Utilities */ = {
+			isa = PBXGroup;
+			children = (
+				7CE85ADD14A21804002874EA /* SpreadAPIDefinition.h */,
+				7CE85ADE14A21804002874EA /* SpreadAPIDefinition.m */,
+			);
+			name = Utilities;
+			sourceTree = "<group>";
+		};
+		7CE85AE114A221A6002874EA /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				7CE85AE814A221A6002874EA /* libSDWebImage.a */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		7CE85AEC14A223EB002874EA /* Images */ = {
+			isa = PBXGroup;
+			children = (
+				7CE85AED14A223EB002874EA /* Placeholder.png */,
+			);
+			path = Images;
 			sourceTree = "<group>";
 		};
 		7CF8A604149BF974009FF755 /* View Controller */ = {
@@ -321,6 +371,7 @@
 			buildRules = (
 			);
 			dependencies = (
+				7CE85AEA14A22314002874EA /* PBXTargetDependency */,
 				7CF95579149FE5FB00786B4F /* PBXTargetDependency */,
 			);
 			name = Spread;
@@ -371,6 +422,10 @@
 					ProductGroup = 7C63303A149FE50800BF2049 /* Products */;
 					ProjectRef = 7C633039149FE50800BF2049 /* RestKit.xcodeproj */;
 				},
+				{
+					ProductGroup = 7CE85AE114A221A6002874EA /* Products */;
+					ProjectRef = 7CE85AE014A221A6002874EA /* SDWebImage.xcodeproj */;
+				},
 			);
 			projectRoot = "";
 			targets = (
@@ -409,6 +464,13 @@
 			remoteRef = 7C633046149FE50800BF2049 /* PBXContainerItemProxy */;
 			sourceTree = BUILT_PRODUCTS_DIR;
 		};
+		7CE85AE814A221A6002874EA /* libSDWebImage.a */ = {
+			isa = PBXReferenceProxy;
+			fileType = archive.ar;
+			path = libSDWebImage.a;
+			remoteRef = 7CE85AE714A221A6002874EA /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
 /* End PBXReferenceProxy section */
 
 /* Begin PBXResourcesBuildPhase section */
@@ -421,6 +483,7 @@
 				7CF8A60A149BFA12009FF755 /* IntroViewController.xib in Resources */,
 				7CF8A60F149BFA2F009FF755 /* ListViewController.xib in Resources */,
 				7CF8A614149BFA3B009FF755 /* GridViewController.xib in Resources */,
+				7CE85AEE14A223EB002874EA /* Placeholder.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -463,6 +526,7 @@
 				7CF8A60E149BFA2F009FF755 /* ListViewController.m in Sources */,
 				7CF8A613149BFA3B009FF755 /* GridViewController.m in Sources */,
 				7C9890A214A0419F009E22F1 /* Photo.m in Sources */,
+				7CE85ADF14A21804002874EA /* SpreadAPIDefinition.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -481,6 +545,11 @@
 			isa = PBXTargetDependency;
 			target = 7C9F93AE149960C300126908 /* Spread */;
 			targetProxy = 7C9F93E1149960C400126908 /* PBXContainerItemProxy */;
+		};
+		7CE85AEA14A22314002874EA /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			name = SDWebImage;
+			targetProxy = 7CE85AE914A22314002874EA /* PBXContainerItemProxy */;
 		};
 		7CF95579149FE5FB00786B4F /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
@@ -567,7 +636,10 @@
 			buildSettings = {
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "Spread/Spread-Prefix.pch";
-				HEADER_SEARCH_PATHS = "\"$(SOURCE_ROOT)/RestKit/Build\"";
+				HEADER_SEARCH_PATHS = (
+					"\"$(SOURCE_ROOT)/RestKit/Build\"",
+					"\"$(SOURCE_ROOT)/SDWebImage",
+				);
 				INFOPLIST_FILE = "Spread/Spread-Info.plist";
 				OTHER_LDFLAGS = (
 					"-ObjC",
@@ -583,7 +655,10 @@
 			buildSettings = {
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "Spread/Spread-Prefix.pch";
-				HEADER_SEARCH_PATHS = "\"$(SOURCE_ROOT)/RestKit/Build\"";
+				HEADER_SEARCH_PATHS = (
+					"\"$(SOURCE_ROOT)/RestKit/Build\"",
+					"\"$(SOURCE_ROOT)/SDWebImage",
+				);
 				INFOPLIST_FILE = "Spread/Spread-Info.plist";
 				OTHER_LDFLAGS = (
 					"-ObjC",
