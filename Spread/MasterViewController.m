@@ -7,6 +7,7 @@
 //
 
 #import "MasterViewController.h"
+#import "ServiceManager.h"
 
 
 typedef enum{
@@ -14,6 +15,7 @@ typedef enum{
     ContainerViewModeList,
     ContainerViewModeGrid
 } ContainerViewMode;
+
 
 
 @interface MasterViewController ()
@@ -137,6 +139,7 @@ typedef enum{
                     }
                     completion:NULL];
     
+    [ServiceManager loadDataFromServer];
     [self showListView];
 }
 

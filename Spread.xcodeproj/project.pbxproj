@@ -7,6 +7,9 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		7C8D9BC014A28F3200D1D5DC /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7C8D9BBF14A28F3200D1D5DC /* QuartzCore.framework */; };
+		7C8D9BC114A28F4500D1D5DC /* libAQGridView.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 7C94C27D14A2886C005531FB /* libAQGridView.a */; };
+		7C8D9BC414A2994500D1D5DC /* ServiceManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 7C8D9BC314A2994500D1D5DC /* ServiceManager.m */; };
 		7C9890A214A0419F009E22F1 /* Photo.m in Sources */ = {isa = PBXBuildFile; fileRef = 7C9890A114A0419F009E22F1 /* Photo.m */; };
 		7C9F93B4149960C300126908 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7C9F93B3149960C300126908 /* UIKit.framework */; };
 		7C9F93B6149960C300126908 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7C9F93B5149960C300126908 /* Foundation.framework */; };
@@ -70,6 +73,13 @@
 			remoteGlobalIDString = 25160E78145651060060A5C5;
 			remoteInfo = RestKitFrameworkTests;
 		};
+		7C94C27C14A2886C005531FB /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 7C94C27814A2886C005531FB /* AQGridView.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = D2AAC07E0554694100DB518D;
+			remoteInfo = AQGridView;
+		};
 		7C9F93E1149960C400126908 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = 7C9F93A6149960C300126908 /* Project object */;
@@ -84,13 +94,6 @@
 			remoteGlobalIDString = 53922D6F148C55820056699D;
 			remoteInfo = SDWebImage;
 		};
-		7CE85AE914A22314002874EA /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 7CE85AE014A221A6002874EA /* SDWebImage.xcodeproj */;
-			proxyType = 1;
-			remoteGlobalIDString = 53922D6E148C55810056699D;
-			remoteInfo = SDWebImage;
-		};
 		7CF95578149FE5FB00786B4F /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = 7C633039149FE50800BF2049 /* RestKit.xcodeproj */;
@@ -102,6 +105,10 @@
 
 /* Begin PBXFileReference section */
 		7C633039149FE50800BF2049 /* RestKit.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = RestKit.xcodeproj; path = RestKit/RestKit.xcodeproj; sourceTree = "<group>"; };
+		7C8D9BBF14A28F3200D1D5DC /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
+		7C8D9BC214A2994500D1D5DC /* ServiceManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ServiceManager.h; sourceTree = "<group>"; };
+		7C8D9BC314A2994500D1D5DC /* ServiceManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ServiceManager.m; sourceTree = "<group>"; };
+		7C94C27814A2886C005531FB /* AQGridView.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = AQGridView.xcodeproj; path = AQGridView/AQGridView.xcodeproj; sourceTree = "<group>"; };
 		7C9890A014A0419F009E22F1 /* Photo.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Photo.h; sourceTree = "<group>"; };
 		7C9890A114A0419F009E22F1 /* Photo.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Photo.m; sourceTree = "<group>"; };
 		7C9F93AF149960C300126908 /* Spread.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Spread.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -150,6 +157,8 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				7C8D9BC114A28F4500D1D5DC /* libAQGridView.a in Frameworks */,
+				7C8D9BC014A28F3200D1D5DC /* QuartzCore.framework in Frameworks */,
 				7CE85AEB14A22330002874EA /* libSDWebImage.a in Frameworks */,
 				7CF95584149FE66100786B4F /* libxml2.dylib in Frameworks */,
 				7CF95582149FE65700786B4F /* SystemConfiguration.framework in Frameworks */,
@@ -181,6 +190,7 @@
 		7C633037149FE4FB00BF2049 /* External */ = {
 			isa = PBXGroup;
 			children = (
+				7C94C27814A2886C005531FB /* AQGridView.xcodeproj */,
 				7CE85AE014A221A6002874EA /* SDWebImage.xcodeproj */,
 				7C633039149FE50800BF2049 /* RestKit.xcodeproj */,
 			);
@@ -198,6 +208,14 @@
 			name = Products;
 			sourceTree = "<group>";
 		};
+		7C94C27914A2886C005531FB /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				7C94C27D14A2886C005531FB /* libAQGridView.a */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
 		7C9890A314A041A8009E22F1 /* Data Model */ = {
 			isa = PBXGroup;
 			children = (
@@ -211,6 +229,7 @@
 		7C9F93A4149960C300126908 = {
 			isa = PBXGroup;
 			children = (
+				7C8D9BBF14A28F3200D1D5DC /* QuartzCore.framework */,
 				7C633037149FE4FB00BF2049 /* External */,
 				7C9F93BB149960C300126908 /* Spread */,
 				7C9F93E3149960C400126908 /* SpreadTests */,
@@ -294,6 +313,8 @@
 			children = (
 				7CE85ADD14A21804002874EA /* SpreadAPIDefinition.h */,
 				7CE85ADE14A21804002874EA /* SpreadAPIDefinition.m */,
+				7C8D9BC214A2994500D1D5DC /* ServiceManager.h */,
+				7C8D9BC314A2994500D1D5DC /* ServiceManager.m */,
 			);
 			name = Utilities;
 			sourceTree = "<group>";
@@ -371,7 +392,6 @@
 			buildRules = (
 			);
 			dependencies = (
-				7CE85AEA14A22314002874EA /* PBXTargetDependency */,
 				7CF95579149FE5FB00786B4F /* PBXTargetDependency */,
 			);
 			name = Spread;
@@ -419,6 +439,10 @@
 			projectDirPath = "";
 			projectReferences = (
 				{
+					ProductGroup = 7C94C27914A2886C005531FB /* Products */;
+					ProjectRef = 7C94C27814A2886C005531FB /* AQGridView.xcodeproj */;
+				},
+				{
 					ProductGroup = 7C63303A149FE50800BF2049 /* Products */;
 					ProjectRef = 7C633039149FE50800BF2049 /* RestKit.xcodeproj */;
 				},
@@ -462,6 +486,13 @@
 			fileType = wrapper.cfbundle;
 			path = RestKitFrameworkTests.octest;
 			remoteRef = 7C633046149FE50800BF2049 /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		7C94C27D14A2886C005531FB /* libAQGridView.a */ = {
+			isa = PBXReferenceProxy;
+			fileType = archive.ar;
+			path = libAQGridView.a;
+			remoteRef = 7C94C27C14A2886C005531FB /* PBXContainerItemProxy */;
 			sourceTree = BUILT_PRODUCTS_DIR;
 		};
 		7CE85AE814A221A6002874EA /* libSDWebImage.a */ = {
@@ -527,6 +558,7 @@
 				7CF8A613149BFA3B009FF755 /* GridViewController.m in Sources */,
 				7C9890A214A0419F009E22F1 /* Photo.m in Sources */,
 				7CE85ADF14A21804002874EA /* SpreadAPIDefinition.m in Sources */,
+				7C8D9BC414A2994500D1D5DC /* ServiceManager.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -545,11 +577,6 @@
 			isa = PBXTargetDependency;
 			target = 7C9F93AE149960C300126908 /* Spread */;
 			targetProxy = 7C9F93E1149960C400126908 /* PBXContainerItemProxy */;
-		};
-		7CE85AEA14A22314002874EA /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			name = SDWebImage;
-			targetProxy = 7CE85AE914A22314002874EA /* PBXContainerItemProxy */;
 		};
 		7CF95579149FE5FB00786B4F /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
@@ -638,7 +665,8 @@
 				GCC_PREFIX_HEADER = "Spread/Spread-Prefix.pch";
 				HEADER_SEARCH_PATHS = (
 					"\"$(SOURCE_ROOT)/RestKit/Build\"",
-					"\"$(SOURCE_ROOT)/SDWebImage",
+					"\"$(SOURCE_ROOT)/SDWebImage\"",
+					"\"$(SOURCE_ROOT)/AQGridView\"/**",
 				);
 				INFOPLIST_FILE = "Spread/Spread-Info.plist";
 				OTHER_LDFLAGS = (
@@ -657,7 +685,8 @@
 				GCC_PREFIX_HEADER = "Spread/Spread-Prefix.pch";
 				HEADER_SEARCH_PATHS = (
 					"\"$(SOURCE_ROOT)/RestKit/Build\"",
-					"\"$(SOURCE_ROOT)/SDWebImage",
+					"\"$(SOURCE_ROOT)/SDWebImage\"",
+					"\"$(SOURCE_ROOT)/AQGridView\"/**",
 				);
 				INFOPLIST_FILE = "Spread/Spread-Info.plist";
 				OTHER_LDFLAGS = (

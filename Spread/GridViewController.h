@@ -7,7 +7,12 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "AQGridView.h"
 
-@interface GridViewController : UIViewController
+
+
+@interface GridViewController : UIViewController <AQGridViewDataSource, AQGridViewDelegate>
+
+@property (strong, nonatomic) IBOutlet AQGridView *gridView;
 
 @end
