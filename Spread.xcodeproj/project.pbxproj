@@ -229,7 +229,6 @@
 		7C9F93A4149960C300126908 = {
 			isa = PBXGroup;
 			children = (
-				7C8D9BBF14A28F3200D1D5DC /* QuartzCore.framework */,
 				7C633037149FE4FB00BF2049 /* External */,
 				7C9F93BB149960C300126908 /* Spread */,
 				7C9F93E3149960C400126908 /* SpreadTests */,
@@ -250,6 +249,7 @@
 		7C9F93B2149960C300126908 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				7C8D9BBF14A28F3200D1D5DC /* QuartzCore.framework */,
 				7CF95583149FE66100786B4F /* libxml2.dylib */,
 				7CF95581149FE65700786B4F /* SystemConfiguration.framework */,
 				7CF9557F149FE64D00786B4F /* Security.framework */,
