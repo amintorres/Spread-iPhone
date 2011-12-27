@@ -16,6 +16,7 @@
 @implementation ListViewController
 
 @synthesize tableView;
+@synthesize nibLoadedCell;
 
 
 #pragma mark -
@@ -40,6 +41,7 @@
 - (void)viewDidUnload
 {
     self.tableView = nil;
+    self.nibLoadedCell = nil;
     [super viewDidUnload];
 }
 
@@ -54,19 +56,19 @@
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-	NSString* reuseIdentifier = @"PhotoCellIdentifier";
-	UITableViewCell* cell = [self.tableView dequeueReusableCellWithIdentifier:reuseIdentifier];
+	NSString* reuseIdentifier = @"ListTableViewCell";
+	ListTableViewCell* cell = (ListTableViewCell*)[self.tableView dequeueReusableCellWithIdentifier:reuseIdentifier];
 	if (!cell)
     {
-		cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:reuseIdentifier];
+        UINib* nib = [UINib nibWithNibName:@"ListTableViewCell" bundle:nil];
+        [nib instantiateWithOwner:self options:nil];
+        
+        cell = nibLoadedCell;
+        self.nibLoadedCell = nil;
 	}
 
-    Photo* photo = [[ServiceManager allPhotos] objectAtIndex:indexPath.row];
-	cell.textLabel.text = photo.title;
-    cell.detailTextLabel.text = photo.photoDescription;
-    [cell.imageView setImageWithURL:[NSURL URLWithString:photo.imageURLString]
-                   placeholderImage:[UIImage imageNamed:@"placeholder"]];
-
+    cell.photo = [[ServiceManager allPhotos] objectAtIndex:indexPath.row];
+    
 	return cell;
 }
 
