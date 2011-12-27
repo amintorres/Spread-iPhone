@@ -98,6 +98,7 @@ typedef enum{
 {
     [self clearContainerView];
     
+    gridViewController.view.frame = containerView.bounds;
     [containerView addSubview:self.gridViewController.view];
     [gridListButton setTitle:@"List" forState:UIControlStateNormal];
     
@@ -108,6 +109,7 @@ typedef enum{
 {
     [self clearContainerView];
     
+    listViewController.view.frame = containerView.bounds;
     [containerView addSubview:self.listViewController.view];
     [gridListButton setTitle:@"Grid" forState:UIControlStateNormal];
     
