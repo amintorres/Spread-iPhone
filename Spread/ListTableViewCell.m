@@ -7,23 +7,25 @@
 //
 
 #import "ListTableViewCell.h"
+#import "UIImageView+WebCache.h"
+
+
 
 @implementation ListTableViewCell
 
-- (id)initWithStyle:(UITableViewCellStyle)style reuseIdentifier:(NSString *)reuseIdentifier
+@synthesize imageView, titleLabel, descriptionLabel;
+@synthesize photo;
+
+
+- (void)setPhoto:(Photo *)aPhoto
 {
-    self = [super initWithStyle:style reuseIdentifier:reuseIdentifier];
-    if (self) {
-        // Initialization code
-    }
-    return self;
+    photo = aPhoto;
+    
+    titleLabel.text = photo.title;
+    descriptionLabel.text = photo.photoDescription;
+    
+    [imageView setImageWithURL:[NSURL URLWithString:photo.imageURLString] placeholderImage:[UIImage imageNamed:@"placeholder"]];
 }
 
-- (void)setSelected:(BOOL)selected animated:(BOOL)animated
-{
-    [super setSelected:selected animated:animated];
-
-    // Configure the view for the selected state
-}
 
 @end
