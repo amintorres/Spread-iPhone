@@ -13,7 +13,7 @@
 
 
 
-@interface MasterViewController : UIViewController <IntroViewControllerDelegate>
+@interface MasterViewController : UIViewController <IntroViewControllerDelegate, UIImagePickerControllerDelegate, UINavigationControllerDelegate>
 
 @property (strong, nonatomic) IBOutlet UIView *headerView;
 @property (strong, nonatomic) IBOutlet UIView *containerView;
