@@ -8,6 +8,7 @@
 
 #import <Foundation/Foundation.h>
 #import <RestKit/RestKit.h>
+#import "Photo.h"
 
 static NSString* ServiceManagerDidLoadPhotosNotification = @"ServiceManagerDidLoadPhotosNotification";
 
@@ -19,5 +20,6 @@ static NSString* ServiceManagerDidLoadPhotosNotification = @"ServiceManagerDidLo
 + (ServiceManager*)sharedManager;
 + (NSArray*)allPhotos;
 + (void)loadDataFromServer;
++ (void)postPhoto:(Photo*)photo imageData:(NSData*)imageData;
 
 @end

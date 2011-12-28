@@ -19,11 +19,12 @@
 
 // Path
 + (NSString*)allPhotosPath;
++ (NSString*)postPhotoPath;
 
 
 // Query
 
-+ (NSString*)userCredentials;
++ (NSString*)userCredentialsQuery;
 
 
 @end

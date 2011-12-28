@@ -16,6 +16,7 @@
 @property (strong, nonatomic) IBOutlet UITextField *titleTextField;
 @property (strong, nonatomic) IBOutlet UITextField *tagsTextField;
 @property (strong, nonatomic) IBOutlet UITextView *descriptionTextView;
+@property (strong, nonatomic) NSDictionary* mediaInfo;
 
 - (IBAction)cancelButtonTapped:(id)sender;
 - (IBAction)saveButtonTapped:(id)sender;
