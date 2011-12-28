@@ -56,7 +56,7 @@
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-	NSString* reuseIdentifier = @"ListTableViewCell";
+	static NSString* reuseIdentifier = @"ListTableViewCell";
 	ListTableViewCell* cell = (ListTableViewCell*)[self.tableView dequeueReusableCellWithIdentifier:reuseIdentifier];
 	if (!cell)
     {

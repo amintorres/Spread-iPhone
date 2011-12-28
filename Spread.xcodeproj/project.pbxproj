@@ -9,6 +9,8 @@
 /* Begin PBXBuildFile section */
 		7C66003014AA1C3A00C285B1 /* ListTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 7C66002F14AA1C3A00C285B1 /* ListTableViewCell.m */; };
 		7C66003214AA1C4C00C285B1 /* ListTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 7C66003114AA1C4C00C285B1 /* ListTableViewCell.xib */; };
+		7C7F7AB414AB74AE00652401 /* EditViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7C7F7AB214AB74AE00652401 /* EditViewController.m */; };
+		7C7F7AB514AB74AE00652401 /* EditViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 7C7F7AB314AB74AE00652401 /* EditViewController.xib */; };
 		7C8D9BC014A28F3200D1D5DC /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7C8D9BBF14A28F3200D1D5DC /* QuartzCore.framework */; };
 		7C8D9BC114A28F4500D1D5DC /* libAQGridView.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 7C94C27D14A2886C005531FB /* libAQGridView.a */; };
 		7C8D9BC414A2994500D1D5DC /* ServiceManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 7C8D9BC314A2994500D1D5DC /* ServiceManager.m */; };
@@ -110,6 +112,9 @@
 		7C66002E14AA1C3A00C285B1 /* ListTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ListTableViewCell.h; sourceTree = "<group>"; };
 		7C66002F14AA1C3A00C285B1 /* ListTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ListTableViewCell.m; sourceTree = "<group>"; };
 		7C66003114AA1C4C00C285B1 /* ListTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ListTableViewCell.xib; sourceTree = "<group>"; };
+		7C7F7AB114AB74AE00652401 /* EditViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EditViewController.h; sourceTree = "<group>"; };
+		7C7F7AB214AB74AE00652401 /* EditViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EditViewController.m; sourceTree = "<group>"; };
+		7C7F7AB314AB74AE00652401 /* EditViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = EditViewController.xib; sourceTree = "<group>"; };
 		7C8D9BBF14A28F3200D1D5DC /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
 		7C8D9BC214A2994500D1D5DC /* ServiceManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ServiceManager.h; sourceTree = "<group>"; };
 		7C8D9BC314A2994500D1D5DC /* ServiceManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ServiceManager.m; sourceTree = "<group>"; };
@@ -211,6 +216,16 @@
 				7C633047149FE50800BF2049 /* RestKitFrameworkTests.octest */,
 			);
 			name = Products;
+			sourceTree = "<group>";
+		};
+		7C7F7AB014AB747200652401 /* Edit View */ = {
+			isa = PBXGroup;
+			children = (
+				7C7F7AB114AB74AE00652401 /* EditViewController.h */,
+				7C7F7AB214AB74AE00652401 /* EditViewController.m */,
+				7C7F7AB314AB74AE00652401 /* EditViewController.xib */,
+			);
+			name = "Edit View";
 			sourceTree = "<group>";
 		};
 		7C94C27914A2886C005531FB /* Products */ = {
@@ -349,6 +364,7 @@
 				7CF8A615149BFA69009FF755 /* Intro View */,
 				7CF8A616149BFA74009FF755 /* Feed View */,
 				7CF8A617149BFA7D009FF755 /* Grid View */,
+				7C7F7AB014AB747200652401 /* Edit View */,
 			);
 			name = "View Controller";
 			sourceTree = "<group>";
@@ -524,6 +540,7 @@
 				7CF8A614149BFA3B009FF755 /* GridViewController.xib in Resources */,
 				7CE85AEE14A223EB002874EA /* Placeholder.png in Resources */,
 				7C66003214AA1C4C00C285B1 /* ListTableViewCell.xib in Resources */,
+				7C7F7AB514AB74AE00652401 /* EditViewController.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -569,6 +586,7 @@
 				7CE85ADF14A21804002874EA /* SpreadAPIDefinition.m in Sources */,
 				7C8D9BC414A2994500D1D5DC /* ServiceManager.m in Sources */,
 				7C66003014AA1C3A00C285B1 /* ListTableViewCell.m in Sources */,
+				7C7F7AB414AB74AE00652401 /* EditViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -679,6 +697,7 @@
 					"\"$(SOURCE_ROOT)/AQGridView\"/**",
 				);
 				INFOPLIST_FILE = "Spread/Spread-Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 4.1;
 				OTHER_LDFLAGS = (
 					"-ObjC",
 					"-all_load",
@@ -699,6 +718,7 @@
 					"\"$(SOURCE_ROOT)/AQGridView\"/**",
 				);
 				INFOPLIST_FILE = "Spread/Spread-Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 4.1;
 				OTHER_LDFLAGS = (
 					"-ObjC",
 					"-all_load",

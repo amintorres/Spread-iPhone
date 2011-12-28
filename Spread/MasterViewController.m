@@ -8,6 +8,7 @@
 
 #import "MasterViewController.h"
 #import "ServiceManager.h"
+#import "EditViewController.h"
 
 
 typedef enum{
@@ -163,6 +164,24 @@ typedef enum{
 
 - (IBAction)cameraButtonTapped:(id)sender
 {
+    UIImagePickerController* imagePicker = [[UIImagePickerController alloc] init];
+
+    if ( [UIImagePickerController isSourceTypeAvailable:UIImagePickerControllerSourceTypeCamera] )
+    {
+        imagePicker.sourceType = UIImagePickerControllerSourceTypeCamera;
+    }
+    else if ( [UIImagePickerController isSourceTypeAvailable:UIImagePickerControllerSourceTypePhotoLibrary] )
+    {
+        imagePicker.sourceType = UIImagePickerControllerSourceTypePhotoLibrary;
+    }
+    else
+    {
+        return;
+    }
+    
+    imagePicker.delegate = self;
+    imagePicker.allowsEditing = YES;
+    [self presentModalViewController:imagePicker animated:YES];
 }
 
 - (IBAction)logoutButtonTapped:(id)sender
@@ -175,5 +194,21 @@ typedef enum{
     [self hideIntroView];
 }
 
+- (void)imagePickerController:(UIImagePickerController *)picker didFinishPickingMediaWithInfo:(NSDictionary *)info
+{
+    EditViewController* editViewController = [[EditViewController alloc] init];
+    [self.navigationController pushViewController:editViewController animated:NO];
+    [self dismissModalViewControllerAnimated:YES];
+}
+
+- (void)imagePickerControllerDidCancel:(UIImagePickerController *)picker
+{
+    [self dismissModalViewControllerAnimated:YES];    
+}
+
+
 
 @end
+
+
+
