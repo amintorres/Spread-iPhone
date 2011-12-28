@@ -8,7 +8,6 @@
 
 #import "ServiceManager.h"
 #import "SpreadAPIDefinition.h"
-#import "Photo.h"
 
 
 
@@ -54,18 +53,53 @@
     }];
 }
 
++ (void)postPhoto:(Photo*)photo imageData:(NSData*)imageData
+{
+    RKObjectManager* objectManager = [RKObjectManager sharedManager];
+    [objectManager postObject:photo delegate:[ServiceManager sharedManager] block:^(RKObjectLoader *loader){
+        
+        loader.objectMapping = [objectManager.mappingProvider objectMappingForClass:[Photo class]];
+        loader.serializationMIMEType = RKMIMETypeJSON; // We want to send this request as JSON
+
+        RKParams* params = [RKParams params];
+        [params setValue:@"test" forParam:@"title"];
+        [params setValue:@"test" forParam:@"description"];
+        [params setData:imageData MIMEType:@"image/jpeg" forParam:@"image"];
+        loader.params = params;
+    }];
+    
+    
+//    [[RKObjectManager sharedManager] sendObject:photo delegate:[ServiceManager sharedManager] block:^(RKObjectLoader* loader) {
+//        
+//        loader.method = RKRequestMethodPOST;
+//        loader.serializationMIMEType = RKMIMETypeJSON; // We want to send this request as JSON
+//        loader.targetObject = nil;  // Map the results back onto a new object instead of self
+//        // Set up a custom serialization mapping to handle this request
+//        loader.serializationMapping = [RKObjectMapping serializationMappingWithBlock:^(RKObjectMapping* mapping) {
+//            [mapping mapAttributes:@"password", nil];
+//        }];
+//    }];
+}
+
 
 #pragma mark -
 #pragma mark RKObjectLoader Delegate
 
 - (void)objectLoader:(RKObjectLoader*)objectLoader didLoadObjects:(NSArray*)objects
 {
-    NSFetchRequest* request = [Photo fetchRequest];
-	NSSortDescriptor* descriptor = [NSSortDescriptor sortDescriptorWithKey:@"createdDate" ascending:NO];
-	[request setSortDescriptors:[NSArray arrayWithObject:descriptor]];
-	
-    self.allPhotos = [Photo objectsWithFetchRequest:request];
-    [[NSNotificationCenter defaultCenter] postNotificationName:ServiceManagerDidLoadPhotosNotification object:self];
+    if ([objectLoader wasSentToResourcePath:[SpreadAPIDefinition allPhotosPath]])
+    {
+        NSFetchRequest* request = [Photo fetchRequest];
+        NSSortDescriptor* descriptor = [NSSortDescriptor sortDescriptorWithKey:@"createdDate" ascending:NO];
+        [request setSortDescriptors:[NSArray arrayWithObject:descriptor]];
+        
+        self.allPhotos = [Photo objectsWithFetchRequest:request];
+        [[NSNotificationCenter defaultCenter] postNotificationName:ServiceManagerDidLoadPhotosNotification object:self];
+    }
+    else
+    {
+        NSLog(@"didLoadObjects: %@", objects);
+    }
 }
 
 - (void)objectLoader:(RKObjectLoader*)objectLoader didFailWithError:(NSError*)error

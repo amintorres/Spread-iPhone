@@ -57,6 +57,15 @@
     
     // Register our mappings with the provider
     [objectManager.mappingProvider setMapping:photoMapping forKeyPath:@"photo"];
+    
+    // Generate an inverse mapping for transforming Photo -> NSMutableDictionary. 
+    [objectManager.mappingProvider setSerializationMapping:[photoMapping inverseMapping] forClass:[Photo class]];
+    
+    
+    [objectManager.router routeClass:[Photo class] toResourcePath:[SpreadAPIDefinition postPhotoPath] forMethod:RKRequestMethodPOST];
+    
+    
+    RKLogConfigureByName("RestKit/Network", RKLogLevelDebug);
 }
 
 

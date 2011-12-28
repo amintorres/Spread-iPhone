@@ -189,16 +189,24 @@ typedef enum{
     [self showIntroView];
 }
 
+
+#pragma mark -
+#pragma mark IntroViewControlle Delegate
+
 - (void)introViewControllerDidLogin:(IntroViewController*)controller
 {
     [self hideIntroView];
 }
 
+
+#pragma mark -
+#pragma mark UIImagePickerController Delegate
+
 - (void)imagePickerController:(UIImagePickerController *)picker didFinishPickingMediaWithInfo:(NSDictionary *)info
 {
     EditViewController* editViewController = [[EditViewController alloc] init];
-    [self.navigationController pushViewController:editViewController animated:NO];
-    [self dismissModalViewControllerAnimated:YES];
+    editViewController.mediaInfo = info;
+    [picker pushViewController:editViewController animated:YES];
 }
 
 - (void)imagePickerControllerDidCancel:(UIImagePickerController *)picker

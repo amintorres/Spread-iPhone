@@ -11,6 +11,7 @@
 		7C66003214AA1C4C00C285B1 /* ListTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 7C66003114AA1C4C00C285B1 /* ListTableViewCell.xib */; };
 		7C7F7AB414AB74AE00652401 /* EditViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7C7F7AB214AB74AE00652401 /* EditViewController.m */; };
 		7C7F7AB514AB74AE00652401 /* EditViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 7C7F7AB314AB74AE00652401 /* EditViewController.xib */; };
+		7C7F7AB714ABAEB000652401 /* AssetsLibrary.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7C7F7AB614ABAEB000652401 /* AssetsLibrary.framework */; };
 		7C8D9BC014A28F3200D1D5DC /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7C8D9BBF14A28F3200D1D5DC /* QuartzCore.framework */; };
 		7C8D9BC114A28F4500D1D5DC /* libAQGridView.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 7C94C27D14A2886C005531FB /* libAQGridView.a */; };
 		7C8D9BC414A2994500D1D5DC /* ServiceManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 7C8D9BC314A2994500D1D5DC /* ServiceManager.m */; };
@@ -115,6 +116,7 @@
 		7C7F7AB114AB74AE00652401 /* EditViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EditViewController.h; sourceTree = "<group>"; };
 		7C7F7AB214AB74AE00652401 /* EditViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EditViewController.m; sourceTree = "<group>"; };
 		7C7F7AB314AB74AE00652401 /* EditViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = EditViewController.xib; sourceTree = "<group>"; };
+		7C7F7AB614ABAEB000652401 /* AssetsLibrary.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AssetsLibrary.framework; path = System/Library/Frameworks/AssetsLibrary.framework; sourceTree = SDKROOT; };
 		7C8D9BBF14A28F3200D1D5DC /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
 		7C8D9BC214A2994500D1D5DC /* ServiceManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ServiceManager.h; sourceTree = "<group>"; };
 		7C8D9BC314A2994500D1D5DC /* ServiceManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ServiceManager.m; sourceTree = "<group>"; };
@@ -167,6 +169,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				7C7F7AB714ABAEB000652401 /* AssetsLibrary.framework in Frameworks */,
 				7C8D9BC114A28F4500D1D5DC /* libAQGridView.a in Frameworks */,
 				7C8D9BC014A28F3200D1D5DC /* QuartzCore.framework in Frameworks */,
 				7CE85AEB14A22330002874EA /* libSDWebImage.a in Frameworks */,
@@ -269,6 +272,7 @@
 		7C9F93B2149960C300126908 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				7C7F7AB614ABAEB000652401 /* AssetsLibrary.framework */,
 				7C8D9BBF14A28F3200D1D5DC /* QuartzCore.framework */,
 				7CF95583149FE66100786B4F /* libxml2.dylib */,
 				7CF95581149FE65700786B4F /* SystemConfiguration.framework */,

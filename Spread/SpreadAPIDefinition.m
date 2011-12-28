@@ -28,15 +28,21 @@
 
 + (NSString*)allPhotosPath
 {
-    NSString* allPhotosPath = [NSString stringWithFormat:@"/photos.json?%@", [self userCredentials]];
+    NSString* allPhotosPath = [NSString stringWithFormat:@"/photos.json?%@", [self userCredentialsQuery]];
     return allPhotosPath;
+}
+
++ (NSString*)postPhotoPath
+{
+    NSString* postPhotoPath = [NSString stringWithFormat:@"/photos?%@", [self userCredentialsQuery]];
+    return postPhotoPath;
 }
 
 
 #pragma mark -
 #pragma mark Query
 
-+ (NSString*)userCredentials
++ (NSString*)userCredentialsQuery
 {
     NSString* token = @"wAS4BLjaaAnmWdw98qi";
     NSString* userCredentials = [NSString stringWithFormat:@"user_credentials=%@", token];

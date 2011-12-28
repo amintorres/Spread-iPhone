@@ -7,6 +7,11 @@
 //
 
 #import "EditViewController.h"
+#import "Photo.h"
+#import <RestKit/RestKit.h>
+#import "ServiceManager.h"
+#import <AssetsLibrary/AssetsLibrary.h>
+
 
 typedef enum{
     EditTableViewSectionTitle = 0,
@@ -20,6 +25,7 @@ typedef enum{
 @interface EditViewController ()
 
 @property (strong, nonatomic) UIView *activeResponder;
+@property (strong, nonatomic) Photo *photo;
 
 - (void)registerForKeyboardNotifications;
 
@@ -29,11 +35,10 @@ typedef enum{
 
 @implementation EditViewController
 
-@synthesize tableView;
-@synthesize titleTextField;
-@synthesize tagsTextField;
-@synthesize descriptionTextView;
+@synthesize tableView, titleTextField, tagsTextField, descriptionTextView;
+@synthesize mediaInfo;
 @synthesize activeResponder;
+@synthesize photo;
 
 
 #pragma mark -
@@ -43,6 +48,8 @@ typedef enum{
 {
     [super viewDidLoad];
     [self registerForKeyboardNotifications];
+    
+    self.photo = [Photo object];
 }
 
 - (void)viewDidUnload
@@ -60,12 +67,35 @@ typedef enum{
 
 - (IBAction)cancelButtonTapped:(id)sender
 {
-    [self.navigationController popViewControllerAnimated:YES];
+    [self dismissModalViewControllerAnimated:YES];
 }
 
 - (IBAction)saveButtonTapped:(id)sender
 {
-    [self.navigationController popViewControllerAnimated:YES];
+    photo.capturedDate = [NSDate date];
+    photo.title = titleTextField.text;
+    photo.photoDescription = descriptionTextView.text;
+    
+    NSURL* imageURL = [mediaInfo objectForKey:UIImagePickerControllerReferenceURL];
+    
+    ALAssetsLibrary *assetsLibrary = [[ALAssetsLibrary alloc] init];
+    [assetsLibrary assetForURL:imageURL
+                   resultBlock:^(ALAsset *asset) {
+                       
+                       ALAssetRepresentation *imageRepresentation = [asset defaultRepresentation];
+                       
+                       Byte *buffer = (Byte*)malloc(imageRepresentation.size);
+                       NSUInteger buffered = [imageRepresentation getBytes:buffer fromOffset:0.0 length:imageRepresentation.size error:nil];
+                       NSData *data = [NSData dataWithBytesNoCopy:buffer length:buffered freeWhenDone:YES];
+                       [ServiceManager postPhoto:photo imageData:data];
+                   }
+                  failureBlock:^(NSError *error) {
+                      
+                      NSLog(@"Error loading image: %@", error);
+                  }];
+    
+    
+    [self dismissModalViewControllerAnimated:YES];
 }
 
 
