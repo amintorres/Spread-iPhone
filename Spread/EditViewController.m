@@ -6,11 +6,14 @@
 //  Copyright (c) 2011 R/GA. All rights reserved.
 //
 
+#import <AssetsLibrary/AssetsLibrary.h>
+#import <RestKit/RestKit.h>
 #import "EditViewController.h"
 #import "Photo.h"
-#import <RestKit/RestKit.h>
 #import "ServiceManager.h"
-#import <AssetsLibrary/AssetsLibrary.h>
+
+#import <CoreGraphics/CoreGraphics.h>
+#import <ImageIO/CGImageDestination.h>
 
 
 typedef enum{
@@ -75,25 +78,28 @@ typedef enum{
     photo.capturedDate = [NSDate date];
     photo.title = titleTextField.text;
     photo.photoDescription = descriptionTextView.text;
-    
-    NSURL* imageURL = [mediaInfo objectForKey:UIImagePickerControllerReferenceURL];
+
+    UIImage* editedImage = [mediaInfo objectForKey:UIImagePickerControllerEditedImage];
+    NSDictionary* metaData = [mediaInfo objectForKey:UIImagePickerControllerMediaMetadata];
     
     ALAssetsLibrary *assetsLibrary = [[ALAssetsLibrary alloc] init];
-    [assetsLibrary assetForURL:imageURL
-                   resultBlock:^(ALAsset *asset) {
-                       
-                       ALAssetRepresentation *imageRepresentation = [asset defaultRepresentation];
-                       
-                       Byte *buffer = (Byte*)malloc(imageRepresentation.size);
-                       NSUInteger buffered = [imageRepresentation getBytes:buffer fromOffset:0.0 length:imageRepresentation.size error:nil];
-                       NSData *data = [NSData dataWithBytesNoCopy:buffer length:buffered freeWhenDone:YES];
-                       [ServiceManager postPhoto:photo imageData:data];
-                   }
-                  failureBlock:^(NSError *error) {
-                      
-                      NSLog(@"Error loading image: %@", error);
-                  }];
     
+    [assetsLibrary writeImageToSavedPhotosAlbum:editedImage.CGImage metadata:metaData completionBlock:^(NSURL* assetURL, NSError* error){
+       
+        [assetsLibrary assetForURL:assetURL resultBlock:^(ALAsset *asset) {
+            
+            ALAssetRepresentation *imageRepresentation = [asset defaultRepresentation];
+            Byte *buffer = (Byte*)malloc(imageRepresentation.size);
+            NSUInteger buffered = [imageRepresentation getBytes:buffer fromOffset:0.0 length:imageRepresentation.size error:nil];
+            NSData *data = [NSData dataWithBytesNoCopy:buffer length:buffered freeWhenDone:YES];
+            [ServiceManager postPhoto:photo imageData:data];
+            
+        } failureBlock:^(NSError *error) {
+            
+            NSLog(@"Error loading image: %@", error);
+        }];     
+    }];
+
     
     [self dismissModalViewControllerAnimated:YES];
 }
