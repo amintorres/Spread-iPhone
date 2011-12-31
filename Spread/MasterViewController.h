@@ -22,6 +22,7 @@
 
 - (IBAction)gridListButtonTapped:(id)sender;
 - (IBAction)cameraButtonTapped:(id)sender;
+- (IBAction)aboutButtonTapped:(id)sender;
 - (IBAction)logoutButtonTapped:(id)sender;
 
 @end

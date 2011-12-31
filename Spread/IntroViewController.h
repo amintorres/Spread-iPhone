@@ -14,6 +14,7 @@
 @interface IntroViewController : UIViewController
 
 @property (assign, nonatomic) id <IntroViewControllerDelegate> delegate;
+@property (strong, nonatomic) IBOutlet UIButton *loginButton;
 
 - (IBAction)loginButtonTapped:(id)sender;
 
