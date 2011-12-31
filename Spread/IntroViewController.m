@@ -7,12 +7,13 @@
 //
 
 #import "IntroViewController.h"
-
+#import <QuartzCore/QuartzCore.h>
 
 
 @implementation IntroViewController
 
 @synthesize delegate;
+@synthesize loginButton;
 
 
 #pragma mark -
@@ -21,10 +22,14 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+    
+    loginButton.layer.masksToBounds = YES;
+    loginButton.layer.cornerRadius = 3.0;
 }
 
 - (void)viewDidUnload
 {
+    self.loginButton = nil;
     [super viewDidUnload];
 }
 

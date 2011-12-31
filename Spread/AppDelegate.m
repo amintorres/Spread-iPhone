@@ -12,6 +12,7 @@
 #import "MasterViewController.h"
 #import "Photo.h"
 #import "SpreadAPIDefinition.h"
+#import "UINavigationBar+Customize.h"
 
 
 
@@ -78,6 +79,8 @@
     MasterViewController *masterViewController = [[MasterViewController alloc] initWithNibName:@"MasterViewController" bundle:nil];
     self.navigationController = [[UINavigationController alloc] initWithRootViewController:masterViewController];
     self.navigationController.navigationBarHidden = YES;
+    [navigationController.navigationBar customizeBackground];
+    
     self.window.rootViewController = self.navigationController;
     [self.window makeKeyAndVisible];
     return YES;

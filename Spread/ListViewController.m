@@ -26,6 +26,9 @@
 {
     [super viewDidLoad];
     
+    tableView.backgroundColor = [UIColor colorWithWhite:0.8 alpha:1.0];
+    tableView.separatorColor = [UIColor colorWithWhite:0.8 alpha:1.0];
+    
     [[NSNotificationCenter defaultCenter] addObserverForName:ServiceManagerDidLoadPhotosNotification object:nil queue:nil usingBlock:^(NSNotification* notification){
        
         [tableView reloadData];

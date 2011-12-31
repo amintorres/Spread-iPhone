@@ -9,6 +9,8 @@
 #import "MasterViewController.h"
 #import "ServiceManager.h"
 #import "EditViewController.h"
+#import "AboutViewController.h"
+#import "UINavigationBar+Customize.h"
 
 
 typedef enum{
@@ -101,7 +103,7 @@ typedef enum{
     
     gridViewController.view.frame = containerView.bounds;
     [containerView addSubview:self.gridViewController.view];
-    [gridListButton setTitle:@"List" forState:UIControlStateNormal];
+    [gridListButton setImage:[UIImage imageNamed:@"icon_list"] forState:UIControlStateNormal];
     
     containerViewMode = ContainerViewModeGrid;
 }
@@ -112,7 +114,7 @@ typedef enum{
     
     listViewController.view.frame = containerView.bounds;
     [containerView addSubview:self.listViewController.view];
-    [gridListButton setTitle:@"Grid" forState:UIControlStateNormal];
+    [gridListButton setImage:[UIImage imageNamed:@"icon_grid"] forState:UIControlStateNormal];
     
     containerViewMode = ContainerViewModeList;
 }
@@ -182,6 +184,14 @@ typedef enum{
     imagePicker.delegate = self;
     imagePicker.allowsEditing = YES;
     [self presentModalViewController:imagePicker animated:YES];
+}
+
+- (IBAction)aboutButtonTapped:(id)sender
+{
+    AboutViewController* aboutViewController = [[AboutViewController alloc] init];
+    UINavigationController* navController = [[UINavigationController alloc] initWithRootViewController:aboutViewController];
+    [navController.navigationBar customizeBackground];
+    [self presentModalViewController:navController animated:YES];
 }
 
 - (IBAction)logoutButtonTapped:(id)sender
