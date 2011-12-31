@@ -15,5 +15,6 @@
 @property (strong, nonatomic) IBOutlet UITableView *tableView;
 
 - (IBAction)doneButtonTapped:(id)sender;
+- (IBAction)logoutButtonTapped:(id)sender;
 
 @end

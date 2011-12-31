@@ -7,13 +7,15 @@
 //
 
 #import <UIKit/UIKit.h>
-#import "IntroViewController.h"
 #import "ListViewController.h"
 #import "GridViewController.h"
 
+static NSString* SpreadDidLoginNotification = @"SpreadDidLoginNotification";
+static NSString* SpreadShouldLogoutNotification = @"SpreadShouldLogoutNotification";
 
 
-@interface MasterViewController : UIViewController <IntroViewControllerDelegate, UIImagePickerControllerDelegate, UINavigationControllerDelegate>
+
+@interface MasterViewController : UIViewController <UIImagePickerControllerDelegate, UINavigationControllerDelegate>
 
 @property (strong, nonatomic) IBOutlet UIView *headerView;
 @property (strong, nonatomic) IBOutlet UIView *containerView;
@@ -23,6 +25,5 @@
 - (IBAction)gridListButtonTapped:(id)sender;
 - (IBAction)cameraButtonTapped:(id)sender;
 - (IBAction)aboutButtonTapped:(id)sender;
-- (IBAction)logoutButtonTapped:(id)sender;
 
 @end

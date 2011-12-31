@@ -9,21 +9,11 @@
 #import <UIKit/UIKit.h>
 
 
-@protocol IntroViewControllerDelegate;
 
 @interface IntroViewController : UIViewController
 
-@property (assign, nonatomic) id <IntroViewControllerDelegate> delegate;
 @property (strong, nonatomic) IBOutlet UIButton *loginButton;
 
 - (IBAction)loginButtonTapped:(id)sender;
-
-@end
-
-
-
-@protocol IntroViewControllerDelegate <NSObject>
-
-- (void)introViewControllerDidLogin:(IntroViewController*)controller;
 
 @end

@@ -8,6 +8,7 @@
 
 #import "MasterViewController.h"
 #import "ServiceManager.h"
+#import "IntroViewController.h"
 #import "EditViewController.h"
 #import "AboutViewController.h"
 #import "UINavigationBar+Customize.h"
@@ -29,6 +30,7 @@ typedef enum{
 @property (nonatomic) ContainerViewMode containerViewMode;
 
 - (void)showIntroView;
+- (void)hideIntroView;
 
 @end
 
@@ -49,6 +51,16 @@ typedef enum{
 {
     [super viewDidLoad];
     
+    [[NSNotificationCenter defaultCenter] addObserverForName:SpreadDidLoginNotification object:nil queue:nil usingBlock:^(NSNotification* notification){
+        
+        [self hideIntroView];
+    }];
+    
+    [[NSNotificationCenter defaultCenter] addObserverForName:SpreadShouldLogoutNotification object:nil queue:nil usingBlock:^(NSNotification* notification){
+        
+        [self showIntroView];
+    }];
+
     [self showIntroView];
 }
 
@@ -61,12 +73,15 @@ typedef enum{
     [super viewDidUnload];
 }
 
+
+#pragma mark -
+#pragma mark Accessors
+
 - (IntroViewController*)introViewController
 {
     if ( !introViewController )
     {
         self.introViewController = [[IntroViewController alloc] init];
-        introViewController.delegate = self;
     }
     return introViewController;
 }
@@ -88,6 +103,10 @@ typedef enum{
     }
     return listViewController;
 }
+
+
+#pragma mark -
+#pragma mark View Management
 
 - (void)clearContainerView
 {
@@ -192,20 +211,6 @@ typedef enum{
     UINavigationController* navController = [[UINavigationController alloc] initWithRootViewController:aboutViewController];
     [navController.navigationBar customizeBackground];
     [self presentModalViewController:navController animated:YES];
-}
-
-- (IBAction)logoutButtonTapped:(id)sender
-{
-    [self showIntroView];
-}
-
-
-#pragma mark -
-#pragma mark IntroViewControlle Delegate
-
-- (void)introViewControllerDidLogin:(IntroViewController*)controller
-{
-    [self hideIntroView];
 }
 
 
