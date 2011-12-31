@@ -7,6 +7,7 @@
 //
 
 #import "AboutViewController.h"
+#import "MasterViewController.h"
 
 
 typedef enum{
@@ -41,6 +42,9 @@ typedef enum{
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+    
+    UIBarButtonItem* doneButton = [[UIBarButtonItem alloc] initWithTitle:@"Close" style:UIBarButtonItemStyleBordered target:self action:@selector(doneButtonTapped:)];
+    self.navigationItem.rightBarButtonItem = doneButton;
 }
 
 - (void)viewDidUnload
@@ -56,6 +60,12 @@ typedef enum{
 - (IBAction)doneButtonTapped:(id)sender
 {
     [self dismissModalViewControllerAnimated:YES];
+}
+
+- (IBAction)logoutButtonTapped:(id)sender
+{
+    [self dismissModalViewControllerAnimated:NO];
+    [[NSNotificationCenter defaultCenter] postNotificationName:SpreadShouldLogoutNotification object:self];
 }
 
 
@@ -100,6 +110,7 @@ typedef enum{
         cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:reuseIdentifier];
 	}
     
+    cell.selectionStyle = UITableViewCellSelectionStyleGray;
     
     if ( indexPath.section == TableViewSectionMain )
     {
@@ -141,6 +152,40 @@ typedef enum{
     }
     
 	return cell;
+}
+
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    [self.tableView deselectRowAtIndexPath:indexPath animated:YES];
+    
+    if ( indexPath.section == TableViewSectionMain )
+    {
+        switch (indexPath.row)
+        {
+            case TableViewMainSectionRowAbout:
+                break;
+                
+            case TableViewMainSectionRowTeam:
+                break;
+                
+            case TableViewMainSectionRowTerms:
+                break;
+                
+            case TableViewMainSectionRowFeedback:
+            default:
+                break;
+        }
+    }
+    else
+    {
+        switch (indexPath.row)
+        {
+            case TableViewLogoutSectionRowLogout:
+            default:
+                [self logoutButtonTapped:nil];
+                break;
+        }
+    }
 }
 
 

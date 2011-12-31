@@ -16,7 +16,7 @@
 
 - (void)customizeBackground
 {
-    self.tintColor = [UIColor blackColor];
+    self.barStyle = UIBarStyleBlack;
     
     if ([self respondsToSelector:@selector(setBackgroundImage:forBarMetrics:)])
     {
@@ -31,6 +31,28 @@
             imageView.tag = kNavigationBarBackgroundImageViewTag;
             [self insertSubview:imageView atIndex:0];
         }
+    }
+}
+
+- (void)insertSubview:(UIView *)view atIndex:(NSInteger)index
+{
+    [super insertSubview:view atIndex:index];
+    
+    UIView *backgroundImageView = [self viewWithTag:kNavigationBarBackgroundImageViewTag];
+    if (backgroundImageView != nil)
+    {
+        [super sendSubviewToBack:backgroundImageView];
+    }
+}
+
+- (void)sendSubviewToBack:(UIView *)view
+{
+    [super sendSubviewToBack:view];
+    
+    UIView *backgroundImageView = [self viewWithTag:kNavigationBarBackgroundImageViewTag];
+    if (backgroundImageView != nil)
+    {
+        [super sendSubviewToBack:backgroundImageView];
     }
 }
 

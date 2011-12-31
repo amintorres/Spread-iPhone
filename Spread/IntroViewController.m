@@ -7,12 +7,12 @@
 //
 
 #import "IntroViewController.h"
+#import "MasterViewController.h"
 #import <QuartzCore/QuartzCore.h>
 
 
 @implementation IntroViewController
 
-@synthesize delegate;
 @synthesize loginButton;
 
 
@@ -35,7 +35,7 @@
 
 - (IBAction)loginButtonTapped:(id)sender
 {
-    [delegate introViewControllerDidLogin:self];
+    [[NSNotificationCenter defaultCenter] postNotificationName:SpreadDidLoginNotification object:self];
 }
 
 @end
