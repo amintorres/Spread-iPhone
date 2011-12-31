@@ -12,6 +12,8 @@
 		7C7F7AB414AB74AE00652401 /* EditViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7C7F7AB214AB74AE00652401 /* EditViewController.m */; };
 		7C7F7AB514AB74AE00652401 /* EditViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 7C7F7AB314AB74AE00652401 /* EditViewController.xib */; };
 		7C7F7AB714ABAEB000652401 /* AssetsLibrary.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7C7F7AB614ABAEB000652401 /* AssetsLibrary.framework */; };
+		7C86FF7E14AF6F0A001B907A /* icon.png in Resources */ = {isa = PBXBuildFile; fileRef = 7C86FF7D14AF6F0A001B907A /* icon.png */; };
+		7C86FF8014AF6F0D001B907A /* icon@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 7C86FF7F14AF6F0D001B907A /* icon@2x.png */; };
 		7C8D9BC014A28F3200D1D5DC /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7C8D9BBF14A28F3200D1D5DC /* QuartzCore.framework */; };
 		7C8D9BC114A28F4500D1D5DC /* libAQGridView.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 7C94C27D14A2886C005531FB /* libAQGridView.a */; };
 		7C8D9BC414A2994500D1D5DC /* ServiceManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 7C8D9BC314A2994500D1D5DC /* ServiceManager.m */; };
@@ -118,6 +120,8 @@
 		7C7F7AB214AB74AE00652401 /* EditViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EditViewController.m; sourceTree = "<group>"; };
 		7C7F7AB314AB74AE00652401 /* EditViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = EditViewController.xib; sourceTree = "<group>"; };
 		7C7F7AB614ABAEB000652401 /* AssetsLibrary.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AssetsLibrary.framework; path = System/Library/Frameworks/AssetsLibrary.framework; sourceTree = SDKROOT; };
+		7C86FF7D14AF6F0A001B907A /* icon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = icon.png; path = ../../icon.png; sourceTree = "<group>"; };
+		7C86FF7F14AF6F0D001B907A /* icon@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "icon@2x.png"; path = "../../icon@2x.png"; sourceTree = "<group>"; };
 		7C8D9BBF14A28F3200D1D5DC /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
 		7C8D9BC214A2994500D1D5DC /* ServiceManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ServiceManager.h; sourceTree = "<group>"; };
 		7C8D9BC314A2994500D1D5DC /* ServiceManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ServiceManager.m; sourceTree = "<group>"; };
@@ -356,6 +360,8 @@
 		7CE85AEC14A223EB002874EA /* Images */ = {
 			isa = PBXGroup;
 			children = (
+				7C86FF7F14AF6F0D001B907A /* icon@2x.png */,
+				7C86FF7D14AF6F0A001B907A /* icon.png */,
 				7CE85AED14A223EB002874EA /* Placeholder.png */,
 			);
 			path = Images;
@@ -547,6 +553,8 @@
 				7CE85AEE14A223EB002874EA /* Placeholder.png in Resources */,
 				7C66003214AA1C4C00C285B1 /* ListTableViewCell.xib in Resources */,
 				7C7F7AB514AB74AE00652401 /* EditViewController.xib in Resources */,
+				7C86FF7E14AF6F0A001B907A /* icon.png in Resources */,
+				7C86FF8014AF6F0D001B907A /* icon@2x.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
