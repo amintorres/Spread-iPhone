@@ -144,6 +144,8 @@ typedef enum{
     {
         [ServiceManager deletePhoto:photo];
     }
+    
+    [self dismissModalViewControllerAnimated:YES];
 }
 
 
