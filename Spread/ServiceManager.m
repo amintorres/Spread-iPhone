@@ -69,6 +69,26 @@
     }];
 }
 
++ (void)updatePhoto:(Photo*)photo
+{
+    RKObjectManager* objectManager = [RKObjectManager sharedManager];
+    [objectManager putObject:photo delegate:[ServiceManager sharedManager] block:^(RKObjectLoader *loader){
+        
+        loader.objectMapping = [objectManager.mappingProvider objectMappingForClass:[Photo class]];
+        
+        RKParams* params = [RKParams params];
+        [params setValue:photo.title forParam:@"photo[title]"];
+        [params setValue:photo.photoDescription forParam:@"photo[description]"];
+        loader.params = params;
+    }];
+}
+
++ (void)deletePhoto:(Photo*)photo
+{
+    RKObjectManager* objectManager = [RKObjectManager sharedManager];
+    [objectManager deleteObject:photo delegate:[ServiceManager sharedManager]];
+}
+
 
 #pragma mark -
 #pragma mark RKObjectLoader Delegate

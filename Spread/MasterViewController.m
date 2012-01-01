@@ -31,6 +31,7 @@ typedef enum{
 
 - (void)showIntroView;
 - (void)hideIntroView;
+- (void)editPhoto:(Photo*)photo;
 
 @end
 
@@ -59,6 +60,12 @@ typedef enum{
     [[NSNotificationCenter defaultCenter] addObserverForName:SpreadShouldLogoutNotification object:nil queue:nil usingBlock:^(NSNotification* notification){
         
         [self showIntroView];
+    }];
+    
+    [[NSNotificationCenter defaultCenter] addObserverForName:SpreadShouldEditPhotoNotification object:nil queue:nil usingBlock:^(NSNotification* notification){
+        
+        Photo* photo = [notification.userInfo objectForKey:@"photo"];
+        [self editPhoto:photo];
     }];
 
     [self showIntroView];
@@ -213,6 +220,14 @@ typedef enum{
     [self presentModalViewController:navController animated:YES];
 }
 
+- (void)editPhoto:(Photo*)photo
+{
+    EditViewController* editViewController = [[EditViewController alloc] init];
+    editViewController.photo = photo;
+    editViewController.editMode = EditModeUpdate;
+    [self presentModalViewController:editViewController animated:YES];
+}
+
 
 #pragma mark -
 #pragma mark UIImagePickerController Delegate
@@ -221,6 +236,7 @@ typedef enum{
 {
     EditViewController* editViewController = [[EditViewController alloc] init];
     editViewController.mediaInfo = info;
+    editViewController.editMode = EditModeCreate;
     [picker pushViewController:editViewController animated:YES];
 }
 

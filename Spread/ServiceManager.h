@@ -21,5 +21,7 @@ static NSString* ServiceManagerDidLoadPhotosNotification = @"ServiceManagerDidLo
 + (NSArray*)allPhotos;
 + (void)loadDataFromServer;
 + (void)postPhoto:(Photo*)photo imageData:(NSData*)imageData;
++ (void)updatePhoto:(Photo*)photo;
++ (void)deletePhoto:(Photo*)photo;
 
 @end

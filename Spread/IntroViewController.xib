@@ -43,7 +43,7 @@
 						<string key="NSFrameSize">{320, 250}</string>
 						<reference key="NSSuperview" ref="191373211"/>
 						<reference key="NSWindow"/>
-						<reference key="NSNextKeyView" ref="318773347"/>
+						<reference key="NSNextKeyView" ref="957475061"/>
 						<string key="NSReuseIdentifierKey">_NS:567</string>
 						<bool key="IBUIUserInteractionEnabled">NO</bool>
 						<string key="targetRuntimeIdentifier">IBCocoaTouchFramework</string>
@@ -97,18 +97,18 @@
 						<int key="IBUIContentVerticalAlignment">0</int>
 						<string key="IBUITitleShadowOffset">{-1, -1}</string>
 						<string key="IBUINormalTitle">   Login with Facebook</string>
-						<object class="NSColor" key="IBUIHighlightedTitleColor" id="995681334">
+						<object class="NSColor" key="IBUIHighlightedTitleColor" id="26410009">
 							<int key="NSColorSpace">3</int>
 							<bytes key="NSWhite">MQA</bytes>
 						</object>
-						<reference key="IBUINormalTitleColor" ref="995681334"/>
+						<reference key="IBUINormalTitleColor" ref="26410009"/>
 						<object class="NSColor" key="IBUINormalTitleShadowColor">
 							<int key="NSColorSpace">1</int>
 							<bytes key="NSRGB">MC42NTc2MDg2OTU3IDAuNjU3NjA4Njk1NyAwLjY1NzYwODY5NTcAA</bytes>
 						</object>
 						<object class="NSCustomResource" key="IBUINormalBackgroundImage">
 							<string key="NSClassName">NSImage</string>
-							<string key="NSResourceName">gradient_gray.png</string>
+							<string key="NSResourceName">texture_gray.png</string>
 						</object>
 						<object class="IBUIFontDescription" key="IBUIFontDescription">
 							<int key="type">1</int>
@@ -120,7 +120,7 @@
 							<int key="NSfFlags">16</int>
 						</object>
 					</object>
-					<object class="IBUIImageView" id="318773347">
+					<object class="IBUIImageView" id="957475061">
 						<reference key="NSNextResponder" ref="191373211"/>
 						<int key="NSvFlags">292</int>
 						<string key="NSFrame">{{40, 290}, {141, 29}}</string>
@@ -196,7 +196,7 @@
 							<reference ref="759412063"/>
 							<reference ref="96543149"/>
 							<reference ref="840599325"/>
-							<reference ref="318773347"/>
+							<reference ref="957475061"/>
 						</array>
 						<reference key="parent" ref="0"/>
 					</object>
@@ -228,7 +228,7 @@
 					</object>
 					<object class="IBObjectRecord">
 						<int key="objectID">10</int>
-						<reference key="object" ref="318773347"/>
+						<reference key="object" ref="957475061"/>
 						<reference key="parent" ref="191373211"/>
 					</object>
 				</array>
@@ -266,6 +266,17 @@
 							<string key="candidateClassName">id</string>
 						</object>
 					</object>
+					<object class="NSMutableDictionary" key="outlets">
+						<string key="NS.key.0">loginButton</string>
+						<string key="NS.object.0">UIButton</string>
+					</object>
+					<object class="NSMutableDictionary" key="toOneOutletInfosByName">
+						<string key="NS.key.0">loginButton</string>
+						<object class="IBToOneOutletInfo" key="NS.object.0">
+							<string key="name">loginButton</string>
+							<string key="candidateClassName">UIButton</string>
+						</object>
+					</object>
 					<object class="IBClassDescriptionSource" key="sourceIdentifier">
 						<string key="majorKey">IBProjectSource</string>
 						<string key="minorKey">./Classes/IntroViewController.h</string>
@@ -278,9 +289,9 @@
 		<bool key="IBDocument.PluginDeclaredDependenciesTrackSystemTargetVersion">YES</bool>
 		<int key="IBDocument.defaultPropertyAccessControl">3</int>
 		<dictionary class="NSMutableDictionary" key="IBDocument.LastKnownImageSizes">
-			<string key="gradient_gray.png">{40, 40}</string>
 			<string key="intro_background.png">{320, 250}</string>
 			<string key="spread_logo.png">{141, 29}</string>
+			<string key="texture_gray.png">{40, 40}</string>
 		</dictionary>
 		<string key="IBCocoaTouchPluginVersion">933</string>
 	</data>

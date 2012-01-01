@@ -8,7 +8,7 @@
 
 #import "ListTableViewCell.h"
 #import "UIImageView+WebCache.h"
-
+#import "MasterViewController.h"
 
 
 @implementation ListTableViewCell
@@ -27,5 +27,11 @@
     [imageView setImageWithURL:[NSURL URLWithString:photo.imageURLString] placeholderImage:[UIImage imageNamed:@"placeholder"]];
 }
 
+
+- (IBAction)editButtonTapped:(id)sender
+{
+    NSDictionary* userInfo = [NSDictionary dictionaryWithObject:photo forKey:@"photo"];
+    [[NSNotificationCenter defaultCenter] postNotificationName:SpreadShouldEditPhotoNotification object:self userInfo:userInfo];
+}
 
 @end

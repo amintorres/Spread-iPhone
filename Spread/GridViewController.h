@@ -14,5 +14,7 @@
 @interface GridViewController : UIViewController <AQGridViewDataSource, AQGridViewDelegate>
 
 @property (strong, nonatomic) IBOutlet AQGridView *gridView;
+@property (strong, nonatomic) IBOutlet UIView *headerView;
+@property (strong, nonatomic) IBOutlet UIView *footerView;
 
 @end
