@@ -20,6 +20,8 @@
 // Path
 + (NSString*)allPhotosPath;
 + (NSString*)postPhotoPath;
++ (NSString*)putPhotoPath;
++ (NSString*)deletePhotoPath;
 
 
 // Query

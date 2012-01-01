@@ -18,4 +18,6 @@
 @property (strong, nonatomic) IBOutlet UILabel *descriptionLabel;
 @property (strong, nonatomic) Photo *photo;
 
+- (IBAction)editButtonTapped:(id)sender;
+
 @end

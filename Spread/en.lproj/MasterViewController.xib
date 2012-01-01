@@ -40,7 +40,7 @@
 						<reference key="NSNextResponder" ref="233379584"/>
 						<int key="NSvFlags">274</int>
 						<array class="NSMutableArray" key="NSSubviews">
-							<object class="IBUIImageView" id="26709329">
+							<object class="IBUIImageView" id="1053818173">
 								<reference key="NSNextResponder" ref="885407865"/>
 								<int key="NSvFlags">292</int>
 								<string key="NSFrameSize">{320, 44}</string>
@@ -59,7 +59,7 @@
 						<string key="NSFrameSize">{320, 44}</string>
 						<reference key="NSSuperview" ref="233379584"/>
 						<reference key="NSWindow"/>
-						<reference key="NSNextKeyView" ref="26709329"/>
+						<reference key="NSNextKeyView" ref="1053818173"/>
 						<string key="NSReuseIdentifierKey">_NS:196</string>
 						<object class="NSColor" key="IBUIBackgroundColor">
 							<int key="NSColorSpace">3</int>
@@ -73,7 +73,7 @@
 					<object class="IBUIView" id="912783744">
 						<reference key="NSNextResponder" ref="233379584"/>
 						<int key="NSvFlags">292</int>
-						<string key="NSFrame">{{0, 44}, {320, 372}}</string>
+						<string key="NSFrame">{{0, 44}, {320, 366}}</string>
 						<reference key="NSSuperview" ref="233379584"/>
 						<reference key="NSWindow"/>
 						<reference key="NSNextKeyView" ref="261824752"/>
@@ -88,13 +88,13 @@
 						<reference key="NSNextResponder" ref="233379584"/>
 						<int key="NSvFlags">292</int>
 						<array class="NSMutableArray" key="NSSubviews">
-							<object class="IBUIView" id="884399254">
+							<object class="IBUIView" id="806960484">
 								<reference key="NSNextResponder" ref="261824752"/>
 								<int key="NSvFlags">292</int>
 								<string key="NSFrameSize">{320, 1}</string>
 								<reference key="NSSuperview" ref="261824752"/>
 								<reference key="NSWindow"/>
-								<reference key="NSNextKeyView" ref="194478026"/>
+								<reference key="NSNextKeyView" ref="8799272"/>
 								<string key="NSReuseIdentifierKey">_NS:196</string>
 								<object class="NSColor" key="IBUIBackgroundColor">
 									<int key="NSColorSpace">3</int>
@@ -108,7 +108,7 @@
 								<string key="NSFrame">{{77, 0}, {50, 50}}</string>
 								<reference key="NSSuperview" ref="261824752"/>
 								<reference key="NSWindow"/>
-								<reference key="NSNextKeyView" ref="884399254"/>
+								<reference key="NSNextKeyView" ref="806960484"/>
 								<string key="NSReuseIdentifierKey">_NS:225</string>
 								<bool key="IBUIOpaque">NO</bool>
 								<string key="targetRuntimeIdentifier">IBCocoaTouchFramework</string>
@@ -134,19 +134,19 @@
 									<int key="type">2</int>
 									<double key="pointSize">15</double>
 								</object>
-								<object class="NSFont" key="IBUIFont" id="712539741">
+								<object class="NSFont" key="IBUIFont" id="926067690">
 									<string key="NSName">Helvetica-Bold</string>
 									<double key="NSSize">15</double>
 									<int key="NSfFlags">16</int>
 								</object>
 							</object>
-							<object class="IBUIButton" id="194478026">
+							<object class="IBUIButton" id="8799272">
 								<reference key="NSNextResponder" ref="261824752"/>
 								<int key="NSvFlags">292</int>
 								<string key="NSFrame">{{135, 0}, {50, 50}}</string>
 								<reference key="NSSuperview" ref="261824752"/>
 								<reference key="NSWindow"/>
-								<reference key="NSNextKeyView" ref="162920304"/>
+								<reference key="NSNextKeyView" ref="120375918"/>
 								<string key="NSReuseIdentifierKey">_NS:225</string>
 								<bool key="IBUIOpaque">NO</bool>
 								<string key="targetRuntimeIdentifier">IBCocoaTouchFramework</string>
@@ -163,9 +163,9 @@
 									<string key="NSResourceName">icon_camera.png</string>
 								</object>
 								<reference key="IBUIFontDescription" ref="909575290"/>
-								<reference key="IBUIFont" ref="712539741"/>
+								<reference key="IBUIFont" ref="926067690"/>
 							</object>
-							<object class="IBUIButton" id="162920304">
+							<object class="IBUIButton" id="120375918">
 								<reference key="NSNextResponder" ref="261824752"/>
 								<int key="NSvFlags">292</int>
 								<string key="NSFrame">{{193, 0}, {50, 50}}</string>
@@ -188,7 +188,7 @@
 									<string key="NSResourceName">icon_about.png</string>
 								</object>
 								<reference key="IBUIFontDescription" ref="909575290"/>
-								<reference key="IBUIFont" ref="712539741"/>
+								<reference key="IBUIFont" ref="926067690"/>
 							</object>
 						</array>
 						<string key="NSFrame">{{0, 410}, {320, 50}}</string>
@@ -274,7 +274,7 @@
 				<object class="IBConnectionRecord">
 					<object class="IBCocoaTouchEventConnection" key="connection">
 						<string key="label">cameraButtonTapped:</string>
-						<reference key="source" ref="194478026"/>
+						<reference key="source" ref="8799272"/>
 						<reference key="destination" ref="841351856"/>
 						<int key="IBEventType">7</int>
 					</object>
@@ -283,7 +283,7 @@
 				<object class="IBConnectionRecord">
 					<object class="IBCocoaTouchEventConnection" key="connection">
 						<string key="label">aboutButtonTapped:</string>
-						<reference key="source" ref="162920304"/>
+						<reference key="source" ref="120375918"/>
 						<reference key="destination" ref="841351856"/>
 						<int key="IBEventType">7</int>
 					</object>
@@ -324,9 +324,9 @@
 						<reference key="object" ref="261824752"/>
 						<array class="NSMutableArray" key="children">
 							<reference ref="452541585"/>
-							<reference ref="194478026"/>
-							<reference ref="162920304"/>
-							<reference ref="884399254"/>
+							<reference ref="8799272"/>
+							<reference ref="120375918"/>
+							<reference ref="806960484"/>
 						</array>
 						<reference key="parent" ref="233379584"/>
 						<string key="objectName">Toolbar View</string>
@@ -346,29 +346,29 @@
 						<int key="objectID">8</int>
 						<reference key="object" ref="885407865"/>
 						<array class="NSMutableArray" key="children">
-							<reference ref="26709329"/>
+							<reference ref="1053818173"/>
 						</array>
 						<reference key="parent" ref="233379584"/>
 						<string key="objectName">Header View</string>
 					</object>
 					<object class="IBObjectRecord">
 						<int key="objectID">30</int>
-						<reference key="object" ref="26709329"/>
+						<reference key="object" ref="1053818173"/>
 						<reference key="parent" ref="885407865"/>
 					</object>
 					<object class="IBObjectRecord">
 						<int key="objectID">31</int>
-						<reference key="object" ref="194478026"/>
+						<reference key="object" ref="8799272"/>
 						<reference key="parent" ref="261824752"/>
 					</object>
 					<object class="IBObjectRecord">
 						<int key="objectID">33</int>
-						<reference key="object" ref="162920304"/>
+						<reference key="object" ref="120375918"/>
 						<reference key="parent" ref="261824752"/>
 					</object>
 					<object class="IBObjectRecord">
 						<int key="objectID">38</int>
-						<reference key="object" ref="884399254"/>
+						<reference key="object" ref="806960484"/>
 						<reference key="parent" ref="261824752"/>
 					</object>
 				</array>
@@ -403,7 +403,6 @@
 						<string key="aboutButtonTapped:">id</string>
 						<string key="cameraButtonTapped:">id</string>
 						<string key="gridListButtonTapped:">id</string>
-						<string key="logoutButtonTapped:">id</string>
 					</dictionary>
 					<dictionary class="NSMutableDictionary" key="actionInfosByName">
 						<object class="IBActionInfo" key="aboutButtonTapped:">
@@ -416,10 +415,6 @@
 						</object>
 						<object class="IBActionInfo" key="gridListButtonTapped:">
 							<string key="name">gridListButtonTapped:</string>
-							<string key="candidateClassName">id</string>
-						</object>
-						<object class="IBActionInfo" key="logoutButtonTapped:">
-							<string key="name">logoutButtonTapped:</string>
 							<string key="candidateClassName">id</string>
 						</object>
 					</dictionary>

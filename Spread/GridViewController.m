@@ -16,6 +16,8 @@
 @implementation GridViewController
 
 @synthesize gridView;
+@synthesize headerView;
+@synthesize footerView;
 
 
 #pragma mark -
@@ -29,6 +31,14 @@
         
         [gridView reloadData];
     }];
+    
+    gridView.gridHeaderView = headerView;
+    gridView.gridFooterView = footerView;
+    gridView.showsVerticalScrollIndicator = NO;
+    
+    UIView* backgroundView = [[UIView alloc] init];
+    backgroundView.backgroundColor = [UIColor whiteColor];
+    gridView.backgroundView = backgroundView;
 }
 
 - (void)viewWillAppear:(BOOL)animated
@@ -40,6 +50,8 @@
 - (void)viewDidUnload
 {
     self.gridView = nil;
+    self.headerView = nil;
+    self.footerView = nil;
     [super viewDidUnload];
 }
 
@@ -65,6 +77,7 @@
         UIImageView* imageView = [[UIImageView alloc] initWithFrame:cell.contentView.bounds];
         imageView.tag = 123;
         imageView.clipsToBounds = YES;
+        imageView.contentMode = UIViewContentModeScaleAspectFill;
         [cell.contentView addSubview:imageView];
     }
     

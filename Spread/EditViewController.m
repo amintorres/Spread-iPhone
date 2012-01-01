@@ -7,13 +7,10 @@
 //
 
 #import <AssetsLibrary/AssetsLibrary.h>
+#import <QuartzCore/QuartzCore.h>
 #import <RestKit/RestKit.h>
 #import "EditViewController.h"
-#import "Photo.h"
 #import "ServiceManager.h"
-
-#import <CoreGraphics/CoreGraphics.h>
-#import <ImageIO/CGImageDestination.h>
 
 
 typedef enum{
@@ -28,7 +25,6 @@ typedef enum{
 @interface EditViewController ()
 
 @property (strong, nonatomic) UIView *activeResponder;
-@property (strong, nonatomic) Photo *photo;
 
 - (void)registerForKeyboardNotifications;
 
@@ -39,7 +35,9 @@ typedef enum{
 @implementation EditViewController
 
 @synthesize tableView, titleTextField, tagsTextField, descriptionTextView;
+@synthesize navigationBar, saveButton, deleteButton;
 @synthesize mediaInfo;
+@synthesize editMode;
 @synthesize activeResponder;
 @synthesize photo;
 
@@ -52,7 +50,25 @@ typedef enum{
     [super viewDidLoad];
     [self registerForKeyboardNotifications];
     
-    self.photo = [Photo object];
+        
+    if ( editMode == EditModeCreate )
+    {
+        saveButton.title = @"Save";
+        tableView.tableFooterView = nil;
+        
+        self.photo = [Photo object];
+    }
+    else
+    {
+        saveButton.title = @"Update";
+        deleteButton.layer.masksToBounds = YES;
+        deleteButton.layer.cornerRadius = 5.0;
+        deleteButton.layer.borderWidth = 2.0;
+        deleteButton.layer.borderColor = [[UIColor darkGrayColor] CGColor];
+
+        titleTextField.text = photo.title;
+        descriptionTextView.text = photo.photoDescription;
+    }
 }
 
 - (void)viewDidUnload
@@ -61,6 +77,9 @@ typedef enum{
     self.titleTextField = nil;
     self.tagsTextField = nil;
     self.descriptionTextView = nil;
+    self.navigationBar = nil;
+    self.saveButton = nil;
+    self.deleteButton = nil;
     [super viewDidUnload];
 }
 
@@ -79,29 +98,52 @@ typedef enum{
     photo.title = titleTextField.text;
     photo.photoDescription = descriptionTextView.text;
 
-    UIImage* editedImage = [mediaInfo objectForKey:UIImagePickerControllerEditedImage];
-    NSDictionary* metaData = [mediaInfo objectForKey:UIImagePickerControllerMediaMetadata];
     
-    ALAssetsLibrary *assetsLibrary = [[ALAssetsLibrary alloc] init];
-    
-    [assetsLibrary writeImageToSavedPhotosAlbum:editedImage.CGImage metadata:metaData completionBlock:^(NSURL* assetURL, NSError* error){
-       
-        [assetsLibrary assetForURL:assetURL resultBlock:^(ALAsset *asset) {
+    if ( editMode == EditModeCreate )
+    {
+        UIImage* editedImage = [mediaInfo objectForKey:UIImagePickerControllerEditedImage];
+        NSDictionary* metaData = [mediaInfo objectForKey:UIImagePickerControllerMediaMetadata];
+        
+        ALAssetsLibrary *assetsLibrary = [[ALAssetsLibrary alloc] init];
+        
+        [assetsLibrary writeImageToSavedPhotosAlbum:editedImage.CGImage metadata:metaData completionBlock:^(NSURL* assetURL, NSError* error){
             
-            ALAssetRepresentation *imageRepresentation = [asset defaultRepresentation];
-            Byte *buffer = (Byte*)malloc(imageRepresentation.size);
-            NSUInteger buffered = [imageRepresentation getBytes:buffer fromOffset:0.0 length:imageRepresentation.size error:nil];
-            NSData *data = [NSData dataWithBytesNoCopy:buffer length:buffered freeWhenDone:YES];
-            [ServiceManager postPhoto:photo imageData:data];
-            
-        } failureBlock:^(NSError *error) {
-            
-            NSLog(@"Error loading image: %@", error);
-        }];     
-    }];
+            [assetsLibrary assetForURL:assetURL resultBlock:^(ALAsset *asset) {
+                
+                ALAssetRepresentation *imageRepresentation = [asset defaultRepresentation];
+                Byte *buffer = (Byte*)malloc(imageRepresentation.size);
+                NSUInteger buffered = [imageRepresentation getBytes:buffer fromOffset:0.0 length:imageRepresentation.size error:nil];
+                NSData *data = [NSData dataWithBytesNoCopy:buffer length:buffered freeWhenDone:YES];
+                [ServiceManager postPhoto:photo imageData:data];
+                
+            } failureBlock:^(NSError *error) {
+                
+                NSLog(@"Error loading image: %@", error);
+            }];     
+        }];
+    }
+    else
+    {
+        [ServiceManager updatePhoto:photo];
+    }
 
     
     [self dismissModalViewControllerAnimated:YES];
+}
+
+- (IBAction)deleteButtonTapped:(id)sender
+{
+    UIAlertView* alert = [[UIAlertView alloc] initWithTitle:@"Deleting this photo" message:@"Are you sure you want to delete this photo?" delegate:self cancelButtonTitle:@"Cancel" otherButtonTitles:@"Yes, Delete", nil];
+    
+    [alert show];
+}
+
+- (void)alertView:(UIAlertView *)alertView didDismissWithButtonIndex:(NSInteger)buttonIndex
+{
+    if ( buttonIndex != alertView.cancelButtonIndex )
+    {
+        [ServiceManager deletePhoto:photo];
+    }
 }
 
 

@@ -38,6 +38,18 @@
     return postPhotoPath;
 }
 
++ (NSString*)putPhotoPath
+{
+    NSString* putPhotoPath = [NSString stringWithFormat:@"/photos/:photoID?%@", [self userCredentialsQuery]];
+    return putPhotoPath;
+}
+
++ (NSString*)deletePhotoPath
+{
+    NSString* deletePhotoPath = [NSString stringWithFormat:@"/photos/:photoID?%@", [self userCredentialsQuery]];
+    return deletePhotoPath;
+}
+
 
 #pragma mark -
 #pragma mark Query
