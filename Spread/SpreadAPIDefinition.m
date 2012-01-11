@@ -26,6 +26,12 @@
 #pragma mark -
 #pragma mark Path
 
++ (NSString*)loginPath
+{
+    NSString* loginPath = [NSString stringWithFormat:@"/user_sessions?api=true"];
+    return loginPath;
+}
+
 + (NSString*)allPhotosPath
 {
     NSString* allPhotosPath = [NSString stringWithFormat:@"/photos.json?%@", [self userCredentialsQuery]];

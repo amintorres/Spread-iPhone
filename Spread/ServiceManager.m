@@ -42,7 +42,41 @@
 
 
 #pragma mark -
-#pragma Photo Data
+#pragma mark Login/Logout
+
++ (void)loginWithUsername:(NSString*)username password:(NSString*)password
+{
+    NSDictionary* params = [NSDictionary dictionaryWithObjectsAndKeys:
+                            username, @"user_session[email]",
+                            password, @"user_session[password]", nil];
+    [[RKClient sharedClient] post:[SpreadAPIDefinition loginPath] params:params delegate:[ServiceManager sharedManager]];  
+}  
+
+
+#pragma mark -
+#pragma mark RKRequest Delegate
+
+- (void)request:(RKRequest*)request didLoadResponse:(RKResponse*)response
+{  
+    if ([request isPOST])
+    {  
+        if ([response isJSON])
+        {
+            NSError* error = nil;
+            id dict = [response parsedBody:&error];
+            NSLog(@"%@", dict);
+        }  
+    }  
+}
+
+- (void)request:(RKRequest *)request didFailLoadWithError:(NSError *)error
+{
+    NSLog(@"error: %@", error);
+}
+
+
+#pragma mark -
+#pragma mark Photo Data
 
 + (void)loadDataFromServer
 {
