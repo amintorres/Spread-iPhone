@@ -13,6 +13,9 @@
 		7C6CFBFB14BD46A90048644C /* UILabel+Crossfade.m in Sources */ = {isa = PBXBuildFile; fileRef = 7C6CFBFA14BD46A90048644C /* UILabel+Crossfade.m */; };
 		7C6CFBFE14BD46B80048644C /* UITextField+Crossfade.m in Sources */ = {isa = PBXBuildFile; fileRef = 7C6CFBFD14BD46B80048644C /* UITextField+Crossfade.m */; };
 		7C6CFC0114BD48760048644C /* UIView+Shortcut.m in Sources */ = {isa = PBXBuildFile; fileRef = 7C6CFC0014BD48760048644C /* UIView+Shortcut.m */; };
+		7C7C1AC014BDE9D500AA6CB2 /* libTestFlight.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 7C7C1ABC14BDE9D500AA6CB2 /* libTestFlight.a */; };
+		7C7C1AC114BDE9D500AA6CB2 /* README.txt in Resources */ = {isa = PBXBuildFile; fileRef = 7C7C1ABD14BDE9D500AA6CB2 /* README.txt */; };
+		7C7C1AC214BDE9D500AA6CB2 /* release_notes.txt in Resources */ = {isa = PBXBuildFile; fileRef = 7C7C1ABE14BDE9D500AA6CB2 /* release_notes.txt */; };
 		7C7F7AB414AB74AE00652401 /* EditViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7C7F7AB214AB74AE00652401 /* EditViewController.m */; };
 		7C7F7AB514AB74AE00652401 /* EditViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 7C7F7AB314AB74AE00652401 /* EditViewController.xib */; };
 		7C7F7AB714ABAEB000652401 /* AssetsLibrary.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7C7F7AB614ABAEB000652401 /* AssetsLibrary.framework */; };
@@ -150,6 +153,10 @@
 		7C6CFBFD14BD46B80048644C /* UITextField+Crossfade.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UITextField+Crossfade.m"; sourceTree = "<group>"; };
 		7C6CFBFF14BD48760048644C /* UIView+Shortcut.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIView+Shortcut.h"; sourceTree = "<group>"; };
 		7C6CFC0014BD48760048644C /* UIView+Shortcut.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIView+Shortcut.m"; sourceTree = "<group>"; };
+		7C7C1ABC14BDE9D500AA6CB2 /* libTestFlight.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libTestFlight.a; sourceTree = "<group>"; };
+		7C7C1ABD14BDE9D500AA6CB2 /* README.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = README.txt; sourceTree = "<group>"; };
+		7C7C1ABE14BDE9D500AA6CB2 /* release_notes.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = release_notes.txt; sourceTree = "<group>"; };
+		7C7C1ABF14BDE9D500AA6CB2 /* TestFlight.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TestFlight.h; sourceTree = "<group>"; };
 		7C7F7AB114AB74AE00652401 /* EditViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EditViewController.h; sourceTree = "<group>"; };
 		7C7F7AB214AB74AE00652401 /* EditViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EditViewController.m; sourceTree = "<group>"; };
 		7C7F7AB314AB74AE00652401 /* EditViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = EditViewController.xib; sourceTree = "<group>"; };
@@ -232,6 +239,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				7C7C1AC014BDE9D500AA6CB2 /* libTestFlight.a in Frameworks */,
 				7C7F7AB714ABAEB000652401 /* AssetsLibrary.framework in Frameworks */,
 				7C8D9BC114A28F4500D1D5DC /* libAQGridView.a in Frameworks */,
 				7C8D9BC014A28F3200D1D5DC /* QuartzCore.framework in Frameworks */,
@@ -266,6 +274,7 @@
 		7C633037149FE4FB00BF2049 /* External */ = {
 			isa = PBXGroup;
 			children = (
+				7C7C1ABB14BDE9D500AA6CB2 /* TestFlightSDK0.8.2 */,
 				7C94C27814A2886C005531FB /* AQGridView.xcodeproj */,
 				7CE85AE014A221A6002874EA /* SDWebImage.xcodeproj */,
 				7C633039149FE50800BF2049 /* RestKit.xcodeproj */,
@@ -291,6 +300,17 @@
 				7C6CFBF014BD2BE70048644C /* RoundedRectButton.m */,
 			);
 			name = "UI Elements";
+			sourceTree = "<group>";
+		};
+		7C7C1ABB14BDE9D500AA6CB2 /* TestFlightSDK0.8.2 */ = {
+			isa = PBXGroup;
+			children = (
+				7C7C1ABC14BDE9D500AA6CB2 /* libTestFlight.a */,
+				7C7C1ABD14BDE9D500AA6CB2 /* README.txt */,
+				7C7C1ABE14BDE9D500AA6CB2 /* release_notes.txt */,
+				7C7C1ABF14BDE9D500AA6CB2 /* TestFlight.h */,
+			);
+			path = TestFlightSDK0.8.2;
 			sourceTree = "<group>";
 		};
 		7C7F7AB014AB747200652401 /* Edit View */ = {
@@ -689,6 +709,8 @@
 				7C86FFB414AFC37B001B907A /* texture_red.png in Resources */,
 				7C86FFB714AFC6AF001B907A /* icon_pencil.png in Resources */,
 				7C86FFB814AFC6AF001B907A /* icon_pencil@2x.png in Resources */,
+				7C7C1AC114BDE9D500AA6CB2 /* README.txt in Resources */,
+				7C7C1AC214BDE9D500AA6CB2 /* release_notes.txt in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -852,6 +874,10 @@
 				);
 				INFOPLIST_FILE = "Spread/Spread-Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 4.1;
+				LIBRARY_SEARCH_PATHS = (
+					"$(inherited)",
+					"\"$(SRCROOT)/TestFlightSDK0.8.2\"",
+				);
 				OTHER_LDFLAGS = (
 					"-ObjC",
 					"-all_load",
@@ -873,6 +899,10 @@
 				);
 				INFOPLIST_FILE = "Spread/Spread-Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 4.1;
+				LIBRARY_SEARCH_PATHS = (
+					"$(inherited)",
+					"\"$(SRCROOT)/TestFlightSDK0.8.2\"",
+				);
 				OTHER_LDFLAGS = (
 					"-ObjC",
 					"-all_load",

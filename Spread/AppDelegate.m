@@ -8,6 +8,7 @@
 
 #import <RestKit/RestKit.h>
 #import <RestKit/CoreData.h>
+#import "TestFlight.h"
 #import "AppDelegate.h"
 #import "MasterViewController.h"
 #import "Photo.h"
@@ -75,6 +76,8 @@
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
     [self setupRestKit];
+    
+    [TestFlight takeOff:@"f319601b6e6c25b7c3f258bcdaa9e768_NTI4NDQyMDEyLTAxLTExIDEwOjU2OjEzLjE1NDkxNQ"];
     
     self.window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
 
