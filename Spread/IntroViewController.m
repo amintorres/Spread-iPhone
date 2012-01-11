@@ -11,6 +11,7 @@
 #import "UILabel+Crossfade.h"
 #import "UITextField+Crossfade.h"
 #import "UIView+Shortcut.h"
+#import "ServiceManager.h"
 
 
 typedef enum{
@@ -211,7 +212,10 @@ static const CGFloat kGroup2InviteOffset        = 150;
 
 - (IBAction)loginButtonTapped:(id)sender
 {
-    [[NSNotificationCenter defaultCenter] postNotificationName:SpreadDidLoginNotification object:self];    
+    NSString* username = textField0.text;
+    NSString* password = textField1.text;
+    [ServiceManager loginWithUsername:username password:password];
+//    [[NSNotificationCenter defaultCenter] postNotificationName:SpreadDidLoginNotification object:self];    
 }
 
 - (IBAction)inviteButtonTapped:(id)sender

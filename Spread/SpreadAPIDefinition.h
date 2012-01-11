@@ -18,6 +18,7 @@
 
 
 // Path
++ (NSString*)loginPath;
 + (NSString*)allPhotosPath;
 + (NSString*)postPhotoPath;
 + (NSString*)putPhotoPath;

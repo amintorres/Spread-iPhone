@@ -25,6 +25,9 @@
 
 - (void)setupRestKit
 {
+    // Set the shared client
+    [RKClient clientWithBaseURL:[SpreadAPIDefinition baseURL]];  
+
     RKObjectManager* objectManager = [RKObjectManager objectManagerWithBaseURL:[SpreadAPIDefinition baseURL]];
     
     // Enable automatic network activity indicator management

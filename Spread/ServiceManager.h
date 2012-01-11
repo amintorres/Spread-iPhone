@@ -13,15 +13,17 @@
 static NSString* ServiceManagerDidLoadPhotosNotification = @"ServiceManagerDidLoadPhotosNotification";
 
 
-@interface ServiceManager : NSObject <RKObjectLoaderDelegate>
+@interface ServiceManager : NSObject <RKObjectLoaderDelegate, RKRequestDelegate>
 
 @property (strong, nonatomic) NSArray* allPhotos;
 
 + (ServiceManager*)sharedManager;
 + (NSArray*)allPhotos;
++ (void)loginWithUsername:(NSString*)username password:(NSString*)password;
 + (void)loadDataFromServer;
 + (void)postPhoto:(Photo*)photo imageData:(NSData*)imageData;
 + (void)updatePhoto:(Photo*)photo;
 + (void)deletePhoto:(Photo*)photo;
+
 
 @end
