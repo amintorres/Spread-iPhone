@@ -9,6 +9,10 @@
 /* Begin PBXBuildFile section */
 		7C66003014AA1C3A00C285B1 /* ListTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 7C66002F14AA1C3A00C285B1 /* ListTableViewCell.m */; };
 		7C66003214AA1C4C00C285B1 /* ListTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 7C66003114AA1C4C00C285B1 /* ListTableViewCell.xib */; };
+		7C6CFBF114BD2BE70048644C /* RoundedRectButton.m in Sources */ = {isa = PBXBuildFile; fileRef = 7C6CFBF014BD2BE70048644C /* RoundedRectButton.m */; };
+		7C6CFBFB14BD46A90048644C /* UILabel+Crossfade.m in Sources */ = {isa = PBXBuildFile; fileRef = 7C6CFBFA14BD46A90048644C /* UILabel+Crossfade.m */; };
+		7C6CFBFE14BD46B80048644C /* UITextField+Crossfade.m in Sources */ = {isa = PBXBuildFile; fileRef = 7C6CFBFD14BD46B80048644C /* UITextField+Crossfade.m */; };
+		7C6CFC0114BD48760048644C /* UIView+Shortcut.m in Sources */ = {isa = PBXBuildFile; fileRef = 7C6CFC0014BD48760048644C /* UIView+Shortcut.m */; };
 		7C7F7AB414AB74AE00652401 /* EditViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7C7F7AB214AB74AE00652401 /* EditViewController.m */; };
 		7C7F7AB514AB74AE00652401 /* EditViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 7C7F7AB314AB74AE00652401 /* EditViewController.xib */; };
 		7C7F7AB714ABAEB000652401 /* AssetsLibrary.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7C7F7AB614ABAEB000652401 /* AssetsLibrary.framework */; };
@@ -138,6 +142,14 @@
 		7C66002E14AA1C3A00C285B1 /* ListTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ListTableViewCell.h; sourceTree = "<group>"; };
 		7C66002F14AA1C3A00C285B1 /* ListTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ListTableViewCell.m; sourceTree = "<group>"; };
 		7C66003114AA1C4C00C285B1 /* ListTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ListTableViewCell.xib; sourceTree = "<group>"; };
+		7C6CFBEF14BD2BE70048644C /* RoundedRectButton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RoundedRectButton.h; sourceTree = "<group>"; };
+		7C6CFBF014BD2BE70048644C /* RoundedRectButton.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RoundedRectButton.m; sourceTree = "<group>"; };
+		7C6CFBF914BD46A90048644C /* UILabel+Crossfade.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UILabel+Crossfade.h"; sourceTree = "<group>"; };
+		7C6CFBFA14BD46A90048644C /* UILabel+Crossfade.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UILabel+Crossfade.m"; sourceTree = "<group>"; };
+		7C6CFBFC14BD46B80048644C /* UITextField+Crossfade.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UITextField+Crossfade.h"; sourceTree = "<group>"; };
+		7C6CFBFD14BD46B80048644C /* UITextField+Crossfade.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UITextField+Crossfade.m"; sourceTree = "<group>"; };
+		7C6CFBFF14BD48760048644C /* UIView+Shortcut.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIView+Shortcut.h"; sourceTree = "<group>"; };
+		7C6CFC0014BD48760048644C /* UIView+Shortcut.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIView+Shortcut.m"; sourceTree = "<group>"; };
 		7C7F7AB114AB74AE00652401 /* EditViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EditViewController.h; sourceTree = "<group>"; };
 		7C7F7AB214AB74AE00652401 /* EditViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EditViewController.m; sourceTree = "<group>"; };
 		7C7F7AB314AB74AE00652401 /* EditViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = EditViewController.xib; sourceTree = "<group>"; };
@@ -272,6 +284,15 @@
 			name = Products;
 			sourceTree = "<group>";
 		};
+		7C6CFBF214BD2BF00048644C /* UI Elements */ = {
+			isa = PBXGroup;
+			children = (
+				7C6CFBEF14BD2BE70048644C /* RoundedRectButton.h */,
+				7C6CFBF014BD2BE70048644C /* RoundedRectButton.m */,
+			);
+			name = "UI Elements";
+			sourceTree = "<group>";
+		};
 		7C7F7AB014AB747200652401 /* Edit View */ = {
 			isa = PBXGroup;
 			children = (
@@ -297,6 +318,12 @@
 			children = (
 				7C86FF8C14AF86F0001B907A /* UINavigationBar+Customize.h */,
 				7C86FF8D14AF86F0001B907A /* UINavigationBar+Customize.m */,
+				7C6CFBF914BD46A90048644C /* UILabel+Crossfade.h */,
+				7C6CFBFA14BD46A90048644C /* UILabel+Crossfade.m */,
+				7C6CFBFC14BD46B80048644C /* UITextField+Crossfade.h */,
+				7C6CFBFD14BD46B80048644C /* UITextField+Crossfade.m */,
+				7C6CFBFF14BD48760048644C /* UIView+Shortcut.h */,
+				7C6CFC0014BD48760048644C /* UIView+Shortcut.m */,
 			);
 			name = Categories;
 			sourceTree = "<group>";
@@ -365,6 +392,7 @@
 				7C9F93C4149960C300126908 /* AppDelegate.h */,
 				7C9F93C5149960C300126908 /* AppDelegate.m */,
 				7CF8A604149BF974009FF755 /* View Controller */,
+				7C6CFBF214BD2BF00048644C /* UI Elements */,
 				7C86FF8B14AF8692001B907A /* Categories */,
 				7CE85ADC14A217BA002874EA /* Utilities */,
 				7C9890A314A041A8009E22F1 /* Data Model */,
@@ -709,6 +737,10 @@
 				7C7F7AB414AB74AE00652401 /* EditViewController.m in Sources */,
 				7C86FF8514AF6FF5001B907A /* AboutViewController.m in Sources */,
 				7C86FF8E14AF86F0001B907A /* UINavigationBar+Customize.m in Sources */,
+				7C6CFBF114BD2BE70048644C /* RoundedRectButton.m in Sources */,
+				7C6CFBFB14BD46A90048644C /* UILabel+Crossfade.m in Sources */,
+				7C6CFBFE14BD46B80048644C /* UITextField+Crossfade.m in Sources */,
+				7C6CFC0114BD48760048644C /* UIView+Shortcut.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
