@@ -10,7 +10,6 @@
 #import "ListViewController.h"
 #import "GridViewController.h"
 
-static NSString* SpreadDidLoginNotification = @"SpreadDidLoginNotification";
 static NSString* SpreadShouldLogoutNotification = @"SpreadShouldLogoutNotification";
 static NSString* SpreadShouldEditPhotoNotification = @"SpreadShouldEditPhotoNotification";
 

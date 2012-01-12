@@ -8,6 +8,7 @@
 
 #import "ServiceManager.h"
 #import "SpreadAPIDefinition.h"
+#import "UserDefaultHelper.h"
 
 
 
@@ -52,20 +53,44 @@
     [[RKClient sharedClient] post:[SpreadAPIDefinition loginPath] params:params delegate:[ServiceManager sharedManager]];  
 }  
 
++ (void)logout
+{
+    [[RKClient sharedClient] get:[SpreadAPIDefinition logoutPath] delegate:[ServiceManager sharedManager]];  
+}  
+
 
 #pragma mark -
 #pragma mark RKRequest Delegate
 
 - (void)request:(RKRequest*)request didLoadResponse:(RKResponse*)response
 {  
+    NSString* responseString = [response bodyAsString];
+
     if ([request isPOST])
-    {  
-        if ([response isJSON])
+    {
+        if ( response.statusCode == 200 )
         {
-            NSError* error = nil;
-            id dict = [response parsedBody:&error];
-            NSLog(@"%@", dict);
-        }  
+            [UserDefaultHelper setOauthToken:responseString];
+            [[NSNotificationCenter defaultCenter] postNotificationName:SpreadDidLoginNotification object:self];
+        }
+        else if ( response.statusCode == 422 )
+        {
+            if ([response isJSON])
+            {
+                NSError* error = nil;
+                NSDictionary* JSONDict = [response parsedBody:&error];
+                NSArray* allValues = [JSONDict allValues];
+                NSString* reason = ( [allValues count] ) ? [[allValues objectAtIndex:0] objectAtIndex:0] : @"Please try again";
+                    
+                UIAlertView* alert = [[UIAlertView alloc] initWithTitle:@"Login Failed" message:reason delegate:nil cancelButtonTitle:@"Dismiss" otherButtonTitles:nil];
+                [alert show];
+            }            
+        }
+        else
+        {
+            UIAlertView* alert = [[UIAlertView alloc] initWithTitle:@"Unknown Error" message:responseString delegate:nil cancelButtonTitle:@"Dismiss" otherButtonTitles:nil];
+            [alert show];
+        }
     }  
 }
 

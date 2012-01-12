@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		7C2CB64814BF2D3B006727FD /* UserDefaultHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = 7C2CB64714BF2D3B006727FD /* UserDefaultHelper.m */; };
 		7C66003014AA1C3A00C285B1 /* ListTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 7C66002F14AA1C3A00C285B1 /* ListTableViewCell.m */; };
 		7C66003214AA1C4C00C285B1 /* ListTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 7C66003114AA1C4C00C285B1 /* ListTableViewCell.xib */; };
 		7C6CFBF114BD2BE70048644C /* RoundedRectButton.m in Sources */ = {isa = PBXBuildFile; fileRef = 7C6CFBF014BD2BE70048644C /* RoundedRectButton.m */; };
@@ -140,6 +141,8 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		7C2CB64614BF2D3B006727FD /* UserDefaultHelper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UserDefaultHelper.h; sourceTree = "<group>"; };
+		7C2CB64714BF2D3B006727FD /* UserDefaultHelper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UserDefaultHelper.m; sourceTree = "<group>"; };
 		7C5AC38614AC083D00856DC9 /* ImageIO.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = ImageIO.framework; path = System/Library/Frameworks/ImageIO.framework; sourceTree = SDKROOT; };
 		7C633039149FE50800BF2049 /* RestKit.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = RestKit.xcodeproj; path = RestKit/RestKit.xcodeproj; sourceTree = "<group>"; };
 		7C66002E14AA1C3A00C285B1 /* ListTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ListTableViewCell.h; sourceTree = "<group>"; };
@@ -459,6 +462,8 @@
 				7CE85ADE14A21804002874EA /* SpreadAPIDefinition.m */,
 				7C8D9BC214A2994500D1D5DC /* ServiceManager.h */,
 				7C8D9BC314A2994500D1D5DC /* ServiceManager.m */,
+				7C2CB64614BF2D3B006727FD /* UserDefaultHelper.h */,
+				7C2CB64714BF2D3B006727FD /* UserDefaultHelper.m */,
 			);
 			name = Utilities;
 			sourceTree = "<group>";
@@ -763,6 +768,7 @@
 				7C6CFBFB14BD46A90048644C /* UILabel+Crossfade.m in Sources */,
 				7C6CFBFE14BD46B80048644C /* UITextField+Crossfade.m in Sources */,
 				7C6CFC0114BD48760048644C /* UIView+Shortcut.m in Sources */,
+				7C2CB64814BF2D3B006727FD /* UserDefaultHelper.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
