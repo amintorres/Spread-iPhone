@@ -10,6 +10,7 @@
 #import <RestKit/RestKit.h>
 #import "Photo.h"
 
+static NSString* SpreadDidLoginNotification = @"SpreadDidLoginNotification";
 static NSString* ServiceManagerDidLoadPhotosNotification = @"ServiceManagerDidLoadPhotosNotification";
 
 
@@ -19,6 +20,7 @@ static NSString* ServiceManagerDidLoadPhotosNotification = @"ServiceManagerDidLo
 
 + (ServiceManager*)sharedManager;
 + (NSArray*)allPhotos;
++ (void)logout;
 + (void)loginWithUsername:(NSString*)username password:(NSString*)password;
 + (void)loadDataFromServer;
 + (void)postPhoto:(Photo*)photo imageData:(NSData*)imageData;

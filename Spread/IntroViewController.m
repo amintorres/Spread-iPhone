@@ -215,15 +215,29 @@ static const CGFloat kGroup2InviteOffset        = 150;
     NSString* username = textField0.text;
     NSString* password = textField1.text;
     [ServiceManager loginWithUsername:username password:password];
-//    [[NSNotificationCenter defaultCenter] postNotificationName:SpreadDidLoginNotification object:self];    
 }
 
 - (IBAction)inviteButtonTapped:(id)sender
 {
-    [self animateToState:IntroViewStateInvite];
+    if ( currentState == IntroViewStateInvite )
+    {
+        [ServiceManager logout];
+    }
+    else
+    {
+        [self animateToState:IntroViewStateInvite];
+    }
 }
 
 
+#pragma mark -
+#pragma mark TextField Delegate
+
+- (BOOL)textFieldShouldReturn:(UITextField *)textField
+{
+    [textField resignFirstResponder];
+    return YES;
+}
 
 
 @end

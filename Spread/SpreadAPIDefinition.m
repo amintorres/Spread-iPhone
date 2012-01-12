@@ -7,6 +7,7 @@
 //
 
 #import "SpreadAPIDefinition.h"
+#import "UserDefaultHelper.h"
 
 
 
@@ -28,8 +29,14 @@
 
 + (NSString*)loginPath
 {
-    NSString* loginPath = [NSString stringWithFormat:@"/user_sessions?api=true"];
+    NSString* loginPath = [NSString stringWithFormat:@"/user_sessions.json"];
     return loginPath;
+}
+
++ (NSString*)logoutPath
+{
+    NSString* logoutPath = [NSString stringWithFormat:@"/logout"];
+    return logoutPath;
 }
 
 + (NSString*)allPhotosPath
@@ -62,8 +69,8 @@
 
 + (NSString*)userCredentialsQuery
 {
-    NSString* token = @"wAS4BLjaaAnmWdw98qi";
-    NSString* userCredentials = [NSString stringWithFormat:@"user_credentials=%@", token];
+//    NSString* token = @"wAS4BLjaaAnmWdw98qi";
+    NSString* userCredentials = [NSString stringWithFormat:@"user_credentials=%@", [UserDefaultHelper oauthToken]];
     return userCredentials;
 }
 
