@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		7C2CB64814BF2D3B006727FD /* UserDefaultHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = 7C2CB64714BF2D3B006727FD /* UserDefaultHelper.m */; };
+		7C57F23C14BF73FD00906DE8 /* Entitlements.plist in Resources */ = {isa = PBXBuildFile; fileRef = 7C57F23B14BF73FD00906DE8 /* Entitlements.plist */; };
 		7C66003014AA1C3A00C285B1 /* ListTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 7C66002F14AA1C3A00C285B1 /* ListTableViewCell.m */; };
 		7C66003214AA1C4C00C285B1 /* ListTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 7C66003114AA1C4C00C285B1 /* ListTableViewCell.xib */; };
 		7C6CFBF114BD2BE70048644C /* RoundedRectButton.m in Sources */ = {isa = PBXBuildFile; fileRef = 7C6CFBF014BD2BE70048644C /* RoundedRectButton.m */; };
@@ -143,6 +144,7 @@
 /* Begin PBXFileReference section */
 		7C2CB64614BF2D3B006727FD /* UserDefaultHelper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UserDefaultHelper.h; sourceTree = "<group>"; };
 		7C2CB64714BF2D3B006727FD /* UserDefaultHelper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UserDefaultHelper.m; sourceTree = "<group>"; };
+		7C57F23B14BF73FD00906DE8 /* Entitlements.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Entitlements.plist; sourceTree = "<group>"; };
 		7C5AC38614AC083D00856DC9 /* ImageIO.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = ImageIO.framework; path = System/Library/Frameworks/ImageIO.framework; sourceTree = SDKROOT; };
 		7C633039149FE50800BF2049 /* RestKit.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = RestKit.xcodeproj; path = RestKit/RestKit.xcodeproj; sourceTree = "<group>"; };
 		7C66002E14AA1C3A00C285B1 /* ListTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ListTableViewCell.h; sourceTree = "<group>"; };
@@ -432,6 +434,7 @@
 				7C9F93BE149960C300126908 /* InfoPlist.strings */,
 				7C9F93C1149960C300126908 /* main.m */,
 				7C9F93C3149960C300126908 /* Spread-Prefix.pch */,
+				7C57F23B14BF73FD00906DE8 /* Entitlements.plist */,
 			);
 			name = "Supporting Files";
 			sourceTree = "<group>";
@@ -716,6 +719,7 @@
 				7C86FFB814AFC6AF001B907A /* icon_pencil@2x.png in Resources */,
 				7C7C1AC114BDE9D500AA6CB2 /* README.txt in Resources */,
 				7C7C1AC214BDE9D500AA6CB2 /* release_notes.txt in Resources */,
+				7C57F23C14BF73FD00906DE8 /* Entitlements.plist in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -823,6 +827,69 @@
 /* End PBXVariantGroup section */
 
 /* Begin XCBuildConfiguration section */
+		7C57F23D14BF744900906DE8 /* Ad Hoc */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				ARCHS = "$(ARCHS_STANDARD_32_BIT)";
+				CLANG_ENABLE_OBJC_ARC = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_VERSION = com.apple.compilers.llvm.clang.1_0;
+				GCC_WARN_ABOUT_MISSING_PROTOTYPES = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 5.0;
+				OTHER_CFLAGS = "-DNS_BLOCK_ASSERTIONS=1";
+				SDKROOT = iphoneos;
+				VALIDATE_PRODUCT = YES;
+			};
+			name = "Ad Hoc";
+		};
+		7C57F23E14BF744900906DE8 /* Ad Hoc */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_ENTITLEMENTS = Entitlements.plist;
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "Spread/Spread-Prefix.pch";
+				HEADER_SEARCH_PATHS = (
+					"\"$(SOURCE_ROOT)/RestKit/Build\"",
+					"\"$(SOURCE_ROOT)/SDWebImage\"",
+					"\"$(SOURCE_ROOT)/AQGridView\"/**",
+				);
+				INFOPLIST_FILE = "Spread/Spread-Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 4.1;
+				LIBRARY_SEARCH_PATHS = (
+					"$(inherited)",
+					"\"$(SRCROOT)/TestFlightSDK0.8.2\"",
+				);
+				OTHER_LDFLAGS = (
+					"-ObjC",
+					"-all_load",
+				);
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				WRAPPER_EXTENSION = app;
+			};
+			name = "Ad Hoc";
+		};
+		7C57F23F14BF744900906DE8 /* Ad Hoc */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(BUILT_PRODUCTS_DIR)/Spread.app/Spread";
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(SDKROOT)/Developer/Library/Frameworks",
+					"$(DEVELOPER_LIBRARY_DIR)/Frameworks",
+				);
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "Spread/Spread-Prefix.pch";
+				INFOPLIST_FILE = "SpreadTests/SpreadTests-Info.plist";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TEST_HOST = "$(BUNDLE_LOADER)";
+				WRAPPER_EXTENSION = octest;
+			};
+			name = "Ad Hoc";
+		};
 		7C9F93EC149960C400126908 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
@@ -960,6 +1027,7 @@
 			buildConfigurations = (
 				7C9F93EC149960C400126908 /* Debug */,
 				7C9F93ED149960C400126908 /* Release */,
+				7C57F23D14BF744900906DE8 /* Ad Hoc */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
@@ -969,6 +1037,7 @@
 			buildConfigurations = (
 				7C9F93EF149960C400126908 /* Debug */,
 				7C9F93F0149960C400126908 /* Release */,
+				7C57F23E14BF744900906DE8 /* Ad Hoc */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
@@ -978,6 +1047,7 @@
 			buildConfigurations = (
 				7C9F93F2149960C400126908 /* Debug */,
 				7C9F93F3149960C400126908 /* Release */,
+				7C57F23F14BF744900906DE8 /* Ad Hoc */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
