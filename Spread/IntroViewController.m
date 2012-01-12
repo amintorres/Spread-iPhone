@@ -265,7 +265,7 @@ static const CGFloat kGroup2InviteOffset        = 150;
 {
     if ( currentState == IntroViewStateInvite )
     {
-        [ServiceManager logout];
+        // TODO: Invite API
     }
     else
     {

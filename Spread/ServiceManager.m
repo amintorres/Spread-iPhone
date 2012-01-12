@@ -48,6 +48,12 @@ NSString * const ServiceManagerDidLoadPhotosNotification = @"ServiceManagerDidLo
 #pragma mark -
 #pragma mark Login/Logout
 
++ (BOOL)isSessionValid
+{
+    NSString* token = [UserDefaultHelper oauthToken];
+    return ( token != nil );
+}
+
 + (void)loginWithUsername:(NSString*)username password:(NSString*)password
 {
     NSDictionary* params = [NSDictionary dictionaryWithObjectsAndKeys:
@@ -58,6 +64,8 @@ NSString * const ServiceManagerDidLoadPhotosNotification = @"ServiceManagerDidLo
 
 + (void)logout
 {
+    [UserDefaultHelper setOauthToken:nil];
+    
     [[RKClient sharedClient] get:[SpreadAPIDefinition logoutPath] delegate:[ServiceManager sharedManager]];  
 }  
 

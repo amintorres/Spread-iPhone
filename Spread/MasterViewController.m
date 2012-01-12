@@ -70,7 +70,14 @@ typedef enum{
         [self editPhoto:photo];
     }];
 
-    [self showIntroView];
+    if ( [ServiceManager isSessionValid] )
+    {
+        [self hideIntroView];
+    }
+    else
+    {
+        [self showIntroView];        
+    }
 }
 
 - (void)viewDidUnload
