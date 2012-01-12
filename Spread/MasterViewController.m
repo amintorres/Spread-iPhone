@@ -13,6 +13,8 @@
 #import "AboutViewController.h"
 #import "UINavigationBar+Customize.h"
 
+NSString * const SpreadShouldLogoutNotification = @"SpreadShouldLogoutNotification";
+NSString * const SpreadShouldEditPhotoNotification = @"SpreadShouldEditPhotoNotification";
 
 typedef enum{
     ContainerViewModeIntro = 0,

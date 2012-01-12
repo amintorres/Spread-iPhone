@@ -70,6 +70,9 @@ static const CGFloat kGroup2InviteOffset        = 150;
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+    
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(keyboardWillShow:) name:UIKeyboardWillShowNotification object:nil];
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(keyboardWillHide:) name:UIKeyboardWillHideNotification object:nil];
 }
 
 - (void)viewDidUnload
@@ -122,6 +125,26 @@ static const CGFloat kGroup2InviteOffset        = 150;
     inviteCaptionLabel.alpha = 1.0;
 }
 
+- (void)setLoginStateKeyboardOpen
+{
+    CGFloat keyboardOffset = 70.0;
+    
+    [headerImageView setY:kHeaderImageViewY - kGroup0LoginOffset];
+    
+    [logoButton setY:kLogoButtonY - kGroup1LoginOffset - keyboardOffset];
+    [captionLabel setY:kCaptionLabelY - kGroup1LoginOffset - keyboardOffset];
+    [startButton setY:kStartButtonY - kGroup1LoginOffset - keyboardOffset];
+    
+    [textFieldContainerView setY:kTextFieldContainerViewY - kGroup2LoginOffset - keyboardOffset];
+    [loginButton setY:kLoginButtonY - kGroup2LoginOffset - keyboardOffset];
+    [inviteCaptionLabel setY:kInviteCaptionLabelY - kGroup2LoginOffset - keyboardOffset];
+    [inviteButton setY:kInviteButtonY - kGroup2LoginOffset - keyboardOffset];
+    
+    startButton.alpha = 0.0;
+    loginButton.alpha = 1.0;
+    inviteCaptionLabel.alpha = 1.0;
+}
+
 - (void)setInviteState
 {
     [headerImageView setY:kHeaderImageViewY - kGroup0LoginOffset];
@@ -135,6 +158,27 @@ static const CGFloat kGroup2InviteOffset        = 150;
     
     [inviteCaptionLabel setY:kInviteCaptionLabelY - kGroup2LoginOffset - kGroup2InviteOffset];
     [inviteButton setY:kInviteButtonY - kGroup2LoginOffset - kGroup2InviteOffset];
+    
+    startButton.alpha = 0.0;
+    loginButton.alpha = 0.0;
+    inviteCaptionLabel.alpha = 0.0;
+}
+
+- (void)setInviteStateKeyboardOpen
+{
+    CGFloat keyboardOffset = 70.0;
+
+    [headerImageView setY:kHeaderImageViewY - kGroup0LoginOffset];
+    
+    [logoButton setY:kLogoButtonY - kGroup1LoginOffset - keyboardOffset];
+    [captionLabel setY:kCaptionLabelY - kGroup1LoginOffset - keyboardOffset];
+    [startButton setY:kStartButtonY - kGroup1LoginOffset - keyboardOffset];
+    
+    [textFieldContainerView setY:kTextFieldContainerViewY - kGroup2LoginOffset - keyboardOffset];
+    [loginButton setY:kLoginButtonY - kGroup2LoginOffset - keyboardOffset];
+    
+    [inviteCaptionLabel setY:kInviteCaptionLabelY - kGroup2LoginOffset - kGroup2InviteOffset - keyboardOffset];
+    [inviteButton setY:kInviteButtonY - kGroup2LoginOffset - kGroup2InviteOffset - keyboardOffset];
     
     startButton.alpha = 0.0;
     loginButton.alpha = 0.0;
@@ -232,6 +276,48 @@ static const CGFloat kGroup2InviteOffset        = 150;
 
 #pragma mark -
 #pragma mark TextField Delegate
+
+- (void)keyboardWillShow:(NSNotification *)notification
+{
+    [UIView animateWithDuration:0.3 animations:^(void){
+        
+        switch (currentState)
+        {
+            case IntroViewStateIdle:
+                break;
+                
+            case IntroViewStateLogin:
+                [self setLoginStateKeyboardOpen];
+                break;
+                
+            case IntroViewStateInvite:
+            default:
+                [self setInviteStateKeyboardOpen];
+                break;
+        }
+    }];
+}
+
+- (void)keyboardWillHide:(NSNotification *)notification
+{
+    [UIView animateWithDuration:0.3 animations:^(void){
+        
+        switch (currentState)
+        {
+            case IntroViewStateIdle:
+                break;
+                
+            case IntroViewStateLogin:
+                [self setLoginState];
+                break;
+                
+            case IntroViewStateInvite:
+            default:
+                [self setInviteState];
+                break;
+        }
+    }];
+}
 
 - (BOOL)textFieldShouldReturn:(UITextField *)textField
 {
