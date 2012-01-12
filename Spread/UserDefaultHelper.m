@@ -8,7 +8,7 @@
 
 #import "UserDefaultHelper.h"
 
-#define kUserDefaultsKeyOauthToken  @"kUserDefaultsKeyOauthToken"
+static NSString* const kUserDefaultsKeyOauthToken = @"kUserDefaultsKeyOauthToken";
 
 
 

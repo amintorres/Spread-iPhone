@@ -19,7 +19,7 @@
 
 + (NSString*)baseURL
 {
-    static NSString* baseURL = @"http://joinspread.com";
+    static NSString* const baseURL = @"http://joinspread.com";
     return baseURL;
 }
 
@@ -29,13 +29,13 @@
 
 + (NSString*)loginPath
 {
-    NSString* loginPath = [NSString stringWithFormat:@"/user_sessions.json"];
+    static NSString* const loginPath = @"/user_sessions.json";
     return loginPath;
 }
 
 + (NSString*)logoutPath
 {
-    NSString* logoutPath = [NSString stringWithFormat:@"/logout"];
+    static NSString* const logoutPath = @"/logout";
     return logoutPath;
 }
 

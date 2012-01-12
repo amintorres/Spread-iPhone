@@ -10,6 +10,9 @@
 #import "SpreadAPIDefinition.h"
 #import "UserDefaultHelper.h"
 
+NSString * const SpreadDidLoginNotification = @"SpreadDidLoginNotification";
+NSString * const ServiceManagerDidLoadPhotosNotification = @"ServiceManagerDidLoadPhotosNotification";
+
 
 
 @interface ServiceManager ()

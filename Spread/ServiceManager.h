@@ -10,8 +10,8 @@
 #import <RestKit/RestKit.h>
 #import "Photo.h"
 
-static NSString* SpreadDidLoginNotification = @"SpreadDidLoginNotification";
-static NSString* ServiceManagerDidLoadPhotosNotification = @"ServiceManagerDidLoadPhotosNotification";
+extern NSString * const SpreadDidLoginNotification;
+extern NSString * const ServiceManagerDidLoadPhotosNotification;
 
 
 @interface ServiceManager : NSObject <RKObjectLoaderDelegate, RKRequestDelegate>
