@@ -8,6 +8,7 @@
 
 #import "AboutViewController.h"
 #import "MasterViewController.h"
+#import "ServiceManager.h"
 
 
 typedef enum{
@@ -64,6 +65,8 @@ typedef enum{
 
 - (IBAction)logoutButtonTapped:(id)sender
 {
+    [ServiceManager logout];
+
     [self dismissModalViewControllerAnimated:NO];
     [[NSNotificationCenter defaultCenter] postNotificationName:SpreadShouldLogoutNotification object:self];
 }

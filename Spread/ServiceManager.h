@@ -20,8 +20,9 @@ extern NSString * const ServiceManagerDidLoadPhotosNotification;
 
 + (ServiceManager*)sharedManager;
 + (NSArray*)allPhotos;
-+ (void)logout;
++ (BOOL)isSessionValid;
 + (void)loginWithUsername:(NSString*)username password:(NSString*)password;
++ (void)logout;
 + (void)loadDataFromServer;
 + (void)postPhoto:(Photo*)photo imageData:(NSData*)imageData;
 + (void)updatePhoto:(Photo*)photo;
