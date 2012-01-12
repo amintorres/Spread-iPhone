@@ -67,7 +67,13 @@ NSString * const ServiceManagerDidLoadPhotosNotification = @"ServiceManagerDidLo
     [UserDefaultHelper setOauthToken:nil];
     
     [[RKClient sharedClient] get:[SpreadAPIDefinition logoutPath] delegate:[ServiceManager sharedManager]];  
-}  
+}
+
++ (void)requestInviteWithEmail:(NSString*)email name:(NSString*)name
+{
+    UIAlertView* alert = [[UIAlertView alloc] initWithTitle:@"TBD" message:nil delegate:nil cancelButtonTitle:@"Dismiss" otherButtonTitles:nil];
+    [alert show];
+}
 
 
 #pragma mark -

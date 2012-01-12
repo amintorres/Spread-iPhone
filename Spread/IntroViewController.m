@@ -123,26 +123,24 @@ static const CGFloat kGroup2InviteOffset        = 150;
     startButton.alpha = 0.0;
     loginButton.alpha = 1.0;
     inviteCaptionLabel.alpha = 1.0;
+    
+    //// TextField 1 is password ////
+    textField1.autocapitalizationType = UITextAutocapitalizationTypeNone;
+    textField1.autocorrectionType = UITextAutocorrectionTypeNo;
+    textField1.secureTextEntry = YES;
 }
 
 - (void)setLoginStateKeyboardOpen
 {
     CGFloat keyboardOffset = 70.0;
     
-    [headerImageView setY:kHeaderImageViewY - kGroup0LoginOffset];
-    
     [logoButton setY:kLogoButtonY - kGroup1LoginOffset - keyboardOffset];
     [captionLabel setY:kCaptionLabelY - kGroup1LoginOffset - keyboardOffset];
-    [startButton setY:kStartButtonY - kGroup1LoginOffset - keyboardOffset];
     
     [textFieldContainerView setY:kTextFieldContainerViewY - kGroup2LoginOffset - keyboardOffset];
     [loginButton setY:kLoginButtonY - kGroup2LoginOffset - keyboardOffset];
     [inviteCaptionLabel setY:kInviteCaptionLabelY - kGroup2LoginOffset - keyboardOffset];
     [inviteButton setY:kInviteButtonY - kGroup2LoginOffset - keyboardOffset];
-    
-    startButton.alpha = 0.0;
-    loginButton.alpha = 1.0;
-    inviteCaptionLabel.alpha = 1.0;
 }
 
 - (void)setInviteState
@@ -162,27 +160,24 @@ static const CGFloat kGroup2InviteOffset        = 150;
     startButton.alpha = 0.0;
     loginButton.alpha = 0.0;
     inviteCaptionLabel.alpha = 0.0;
+
+    //// TextField 1 is full name ////
+    textField1.autocapitalizationType = UITextAutocapitalizationTypeWords;
+    textField1.autocorrectionType = UITextAutocorrectionTypeYes;
+    textField1.secureTextEntry = NO;  
 }
 
 - (void)setInviteStateKeyboardOpen
 {
     CGFloat keyboardOffset = 70.0;
 
-    [headerImageView setY:kHeaderImageViewY - kGroup0LoginOffset];
-    
     [logoButton setY:kLogoButtonY - kGroup1LoginOffset - keyboardOffset];
     [captionLabel setY:kCaptionLabelY - kGroup1LoginOffset - keyboardOffset];
-    [startButton setY:kStartButtonY - kGroup1LoginOffset - keyboardOffset];
     
     [textFieldContainerView setY:kTextFieldContainerViewY - kGroup2LoginOffset - keyboardOffset];
-    [loginButton setY:kLoginButtonY - kGroup2LoginOffset - keyboardOffset];
-    
+
     [inviteCaptionLabel setY:kInviteCaptionLabelY - kGroup2LoginOffset - kGroup2InviteOffset - keyboardOffset];
     [inviteButton setY:kInviteButtonY - kGroup2LoginOffset - kGroup2InviteOffset - keyboardOffset];
-    
-    startButton.alpha = 0.0;
-    loginButton.alpha = 0.0;
-    inviteCaptionLabel.alpha = 0.0;
 }
 
 - (void)animateToState:(IntroViewState)state
@@ -246,6 +241,8 @@ static const CGFloat kGroup2InviteOffset        = 150;
 
 - (IBAction)logoButtonTapped:(id)sender
 {
+    textField0.text = nil;
+    textField1.text = nil;
     [self animateToState:IntroViewStateIdle];
 }
 
@@ -265,10 +262,14 @@ static const CGFloat kGroup2InviteOffset        = 150;
 {
     if ( currentState == IntroViewStateInvite )
     {
+        NSString* email = textField0.text;
+        NSString* name = textField1.text;
         // TODO: Invite API
+        [ServiceManager requestInviteWithEmail:email name:name];
     }
     else
     {
+        textField1.text = nil;
         [self animateToState:IntroViewStateInvite];
     }
 }

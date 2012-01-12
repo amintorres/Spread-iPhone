@@ -23,6 +23,7 @@ extern NSString * const ServiceManagerDidLoadPhotosNotification;
 + (BOOL)isSessionValid;
 + (void)loginWithUsername:(NSString*)username password:(NSString*)password;
 + (void)logout;
++ (void)requestInviteWithEmail:(NSString*)email name:(NSString*)name;
 + (void)loadDataFromServer;
 + (void)postPhoto:(Photo*)photo imageData:(NSData*)imageData;
 + (void)updatePhoto:(Photo*)photo;
