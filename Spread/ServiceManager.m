@@ -44,6 +44,19 @@ NSString * const ServiceManagerDidLoadPhotosNotification = @"ServiceManagerDidLo
     return [[self sharedManager] allPhotos];
 }
 
+- (NSArray*)allPhotos
+{
+    if ( !allPhotos )
+    {
+        NSFetchRequest* request = [Photo fetchRequest];
+        NSSortDescriptor* descriptor = [NSSortDescriptor sortDescriptorWithKey:@"createdDate" ascending:NO];
+        [request setSortDescriptors:[NSArray arrayWithObject:descriptor]];
+        
+        allPhotos = [Photo objectsWithFetchRequest:request];
+    }
+    return allPhotos;
+}
+
 
 #pragma mark -
 #pragma mark Login/Logout
@@ -66,7 +79,7 @@ NSString * const ServiceManagerDidLoadPhotosNotification = @"ServiceManagerDidLo
 {
     [UserDefaultHelper setOauthToken:nil];
     
-    [[RKClient sharedClient] get:[SpreadAPIDefinition logoutPath] delegate:[ServiceManager sharedManager]];  
+    [[RKClient sharedClient] get:[SpreadAPIDefinition logoutPath] delegate:nil];  
 }
 
 + (void)requestInviteWithEmail:(NSString*)email name:(NSString*)name
@@ -83,7 +96,7 @@ NSString * const ServiceManagerDidLoadPhotosNotification = @"ServiceManagerDidLo
 {  
     NSString* responseString = [response bodyAsString];
 
-    if ([request isPOST])
+    if ( [[request resourcePath] isEqualToString:[SpreadAPIDefinition loginPath]] )
     {
         if ( response.statusCode == 200 )
         {
@@ -179,8 +192,6 @@ NSString * const ServiceManagerDidLoadPhotosNotification = @"ServiceManagerDidLo
 
 - (void)objectLoader:(RKObjectLoader*)objectLoader didLoadObjects:(NSArray*)objects
 {
-    NSLog(@"didLoadObjects: %@", objects);
-
     NSFetchRequest* request = [Photo fetchRequest];
     NSSortDescriptor* descriptor = [NSSortDescriptor sortDescriptorWithKey:@"createdDate" ascending:NO];
     [request setSortDescriptors:[NSArray arrayWithObject:descriptor]];

@@ -24,7 +24,7 @@
     titleLabel.text = photo.title;
     descriptionLabel.text = photo.photoDescription;
     
-    [imageView setImageWithURL:[NSURL URLWithString:photo.imageURLString] placeholderImage:[UIImage imageNamed:@"placeholder"]];
+    [imageView setImageWithURL:[NSURL URLWithString:photo.imageURLString]];
 }
 
 

@@ -50,7 +50,7 @@
     [photoMapping mapKeyPath:@"camera" toAttribute:@"camera"];
     [photoMapping mapKeyPath:@"captured_at" toAttribute:@"capturedDate"];
     [photoMapping mapKeyPath:@"created_at" toAttribute:@"createdDate"];
-    [photoMapping mapKeyPath:@"image.url" toAttribute:@"imageURLString"];
+    [photoMapping mapKeyPath:@"image.iphone.url" toAttribute:@"imageURLString"];
     [photoMapping mapKeyPath:@"description" toAttribute:@"photoDescription"];
     [photoMapping mapKeyPath:@"title" toAttribute:@"title"];
     
