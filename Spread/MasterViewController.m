@@ -43,6 +43,7 @@ typedef enum{
 
 @synthesize headerView, containerView, toolbarView;
 @synthesize gridListButton;
+@synthesize cameraOverlayView;
 @synthesize introViewController, listViewController, gridViewController;
 @synthesize containerViewMode;
 
@@ -86,6 +87,7 @@ typedef enum{
     self.containerView = nil;
     self.toolbarView = nil;
     self.gridListButton = nil;
+    [self setCameraOverlayView:nil];
     [super viewDidUnload];
 }
 
@@ -201,23 +203,39 @@ typedef enum{
 
 - (IBAction)cameraButtonTapped:(id)sender
 {
-    UIImagePickerController* imagePicker = [[UIImagePickerController alloc] init];
-
     if ( [UIImagePickerController isSourceTypeAvailable:UIImagePickerControllerSourceTypeCamera] )
     {
-        imagePicker.sourceType = UIImagePickerControllerSourceTypeCamera;
-    }
-    else if ( [UIImagePickerController isSourceTypeAvailable:UIImagePickerControllerSourceTypePhotoLibrary] )
-    {
-        imagePicker.sourceType = UIImagePickerControllerSourceTypePhotoLibrary;
+        UIActionSheet* action  = [[UIActionSheet alloc] initWithTitle:nil delegate:self cancelButtonTitle:@"Cancel" destructiveButtonTitle:nil otherButtonTitles:@"Take Photo", @"Choose From Library", nil];
+        [action showInView:self.view];
     }
     else
     {
+        UIActionSheet* action  = [[UIActionSheet alloc] initWithTitle:nil delegate:self cancelButtonTitle:@"Cancel" destructiveButtonTitle:nil otherButtonTitles:@"Choose From Library", nil];
+        [action showInView:self.view];        
+    }
+}
+
+- (void)actionSheet:(UIActionSheet *)actionSheet didDismissWithButtonIndex:(NSInteger)buttonIndex
+{
+    if ( buttonIndex == actionSheet.cancelButtonIndex )
+    {
         return;
+    }
+
+
+    UIImagePickerController* imagePicker = [[UIImagePickerController alloc] init];
+    
+    if ( [UIImagePickerController isSourceTypeAvailable:UIImagePickerControllerSourceTypeCamera] && buttonIndex == actionSheet.firstOtherButtonIndex )
+    {
+        imagePicker.sourceType = UIImagePickerControllerSourceTypeCamera;
+    }
+    else
+    {
+        imagePicker.sourceType = UIImagePickerControllerSourceTypePhotoLibrary;
     }
     
     imagePicker.delegate = self;
-    imagePicker.allowsEditing = YES;
+    imagePicker.allowsEditing = NO;
     [self presentModalViewController:imagePicker animated:YES];
 }
 
@@ -227,6 +245,9 @@ typedef enum{
     UINavigationController* navController = [[UINavigationController alloc] initWithRootViewController:aboutViewController];
     [navController.navigationBar customizeBackground];
     [self presentModalViewController:navController animated:YES];
+}
+
+- (IBAction)albumButtonTapped:(id)sender {
 }
 
 - (void)editPhoto:(Photo*)photo
@@ -246,6 +267,7 @@ typedef enum{
     EditViewController* editViewController = [[EditViewController alloc] init];
     editViewController.mediaInfo = info;
     editViewController.editMode = EditModeCreate;
+    
     [picker pushViewController:editViewController animated:YES];
 }
 
