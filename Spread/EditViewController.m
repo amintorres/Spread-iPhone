@@ -51,6 +51,7 @@ typedef enum{
     [self registerForKeyboardNotifications];
     
     [self.navigationController setNavigationBarHidden:YES animated:YES];
+    [[UIApplication sharedApplication] setStatusBarHidden:NO withAnimation:UIStatusBarAnimationSlide];
 
         
     if ( editMode == EditModeCreate )
@@ -85,6 +86,24 @@ typedef enum{
     [super viewDidUnload];
 }
 
+- (void)postPhotoAtURL:(NSURL*)assetURL
+{
+    ALAssetsLibrary *assetsLibrary = [[ALAssetsLibrary alloc] init];
+
+    [assetsLibrary assetForURL:assetURL resultBlock:^(ALAsset *asset) {
+        
+        ALAssetRepresentation *imageRepresentation = [asset defaultRepresentation];
+        Byte *buffer = (Byte*)malloc(imageRepresentation.size);
+        NSUInteger buffered = [imageRepresentation getBytes:buffer fromOffset:0.0 length:imageRepresentation.size error:nil];
+        NSData *data = [NSData dataWithBytesNoCopy:buffer length:buffered freeWhenDone:YES];
+        [ServiceManager postPhoto:photo imageData:data];
+        
+    } failureBlock:^(NSError *error) {
+        
+        NSLog(@"Error loading image: %@", error);
+    }]; 
+}
+
 
 #pragma mark -
 #pragma mark IBAction
@@ -103,48 +122,30 @@ typedef enum{
     
     if ( editMode == EditModeCreate )
     {
-//        UIImage* editedImage = [mediaInfo objectForKey:UIImagePickerControllerEditedImage];
-//        NSDictionary* metaData = [mediaInfo objectForKey:UIImagePickerControllerMediaMetadata];
-//        
-//        ALAssetsLibrary *assetsLibrary = [[ALAssetsLibrary alloc] init];
-//        
-//        [assetsLibrary writeImageToSavedPhotosAlbum:editedImage.CGImage metadata:metaData completionBlock:^(NSURL* assetURL, NSError* error){
-//            
-//            [assetsLibrary assetForURL:assetURL resultBlock:^(ALAsset *asset) {
-//                
-//                ALAssetRepresentation *imageRepresentation = [asset defaultRepresentation];
-//                Byte *buffer = (Byte*)malloc(imageRepresentation.size);
-//                NSUInteger buffered = [imageRepresentation getBytes:buffer fromOffset:0.0 length:imageRepresentation.size error:nil];
-//                NSData *data = [NSData dataWithBytesNoCopy:buffer length:buffered freeWhenDone:YES];
-//                [ServiceManager postPhoto:photo imageData:data];
-//                
-//            } failureBlock:^(NSError *error) {
-//                
-//                NSLog(@"Error loading image: %@", error);
-//            }];     
-//        }];
-        
-        NSURL* imageURL = [mediaInfo objectForKey:UIImagePickerControllerReferenceURL];
+//        UIImage* image = [mediaInfo objectForKey:UIImagePickerControllerEditedImage];
+        UIImage* image = [mediaInfo objectForKey:UIImagePickerControllerOriginalImage];
+        NSDictionary* metaData = [mediaInfo objectForKey:UIImagePickerControllerMediaMetadata];
         
         ALAssetsLibrary *assetsLibrary = [[ALAssetsLibrary alloc] init];
-        [assetsLibrary assetForURL:imageURL resultBlock:^(ALAsset *asset) {
-            
-            ALAssetRepresentation *imageRepresentation = [asset defaultRepresentation];
-            Byte *buffer = (Byte*)malloc(imageRepresentation.size);
-            NSUInteger buffered = [imageRepresentation getBytes:buffer fromOffset:0.0 length:imageRepresentation.size error:nil];
-            NSData *data = [NSData dataWithBytesNoCopy:buffer length:buffered freeWhenDone:YES];
-            [ServiceManager postPhoto:photo imageData:data];
-            
-        } failureBlock:^(NSError *error) {
-            
-            NSLog(@"Error loading image: %@", error);
-        }];
+        UIImagePickerController* picker = (UIImagePickerController*)self.navigationController;
+        
+        if ( picker.sourceType == UIImagePickerControllerSourceTypeCamera )
+        {
+            [assetsLibrary writeImageToSavedPhotosAlbum:image.CGImage metadata:metaData completionBlock:^(NSURL* assetURL, NSError* error){
+                
+                [self postPhotoAtURL:assetURL];    
+            }];
+        }
+        else
+        {
+            NSURL* assetURL = [mediaInfo objectForKey:UIImagePickerControllerReferenceURL];
+            [self postPhotoAtURL:assetURL];
+        }
     }
     else
     {
         [ServiceManager updatePhoto:photo];
     }
-
     
     [self dismissModalViewControllerAnimated:YES];
 }
