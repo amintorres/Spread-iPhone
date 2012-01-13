@@ -77,6 +77,9 @@ NSString * const ServiceManagerDidLoadPhotosNotification = @"ServiceManagerDidLo
 
 + (void)logout
 {
+    [[RKClient sharedClient].requestCache invalidateAll];
+    [[RKObjectManager sharedManager].objectStore deletePersistantStore];
+
     [UserDefaultHelper setOauthToken:nil];
     
     [[RKClient sharedClient] get:[SpreadAPIDefinition logoutPath] delegate:nil];  

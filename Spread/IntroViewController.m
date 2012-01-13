@@ -45,6 +45,7 @@ static const CGFloat kGroup2InviteOffset        = 150;
 @interface IntroViewController ()
 @property (nonatomic) IntroViewState currentState;
 @property (nonatomic) BOOL isAnimating;
+- (void)setIdleState;
 @end
 
 
@@ -73,6 +74,12 @@ static const CGFloat kGroup2InviteOffset        = 150;
     
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(keyboardWillShow:) name:UIKeyboardWillShowNotification object:nil];
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(keyboardWillHide:) name:UIKeyboardWillHideNotification object:nil];
+}
+
+- (void)viewWillAppear:(BOOL)animated
+{
+    [super viewWillAppear:animated];
+    [self setIdleState];
 }
 
 - (void)viewDidUnload
