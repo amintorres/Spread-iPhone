@@ -50,6 +50,8 @@ typedef enum{
     [super viewDidLoad];
     [self registerForKeyboardNotifications];
     
+    [self.navigationController setNavigationBarHidden:YES animated:YES];
+
         
     if ( editMode == EditModeCreate )
     {
@@ -101,25 +103,41 @@ typedef enum{
     
     if ( editMode == EditModeCreate )
     {
-        UIImage* editedImage = [mediaInfo objectForKey:UIImagePickerControllerEditedImage];
-        NSDictionary* metaData = [mediaInfo objectForKey:UIImagePickerControllerMediaMetadata];
+//        UIImage* editedImage = [mediaInfo objectForKey:UIImagePickerControllerEditedImage];
+//        NSDictionary* metaData = [mediaInfo objectForKey:UIImagePickerControllerMediaMetadata];
+//        
+//        ALAssetsLibrary *assetsLibrary = [[ALAssetsLibrary alloc] init];
+//        
+//        [assetsLibrary writeImageToSavedPhotosAlbum:editedImage.CGImage metadata:metaData completionBlock:^(NSURL* assetURL, NSError* error){
+//            
+//            [assetsLibrary assetForURL:assetURL resultBlock:^(ALAsset *asset) {
+//                
+//                ALAssetRepresentation *imageRepresentation = [asset defaultRepresentation];
+//                Byte *buffer = (Byte*)malloc(imageRepresentation.size);
+//                NSUInteger buffered = [imageRepresentation getBytes:buffer fromOffset:0.0 length:imageRepresentation.size error:nil];
+//                NSData *data = [NSData dataWithBytesNoCopy:buffer length:buffered freeWhenDone:YES];
+//                [ServiceManager postPhoto:photo imageData:data];
+//                
+//            } failureBlock:^(NSError *error) {
+//                
+//                NSLog(@"Error loading image: %@", error);
+//            }];     
+//        }];
+        
+        NSURL* imageURL = [mediaInfo objectForKey:UIImagePickerControllerReferenceURL];
         
         ALAssetsLibrary *assetsLibrary = [[ALAssetsLibrary alloc] init];
-        
-        [assetsLibrary writeImageToSavedPhotosAlbum:editedImage.CGImage metadata:metaData completionBlock:^(NSURL* assetURL, NSError* error){
+        [assetsLibrary assetForURL:imageURL resultBlock:^(ALAsset *asset) {
             
-            [assetsLibrary assetForURL:assetURL resultBlock:^(ALAsset *asset) {
-                
-                ALAssetRepresentation *imageRepresentation = [asset defaultRepresentation];
-                Byte *buffer = (Byte*)malloc(imageRepresentation.size);
-                NSUInteger buffered = [imageRepresentation getBytes:buffer fromOffset:0.0 length:imageRepresentation.size error:nil];
-                NSData *data = [NSData dataWithBytesNoCopy:buffer length:buffered freeWhenDone:YES];
-                [ServiceManager postPhoto:photo imageData:data];
-                
-            } failureBlock:^(NSError *error) {
-                
-                NSLog(@"Error loading image: %@", error);
-            }];     
+            ALAssetRepresentation *imageRepresentation = [asset defaultRepresentation];
+            Byte *buffer = (Byte*)malloc(imageRepresentation.size);
+            NSUInteger buffered = [imageRepresentation getBytes:buffer fromOffset:0.0 length:imageRepresentation.size error:nil];
+            NSData *data = [NSData dataWithBytesNoCopy:buffer length:buffered freeWhenDone:YES];
+            [ServiceManager postPhoto:photo imageData:data];
+            
+        } failureBlock:^(NSError *error) {
+            
+            NSLog(@"Error loading image: %@", error);
         }];
     }
     else
