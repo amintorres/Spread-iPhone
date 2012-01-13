@@ -41,7 +41,7 @@
 
 + (NSString*)allPhotosPath
 {
-    NSString* allPhotosPath = [NSString stringWithFormat:@"/photos.json?%@", [self userCredentialsQuery]];
+    NSString* allPhotosPath = [NSString stringWithFormat:@"/users/1/photos.json?%@", [self userCredentialsQuery]];
     return allPhotosPath;
 }
 
