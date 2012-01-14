@@ -9,6 +9,7 @@
 #import <Foundation/Foundation.h>
 #import <RestKit/RestKit.h>
 #import "Photo.h"
+#import "User.h"
 
 extern NSString * const SpreadDidLoginNotification;
 extern NSString * const ServiceManagerDidLoadPhotosNotification;
@@ -21,6 +22,9 @@ extern NSString * const ServiceManagerDidLoadPhotosNotification;
 + (ServiceManager*)sharedManager;
 + (NSArray*)allPhotos;
 + (BOOL)isSessionValid;
+
++ (void)setupRestKit;
+
 + (void)loginWithUsername:(NSString*)username password:(NSString*)password;
 + (void)logout;
 + (void)requestInviteWithEmail:(NSString*)email name:(NSString*)name;

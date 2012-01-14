@@ -24,7 +24,7 @@
     titleLabel.text = photo.title;
     descriptionLabel.text = photo.photoDescription;
     
-    [imageView setImageWithURL:[NSURL URLWithString:photo.imageURLString]];
+    [imageView setImageWithURL:[NSURL URLWithString:photo.feedImageURLString]];
 }
 
 

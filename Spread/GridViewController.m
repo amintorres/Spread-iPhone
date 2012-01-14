@@ -83,7 +83,7 @@
     
     Photo* photo = [[ServiceManager allPhotos] objectAtIndex:index];
     UIImageView* imageView = (UIImageView*)[cell viewWithTag:123];
-    [imageView setImageWithURL:[NSURL URLWithString:photo.imageURLString]
+    [imageView setImageWithURL:[NSURL URLWithString:photo.gridImageURLString]
                    placeholderImage:[UIImage imageNamed:@"placeholder"]];
 
     return cell;

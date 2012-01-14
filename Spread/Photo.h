@@ -2,8 +2,8 @@
 //  Photo.h
 //  Spread
 //
-//  Created by Joseph Lin on 12/19/11.
-//  Copyright (c) 2011 R/GA. All rights reserved.
+//  Created by Joseph Lin on 1/13/12.
+//  Copyright (c) 2012 R/GA. All rights reserved.
 //
 
 #import <Foundation/Foundation.h>
@@ -13,11 +13,13 @@
 @interface Photo : NSManagedObject
 
 @property (nonatomic, retain) NSString * camera;
+@property (nonatomic, retain) NSDate * capturedDate;
+@property (nonatomic, retain) NSDate * createdDate;
+@property (nonatomic, retain) NSString * largeImageURLString;
 @property (nonatomic, retain) NSString * photoDescription;
 @property (nonatomic, retain) NSNumber * photoID;
-@property (nonatomic, retain) NSDate * createdDate;
-@property (nonatomic, retain) NSDate * capturedDate;
-@property (nonatomic, retain) NSString * imageURLString;
 @property (nonatomic, retain) NSString * title;
+@property (nonatomic, retain) NSString * gridImageURLString;
+@property (nonatomic, retain) NSString * feedImageURLString;
 
 @end

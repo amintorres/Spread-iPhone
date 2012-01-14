@@ -8,7 +8,7 @@
 
 #import "ServiceManager.h"
 #import "SpreadAPIDefinition.h"
-#import "UserDefaultHelper.h"
+#import "User+Spread.h"
 
 NSString * const SpreadDidLoginNotification = @"SpreadDidLoginNotification";
 NSString * const ServiceManagerDidLoadPhotosNotification = @"ServiceManagerDidLoadPhotosNotification";
@@ -59,29 +59,107 @@ NSString * const ServiceManagerDidLoadPhotosNotification = @"ServiceManagerDidLo
 
 
 #pragma mark -
+#pragma mark RestKit Setup
+
++ (void)setupRestKit
+{
+    RKObjectManager* objectManager = [RKObjectManager objectManagerWithBaseURL:[SpreadAPIDefinition baseURL]];
+    
+    
+    // Enable automatic network activity indicator management
+    objectManager.client.requestQueue.showsNetworkActivityIndicatorWhenBusy = YES;
+    
+    
+    // Initialize object store
+    objectManager.objectStore = [RKManagedObjectStore objectStoreWithStoreFilename:@"Spread.sqlite"];
+    
+    
+    // Setup our object mappings    
+    /*!
+     Mapping by entity. Here we are configuring a mapping by targetting a Core Data entity with a specific
+     name. This allows us to map back Twitter user objects directly onto NSManagedObject instances --
+     there is no backing model class!
+     */
+    RKManagedObjectMapping* photoMapping = [RKManagedObjectMapping mappingForClass:[Photo class]];
+    photoMapping.primaryKeyAttribute = @"photoID";
+    [photoMapping mapKeyPath:@"id" toAttribute:@"photoID"];
+    [photoMapping mapKeyPath:@"camera" toAttribute:@"camera"];
+    [photoMapping mapKeyPath:@"captured_at" toAttribute:@"capturedDate"];
+    [photoMapping mapKeyPath:@"created_at" toAttribute:@"createdDate"];
+    [photoMapping mapKeyPath:@"image.url" toAttribute:@"largeImageURLString"];
+    [photoMapping mapKeyPath:@"image.thumb.url" toAttribute:@"gridImageURLString"];
+    [photoMapping mapKeyPath:@"image.iphone.url" toAttribute:@"feedImageURLString"];
+    [photoMapping mapKeyPath:@"description" toAttribute:@"photoDescription"];
+    [photoMapping mapKeyPath:@"title" toAttribute:@"title"];
+    
+    // Register our mappings with the provider
+    [objectManager.mappingProvider setMapping:photoMapping forKeyPath:@"photo"];
+    
+    // Generate an inverse mapping for transforming Photo -> NSMutableDictionary. 
+    [objectManager.mappingProvider setSerializationMapping:[photoMapping inverseMapping] forClass:[Photo class]];
+    
+    
+    RKManagedObjectMapping* userMapping = [RKManagedObjectMapping mappingForClass:[User class]];
+    userMapping.primaryKeyAttribute = @"userID";
+    [userMapping mapKeyPath:@"id" toAttribute:@"userID"];
+    [userMapping mapKeyPath:@"name" toAttribute:@"name"];
+    [userMapping mapKeyPath:@"email" toAttribute:@"email"];
+    [userMapping mapKeyPath:@"avatar.url" toAttribute:@"avatarURLString"];
+    [userMapping mapKeyPath:@"single_access_token" toAttribute:@"singleAccessToken"];
+    
+    // Register our mappings with the provider
+    [objectManager.mappingProvider setMapping:userMapping forKeyPath:@"user"];
+    
+    
+    
+    // Update date format  2011-12-19T22:33:40Z
+    [RKObjectMapping addDefaultDateFormatterForString:@"yyyy-MM-dd'T'HH:mm:ssZ" inTimeZone:nil];
+    
+    
+    // Config routers
+    [objectManager.router routeClass:[Photo class] toResourcePath:[SpreadAPIDefinition postPhotoPath] forMethod:RKRequestMethodPOST];
+    [objectManager.router routeClass:[Photo class] toResourcePath:[SpreadAPIDefinition putPhotoPath] forMethod:RKRequestMethodPUT];
+    [objectManager.router routeClass:[Photo class] toResourcePath:[SpreadAPIDefinition deletePhotoPath] forMethod:RKRequestMethodDELETE];
+    
+    [objectManager.router routeClass:[User class] toResourcePath:[SpreadAPIDefinition loginPath] forMethod:RKRequestMethodPOST];
+
+    
+    RKLogConfigureByName("RestKit/Network", RKLogLevelDefault);
+    RKLogConfigureByName("RestKit/ObjectMapping", RKLogLevelDefault);
+}
+
+
+
+#pragma mark -
 #pragma mark Login/Logout
 
 + (BOOL)isSessionValid
 {
-    NSString* token = [UserDefaultHelper oauthToken];
-    return ( token != nil );
+    NSString* storedToken = [User oauthToken];
+    return ( storedToken != nil );
 }
 
 + (void)loginWithUsername:(NSString*)username password:(NSString*)password
 {
-    NSDictionary* params = [NSDictionary dictionaryWithObjectsAndKeys:
-                            username, @"user_session[email]",
-                            password, @"user_session[password]", nil];
-    [[RKClient sharedClient] post:[SpreadAPIDefinition loginPath] params:params delegate:[ServiceManager sharedManager]];  
-}  
+    User* user = [User currentUser];
+    
+    RKObjectManager* objectManager = [RKObjectManager sharedManager];
+    [objectManager postObject:user delegate:[ServiceManager sharedManager] block:^(RKObjectLoader *loader){
+        
+        loader.objectMapping = [objectManager.mappingProvider objectMappingForClass:[User class]];
+        
+        RKParams* params = [RKParams params];
+        [params setValue:username forParam:@"user_session[email]"];
+        [params setValue:password forParam:@"user_session[password]"];
+        loader.params = params;
+    }];
+}
 
 + (void)logout
 {
     [[RKClient sharedClient].requestCache invalidateAll];
     [[RKObjectManager sharedManager].objectStore deletePersistantStore];
 
-    [UserDefaultHelper setOauthToken:nil];
-    
     [[RKClient sharedClient] get:[SpreadAPIDefinition logoutPath] delegate:nil];  
 }
 
@@ -89,47 +167,6 @@ NSString * const ServiceManagerDidLoadPhotosNotification = @"ServiceManagerDidLo
 {
     UIAlertView* alert = [[UIAlertView alloc] initWithTitle:@"TBD" message:nil delegate:nil cancelButtonTitle:@"Dismiss" otherButtonTitles:nil];
     [alert show];
-}
-
-
-#pragma mark -
-#pragma mark RKRequest Delegate
-
-- (void)request:(RKRequest*)request didLoadResponse:(RKResponse*)response
-{  
-    NSString* responseString = [response bodyAsString];
-
-    if ( [[request resourcePath] isEqualToString:[SpreadAPIDefinition loginPath]] )
-    {
-        if ( response.statusCode == 200 )
-        {
-            [UserDefaultHelper setOauthToken:responseString];
-            [[NSNotificationCenter defaultCenter] postNotificationName:SpreadDidLoginNotification object:self];
-        }
-        else if ( response.statusCode == 422 )
-        {
-            if ([response isJSON])
-            {
-                NSError* error = nil;
-                NSDictionary* JSONDict = [response parsedBody:&error];
-                NSArray* allValues = [JSONDict allValues];
-                NSString* reason = ( [allValues count] ) ? [[allValues objectAtIndex:0] objectAtIndex:0] : @"Please try again";
-                    
-                UIAlertView* alert = [[UIAlertView alloc] initWithTitle:@"Login Failed" message:reason delegate:nil cancelButtonTitle:@"Dismiss" otherButtonTitles:nil];
-                [alert show];
-            }            
-        }
-        else
-        {
-            UIAlertView* alert = [[UIAlertView alloc] initWithTitle:@"Unknown Error" message:responseString delegate:nil cancelButtonTitle:@"Dismiss" otherButtonTitles:nil];
-            [alert show];
-        }
-    }  
-}
-
-- (void)request:(RKRequest *)request didFailLoadWithError:(NSError *)error
-{
-    NSLog(@"error: %@", error);
 }
 
 
@@ -195,27 +232,56 @@ NSString * const ServiceManagerDidLoadPhotosNotification = @"ServiceManagerDidLo
 
 - (void)objectLoader:(RKObjectLoader*)objectLoader didLoadObjects:(NSArray*)objects
 {
-    NSFetchRequest* request = [Photo fetchRequest];
-    NSSortDescriptor* descriptor = [NSSortDescriptor sortDescriptorWithKey:@"createdDate" ascending:NO];
-    [request setSortDescriptors:[NSArray arrayWithObject:descriptor]];
-    
-    self.allPhotos = [Photo objectsWithFetchRequest:request];
-    [[NSNotificationCenter defaultCenter] postNotificationName:ServiceManagerDidLoadPhotosNotification object:self];
-
-
-//    if ([objectLoader wasSentToResourcePath:[SpreadAPIDefinition allPhotosPath]])
-//    {
-//    }
+    if ([objectLoader wasSentToResourcePath:[SpreadAPIDefinition loginPath]])
+    {
+        NSLog(@"Did load user: %@", objects);
+        [[NSNotificationCenter defaultCenter] postNotificationName:SpreadDidLoginNotification object:self];   
+    }
+    else if ( [[objects lastObject] isMemberOfClass:[Photo class]] )
+    {
+        NSFetchRequest* request = [Photo fetchRequest];
+        NSSortDescriptor* descriptor = [NSSortDescriptor sortDescriptorWithKey:@"createdDate" ascending:NO];
+        [request setSortDescriptors:[NSArray arrayWithObject:descriptor]];
+        
+        self.allPhotos = [Photo objectsWithFetchRequest:request];
+        [[NSNotificationCenter defaultCenter] postNotificationName:ServiceManagerDidLoadPhotosNotification object:self];
+    }
 }
 
 - (void)objectLoader:(RKObjectLoader*)objectLoader didFailWithError:(NSError*)error
 {
-	UIAlertView* alert = [[UIAlertView alloc] initWithTitle:@"Error" 
-                                                    message:[error localizedDescription] 
-                                                   delegate:nil 
-                                          cancelButtonTitle:@"OK" otherButtonTitles:nil];
-	[alert show];
-	NSLog(@"Hit error: %@", error);
+    NSString* responseString = [objectLoader.response bodyAsString];
+    NSLog(@"Hit error: %@", error);
+    NSLog(@"Response string: %@", responseString);
+    
+    if ( [[objectLoader resourcePath] isEqualToString:[SpreadAPIDefinition loginPath]] )
+    {
+        if ( objectLoader.response.statusCode == 422 )
+        {
+            if ( [objectLoader.response isJSON] )
+            {
+                NSError* error = nil;
+                NSDictionary* JSONDict = [objectLoader.response parsedBody:&error];
+                NSArray* allValues = [JSONDict allValues];
+                NSString* reason = ( [allValues count] ) ? [[allValues objectAtIndex:0] objectAtIndex:0] : @"Please try again";
+                
+                UIAlertView* alert = [[UIAlertView alloc] initWithTitle:@"Login Failed" message:reason delegate:nil cancelButtonTitle:@"Dismiss" otherButtonTitles:nil];
+                [alert show];
+            }
+        }
+    }
+}
+
+
+#pragma mark -
+#pragma mark RKRequest Delegate
+
+- (void)request:(RKRequest*)request didLoadResponse:(RKResponse*)response
+{      
+}
+
+- (void)request:(RKRequest *)request didFailLoadWithError:(NSError *)error
+{
 }
 
 
