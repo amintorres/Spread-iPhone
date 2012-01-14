@@ -76,10 +76,10 @@ static const CGFloat kGroup2InviteOffset        = 150;
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(keyboardWillHide:) name:UIKeyboardWillHideNotification object:nil];
 }
 
-- (void)viewWillAppear:(BOOL)animated
+- (void)viewDidDisappear:(BOOL)animated
 {
-    [super viewWillAppear:animated];
     [self setIdleState];
+    [super viewDidDisappear:animated];
 }
 
 - (void)viewDidUnload
@@ -112,6 +112,9 @@ static const CGFloat kGroup2InviteOffset        = 150;
     startButton.alpha = 1.0;
     loginButton.alpha = 1.0;
     inviteCaptionLabel.alpha = 1.0;
+    
+    textField0.text = nil;
+    textField1.text = nil;
 }
 
 - (void)setLoginState
@@ -248,8 +251,6 @@ static const CGFloat kGroup2InviteOffset        = 150;
 
 - (IBAction)logoButtonTapped:(id)sender
 {
-    textField0.text = nil;
-    textField1.text = nil;
     [self animateToState:IntroViewStateIdle];
 }
 

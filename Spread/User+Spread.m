@@ -6,8 +6,9 @@
 //  Copyright (c) 2012 R/GA. All rights reserved.
 //
 
-#import "User+Spread.h"
 #import <RestKit/RestKit.h>
+#import "User+Spread.h"
+#import "SpreadAPIDefinition.h"
 
 
 static User* currentUser = nil;
@@ -66,14 +67,13 @@ static User* currentUser = nil;
 
 + (NSString*)oauthToken
 {
-    if ( currentUser )
-    {
-        return currentUser.singleAccessToken;
-    }
-    else
-    {
-        return [[User currentUser] singleAccessToken];
-    }
+    return [[User currentUser] singleAccessToken];
+}
+
+- (NSURL*)avatarURL
+{
+    NSURL* avatarURL = [NSURL URLWithString:self.avatarPath];
+    return avatarURL;
 }
 
 

@@ -11,7 +11,7 @@
 
 @implementation User
 
-@dynamic avatarURLString;
+@dynamic avatarPath;
 @dynamic email;
 @dynamic userID;
 @dynamic name;

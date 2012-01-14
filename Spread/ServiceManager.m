@@ -104,7 +104,7 @@ NSString * const ServiceManagerDidLoadPhotosNotification = @"ServiceManagerDidLo
     [userMapping mapKeyPath:@"id" toAttribute:@"userID"];
     [userMapping mapKeyPath:@"name" toAttribute:@"name"];
     [userMapping mapKeyPath:@"email" toAttribute:@"email"];
-    [userMapping mapKeyPath:@"avatar.url" toAttribute:@"avatarURLString"];
+    [userMapping mapKeyPath:@"avatar.thumb.url" toAttribute:@"avatarPath"];
     [userMapping mapKeyPath:@"single_access_token" toAttribute:@"singleAccessToken"];
     
     // Register our mappings with the provider
@@ -157,6 +157,7 @@ NSString * const ServiceManagerDidLoadPhotosNotification = @"ServiceManagerDidLo
 
 + (void)logout
 {
+    [User clearUser];
     [[RKClient sharedClient].requestCache invalidateAll];
     [[RKObjectManager sharedManager].objectStore deletePersistantStore];
 

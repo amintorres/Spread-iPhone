@@ -10,7 +10,13 @@
 #import "Photo.h"
 #import "UIImageView+WebCache.h"
 #import "ServiceManager.h"
+#import "User+Spread.h"
 
+
+
+@interface GridViewController ()
+- (void)updateUserInfo;
+@end
 
 
 @implementation GridViewController
@@ -18,6 +24,9 @@
 @synthesize gridView;
 @synthesize headerView;
 @synthesize footerView;
+@synthesize avatarImageView;
+@synthesize nameLabel;
+@synthesize numberOfPhotosLabel;
 
 
 #pragma mark -
@@ -36,6 +45,8 @@
     gridView.gridFooterView = footerView;
     gridView.showsVerticalScrollIndicator = NO;
     
+    [self updateUserInfo];
+    
     UIView* backgroundView = [[UIView alloc] init];
     backgroundView.backgroundColor = [UIColor whiteColor];
     gridView.backgroundView = backgroundView;
@@ -52,10 +63,27 @@
     self.gridView = nil;
     self.headerView = nil;
     self.footerView = nil;
+    self.avatarImageView = nil;
+    self.nameLabel = nil;
+    self.numberOfPhotosLabel = nil;
     [super viewDidUnload];
 }
 
 
+#pragma mark -
+#pragma mark User Info
+
+- (void)updateUserInfo
+{
+    User* currentUser = [User currentUser];
+    [avatarImageView setImageWithURL:currentUser.avatarURL];
+    nameLabel.text = currentUser.name;
+    
+    NSInteger photoCount = [Photo count:nil];
+    numberOfPhotosLabel.text = [NSString stringWithFormat:@"%d", photoCount];
+}
+     
+     
 #pragma mark -
 #pragma mark Grid View Data Source
 

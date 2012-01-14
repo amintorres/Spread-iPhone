@@ -15,5 +15,6 @@
 + (id)currentUser;
 + (void)clearUser;
 + (NSString*)oauthToken;
+- (NSURL*)avatarURL;
 
 @end
