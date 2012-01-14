@@ -25,6 +25,9 @@
 		7C7F7AB414AB74AE00652401 /* EditViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7C7F7AB214AB74AE00652401 /* EditViewController.m */; };
 		7C7F7AB514AB74AE00652401 /* EditViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 7C7F7AB314AB74AE00652401 /* EditViewController.xib */; };
 		7C7F7AB714ABAEB000652401 /* AssetsLibrary.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7C7F7AB614ABAEB000652401 /* AssetsLibrary.framework */; };
+		7C81998A14C0FDF70019AB8E /* User.m in Sources */ = {isa = PBXBuildFile; fileRef = 7C81998914C0FDF70019AB8E /* User.m */; };
+		7C81998D14C1187B0019AB8E /* User+Spread.m in Sources */ = {isa = PBXBuildFile; fileRef = 7C81998C14C1187B0019AB8E /* User+Spread.m */; };
+		7C81999014C11F5B0019AB8E /* Photo.m in Sources */ = {isa = PBXBuildFile; fileRef = 7C81998F14C11F5B0019AB8E /* Photo.m */; };
 		7C86FF7E14AF6F0A001B907A /* icon.png in Resources */ = {isa = PBXBuildFile; fileRef = 7C86FF7D14AF6F0A001B907A /* icon.png */; };
 		7C86FF8014AF6F0D001B907A /* icon@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 7C86FF7F14AF6F0D001B907A /* icon@2x.png */; };
 		7C86FF8514AF6FF5001B907A /* AboutViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7C86FF8314AF6FF5001B907A /* AboutViewController.m */; };
@@ -52,7 +55,6 @@
 		7C8D9BC014A28F3200D1D5DC /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7C8D9BBF14A28F3200D1D5DC /* QuartzCore.framework */; };
 		7C8D9BC114A28F4500D1D5DC /* libAQGridView.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 7C94C27D14A2886C005531FB /* libAQGridView.a */; };
 		7C8D9BC414A2994500D1D5DC /* ServiceManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 7C8D9BC314A2994500D1D5DC /* ServiceManager.m */; };
-		7C9890A214A0419F009E22F1 /* Photo.m in Sources */ = {isa = PBXBuildFile; fileRef = 7C9890A114A0419F009E22F1 /* Photo.m */; };
 		7C9F93B4149960C300126908 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7C9F93B3149960C300126908 /* UIKit.framework */; };
 		7C9F93B6149960C300126908 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7C9F93B5149960C300126908 /* Foundation.framework */; };
 		7C9F93B8149960C300126908 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7C9F93B7149960C300126908 /* CoreGraphics.framework */; };
@@ -174,6 +176,12 @@
 		7C7F7AB214AB74AE00652401 /* EditViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EditViewController.m; sourceTree = "<group>"; };
 		7C7F7AB314AB74AE00652401 /* EditViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = EditViewController.xib; sourceTree = "<group>"; };
 		7C7F7AB614ABAEB000652401 /* AssetsLibrary.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AssetsLibrary.framework; path = System/Library/Frameworks/AssetsLibrary.framework; sourceTree = SDKROOT; };
+		7C81998814C0FDF70019AB8E /* User.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = User.h; sourceTree = "<group>"; };
+		7C81998914C0FDF70019AB8E /* User.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = User.m; sourceTree = "<group>"; };
+		7C81998B14C1187B0019AB8E /* User+Spread.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "User+Spread.h"; sourceTree = "<group>"; };
+		7C81998C14C1187B0019AB8E /* User+Spread.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "User+Spread.m"; sourceTree = "<group>"; };
+		7C81998E14C11F5B0019AB8E /* Photo.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Photo.h; sourceTree = "<group>"; };
+		7C81998F14C11F5B0019AB8E /* Photo.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Photo.m; sourceTree = "<group>"; };
 		7C86FF7D14AF6F0A001B907A /* icon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = icon.png; path = ../../icon.png; sourceTree = "<group>"; };
 		7C86FF7F14AF6F0D001B907A /* icon@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "icon@2x.png"; path = "../../icon@2x.png"; sourceTree = "<group>"; };
 		7C86FF8214AF6FF5001B907A /* AboutViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AboutViewController.h; sourceTree = "<group>"; };
@@ -204,8 +212,6 @@
 		7C8D9BC214A2994500D1D5DC /* ServiceManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ServiceManager.h; sourceTree = "<group>"; };
 		7C8D9BC314A2994500D1D5DC /* ServiceManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ServiceManager.m; sourceTree = "<group>"; };
 		7C94C27814A2886C005531FB /* AQGridView.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = AQGridView.xcodeproj; path = AQGridView/AQGridView.xcodeproj; sourceTree = "<group>"; };
-		7C9890A014A0419F009E22F1 /* Photo.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Photo.h; sourceTree = "<group>"; };
-		7C9890A114A0419F009E22F1 /* Photo.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Photo.m; sourceTree = "<group>"; };
 		7C9F93AF149960C300126908 /* Spread.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Spread.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		7C9F93B3149960C300126908 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		7C9F93B5149960C300126908 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
@@ -373,8 +379,12 @@
 			isa = PBXGroup;
 			children = (
 				7C9F93C7149960C300126908 /* Spread.xcdatamodeld */,
-				7C9890A014A0419F009E22F1 /* Photo.h */,
-				7C9890A114A0419F009E22F1 /* Photo.m */,
+				7C81998E14C11F5B0019AB8E /* Photo.h */,
+				7C81998F14C11F5B0019AB8E /* Photo.m */,
+				7C81998814C0FDF70019AB8E /* User.h */,
+				7C81998914C0FDF70019AB8E /* User.m */,
+				7C81998B14C1187B0019AB8E /* User+Spread.h */,
+				7C81998C14C1187B0019AB8E /* User+Spread.m */,
 			);
 			name = "Data Model";
 			sourceTree = "<group>";
@@ -777,7 +787,6 @@
 				7CF8A609149BFA12009FF755 /* IntroViewController.m in Sources */,
 				7CF8A60E149BFA2F009FF755 /* ListViewController.m in Sources */,
 				7CF8A613149BFA3B009FF755 /* GridViewController.m in Sources */,
-				7C9890A214A0419F009E22F1 /* Photo.m in Sources */,
 				7CE85ADF14A21804002874EA /* SpreadAPIDefinition.m in Sources */,
 				7C8D9BC414A2994500D1D5DC /* ServiceManager.m in Sources */,
 				7C66003014AA1C3A00C285B1 /* ListTableViewCell.m in Sources */,
@@ -789,6 +798,9 @@
 				7C6CFBFE14BD46B80048644C /* UITextField+Crossfade.m in Sources */,
 				7C6CFC0114BD48760048644C /* UIView+Shortcut.m in Sources */,
 				7C2CB64814BF2D3B006727FD /* UserDefaultHelper.m in Sources */,
+				7C81998A14C0FDF70019AB8E /* User.m in Sources */,
+				7C81998D14C1187B0019AB8E /* User+Spread.m in Sources */,
+				7C81999014C11F5B0019AB8E /* Photo.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

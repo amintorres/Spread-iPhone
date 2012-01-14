@@ -7,7 +7,7 @@
 //
 
 #import "SpreadAPIDefinition.h"
-#import "UserDefaultHelper.h"
+#import "User+Spread.h"
 
 
 
@@ -41,7 +41,7 @@
 
 + (NSString*)allPhotosPath
 {
-    NSString* allPhotosPath = [NSString stringWithFormat:@"/users/1/photos.json?%@", [self userCredentialsQuery]];
+    NSString* allPhotosPath = [NSString stringWithFormat:@"/photos/uploaded.json?%@", [self userCredentialsQuery]];
     return allPhotosPath;
 }
 
@@ -69,9 +69,16 @@
 
 + (NSString*)userCredentialsQuery
 {
-//    NSString* token = @"wAS4BLjaaAnmWdw98qi";
-    NSString* userCredentials = [NSString stringWithFormat:@"user_credentials=%@", [UserDefaultHelper oauthToken]];
-    return userCredentials;
+    NSString* storedToken = [User oauthToken];
+    if ( storedToken )
+    {
+        NSString* userCredentials = [NSString stringWithFormat:@"user_credentials=%@", [User oauthToken]];
+        return userCredentials;
+    }
+    else
+    {
+        return nil;
+    }
 }
 
 
