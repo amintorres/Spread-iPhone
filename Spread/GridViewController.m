@@ -43,11 +43,17 @@
     
     gridView.gridHeaderView = headerView;
     gridView.gridFooterView = footerView;
+    gridView.leftContentInset = 6.0;
+    gridView.rightContentInset = 6.0;
     gridView.showsVerticalScrollIndicator = NO;
+    
+    CGSize currentContentSize = gridView.contentSize;
+    gridView.contentSize = CGSizeMake(300, currentContentSize.height);
     
     [self updateUserInfo];
     
     UIView* backgroundView = [[UIView alloc] init];
+    backgroundView.autoresizingMask = UIViewAutoresizingFlexibleHeight | UIViewAutoresizingFlexibleWidth;
     backgroundView.backgroundColor = [UIColor whiteColor];
     gridView.backgroundView = backgroundView;
 }
@@ -99,8 +105,8 @@
     AQGridViewCell* cell = [aGridView dequeueReusableCellWithIdentifier:cellIdentifier];
     if ( cell == nil )
     {
-        cell = [[AQGridViewCell alloc] initWithFrame:CGRectMake(0, 0, 80, 80) reuseIdentifier:cellIdentifier];
-        cell.selectionGlowColor = [UIColor blueColor];
+        cell = [[AQGridViewCell alloc] initWithFrame:CGRectMake(0, 0, 88, 88) reuseIdentifier:cellIdentifier];
+        cell.selectionStyle = AQGridViewCellSelectionStyleGray;
         
         UIImageView* imageView = [[UIImageView alloc] initWithFrame:cell.contentView.bounds];
         imageView.tag = 123;
@@ -115,6 +121,15 @@
                    placeholderImage:[UIImage imageNamed:@"placeholder"]];
 
     return cell;
+}
+
+
+#pragma mark -
+#pragma mark Grid View Delegate
+
+- (void)gridView:(AQGridView*)gridView didSelectItemAtIndex:(NSUInteger)index
+{
+    NSLog(@"Did select item at index: %d", index);
 }
 
 
