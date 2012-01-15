@@ -12,6 +12,7 @@
 #import "EditViewController.h"
 #import "ServiceManager.h"
 #import "UINavigationBar+Customize.h"
+#import "UserDefaultHelper.h"
 
 
 typedef enum{
@@ -24,26 +25,20 @@ typedef enum{
 
 
 @interface EditViewController ()
-
 @property (strong, nonatomic) UIView *activeResponder;
-
 - (void)registerForKeyboardNotifications;
-
 @end
 
 
 
 @implementation EditViewController
-@synthesize titleView;
-@synthesize tagsView;
-@synthesize descriptionView;
 
-@synthesize tableView, titleTextField, tagsTextField, descriptionTextView;
+@synthesize tableView, titleView, tagsView, descriptionView, titleTextField, tagsTextField, descriptionTextView, sectionFooterView, rememberDetailSwitch;
 @synthesize navigationBar, saveButton, deleteButton;
 @synthesize mediaInfo;
+@synthesize photo;
 @synthesize editMode;
 @synthesize activeResponder;
-@synthesize photo;
 
 
 #pragma mark -
@@ -58,13 +53,21 @@ typedef enum{
     [self.navigationBar customizeBackground];
     [[UIApplication sharedApplication] setStatusBarHidden:NO withAnimation:UIStatusBarAnimationSlide];
 
-        
+    
+    descriptionTextView.placeholder = @"Add as much detail as possible";
+    
     if ( editMode == EditModeCreate )
     {
         saveButton.title = @"Save";
         tableView.tableFooterView = nil;
         
         self.photo = [Photo object];
+        
+        if ( [UserDefaultHelper shouldStoreDetails] )
+        {
+            [photo loadDetailsFromUserDefault];
+            rememberDetailSwitch.on = YES;
+        }
     }
     else
     {
@@ -73,24 +76,36 @@ typedef enum{
         deleteButton.layer.cornerRadius = 5.0;
         deleteButton.layer.borderWidth = 2.0;
         deleteButton.layer.borderColor = [[UIColor darkGrayColor] CGColor];
-
-        titleTextField.text = photo.title;
-        descriptionTextView.text = photo.photoDescription;
     }
+    
+    titleTextField.text = photo.title;
+    descriptionTextView.text = photo.photoDescription;
+}
+
+- (void)viewWillDisappear:(BOOL)animated
+{
+    if ( [UserDefaultHelper shouldStoreDetails] )
+    {
+        [photo storeDetailsToUserDefault];
+    }
+
+    [super viewWillDisappear:animated];
 }
 
 - (void)viewDidUnload
 {
     self.tableView = nil;
+    self.titleView = nil;
+    self.tagsView = nil;
+    self.descriptionView = nil;
     self.titleTextField = nil;
     self.tagsTextField = nil;
     self.descriptionTextView = nil;
+    self.sectionFooterView = nil;
+    self.rememberDetailSwitch = nil;
     self.navigationBar = nil;
     self.saveButton = nil;
     self.deleteButton = nil;
-    [self setTitleView:nil];
-    [self setTagsView:nil];
-    [self setDescriptionView:nil];
     [super viewDidUnload];
 }
 
@@ -127,7 +142,6 @@ typedef enum{
     photo.title = titleTextField.text;
     photo.photoDescription = descriptionTextView.text;
 
-    
     if ( editMode == EditModeCreate )
     {
         UIImage* image = [mediaInfo objectForKey:UIImagePickerControllerOriginalImage];
@@ -174,9 +188,29 @@ typedef enum{
     [self dismissModalViewControllerAnimated:YES];
 }
 
+- (IBAction)rememberDetailsSwitchValueChanged:(UISwitch*)sender
+{
+    [UserDefaultHelper setShouldStoreDetails:sender.isOn];
+}
+
 
 #pragma mark -
 #pragma mark TableView
+
+- (NSString *)tableView:(UITableView *)tableView titleForHeaderInSection:(NSInteger)section
+{
+    return @"Details";
+}
+
+- (CGFloat)tableView:(UITableView *)tableView heightForFooterInSection:(NSInteger)section
+{
+    return sectionFooterView.bounds.size.height;    
+}
+
+- (UIView *)tableView:(UITableView *)tableView viewForFooterInSection:(NSInteger)section
+{
+    return sectionFooterView;
+}
 
 - (NSInteger)tableView:(UITableView *)table numberOfRowsInSection:(NSInteger)section
 {

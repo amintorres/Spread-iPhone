@@ -11,7 +11,17 @@
 
 @interface UserDefaultHelper : NSObject
 
-+ (void)setOauthToken:(NSString*)token;
-+ (NSString*)oauthToken;
++ (void)setShouldStoreDetails:(BOOL)shouldStoreDetails;
++ (BOOL)shouldStoreDetails;
++ (void)clearStoredDetails;
+
++ (void)setStoredTitle:(NSString*)title;
++ (NSString*)storedTitle;
+
++ (void)setStoredTags:(NSString*)tags;
++ (NSString*)storedTags;
+
++ (void)setStoredDescription:(NSString*)description;
++ (NSString*)storedDescription;
 
 @end

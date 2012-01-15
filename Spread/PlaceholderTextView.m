@@ -12,222 +12,94 @@
 
 
 @interface PlaceholderTextView ()
-@property (assign, nonatomic) IBOutlet id <UITextViewDelegate> realDelegate;
-@property (strong, nonatomic) PlaceholderTextViewDelegate *auxDelegate;
-- (void)updateTextAndColor;
-- (void)updateTextAndColorForEditing;
+@property (nonatomic) BOOL showPlaceholder;
+- (void)updatePlaceholder;
 @end
 
 
 
 @implementation PlaceholderTextView
 
-@synthesize realDelegate;
-@synthesize auxDelegate;
-@synthesize primaryTextColor;
-@synthesize placeholderTextColor;
-@synthesize placeholderText;
+@synthesize placeholder;
+@synthesize placeholderColor;
+@synthesize showPlaceholder;
 
 
 
-
-#pragma mark -
-#pragma mark Drawing Logic
-
-- (void)updateTextAndColor
+- (void)addObserver
 {
-    if ( [[super text] length] == 0 )
-    {
-        [super setText:self.placeholderText];
-        [super setTextColor:self.placeholderTextColor];
-    }
-    else
-    {
-        [super setTextColor:self.primaryTextColor];
-    }
+	[[NSNotificationCenter defaultCenter] addObserverForName:UITextViewTextDidChangeNotification object:self queue:nil usingBlock:^(NSNotification* notification){
+       
+        [self updatePlaceholder];
+    }];
 }
 
-- (void)updateTextAndColorForEditing
+- (void)dealloc
 {
-    if ( [[super text] isEqualToString:self.placeholderText])
+    [[NSNotificationCenter defaultCenter] removeObserver:self];
+}
+
+- (void)updatePlaceholder
+{
+	BOOL didShowPlaceholder = self.showPlaceholder;
+	self.showPlaceholder = ( self.placeholder && ![self hasText] );
+    
+	if ( self.showPlaceholder != didShowPlaceholder )
     {
-        [super setText:@""];
-        [super setTextColor:self.primaryTextColor];
-    }
+		[self setNeedsDisplay];
+	}
+}
+
+- (void)drawRect:(CGRect)rect
+{
+	[super drawRect:rect];
+    
+	if (self.showPlaceholder)
+    {
+		[self.placeholderColor set];
+		[self.placeholder drawInRect:CGRectInset(self.bounds, 8.0, 8.0) withFont:self.font];
+	}
 }
 
 
 #pragma mark -
 #pragma mark Setter/Accessor
 
-- (UIColor*)textColor
-{
-    return self.primaryTextColor;
-}
-
-- (void)setTextColor:(UIColor *)color
-{
-    self.primaryTextColor = color;
-    [self updateTextAndColor];
-}
-
-- (NSString *)text
-{
-    if ( [[super text] isEqualToString:self.placeholderText])
-        return @"";
-    else
-        return [super text];
-}
-
 - (void)setText:(NSString *)string
 {
-    [super setText:string];
-    [self updateTextAndColor];
+	[super setText:string];
+	[self updatePlaceholder];
 }
 
-- (void)setPlaceholderText:(NSString *)string
+- (void)setPlaceholder:(NSString *)string
 {
-    placeholderText = string;
-    
-    [self updateTextAndColor];
-}
-
-- (void)setDelegate:(id<UITextViewDelegate>)delegate
-{
-    self.realDelegate = delegate;
-    [super setDelegate:self.auxDelegate];
-}
-
-- (id <UITextViewDelegate>)delegate
-{
-    return self.auxDelegate;
-}
-
-- (PlaceholderTextViewDelegate*)auxDelegate
-{
-    if ( !auxDelegate )
+    if ( !placeholder )
     {
-        auxDelegate = [[PlaceholderTextViewDelegate alloc] init];
+        [self addObserver];
     }
-    return auxDelegate;
+    
+    placeholder = string;
+	[self updatePlaceholder];
 }
 
 
 #pragma mark -
 #pragma mark Default Value
 
-- (UIColor*)primaryTextColor
+- (UIColor*)placeholderColor
 {
-    if ( !primaryTextColor )
+    if ( !placeholderColor )
     {
-        primaryTextColor = [UIColor darkGrayColor];
+        // Match the color of UITextField. See the documentation of UITextField->placeholder
+        placeholderColor = [UIColor colorWithWhite:0.7 alpha:1.0];
     }
-    return primaryTextColor;
+    return placeholderColor;
 }
 
-- (UIColor*)placeholderTextColor
-{
-    if ( !placeholderTextColor )
-    {
-        placeholderTextColor = [UIColor lightGrayColor];
-    }
-    return placeholderTextColor;
-}
+
 
 
 @end
 
-
-
-
-@implementation PlaceholderTextViewDelegate
-
-
-#pragma mark -
-#pragma mark UITextView Delegate
-
-- (BOOL)textViewShouldBeginEditing:(PlaceholderTextView *)textView
-{
-    [textView updateTextAndColorForEditing];
-    
-    if ( [textView.realDelegate respondsToSelector:@selector(textViewShouldBeginEditing:)] )
-    {
-        return [textView.realDelegate textViewShouldBeginEditing:textView];
-    }
-    else
-    {
-        return YES;
-    }
-}
-
-- (BOOL)textView:(PlaceholderTextView *)textView shouldChangeTextInRange:(NSRange)range replacementText:(NSString *)text
-{
-    if ( [text isEqualToString:@"\n"] )
-    {
-        [textView resignFirstResponder];
-        return NO;
-    }
-    else if ( [textView.realDelegate respondsToSelector:@selector(textView:shouldChangeTextInRange:replacementText:)] )
-    {
-        return [textView.realDelegate textView:textView shouldChangeTextInRange:range replacementText:text];
-    }
-    else
-    {
-        return YES;
-    }
-}
-
-- (void)textViewDidEndEditing:(PlaceholderTextView *)textView
-{
-    [textView updateTextAndColor];
-    
-    if ( [textView.realDelegate respondsToSelector:@selector(textViewDidEndEditing:)] )
-    {
-        [textView.realDelegate textViewDidEndEditing:textView];
-    }
-}
-
-
-
-#pragma mark -
-#pragma mark UITextView Delegate (Passthrough)
-
-- (void)textViewDidBeginEditing:(PlaceholderTextView *)textView
-{
-    if ( [textView.realDelegate respondsToSelector:@selector(textViewDidBeginEditing:)] )
-    {
-        [textView.realDelegate textViewDidBeginEditing:textView];
-    }
-}
-
-- (BOOL)textViewShouldEndEditing:(PlaceholderTextView *)textView
-{
-    if ( [textView.realDelegate respondsToSelector:@selector(textViewShouldEndEditing:)] )
-    {
-        return [textView.realDelegate textViewShouldEndEditing:textView];
-    }
-    else
-    {
-        return YES;
-    }
-}
-
-- (void)textViewDidChange:(PlaceholderTextView *)textView
-{    
-    if ( [textView.realDelegate respondsToSelector:@selector(textViewDidChange:)] )
-    {
-        [textView.realDelegate textViewDidChange:textView];
-    }
-}
-
-- (void)textViewDidChangeSelection:(PlaceholderTextView *)textView
-{
-    if ( [textView.realDelegate respondsToSelector:@selector(textViewDidChangeSelection:)] )
-    {
-        [textView.realDelegate textViewDidChangeSelection:textView];
-    }
-}
-
-@end
 
 

@@ -91,6 +91,9 @@
 		7CF95580149FE64D00786B4F /* Security.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7CF9557F149FE64D00786B4F /* Security.framework */; };
 		7CF95582149FE65700786B4F /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7CF95581149FE65700786B4F /* SystemConfiguration.framework */; };
 		7CF95584149FE66100786B4F /* libxml2.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 7CF95583149FE66100786B4F /* libxml2.dylib */; };
+		7CFAFA1014C3890300597A6D /* Photo+Spread.m in Sources */ = {isa = PBXBuildFile; fileRef = 7CFAFA0F14C3890300597A6D /* Photo+Spread.m */; };
+		7CFAFA1414C38DA500597A6D /* ReviewViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7CFAFA1214C38DA500597A6D /* ReviewViewController.m */; };
+		7CFAFA1514C38DA500597A6D /* ReviewViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 7CFAFA1314C38DA500597A6D /* ReviewViewController.xib */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -262,6 +265,11 @@
 		7CF9557F149FE64D00786B4F /* Security.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Security.framework; path = System/Library/Frameworks/Security.framework; sourceTree = SDKROOT; };
 		7CF95581149FE65700786B4F /* SystemConfiguration.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SystemConfiguration.framework; path = System/Library/Frameworks/SystemConfiguration.framework; sourceTree = SDKROOT; };
 		7CF95583149FE66100786B4F /* libxml2.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libxml2.dylib; path = usr/lib/libxml2.dylib; sourceTree = SDKROOT; };
+		7CFAFA0E14C3890300597A6D /* Photo+Spread.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "Photo+Spread.h"; sourceTree = "<group>"; };
+		7CFAFA0F14C3890300597A6D /* Photo+Spread.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "Photo+Spread.m"; sourceTree = "<group>"; };
+		7CFAFA1114C38DA500597A6D /* ReviewViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ReviewViewController.h; sourceTree = "<group>"; };
+		7CFAFA1214C38DA500597A6D /* ReviewViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ReviewViewController.m; sourceTree = "<group>"; };
+		7CFAFA1314C38DA500597A6D /* ReviewViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ReviewViewController.xib; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -348,6 +356,9 @@
 		7C7F7AB014AB747200652401 /* Edit View */ = {
 			isa = PBXGroup;
 			children = (
+				7CFAFA1114C38DA500597A6D /* ReviewViewController.h */,
+				7CFAFA1214C38DA500597A6D /* ReviewViewController.m */,
+				7CFAFA1314C38DA500597A6D /* ReviewViewController.xib */,
 				7C7F7AB114AB74AE00652401 /* EditViewController.h */,
 				7C7F7AB214AB74AE00652401 /* EditViewController.m */,
 				7C7F7AB314AB74AE00652401 /* EditViewController.xib */,
@@ -394,6 +405,8 @@
 				7C9F93C7149960C300126908 /* Spread.xcdatamodeld */,
 				7C81998E14C11F5B0019AB8E /* Photo.h */,
 				7C81998F14C11F5B0019AB8E /* Photo.m */,
+				7CFAFA0E14C3890300597A6D /* Photo+Spread.h */,
+				7CFAFA0F14C3890300597A6D /* Photo+Spread.m */,
 				7C81998814C0FDF70019AB8E /* User.h */,
 				7C81998914C0FDF70019AB8E /* User.m */,
 				7C81998B14C1187B0019AB8E /* User+Spread.h */,
@@ -767,6 +780,7 @@
 				7C8E2A1F14C3403800E6E714 /* spread_logo_blue@2x.png in Resources */,
 				7C8E2A2214C3449B00E6E714 /* navbar_background_withlogo.png in Resources */,
 				7C8E2A2314C3449B00E6E714 /* navbar_background_withlogo@2x.png in Resources */,
+				7CFAFA1514C38DA500597A6D /* ReviewViewController.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -823,6 +837,8 @@
 				7C81998D14C1187B0019AB8E /* User+Spread.m in Sources */,
 				7C81999014C11F5B0019AB8E /* Photo.m in Sources */,
 				7C8E2A2614C351AF00E6E714 /* PlaceholderTextView.m in Sources */,
+				7CFAFA1014C3890300597A6D /* Photo+Spread.m in Sources */,
+				7CFAFA1414C38DA500597A6D /* ReviewViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
