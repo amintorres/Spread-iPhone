@@ -111,6 +111,7 @@ typedef enum{
 	if (!cell)
     {
         cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:reuseIdentifier];
+        cell.backgroundColor = [UIColor whiteColor];
 	}
     
     cell.selectionStyle = UITableViewCellSelectionStyleGray;
@@ -136,7 +137,7 @@ typedef enum{
                 
             case TableViewMainSectionRowFeedback:
             default:
-                cell.textLabel.text = @"Feedback/Contact us";
+                cell.textLabel.text = @"Feedback / Contact us";
                 break;
         }
     }
