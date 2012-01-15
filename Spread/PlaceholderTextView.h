@@ -9,20 +9,10 @@
 #import <Foundation/Foundation.h>
 
 
-/**
- Intermediate object to intercept delegate calls, perform actions needed to emulate placeholder, and then pass calls to the real text view delegate.
- */
-@interface PlaceholderTextViewDelegate : NSObject <UITextViewDelegate>
-@end
-
-
-
-
 @interface PlaceholderTextView : UITextView
 
-@property (strong, nonatomic) UIColor *primaryTextColor;
-@property (strong, nonatomic) UIColor *placeholderTextColor;
-@property (copy, nonatomic) NSString *placeholderText;
+@property (strong, nonatomic) NSString *placeholder;
+@property (strong, nonatomic) UIColor *placeholderColor;
 
 @end
 

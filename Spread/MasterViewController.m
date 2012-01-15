@@ -9,6 +9,7 @@
 #import "MasterViewController.h"
 #import "ServiceManager.h"
 #import "IntroViewController.h"
+#import "ReviewViewController.h"
 #import "EditViewController.h"
 #import "AboutViewController.h"
 #import "UINavigationBar+Customize.h"
@@ -264,11 +265,19 @@ typedef enum{
 
 - (void)imagePickerController:(UIImagePickerController *)picker didFinishPickingMediaWithInfo:(NSDictionary *)info
 {
-    EditViewController* editViewController = [[EditViewController alloc] init];
-    editViewController.mediaInfo = info;
-    editViewController.editMode = EditModeCreate;
-    
-    [picker pushViewController:editViewController animated:YES];
+    if ( picker.sourceType == UIImagePickerControllerSourceTypeCamera )
+    {
+        EditViewController* editViewController = [[EditViewController alloc] init];
+        editViewController.mediaInfo = info;
+        editViewController.editMode = EditModeCreate;
+        [picker pushViewController:editViewController animated:YES];
+    }
+    else
+    {
+        ReviewViewController* reviewViewController = [[ReviewViewController alloc] init];
+        reviewViewController.mediaInfo = info;
+        [picker pushViewController:reviewViewController animated:YES];
+    }
 }
 
 - (void)imagePickerControllerDidCancel:(UIImagePickerController *)picker

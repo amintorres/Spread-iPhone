@@ -7,7 +7,8 @@
 //
 
 #import <UIKit/UIKit.h>
-#import "Photo.h"
+#import "Photo+Spread.h"
+#import "PlaceholderTextView.h"
 
 
 typedef enum{
@@ -24,7 +25,9 @@ typedef enum{
 @property (strong, nonatomic) IBOutlet UIView *descriptionView;
 @property (strong, nonatomic) IBOutlet UITextField *titleTextField;
 @property (strong, nonatomic) IBOutlet UITextField *tagsTextField;
-@property (strong, nonatomic) IBOutlet UITextView *descriptionTextView;
+@property (strong, nonatomic) IBOutlet PlaceholderTextView *descriptionTextView;
+@property (strong, nonatomic) IBOutlet UIView *sectionFooterView;
+@property (strong, nonatomic) IBOutlet UISwitch *rememberDetailSwitch;
 @property (strong, nonatomic) IBOutlet UINavigationBar *navigationBar;
 @property (strong, nonatomic) IBOutlet UIBarButtonItem *saveButton;
 @property (strong, nonatomic) IBOutlet UIButton *deleteButton;
@@ -35,5 +38,6 @@ typedef enum{
 - (IBAction)cancelButtonTapped:(id)sender;
 - (IBAction)saveButtonTapped:(id)sender;
 - (IBAction)deleteButtonTapped:(id)sender;
+- (IBAction)rememberDetailsSwitchValueChanged:(UISwitch*)sender;
 
 @end
