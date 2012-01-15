@@ -55,6 +55,11 @@
 		7C8D9BC014A28F3200D1D5DC /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7C8D9BBF14A28F3200D1D5DC /* QuartzCore.framework */; };
 		7C8D9BC114A28F4500D1D5DC /* libAQGridView.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 7C94C27D14A2886C005531FB /* libAQGridView.a */; };
 		7C8D9BC414A2994500D1D5DC /* ServiceManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 7C8D9BC314A2994500D1D5DC /* ServiceManager.m */; };
+		7C8E2A1E14C3403800E6E714 /* spread_logo_blue.png in Resources */ = {isa = PBXBuildFile; fileRef = 7C8E2A1C14C3403800E6E714 /* spread_logo_blue.png */; };
+		7C8E2A1F14C3403800E6E714 /* spread_logo_blue@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 7C8E2A1D14C3403800E6E714 /* spread_logo_blue@2x.png */; };
+		7C8E2A2214C3449B00E6E714 /* navbar_background_withlogo.png in Resources */ = {isa = PBXBuildFile; fileRef = 7C8E2A2014C3449B00E6E714 /* navbar_background_withlogo.png */; };
+		7C8E2A2314C3449B00E6E714 /* navbar_background_withlogo@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 7C8E2A2114C3449B00E6E714 /* navbar_background_withlogo@2x.png */; };
+		7C8E2A2614C351AF00E6E714 /* PlaceholderTextView.m in Sources */ = {isa = PBXBuildFile; fileRef = 7C8E2A2514C351AF00E6E714 /* PlaceholderTextView.m */; };
 		7C9F93B4149960C300126908 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7C9F93B3149960C300126908 /* UIKit.framework */; };
 		7C9F93B6149960C300126908 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7C9F93B5149960C300126908 /* Foundation.framework */; };
 		7C9F93B8149960C300126908 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7C9F93B7149960C300126908 /* CoreGraphics.framework */; };
@@ -211,6 +216,12 @@
 		7C8D9BBF14A28F3200D1D5DC /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
 		7C8D9BC214A2994500D1D5DC /* ServiceManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ServiceManager.h; sourceTree = "<group>"; };
 		7C8D9BC314A2994500D1D5DC /* ServiceManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ServiceManager.m; sourceTree = "<group>"; };
+		7C8E2A1C14C3403800E6E714 /* spread_logo_blue.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = spread_logo_blue.png; sourceTree = "<group>"; };
+		7C8E2A1D14C3403800E6E714 /* spread_logo_blue@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "spread_logo_blue@2x.png"; sourceTree = "<group>"; };
+		7C8E2A2014C3449B00E6E714 /* navbar_background_withlogo.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = navbar_background_withlogo.png; sourceTree = "<group>"; };
+		7C8E2A2114C3449B00E6E714 /* navbar_background_withlogo@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "navbar_background_withlogo@2x.png"; sourceTree = "<group>"; };
+		7C8E2A2414C351AF00E6E714 /* PlaceholderTextView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PlaceholderTextView.h; sourceTree = "<group>"; };
+		7C8E2A2514C351AF00E6E714 /* PlaceholderTextView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PlaceholderTextView.m; sourceTree = "<group>"; };
 		7C94C27814A2886C005531FB /* AQGridView.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = AQGridView.xcodeproj; path = AQGridView/AQGridView.xcodeproj; sourceTree = "<group>"; };
 		7C9F93AF149960C300126908 /* Spread.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Spread.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		7C9F93B3149960C300126908 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
@@ -317,6 +328,8 @@
 			children = (
 				7C6CFBEF14BD2BE70048644C /* RoundedRectButton.h */,
 				7C6CFBF014BD2BE70048644C /* RoundedRectButton.m */,
+				7C8E2A2414C351AF00E6E714 /* PlaceholderTextView.h */,
+				7C8E2A2514C351AF00E6E714 /* PlaceholderTextView.m */,
 			);
 			name = "UI Elements";
 			sourceTree = "<group>";
@@ -519,8 +532,12 @@
 				7C86FFB314AFC37B001B907A /* texture_red.png */,
 				7C86FF8F14AF87AE001B907A /* navbar_background.png */,
 				7C86FF9014AF87AE001B907A /* navbar_background@2x.png */,
+				7C8E2A2014C3449B00E6E714 /* navbar_background_withlogo.png */,
+				7C8E2A2114C3449B00E6E714 /* navbar_background_withlogo@2x.png */,
 				7C86FF9314AF8BFA001B907A /* intro_background.png */,
 				7C86FF9414AF8BFA001B907A /* intro_background@2x.png */,
+				7C8E2A1C14C3403800E6E714 /* spread_logo_blue.png */,
+				7C8E2A1D14C3403800E6E714 /* spread_logo_blue@2x.png */,
 				7C86FF9514AF8BFA001B907A /* spread_logo.png */,
 				7C86FF9614AF8BFA001B907A /* spread_logo@2x.png */,
 				7C86FF7D14AF6F0A001B907A /* icon.png */,
@@ -746,6 +763,10 @@
 				7C34A6D514BFD4B6009ED21D /* button_black@2x.png in Resources */,
 				7C34A6D614BFD4B6009ED21D /* icon_album.png in Resources */,
 				7C34A6D714BFD4B6009ED21D /* icon_album@2x.png in Resources */,
+				7C8E2A1E14C3403800E6E714 /* spread_logo_blue.png in Resources */,
+				7C8E2A1F14C3403800E6E714 /* spread_logo_blue@2x.png in Resources */,
+				7C8E2A2214C3449B00E6E714 /* navbar_background_withlogo.png in Resources */,
+				7C8E2A2314C3449B00E6E714 /* navbar_background_withlogo@2x.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -801,6 +822,7 @@
 				7C81998A14C0FDF70019AB8E /* User.m in Sources */,
 				7C81998D14C1187B0019AB8E /* User+Spread.m in Sources */,
 				7C81999014C11F5B0019AB8E /* Photo.m in Sources */,
+				7C8E2A2614C351AF00E6E714 /* PlaceholderTextView.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

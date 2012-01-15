@@ -46,20 +46,19 @@
 								<string key="NSFrameSize">{320, 44}</string>
 								<reference key="NSSuperview" ref="885407865"/>
 								<reference key="NSWindow"/>
-								<reference key="NSNextKeyView" ref="912783744"/>
 								<string key="NSReuseIdentifierKey">_NS:567</string>
 								<bool key="IBUIUserInteractionEnabled">NO</bool>
 								<string key="targetRuntimeIdentifier">IBCocoaTouchFramework</string>
 								<object class="NSCustomResource" key="IBUIImage">
 									<string key="NSClassName">NSImage</string>
-									<string key="NSResourceName">navbar_background.png</string>
+									<string key="NSResourceName">navbar_background_withlogo.png</string>
 								</object>
 							</object>
 						</array>
 						<string key="NSFrameSize">{320, 44}</string>
 						<reference key="NSSuperview" ref="233379584"/>
 						<reference key="NSWindow"/>
-						<reference key="NSNextKeyView" ref="1053818173"/>
+						<reference key="NSNextKeyView"/>
 						<string key="NSReuseIdentifierKey">_NS:196</string>
 						<object class="NSColor" key="IBUIBackgroundColor">
 							<int key="NSColorSpace">3</int>
@@ -561,11 +560,6 @@
 						<string key="objectName">Header View</string>
 					</object>
 					<object class="IBObjectRecord">
-						<int key="objectID">30</int>
-						<reference key="object" ref="1053818173"/>
-						<reference key="parent" ref="885407865"/>
-					</object>
-					<object class="IBObjectRecord">
 						<int key="objectID">31</int>
 						<reference key="object" ref="8799272"/>
 						<reference key="parent" ref="261824752"/>
@@ -625,6 +619,11 @@
 						<reference key="object" ref="880420590"/>
 						<reference key="parent" ref="703592473"/>
 					</object>
+					<object class="IBObjectRecord">
+						<int key="objectID">30</int>
+						<reference key="object" ref="1053818173"/>
+						<reference key="parent" ref="885407865"/>
+					</object>
 				</array>
 			</object>
 			<dictionary class="NSMutableDictionary" key="flattenedProperties">
@@ -653,7 +652,7 @@
 			<nil key="activeLocalization"/>
 			<dictionary class="NSMutableDictionary" key="localizations"/>
 			<nil key="sourceID"/>
-			<int key="maxID">51</int>
+			<int key="maxID">53</int>
 		</object>
 		<object class="IBClassDescriber" key="IBDocument.Classes">
 			<array class="NSMutableArray" key="referencedPartialClassDescriptions">
@@ -730,7 +729,7 @@
 			<string key="icon_album.png">{33, 30}</string>
 			<string key="icon_camera.png">{32, 32}</string>
 			<string key="icon_grid.png">{32, 32}</string>
-			<string key="navbar_background.png">{320, 44}</string>
+			<string key="navbar_background_withlogo.png">{320, 44}</string>
 		</dictionary>
 		<string key="IBCocoaTouchPluginVersion">933</string>
 	</data>

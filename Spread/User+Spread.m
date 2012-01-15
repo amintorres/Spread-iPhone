@@ -3,7 +3,7 @@
 //  Spread
 //
 //  Created by Joseph Lin on 1/13/12.
-//  Copyright (c) 2012 R/GA. All rights reserved.
+//  Copyright (c) 2012 Joseph Lin. All rights reserved.
 //
 
 #import <RestKit/RestKit.h>
