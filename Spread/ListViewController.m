@@ -3,7 +3,7 @@
 //  Spread
 //
 //  Created by Joseph Lin on 12/16/11.
-//  Copyright (c) 2011 R/GA. All rights reserved.
+//  Copyright (c) 2012 Joseph Lin. All rights reserved.
 //
 
 #import "ListViewController.h"

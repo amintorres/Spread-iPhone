@@ -3,7 +3,7 @@
 //  Spread
 //
 //  Created by Joseph Lin on 12/28/11.
-//  Copyright (c) 2011 R/GA. All rights reserved.
+//  Copyright (c) 2012 Joseph Lin. All rights reserved.
 //
 
 #import <AssetsLibrary/AssetsLibrary.h>
@@ -11,14 +11,15 @@
 #import <RestKit/RestKit.h>
 #import "EditViewController.h"
 #import "ServiceManager.h"
+#import "UINavigationBar+Customize.h"
 
 
 typedef enum{
-    EditTableViewSectionTitle = 0,
-    EditTableViewSectionTags,
-    EditTableViewSectionDescription,
-    EditTableViewSectionCount
-} EditTableViewSection;
+    EditTableViewRowTitle = 0,
+    EditTableViewRowTags,
+    EditTableViewRowDescription,
+    EditTableViewRowCount
+} EditTableViewRow;
 
 
 
@@ -33,6 +34,9 @@ typedef enum{
 
 
 @implementation EditViewController
+@synthesize titleView;
+@synthesize tagsView;
+@synthesize descriptionView;
 
 @synthesize tableView, titleTextField, tagsTextField, descriptionTextView;
 @synthesize navigationBar, saveButton, deleteButton;
@@ -51,6 +55,7 @@ typedef enum{
     [self registerForKeyboardNotifications];
     
     [self.navigationController setNavigationBarHidden:YES animated:YES];
+    [self.navigationBar customizeBackground];
     [[UIApplication sharedApplication] setStatusBarHidden:NO withAnimation:UIStatusBarAnimationSlide];
 
         
@@ -83,6 +88,9 @@ typedef enum{
     self.navigationBar = nil;
     self.saveButton = nil;
     self.deleteButton = nil;
+    [self setTitleView:nil];
+    [self setTagsView:nil];
+    [self setDescriptionView:nil];
     [super viewDidUnload];
 }
 
@@ -122,7 +130,6 @@ typedef enum{
     
     if ( editMode == EditModeCreate )
     {
-//        UIImage* image = [mediaInfo objectForKey:UIImagePickerControllerEditedImage];
         UIImage* image = [mediaInfo objectForKey:UIImagePickerControllerOriginalImage];
         NSDictionary* metaData = [mediaInfo objectForKey:UIImagePickerControllerMediaMetadata];
         
@@ -171,43 +178,22 @@ typedef enum{
 #pragma mark -
 #pragma mark TableView
 
-- (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
-{
-    return EditTableViewSectionCount;
-}
-
-- (NSString *)tableView:(UITableView *)tableView titleForHeaderInSection:(NSInteger)section
-{
-    switch (section)
-    {
-        case EditTableViewSectionTitle:
-            return @"Title";
-            
-        case EditTableViewSectionTags:
-            return @"Tags";
-            
-        case EditTableViewSectionDescription:
-        default:
-            return @"Description";
-    }
-}
-
 - (NSInteger)tableView:(UITableView *)table numberOfRowsInSection:(NSInteger)section
 {
-	return 1;
+    return EditTableViewRowCount;
 }
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    switch (indexPath.section)
+    switch (indexPath.row)
     {
-        case EditTableViewSectionTitle:
-        case EditTableViewSectionTags:
+        case EditTableViewRowTitle:
+        case EditTableViewRowTags:
             return 44;
             
-        case EditTableViewSectionDescription:
+        case EditTableViewRowDescription:
         default:
-            return descriptionTextView.contentSize.height;
+            return descriptionTextView.contentSize.height + 45;
     }
 }
 
@@ -218,27 +204,28 @@ typedef enum{
 	if (!cell)
     {
         cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:reuseIdentifier];
+        cell.selectionStyle = UITableViewCellSelectionStyleNone;
 	}
     
 
     CGRect rect = CGRectInset(cell.contentView.bounds, 10, 5);
 
-    switch (indexPath.section)
+    switch (indexPath.row)
     {
-        case EditTableViewSectionTitle:
-            titleTextField.frame = rect;
-            [cell.contentView addSubview:titleTextField];
+        case EditTableViewRowTitle:
+            titleView.frame = rect;
+            [cell.contentView addSubview:titleView];
             break;
             
-        case EditTableViewSectionTags:
-            tagsTextField.frame = rect;
-            [cell.contentView addSubview:tagsTextField];
+        case EditTableViewRowTags:
+            tagsView.frame = rect;
+            [cell.contentView addSubview:tagsView];
             break;
             
-        case EditTableViewSectionDescription:
+        case EditTableViewRowDescription:
         default:
-            descriptionTextView.frame = rect;
-            [cell.contentView addSubview:descriptionTextView];
+            descriptionView.frame = rect;
+            [cell.contentView addSubview:descriptionView];
             break;
     }
 

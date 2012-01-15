@@ -3,7 +3,7 @@
 //  Spread
 //
 //  Created by Joseph Lin on 12/28/11.
-//  Copyright (c) 2011 R/GA. All rights reserved.
+//  Copyright (c) 2012 Joseph Lin. All rights reserved.
 //
 
 #import <UIKit/UIKit.h>
@@ -19,6 +19,9 @@ typedef enum{
 @interface EditViewController : UIViewController <UIAlertViewDelegate>
 
 @property (strong, nonatomic) IBOutlet UITableView *tableView;
+@property (strong, nonatomic) IBOutlet UIView *titleView;
+@property (strong, nonatomic) IBOutlet UIView *tagsView;
+@property (strong, nonatomic) IBOutlet UIView *descriptionView;
 @property (strong, nonatomic) IBOutlet UITextField *titleTextField;
 @property (strong, nonatomic) IBOutlet UITextField *tagsTextField;
 @property (strong, nonatomic) IBOutlet UITextView *descriptionTextView;

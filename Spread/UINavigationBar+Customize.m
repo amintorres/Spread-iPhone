@@ -3,7 +3,7 @@
 //  Spread
 //
 //  Created by Joseph Lin on 12/31/11.
-//  Copyright (c) 2011 R/GA. All rights reserved.
+//  Copyright (c) 2012 Joseph Lin. All rights reserved.
 //
 
 #import "UINavigationBar+Customize.h"
@@ -31,6 +31,12 @@
             imageView.tag = kNavigationBarBackgroundImageViewTag;
             [self insertSubview:imageView atIndex:0];
         }
+    }
+    
+    if ( !self.topItem.leftBarButtonItem )
+    {
+        UIImageView* imageView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"spread_logo_blue"]];
+        self.topItem.leftBarButtonItem = [[UIBarButtonItem alloc] initWithCustomView:imageView];
     }
 }
 
