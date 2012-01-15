@@ -1,6 +1,6 @@
 //
 //  PlaceholderTextView.m
-//  PhotoMob
+//  UI Element
 //
 //  Created by Joseph Lin on 10/24/11.
 //  Copyright (c) 2012 Joseph Lin. All rights reserved.
@@ -11,123 +11,136 @@
 
 
 
+@interface PlaceholderTextView ()
+@property (assign, nonatomic) IBOutlet id <UITextViewDelegate> realDelegate;
+@property (strong, nonatomic) PlaceholderTextViewDelegate *auxDelegate;
+- (void)updateTextAndColor;
+- (void)updateTextAndColorForEditing;
+@end
+
+
+
 @implementation PlaceholderTextView
 
-@synthesize delegate;
-@synthesize textView;
-@synthesize textColor;
+@synthesize realDelegate;
+@synthesize auxDelegate;
+@synthesize primaryTextColor;
 @synthesize placeholderTextColor;
 @synthesize placeholderText;
 
 
-- (void)initialize
-{
-    self.textColor = [UIColor darkGrayColor];
-    self.placeholderTextColor = [UIColor lightGrayColor];
-    
-    self.textView = [[UITextView alloc] initWithFrame:self.bounds];
-    textView.delegate = self;
-    [self addSubview:textView];
-}
 
-- (id)initWithCoder:(NSCoder *)aCoder
-{
-    self = [super initWithCoder:aCoder];
-    if(self)
-    {
-        [self initialize];
-    }
-    return self;
-}
-               
-- (id) initWithFrame:(CGRect)rect
-{
-    self = [super initWithFrame:rect];
-    if(self)
-    {
-        [self initialize];
-    }
-    return self;
-}
 
-- (void)layoutSubviews
-{
-    [super layoutSubviews];
-    textView.frame = self.bounds;
-}
+#pragma mark -
+#pragma mark Drawing Logic
 
-- (void)updateView
+- (void)updateTextAndColor
 {
-    if ( [textView.text length] == 0 )
+    if ( [[super text] length] == 0 )
     {
-        textView.text = placeholderText;
-        textView.textColor = placeholderTextColor;
+        [super setText:self.placeholderText];
+        [super setTextColor:self.placeholderTextColor];
     }
     else
     {
-        textView.textColor = textColor;        
+        [super setTextColor:self.primaryTextColor];
+    }
+}
+
+- (void)updateTextAndColorForEditing
+{
+    if ( [[super text] isEqualToString:self.placeholderText])
+    {
+        [super setText:@""];
+        [super setTextColor:self.primaryTextColor];
     }
 }
 
 
+#pragma mark -
+#pragma mark Setter/Accessor
+
 - (UIColor*)textColor
 {
-    return textView.textColor;
+    return self.primaryTextColor;
 }
 
 - (void)setTextColor:(UIColor *)color
 {
-    textColor = color;
-
-    [self updateView];
+    self.primaryTextColor = color;
+    [self updateTextAndColor];
 }
 
 - (NSString *)text
 {
-    if ( [textView.text isEqualToString:placeholderText])
-        return nil;
+    if ( [[super text] isEqualToString:self.placeholderText])
+        return @"";
     else
-        return textView.text;
+        return [super text];
 }
 
 - (void)setText:(NSString *)string
 {
-    textView.text = string;
-    [self updateView];
+    [super setText:string];
+    [self updateTextAndColor];
 }
 
 - (void)setPlaceholderText:(NSString *)string
 {
     placeholderText = string;
     
-    [self updateView];
+    [self updateTextAndColor];
 }
 
-- (UIReturnKeyType)returnKeyType
+- (void)setDelegate:(id<UITextViewDelegate>)delegate
 {
-    return textView.returnKeyType;
+    self.realDelegate = delegate;
+    [super setDelegate:self.auxDelegate];
 }
 
-- (void)setReturnKeyType:(UIReturnKeyType)returnKeyType
+- (id <UITextViewDelegate>)delegate
 {
-    textView.returnKeyType = returnKeyType;
+    return self.auxDelegate;
 }
 
-- (BOOL)scrollEnabled
+- (PlaceholderTextViewDelegate*)auxDelegate
 {
-    return textView.scrollEnabled;
+    if ( !auxDelegate )
+    {
+        auxDelegate = [[PlaceholderTextViewDelegate alloc] init];
+    }
+    return auxDelegate;
 }
 
-- (void)setScrollEnabled:(BOOL)scrollEnabled
+
+#pragma mark -
+#pragma mark Default Value
+
+- (UIColor*)primaryTextColor
 {
-    textView.scrollEnabled = scrollEnabled;
+    if ( !primaryTextColor )
+    {
+        primaryTextColor = [UIColor darkGrayColor];
+    }
+    return primaryTextColor;
 }
 
-- (BOOL)resignFirstResponder
+- (UIColor*)placeholderTextColor
 {
-    [textView resignFirstResponder];
-    return [super resignFirstResponder];
+    if ( !placeholderTextColor )
+    {
+        placeholderTextColor = [UIColor lightGrayColor];
+    }
+    return placeholderTextColor;
 }
+
+
+@end
+
+
+
+
+@implementation PlaceholderTextViewDelegate
 
 
 #pragma mark -
@@ -135,15 +148,11 @@
 
 - (BOOL)textViewShouldBeginEditing:(PlaceholderTextView *)textView
 {
-    if ( [self.textView.text isEqualToString:placeholderText])
-    {
-        self.textView.text = @"";
-        self.textView.textColor = textColor;
-    }
+    [textView updateTextAndColorForEditing];
     
-    if ( [delegate respondsToSelector:@selector(textViewShouldBeginEditing:)] )
+    if ( [textView.realDelegate respondsToSelector:@selector(textViewShouldBeginEditing:)] )
     {
-        return [delegate textViewShouldBeginEditing:self.textView];
+        return [textView.realDelegate textViewShouldBeginEditing:textView];
     }
     else
     {
@@ -155,12 +164,12 @@
 {
     if ( [text isEqualToString:@"\n"] )
     {
-        [self.textView resignFirstResponder];
+        [textView resignFirstResponder];
         return NO;
     }
-    else if ( [delegate respondsToSelector:@selector(textView:shouldChangeTextInRange:replacementText:)] )
+    else if ( [textView.realDelegate respondsToSelector:@selector(textView:shouldChangeTextInRange:replacementText:)] )
     {
-        return [delegate textView:self.textView shouldChangeTextInRange:range replacementText:text];
+        return [textView.realDelegate textView:textView shouldChangeTextInRange:range replacementText:text];
     }
     else
     {
@@ -170,11 +179,11 @@
 
 - (void)textViewDidEndEditing:(PlaceholderTextView *)textView
 {
-    [self updateView];
-
-    if ( [delegate respondsToSelector:@selector(textViewDidEndEditing:)] )
+    [textView updateTextAndColor];
+    
+    if ( [textView.realDelegate respondsToSelector:@selector(textViewDidEndEditing:)] )
     {
-        [delegate textViewDidEndEditing:self.textView];
+        [textView.realDelegate textViewDidEndEditing:textView];
     }
 }
 
@@ -185,17 +194,17 @@
 
 - (void)textViewDidBeginEditing:(PlaceholderTextView *)textView
 {
-    if ( [delegate respondsToSelector:@selector(textViewDidBeginEditing:)] )
+    if ( [textView.realDelegate respondsToSelector:@selector(textViewDidBeginEditing:)] )
     {
-        [delegate textViewDidBeginEditing:self.textView];
+        [textView.realDelegate textViewDidBeginEditing:textView];
     }
 }
 
 - (BOOL)textViewShouldEndEditing:(PlaceholderTextView *)textView
 {
-    if ( [delegate respondsToSelector:@selector(textViewShouldEndEditing:)] )
+    if ( [textView.realDelegate respondsToSelector:@selector(textViewShouldEndEditing:)] )
     {
-        return [delegate textViewShouldEndEditing:self.textView];
+        return [textView.realDelegate textViewShouldEndEditing:textView];
     }
     else
     {
@@ -205,22 +214,20 @@
 
 - (void)textViewDidChange:(PlaceholderTextView *)textView
 {    
-    if ( [delegate respondsToSelector:@selector(textViewDidChange:)] )
+    if ( [textView.realDelegate respondsToSelector:@selector(textViewDidChange:)] )
     {
-        [delegate textViewDidChange:self.textView];
+        [textView.realDelegate textViewDidChange:textView];
     }
 }
 
 - (void)textViewDidChangeSelection:(PlaceholderTextView *)textView
 {
-    if ( [delegate respondsToSelector:@selector(textViewDidChangeSelection:)] )
+    if ( [textView.realDelegate respondsToSelector:@selector(textViewDidChangeSelection:)] )
     {
-        [delegate textViewDidChangeSelection:self.textView];
+        [textView.realDelegate textViewDidChangeSelection:textView];
     }
 }
 
-
-
-
-
 @end
+
+
