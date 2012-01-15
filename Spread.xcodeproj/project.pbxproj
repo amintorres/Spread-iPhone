@@ -94,7 +94,7 @@
 		7CFAFA1014C3890300597A6D /* Photo+Spread.m in Sources */ = {isa = PBXBuildFile; fileRef = 7CFAFA0F14C3890300597A6D /* Photo+Spread.m */; };
 		7CFAFA1414C38DA500597A6D /* ReviewViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7CFAFA1214C38DA500597A6D /* ReviewViewController.m */; };
 		7CFAFA1514C38DA500597A6D /* ReviewViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 7CFAFA1314C38DA500597A6D /* ReviewViewController.xib */; };
-		7CFAFA1714C3953400597A6D /* TODO.strings in Resources */ = {isa = PBXBuildFile; fileRef = 7CFAFA1614C3953400597A6D /* TODO.strings */; };
+		7CFAFA1D14C39D4900597A6D /* TODO.txt in Resources */ = {isa = PBXBuildFile; fileRef = 7CFAFA1C14C39D4900597A6D /* TODO.txt */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -271,7 +271,7 @@
 		7CFAFA1114C38DA500597A6D /* ReviewViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ReviewViewController.h; sourceTree = "<group>"; };
 		7CFAFA1214C38DA500597A6D /* ReviewViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ReviewViewController.m; sourceTree = "<group>"; };
 		7CFAFA1314C38DA500597A6D /* ReviewViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ReviewViewController.xib; sourceTree = "<group>"; };
-		7CFAFA1614C3953400597A6D /* TODO.strings */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.strings; path = TODO.strings; sourceTree = SOURCE_ROOT; };
+		7CFAFA1C14C39D4900597A6D /* TODO.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = TODO.txt; sourceTree = SOURCE_ROOT; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -481,7 +481,7 @@
 				7C9F93BE149960C300126908 /* InfoPlist.strings */,
 				7C9F93C1149960C300126908 /* main.m */,
 				7C9F93C3149960C300126908 /* Spread-Prefix.pch */,
-				7CFAFA1614C3953400597A6D /* TODO.strings */,
+				7CFAFA1C14C39D4900597A6D /* TODO.txt */,
 			);
 			name = "Supporting Files";
 			sourceTree = "<group>";
@@ -620,6 +620,7 @@
 			buildPhases = (
 				7C9F93AB149960C300126908 /* Sources */,
 				7C9F93AC149960C300126908 /* Frameworks */,
+				7CFAFA1914C39B2D00597A6D /* ShellScript */,
 				7C9F93AD149960C300126908 /* Resources */,
 			);
 			buildRules = (
@@ -784,7 +785,7 @@
 				7C8E2A2214C3449B00E6E714 /* navbar_background_withlogo.png in Resources */,
 				7C8E2A2314C3449B00E6E714 /* navbar_background_withlogo@2x.png in Resources */,
 				7CFAFA1514C38DA500597A6D /* ReviewViewController.xib in Resources */,
-				7CFAFA1714C3953400597A6D /* TODO.strings in Resources */,
+				7CFAFA1D14C39D4900597A6D /* TODO.txt in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -811,6 +812,19 @@
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
 			shellScript = "# Run the unit tests in this test bundle.\n\"${SYSTEM_DEVELOPER_DIR}/Tools/RunUnitTests\"\n";
+		};
+		7CFAFA1914C39B2D00597A6D /* ShellScript */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "buildNumber=$(/usr/libexec/PlistBuddy -c \"Print CFBundleVersion\" ${PROJECT_DIR}/${PROJECT_NAME}/${PROJECT_NAME}-Info.plist)\nbuildNumber=$(($buildNumber + 1))\n/usr/libexec/PlistBuddy -c \"Set :CFBundleVersion $buildNumber\" ${PROJECT_DIR}/${PROJECT_NAME}/${PROJECT_NAME}-Info.plist";
 		};
 /* End PBXShellScriptBuildPhase section */
 
