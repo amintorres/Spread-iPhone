@@ -2,8 +2,8 @@
 //  User.h
 //  Spread
 //
-//  Created by Joseph Lin on 1/13/12.
-//  Copyright (c) 2012 Joseph Lin. All rights reserved.
+//  Created by Joseph Lin on 1/15/12.
+//  Copyright (c) 2012 R/GA. All rights reserved.
 //
 
 #import <Foundation/Foundation.h>
@@ -14,8 +14,8 @@
 
 @property (nonatomic, retain) NSString * avatarPath;
 @property (nonatomic, retain) NSString * email;
-@property (nonatomic, retain) NSNumber * userID;
 @property (nonatomic, retain) NSString * name;
 @property (nonatomic, retain) NSString * singleAccessToken;
+@property (nonatomic, retain) NSNumber * userID;
 
 @end

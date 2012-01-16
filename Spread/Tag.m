@@ -1,20 +1,18 @@
 //
-//  User.m
+//  Tag.m
 //  Spread
 //
 //  Created by Joseph Lin on 1/15/12.
 //  Copyright (c) 2012 R/GA. All rights reserved.
 //
 
-#import "User.h"
+#import "Tag.h"
+#import "Photo.h"
 
 
-@implementation User
+@implementation Tag
 
-@dynamic avatarPath;
-@dynamic email;
 @dynamic name;
-@dynamic singleAccessToken;
-@dynamic userID;
+@dynamic photos;
 
 @end

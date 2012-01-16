@@ -25,9 +25,7 @@
 		7C7F7AB414AB74AE00652401 /* EditViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7C7F7AB214AB74AE00652401 /* EditViewController.m */; };
 		7C7F7AB514AB74AE00652401 /* EditViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 7C7F7AB314AB74AE00652401 /* EditViewController.xib */; };
 		7C7F7AB714ABAEB000652401 /* AssetsLibrary.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7C7F7AB614ABAEB000652401 /* AssetsLibrary.framework */; };
-		7C81998A14C0FDF70019AB8E /* User.m in Sources */ = {isa = PBXBuildFile; fileRef = 7C81998914C0FDF70019AB8E /* User.m */; };
 		7C81998D14C1187B0019AB8E /* User+Spread.m in Sources */ = {isa = PBXBuildFile; fileRef = 7C81998C14C1187B0019AB8E /* User+Spread.m */; };
-		7C81999014C11F5B0019AB8E /* Photo.m in Sources */ = {isa = PBXBuildFile; fileRef = 7C81998F14C11F5B0019AB8E /* Photo.m */; };
 		7C86FF7E14AF6F0A001B907A /* icon.png in Resources */ = {isa = PBXBuildFile; fileRef = 7C86FF7D14AF6F0A001B907A /* icon.png */; };
 		7C86FF8014AF6F0D001B907A /* icon@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 7C86FF7F14AF6F0D001B907A /* icon@2x.png */; };
 		7C86FF8514AF6FF5001B907A /* AboutViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7C86FF8314AF6FF5001B907A /* AboutViewController.m */; };
@@ -95,6 +93,10 @@
 		7CFAFA1414C38DA500597A6D /* ReviewViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7CFAFA1214C38DA500597A6D /* ReviewViewController.m */; };
 		7CFAFA1514C38DA500597A6D /* ReviewViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 7CFAFA1314C38DA500597A6D /* ReviewViewController.xib */; };
 		7CFAFA1D14C39D4900597A6D /* TODO.txt in Resources */ = {isa = PBXBuildFile; fileRef = 7CFAFA1C14C39D4900597A6D /* TODO.txt */; };
+		7CFAFA2014C39F6800597A6D /* User.m in Sources */ = {isa = PBXBuildFile; fileRef = 7CFAFA1F14C39F6800597A6D /* User.m */; };
+		7CFAFA2314C39F8A00597A6D /* Tag.m in Sources */ = {isa = PBXBuildFile; fileRef = 7CFAFA2214C39F8900597A6D /* Tag.m */; };
+		7CFAFA2614C3A1FA00597A6D /* Tag+Spread.m in Sources */ = {isa = PBXBuildFile; fileRef = 7CFAFA2514C3A1FA00597A6D /* Tag+Spread.m */; };
+		7CFAFA2C14C3A7E600597A6D /* Photo.m in Sources */ = {isa = PBXBuildFile; fileRef = 7CFAFA2B14C3A7E600597A6D /* Photo.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -185,12 +187,8 @@
 		7C7F7AB214AB74AE00652401 /* EditViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EditViewController.m; sourceTree = "<group>"; };
 		7C7F7AB314AB74AE00652401 /* EditViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = EditViewController.xib; sourceTree = "<group>"; };
 		7C7F7AB614ABAEB000652401 /* AssetsLibrary.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AssetsLibrary.framework; path = System/Library/Frameworks/AssetsLibrary.framework; sourceTree = SDKROOT; };
-		7C81998814C0FDF70019AB8E /* User.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = User.h; sourceTree = "<group>"; };
-		7C81998914C0FDF70019AB8E /* User.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = User.m; sourceTree = "<group>"; };
 		7C81998B14C1187B0019AB8E /* User+Spread.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "User+Spread.h"; sourceTree = "<group>"; };
 		7C81998C14C1187B0019AB8E /* User+Spread.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "User+Spread.m"; sourceTree = "<group>"; };
-		7C81998E14C11F5B0019AB8E /* Photo.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Photo.h; sourceTree = "<group>"; };
-		7C81998F14C11F5B0019AB8E /* Photo.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Photo.m; sourceTree = "<group>"; };
 		7C86FF7D14AF6F0A001B907A /* icon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = icon.png; path = ../../icon.png; sourceTree = "<group>"; };
 		7C86FF7F14AF6F0D001B907A /* icon@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "icon@2x.png"; path = "../../icon@2x.png"; sourceTree = "<group>"; };
 		7C86FF8214AF6FF5001B907A /* AboutViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AboutViewController.h; sourceTree = "<group>"; };
@@ -272,6 +270,14 @@
 		7CFAFA1214C38DA500597A6D /* ReviewViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ReviewViewController.m; sourceTree = "<group>"; };
 		7CFAFA1314C38DA500597A6D /* ReviewViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ReviewViewController.xib; sourceTree = "<group>"; };
 		7CFAFA1C14C39D4900597A6D /* TODO.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = TODO.txt; sourceTree = SOURCE_ROOT; };
+		7CFAFA1E14C39F6800597A6D /* User.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = User.h; sourceTree = "<group>"; };
+		7CFAFA1F14C39F6800597A6D /* User.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = User.m; sourceTree = "<group>"; };
+		7CFAFA2114C39F8900597A6D /* Tag.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Tag.h; sourceTree = "<group>"; };
+		7CFAFA2214C39F8900597A6D /* Tag.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Tag.m; sourceTree = "<group>"; };
+		7CFAFA2414C3A1FA00597A6D /* Tag+Spread.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "Tag+Spread.h"; sourceTree = "<group>"; };
+		7CFAFA2514C3A1FA00597A6D /* Tag+Spread.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "Tag+Spread.m"; sourceTree = "<group>"; };
+		7CFAFA2A14C3A7E500597A6D /* Photo.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Photo.h; sourceTree = "<group>"; };
+		7CFAFA2B14C3A7E600597A6D /* Photo.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Photo.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -405,14 +411,18 @@
 			isa = PBXGroup;
 			children = (
 				7C9F93C7149960C300126908 /* Spread.xcdatamodeld */,
-				7C81998E14C11F5B0019AB8E /* Photo.h */,
-				7C81998F14C11F5B0019AB8E /* Photo.m */,
-				7CFAFA0E14C3890300597A6D /* Photo+Spread.h */,
-				7CFAFA0F14C3890300597A6D /* Photo+Spread.m */,
-				7C81998814C0FDF70019AB8E /* User.h */,
-				7C81998914C0FDF70019AB8E /* User.m */,
+				7CFAFA1E14C39F6800597A6D /* User.h */,
+				7CFAFA1F14C39F6800597A6D /* User.m */,
+				7CFAFA2A14C3A7E500597A6D /* Photo.h */,
+				7CFAFA2B14C3A7E600597A6D /* Photo.m */,
+				7CFAFA2114C39F8900597A6D /* Tag.h */,
+				7CFAFA2214C39F8900597A6D /* Tag.m */,
 				7C81998B14C1187B0019AB8E /* User+Spread.h */,
 				7C81998C14C1187B0019AB8E /* User+Spread.m */,
+				7CFAFA0E14C3890300597A6D /* Photo+Spread.h */,
+				7CFAFA0F14C3890300597A6D /* Photo+Spread.m */,
+				7CFAFA2414C3A1FA00597A6D /* Tag+Spread.h */,
+				7CFAFA2514C3A1FA00597A6D /* Tag+Spread.m */,
 			);
 			name = "Data Model";
 			sourceTree = "<group>";
@@ -851,12 +861,14 @@
 				7C6CFBFE14BD46B80048644C /* UITextField+Crossfade.m in Sources */,
 				7C6CFC0114BD48760048644C /* UIView+Shortcut.m in Sources */,
 				7C2CB64814BF2D3B006727FD /* UserDefaultHelper.m in Sources */,
-				7C81998A14C0FDF70019AB8E /* User.m in Sources */,
 				7C81998D14C1187B0019AB8E /* User+Spread.m in Sources */,
-				7C81999014C11F5B0019AB8E /* Photo.m in Sources */,
 				7C8E2A2614C351AF00E6E714 /* PlaceholderTextView.m in Sources */,
 				7CFAFA1014C3890300597A6D /* Photo+Spread.m in Sources */,
 				7CFAFA1414C38DA500597A6D /* ReviewViewController.m in Sources */,
+				7CFAFA2014C39F6800597A6D /* User.m in Sources */,
+				7CFAFA2314C39F8A00597A6D /* Tag.m in Sources */,
+				7CFAFA2614C3A1FA00597A6D /* Tag+Spread.m in Sources */,
+				7CFAFA2C14C3A7E600597A6D /* Photo.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

@@ -87,10 +87,11 @@ NSString * const ServiceManagerDidLoadPhotosNotification = @"ServiceManagerDidLo
     [photoMapping mapKeyPath:@"captured_at" toAttribute:@"capturedDate"];
     [photoMapping mapKeyPath:@"created_at" toAttribute:@"createdDate"];
     [photoMapping mapKeyPath:@"image.thumb.url" toAttribute:@"gridImageURLString"];
-    [photoMapping mapKeyPath:@"image.url" toAttribute:@"feedImageURLString"];
-//    [photoMapping mapKeyPath:@"image.url" toAttribute:@"largeImageURLString"];
+    [photoMapping mapKeyPath:@"image.iphone.url" toAttribute:@"feedImageURLString"];
+    [photoMapping mapKeyPath:@"image.url" toAttribute:@"largeImageURLString"];
     [photoMapping mapKeyPath:@"description" toAttribute:@"photoDescription"];
     [photoMapping mapKeyPath:@"title" toAttribute:@"title"];
+    [photoMapping mapKeyPath:@"tag_list_csv" toAttribute:@"csvTags"];
     
     // Register our mappings with the provider
     [objectManager.mappingProvider setMapping:photoMapping forKeyPath:@"photo"];
