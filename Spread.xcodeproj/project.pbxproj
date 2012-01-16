@@ -12,6 +12,13 @@
 		7C34A6D514BFD4B6009ED21D /* button_black@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 7C34A6D114BFD4B6009ED21D /* button_black@2x.png */; };
 		7C34A6D614BFD4B6009ED21D /* icon_album.png in Resources */ = {isa = PBXBuildFile; fileRef = 7C34A6D214BFD4B6009ED21D /* icon_album.png */; };
 		7C34A6D714BFD4B6009ED21D /* icon_album@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 7C34A6D314BFD4B6009ED21D /* icon_album@2x.png */; };
+		7C3F37CB14C4D89C00E39B3F /* icon_arrow.png in Resources */ = {isa = PBXBuildFile; fileRef = 7C3F37C514C4D89C00E39B3F /* icon_arrow.png */; };
+		7C3F37CC14C4D89C00E39B3F /* icon_arrow@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 7C3F37C614C4D89C00E39B3F /* icon_arrow@2x.png */; };
+		7C3F37CD14C4D89C00E39B3F /* icon_cross.png in Resources */ = {isa = PBXBuildFile; fileRef = 7C3F37C714C4D89C00E39B3F /* icon_cross.png */; };
+		7C3F37CE14C4D89C00E39B3F /* icon_cross@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 7C3F37C814C4D89C00E39B3F /* icon_cross@2x.png */; };
+		7C3F37CF14C4D89C00E39B3F /* icon_info.png in Resources */ = {isa = PBXBuildFile; fileRef = 7C3F37C914C4D89C00E39B3F /* icon_info.png */; };
+		7C3F37D014C4D89C00E39B3F /* icon_info@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 7C3F37CA14C4D89C00E39B3F /* icon_info@2x.png */; };
+		7C3F37D314C4DE3F00E39B3F /* UILabel+Resizing.m in Sources */ = {isa = PBXBuildFile; fileRef = 7C3F37D214C4DE3F00E39B3F /* UILabel+Resizing.m */; };
 		7C57F26D14BFA5A300906DE8 /* Entitlements.plist in Resources */ = {isa = PBXBuildFile; fileRef = 7C57F26C14BFA5A300906DE8 /* Entitlements.plist */; };
 		7C66003014AA1C3A00C285B1 /* ListTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 7C66002F14AA1C3A00C285B1 /* ListTableViewCell.m */; };
 		7C66003214AA1C4C00C285B1 /* ListTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 7C66003114AA1C4C00C285B1 /* ListTableViewCell.xib */; };
@@ -168,6 +175,14 @@
 		7C34A6D114BFD4B6009ED21D /* button_black@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "button_black@2x.png"; sourceTree = "<group>"; };
 		7C34A6D214BFD4B6009ED21D /* icon_album.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = icon_album.png; sourceTree = "<group>"; };
 		7C34A6D314BFD4B6009ED21D /* icon_album@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "icon_album@2x.png"; sourceTree = "<group>"; };
+		7C3F37C514C4D89C00E39B3F /* icon_arrow.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = icon_arrow.png; sourceTree = "<group>"; };
+		7C3F37C614C4D89C00E39B3F /* icon_arrow@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "icon_arrow@2x.png"; sourceTree = "<group>"; };
+		7C3F37C714C4D89C00E39B3F /* icon_cross.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = icon_cross.png; sourceTree = "<group>"; };
+		7C3F37C814C4D89C00E39B3F /* icon_cross@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "icon_cross@2x.png"; sourceTree = "<group>"; };
+		7C3F37C914C4D89C00E39B3F /* icon_info.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = icon_info.png; sourceTree = "<group>"; };
+		7C3F37CA14C4D89C00E39B3F /* icon_info@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "icon_info@2x.png"; sourceTree = "<group>"; };
+		7C3F37D114C4DE3F00E39B3F /* UILabel+Resizing.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UILabel+Resizing.h"; sourceTree = "<group>"; };
+		7C3F37D214C4DE3F00E39B3F /* UILabel+Resizing.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UILabel+Resizing.m"; sourceTree = "<group>"; };
 		7C57F26C14BFA5A300906DE8 /* Entitlements.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Entitlements.plist; sourceTree = SOURCE_ROOT; };
 		7C5AC38614AC083D00856DC9 /* ImageIO.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = ImageIO.framework; path = System/Library/Frameworks/ImageIO.framework; sourceTree = SDKROOT; };
 		7C633039149FE50800BF2049 /* RestKit.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = RestKit.xcodeproj; path = RestKit/RestKit.xcodeproj; sourceTree = "<group>"; };
@@ -401,6 +416,8 @@
 				7C86FF8D14AF86F0001B907A /* UINavigationBar+Customize.m */,
 				7C6CFBF914BD46A90048644C /* UILabel+Crossfade.h */,
 				7C6CFBFA14BD46A90048644C /* UILabel+Crossfade.m */,
+				7C3F37D114C4DE3F00E39B3F /* UILabel+Resizing.h */,
+				7C3F37D214C4DE3F00E39B3F /* UILabel+Resizing.m */,
 				7C6CFBFC14BD46B80048644C /* UITextField+Crossfade.h */,
 				7C6CFBFD14BD46B80048644C /* UITextField+Crossfade.m */,
 				7C6CFBFF14BD48760048644C /* UIView+Shortcut.h */,
@@ -551,6 +568,12 @@
 			children = (
 				7C34A6D014BFD4B6009ED21D /* button_black.png */,
 				7C34A6D114BFD4B6009ED21D /* button_black@2x.png */,
+				7C3F37C514C4D89C00E39B3F /* icon_arrow.png */,
+				7C3F37C614C4D89C00E39B3F /* icon_arrow@2x.png */,
+				7C3F37C714C4D89C00E39B3F /* icon_cross.png */,
+				7C3F37C814C4D89C00E39B3F /* icon_cross@2x.png */,
+				7C3F37C914C4D89C00E39B3F /* icon_info.png */,
+				7C3F37CA14C4D89C00E39B3F /* icon_info@2x.png */,
 				7C34A6D214BFD4B6009ED21D /* icon_album.png */,
 				7C34A6D314BFD4B6009ED21D /* icon_album@2x.png */,
 				7C86FF9F14AF92EB001B907A /* icon_about.png */,
@@ -818,6 +841,12 @@
 				7CFAFA1514C38DA500597A6D /* ReviewViewController.xib in Resources */,
 				7CFAFA1D14C39D4900597A6D /* TODO.txt in Resources */,
 				7CFAFA3214C3B8F500597A6D /* DetailViewController.xib in Resources */,
+				7C3F37CB14C4D89C00E39B3F /* icon_arrow.png in Resources */,
+				7C3F37CC14C4D89C00E39B3F /* icon_arrow@2x.png in Resources */,
+				7C3F37CD14C4D89C00E39B3F /* icon_cross.png in Resources */,
+				7C3F37CE14C4D89C00E39B3F /* icon_cross@2x.png in Resources */,
+				7C3F37CF14C4D89C00E39B3F /* icon_info.png in Resources */,
+				7C3F37D014C4D89C00E39B3F /* icon_info@2x.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -893,6 +922,7 @@
 				7CFAFA2C14C3A7E600597A6D /* Photo.m in Sources */,
 				7CFAFA3114C3B8F500597A6D /* DetailViewController.m in Sources */,
 				7CFAFA4614C3CC7C00597A6D /* ImageScrollView.m in Sources */,
+				7C3F37D314C4DE3F00E39B3F /* UILabel+Resizing.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
