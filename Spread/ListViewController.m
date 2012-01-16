@@ -10,6 +10,7 @@
 #import "Photo.h"
 #import "UIImageView+WebCache.h"
 #import "ServiceManager.h"
+#import "MasterViewController.h"
 
 
 
@@ -73,6 +74,23 @@
     cell.photo = [[ServiceManager allPhotos] objectAtIndex:indexPath.row];
     
 	return cell;
+}
+
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    Photo* photo = [[ServiceManager allPhotos] objectAtIndex:indexPath.row];
+    NSDictionary* userInfo = [NSDictionary dictionaryWithObject:photo forKey:@"photo"];
+    [[NSNotificationCenter defaultCenter] postNotificationName:SpreadDidSelectPhotoNotification object:self userInfo:userInfo];
+}
+
+
+#pragma mark -
+
+- (void)scrollToPhoto:(Photo*)photo
+{
+    NSInteger index = [[ServiceManager allPhotos] indexOfObject:photo];
+    NSIndexPath* indexPath = [NSIndexPath indexPathForRow:index inSection:0];
+    [tableView scrollToRowAtIndexPath:indexPath atScrollPosition:UITableViewScrollPositionMiddle animated:YES];
 }
 
 

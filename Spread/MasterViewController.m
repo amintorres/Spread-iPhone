@@ -12,10 +12,12 @@
 #import "ReviewViewController.h"
 #import "EditViewController.h"
 #import "AboutViewController.h"
+#import "DetailViewController.h"
 #import "UINavigationBar+Customize.h"
 
 NSString * const SpreadShouldLogoutNotification = @"SpreadShouldLogoutNotification";
 NSString * const SpreadShouldEditPhotoNotification = @"SpreadShouldEditPhotoNotification";
+NSString * const SpreadDidSelectPhotoNotification = @"SpreadDidSelectPhotoNotification";
 
 typedef enum{
     ContainerViewModeIntro = 0,
@@ -34,6 +36,8 @@ typedef enum{
 
 - (void)showIntroView;
 - (void)hideIntroView;
+- (void)showListView;
+- (void)showGridView;
 - (void)editPhoto:(Photo*)photo;
 
 @end
@@ -70,6 +74,22 @@ typedef enum{
         
         Photo* photo = [notification.userInfo objectForKey:@"photo"];
         [self editPhoto:photo];
+    }];
+    
+    [[NSNotificationCenter defaultCenter] addObserverForName:SpreadDidSelectPhotoNotification object:nil queue:nil usingBlock:^(NSNotification* notification){
+        
+        Photo* photo = [notification.userInfo objectForKey:@"photo"];
+        if ( notification.object == gridViewController )
+        {
+            [self showListView];
+            [listViewController scrollToPhoto:photo];
+        }
+        else if ( notification.object == listViewController )
+        {
+            DetailViewController* detailViewController = [[DetailViewController alloc] init];
+            detailViewController.photo = photo;
+            [self presentModalViewController:detailViewController animated:YES];
+        }
     }];
 
     if ( [ServiceManager isSessionValid] )

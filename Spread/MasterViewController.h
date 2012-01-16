@@ -12,6 +12,7 @@
 
 extern NSString * const SpreadShouldLogoutNotification;
 extern NSString * const SpreadShouldEditPhotoNotification;
+extern NSString * const SpreadDidSelectPhotoNotification;
 
 
 

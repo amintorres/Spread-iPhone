@@ -11,6 +11,7 @@
 #import "UIImageView+WebCache.h"
 #import "ServiceManager.h"
 #import "User+Spread.h"
+#import "MasterViewController.h"
 
 
 
@@ -129,7 +130,9 @@
 
 - (void)gridView:(AQGridView*)gridView didSelectItemAtIndex:(NSUInteger)index
 {
-    NSLog(@"Did select item at index: %d", index);
+    Photo* photo = [[ServiceManager allPhotos] objectAtIndex:index];
+    NSDictionary* userInfo = [NSDictionary dictionaryWithObject:photo forKey:@"photo"];
+    [[NSNotificationCenter defaultCenter] postNotificationName:SpreadDidSelectPhotoNotification object:self userInfo:userInfo];
 }
 
 

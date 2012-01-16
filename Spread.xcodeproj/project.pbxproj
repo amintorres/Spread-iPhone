@@ -97,6 +97,9 @@
 		7CFAFA2314C39F8A00597A6D /* Tag.m in Sources */ = {isa = PBXBuildFile; fileRef = 7CFAFA2214C39F8900597A6D /* Tag.m */; };
 		7CFAFA2614C3A1FA00597A6D /* Tag+Spread.m in Sources */ = {isa = PBXBuildFile; fileRef = 7CFAFA2514C3A1FA00597A6D /* Tag+Spread.m */; };
 		7CFAFA2C14C3A7E600597A6D /* Photo.m in Sources */ = {isa = PBXBuildFile; fileRef = 7CFAFA2B14C3A7E600597A6D /* Photo.m */; };
+		7CFAFA3114C3B8F500597A6D /* DetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7CFAFA2F14C3B8F500597A6D /* DetailViewController.m */; };
+		7CFAFA3214C3B8F500597A6D /* DetailViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 7CFAFA3014C3B8F500597A6D /* DetailViewController.xib */; };
+		7CFAFA4614C3CC7C00597A6D /* ImageScrollView.m in Sources */ = {isa = PBXBuildFile; fileRef = 7CFAFA4514C3CC7C00597A6D /* ImageScrollView.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -278,6 +281,11 @@
 		7CFAFA2514C3A1FA00597A6D /* Tag+Spread.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "Tag+Spread.m"; sourceTree = "<group>"; };
 		7CFAFA2A14C3A7E500597A6D /* Photo.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Photo.h; sourceTree = "<group>"; };
 		7CFAFA2B14C3A7E600597A6D /* Photo.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Photo.m; sourceTree = "<group>"; };
+		7CFAFA2E14C3B8F500597A6D /* DetailViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DetailViewController.h; sourceTree = "<group>"; };
+		7CFAFA2F14C3B8F500597A6D /* DetailViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DetailViewController.m; sourceTree = "<group>"; };
+		7CFAFA3014C3B8F500597A6D /* DetailViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = DetailViewController.xib; sourceTree = "<group>"; };
+		7CFAFA4414C3CC7C00597A6D /* ImageScrollView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ImageScrollView.h; sourceTree = "<group>"; };
+		7CFAFA4514C3CC7C00597A6D /* ImageScrollView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ImageScrollView.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -342,6 +350,8 @@
 		7C6CFBF214BD2BF00048644C /* UI Elements */ = {
 			isa = PBXGroup;
 			children = (
+				7CFAFA4414C3CC7C00597A6D /* ImageScrollView.h */,
+				7CFAFA4514C3CC7C00597A6D /* ImageScrollView.m */,
 				7C6CFBEF14BD2BE70048644C /* RoundedRectButton.h */,
 				7C6CFBF014BD2BE70048644C /* RoundedRectButton.m */,
 				7C8E2A2414C351AF00E6E714 /* PlaceholderTextView.h */,
@@ -582,6 +592,7 @@
 				7CF8A615149BFA69009FF755 /* Intro View */,
 				7CF8A616149BFA74009FF755 /* Feed View */,
 				7CF8A617149BFA7D009FF755 /* Grid View */,
+				7CFAFA2D14C3B6A700597A6D /* Detail View */,
 				7C7F7AB014AB747200652401 /* Edit View */,
 				7C86FF8114AF6FDE001B907A /* About View */,
 			);
@@ -619,6 +630,16 @@
 				7CF8A612149BFA3B009FF755 /* GridViewController.xib */,
 			);
 			name = "Grid View";
+			sourceTree = "<group>";
+		};
+		7CFAFA2D14C3B6A700597A6D /* Detail View */ = {
+			isa = PBXGroup;
+			children = (
+				7CFAFA2E14C3B8F500597A6D /* DetailViewController.h */,
+				7CFAFA2F14C3B8F500597A6D /* DetailViewController.m */,
+				7CFAFA3014C3B8F500597A6D /* DetailViewController.xib */,
+			);
+			name = "Detail View";
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -796,6 +817,7 @@
 				7C8E2A2314C3449B00E6E714 /* navbar_background_withlogo@2x.png in Resources */,
 				7CFAFA1514C38DA500597A6D /* ReviewViewController.xib in Resources */,
 				7CFAFA1D14C39D4900597A6D /* TODO.txt in Resources */,
+				7CFAFA3214C3B8F500597A6D /* DetailViewController.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -869,6 +891,8 @@
 				7CFAFA2314C39F8A00597A6D /* Tag.m in Sources */,
 				7CFAFA2614C3A1FA00597A6D /* Tag+Spread.m in Sources */,
 				7CFAFA2C14C3A7E600597A6D /* Photo.m in Sources */,
+				7CFAFA3114C3B8F500597A6D /* DetailViewController.m in Sources */,
+				7CFAFA4614C3CC7C00597A6D /* ImageScrollView.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
