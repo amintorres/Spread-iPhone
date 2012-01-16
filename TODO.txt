@@ -7,8 +7,6 @@
 */
 
 
-- Add tags support.
-
 - Add upload progress bar.
 
 - Add subviews in 'About' page.
