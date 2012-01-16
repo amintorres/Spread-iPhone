@@ -79,6 +79,7 @@ typedef enum{
     }
     
     titleTextField.text = photo.title;
+    tagsTextField.text = photo.csvTags;
     descriptionTextView.text = photo.photoDescription;
 }
 

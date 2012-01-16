@@ -8,6 +8,8 @@
 
 #import "Photo+Spread.h"
 #import "UserDefaultHelper.h"
+#import "Tag+Spread.h"
+
 
 
 @implementation Photo (Spread)
@@ -25,5 +27,24 @@
     self.title = [UserDefaultHelper storedTitle];
     self.photoDescription = [UserDefaultHelper storedDescription];
 }
+
+- (void)setCsvTags:(NSString *)csvTags
+{
+    [self willChangeValueForKey:@"csvTags"];
+    [self setPrimitiveValue:csvTags forKey:@"csvTags"];
+    [self didChangeValueForKey:@"csvTags"];
+
+    self.tags = [Tag tagsFromCSV:csvTags];
+}
+
+- (NSString*)csvTags
+{
+    NSSortDescriptor* sortDescriptor = [NSSortDescriptor sortDescriptorWithKey:@"name" ascending:YES];
+    NSArray* sortedTags = [self.tags sortedArrayUsingDescriptors:[NSArray arrayWithObject:sortDescriptor]];
+    NSArray* sortedTagNames = [sortedTags valueForKeyPath:@"@unionOfObjects.name"];
+    NSString* csvString = [sortedTagNames componentsJoinedByString:@", "];
+    return csvString;
+}
+
 
 @end
