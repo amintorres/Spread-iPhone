@@ -193,6 +193,7 @@ NSString * const ServiceManagerDidLoadPhotosNotification = @"ServiceManagerDidLo
 
         RKParams* params = [RKParams params];
         [params setValue:photo.title forParam:@"photo[title]"];
+        [params setValue:photo.csvTags forParam:@"photo[tag_list]"];
         [params setValue:photo.photoDescription forParam:@"photo[description]"];
         RKParamsAttachment* attachment = [params setData:imageData MIMEType:@"image/jpeg" forParam:@"photo[image]"];
         attachment.fileName = @"image.jpg";
@@ -210,6 +211,7 @@ NSString * const ServiceManagerDidLoadPhotosNotification = @"ServiceManagerDidLo
         RKParams* params = [RKParams params];
         [params setValue:photo.photoID forParam:@"photo[id]"];
         [params setValue:photo.title forParam:@"photo[title]"];
+        [params setValue:photo.csvTags forParam:@"photo[tag_list]"];
         [params setValue:photo.photoDescription forParam:@"photo[description]"];
         loader.params = params;
     }];
