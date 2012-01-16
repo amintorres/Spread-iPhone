@@ -141,6 +141,7 @@ typedef enum{
 {
     photo.capturedDate = [NSDate date];
     photo.title = titleTextField.text;
+    photo.csvTags = tagsTextField.text;
     photo.photoDescription = descriptionTextView.text;
 
     if ( editMode == EditModeCreate )
