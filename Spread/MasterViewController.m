@@ -49,7 +49,7 @@ typedef enum{
 
 @implementation MasterViewController
 
-@synthesize headerView, containerView, toolbarView;
+@synthesize navigationBar, containerView, toolbarView;
 @synthesize gridListButton;
 @synthesize cameraOverlayView;
 @synthesize introViewController, listViewController, gridViewController;
@@ -62,6 +62,8 @@ typedef enum{
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+    
+    [self.navigationBar customizeBackground];
     
     [[NSNotificationCenter defaultCenter] addObserverForName:SpreadDidLoginNotification object:nil queue:nil usingBlock:^(NSNotification* notification){
         
@@ -110,11 +112,11 @@ typedef enum{
 
 - (void)viewDidUnload
 {
-    self.headerView = nil;
+    self.navigationBar = nil;
     self.containerView = nil;
     self.toolbarView = nil;
     self.gridListButton = nil;
-    [self setCameraOverlayView:nil];
+    self.cameraOverlayView = nil;
     [super viewDidUnload];
 }
 
@@ -276,6 +278,12 @@ typedef enum{
 #pragma mark -
 #pragma mark IBAction
 
+- (IBAction)refreshButtonTapped:(id)sender
+{
+    [ServiceManager loadDataFromServer];
+    [ServiceManager updateUserInfo];
+}
+
 - (IBAction)gridListButtonTapped:(id)sender
 {
     if ( self.containerViewMode == ContainerViewModeList )
@@ -334,15 +342,16 @@ typedef enum{
     [self presentModalViewController:navController animated:YES];
 }
 
-- (IBAction)albumButtonTapped:(id)sender {
-}
-
 - (void)editPhoto:(Photo*)photo
 {
     EditViewController* editViewController = [[EditViewController alloc] init];
     editViewController.photo = photo;
     editViewController.editMode = EditModeUpdate;
     [self presentModalViewController:editViewController animated:YES];
+}
+
+- (IBAction)albumButtonTapped:(id)sender
+{
 }
 
 
