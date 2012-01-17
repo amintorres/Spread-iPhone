@@ -32,5 +32,44 @@
     self.frame = CGRectMake(self.frame.origin.x, self.frame.origin.y, self.frame.size.width, height);
 }
 
+CGRect CGRectConvertBetweenOrientations(CGRect frameInWindow, UIInterfaceOrientation fromOrientation, UIInterfaceOrientation toOrientation)
+{
+    if ( fromOrientation == toOrientation )
+        return frameInWindow;
+    
+    
+    
+    BOOL isClockwise = 
+    ( fromOrientation == UIInterfaceOrientationPortrait && toOrientation == UIInterfaceOrientationLandscapeLeft ) ||
+    ( fromOrientation == UIInterfaceOrientationLandscapeLeft && toOrientation == UIInterfaceOrientationPortraitUpsideDown ) ||
+    ( fromOrientation == UIInterfaceOrientationPortraitUpsideDown && toOrientation == UIInterfaceOrientationLandscapeRight ) ||
+    ( fromOrientation == UIInterfaceOrientationLandscapeRight && toOrientation == UIInterfaceOrientationPortrait );
+    
+    UIWindow* targetWindow = [[UIApplication sharedApplication] keyWindow];
+    CGRect windowRect = UIInterfaceOrientationIsPortrait(fromOrientation) ? targetWindow.bounds : CGRectMake(0, 0, targetWindow.bounds.size.height, targetWindow.bounds.size.width);
+    
+    if ( isClockwise )
+    {
+        CGFloat x = windowRect.size.height - (frameInWindow.origin.y + frameInWindow.size.height);
+        CGFloat y = frameInWindow.origin.x;
+        CGFloat width = frameInWindow.size.height;
+        CGFloat height = frameInWindow.size.width;
+        return CGRectMake(x, y, width, height);
+    }
+    else
+    {
+        CGFloat x = frameInWindow.origin.y;
+        CGFloat y = windowRect.size.width - (frameInWindow.origin.x + frameInWindow.size.width);
+        CGFloat width = frameInWindow.size.height;
+        CGFloat height = frameInWindow.size.width;
+        return CGRectMake(x, y, width, height);
+    }
+}
+
+
 
 @end
+
+
+
+

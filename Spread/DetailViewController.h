@@ -25,13 +25,12 @@
 @property (strong, nonatomic) IBOutlet UILabel *descriptionLabel;
 @property (strong, nonatomic) IBOutlet UIButton *closebutton;
 @property (strong, nonatomic) Photo *photo;
+@property (nonatomic) CGRect originFrame;
 
 - (IBAction)backButtonTapped:(id)sender;
 - (IBAction)infoButtonTapped:(id)sender;
 - (IBAction)closeButtonTapped:(id)sender;
 - (IBAction)tapHandler:(UITapGestureRecognizer*)recognizer;
 - (void)loadFeedImageAndThenLargImage;
-- (void)fadeInFromRect:(CGRect)rect;
-- (void)fadeOutToRect:(CGRect)rect;
 
 @end
