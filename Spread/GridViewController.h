@@ -7,17 +7,17 @@
 //
 
 #import <UIKit/UIKit.h>
-#import "AQGridView.h"
+#import "GridTableViewCell.h"
 
 
+@interface GridViewController : UIViewController
 
-@interface GridViewController : UIViewController <AQGridViewDataSource, AQGridViewDelegate>
-
-@property (strong, nonatomic) IBOutlet AQGridView *gridView;
+@property (strong, nonatomic) IBOutlet UITableView *tableView;
 @property (strong, nonatomic) IBOutlet UIView *headerView;
 @property (strong, nonatomic) IBOutlet UIView *footerView;
 @property (strong, nonatomic) IBOutlet UIImageView *avatarImageView;
 @property (strong, nonatomic) IBOutlet UILabel *nameLabel;
 @property (strong, nonatomic) IBOutlet UILabel *numberOfPhotosLabel;
+@property (strong, nonatomic) IBOutlet GridTableViewCell *nibLoadedCell;
 
 @end

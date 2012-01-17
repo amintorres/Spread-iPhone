@@ -13,6 +13,7 @@
 #import "User+Spread.h"
 #import "MasterViewController.h"
 
+#define kNumberOfColumns    3
 
 
 @interface GridViewController ()
@@ -22,12 +23,13 @@
 
 @implementation GridViewController
 
-@synthesize gridView;
+@synthesize tableView;
 @synthesize headerView;
 @synthesize footerView;
 @synthesize avatarImageView;
 @synthesize nameLabel;
 @synthesize numberOfPhotosLabel;
+@synthesize nibLoadedCell;
 
 
 #pragma mark -
@@ -39,40 +41,31 @@
     
     [[NSNotificationCenter defaultCenter] addObserverForName:ServiceManagerDidLoadPhotosNotification object:nil queue:nil usingBlock:^(NSNotification* notification){
         
-        [gridView reloadData];
+        [tableView reloadData];
     }];
     
-    gridView.gridHeaderView = headerView;
-    gridView.gridFooterView = footerView;
-    gridView.leftContentInset = 6.0;
-    gridView.rightContentInset = 6.0;
-    gridView.showsVerticalScrollIndicator = NO;
-    
-    CGSize currentContentSize = gridView.contentSize;
-    gridView.contentSize = CGSizeMake(300, currentContentSize.height);
+    tableView.tableHeaderView = headerView;
+    tableView.tableFooterView = footerView;
     
     [self updateUserInfo];
     
-    UIView* backgroundView = [[UIView alloc] init];
-    backgroundView.autoresizingMask = UIViewAutoresizingFlexibleHeight | UIViewAutoresizingFlexibleWidth;
-    backgroundView.backgroundColor = [UIColor whiteColor];
-    gridView.backgroundView = backgroundView;
 }
 
 - (void)viewWillAppear:(BOOL)animated
 {
     [super viewWillAppear:animated];
-    [gridView reloadData];
+    [tableView reloadData];
 }
 
 - (void)viewDidUnload
 {
-    self.gridView = nil;
+    self.tableView = nil;
     self.headerView = nil;
     self.footerView = nil;
     self.avatarImageView = nil;
     self.nameLabel = nil;
     self.numberOfPhotosLabel = nil;
+    [self setNibLoadedCell:nil];
     [super viewDidUnload];
 }
 
@@ -92,48 +85,41 @@
      
      
 #pragma mark -
-#pragma mark Grid View Data Source
+#pragma mark TableView Data Source
 
-- (NSUInteger)numberOfItemsInGridView:(AQGridView*)aGridView
+- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-    return [[ServiceManager allPhotos] count];
+    float count = (float)[[ServiceManager allPhotos] count] / kNumberOfColumns;
+    return ceilf(count);
 }
 
-- (AQGridViewCell*)gridView:(AQGridView*)aGridView cellForItemAtIndex:(NSUInteger)index
+- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    static NSString* cellIdentifier = @"CellIdentifier";
+    static NSString* cellIdentifier = @"GridTableViewCell";
     
-    AQGridViewCell* cell = [aGridView dequeueReusableCellWithIdentifier:cellIdentifier];
-    if ( cell == nil )
+    GridTableViewCell* cell = (GridTableViewCell*)[self.tableView dequeueReusableCellWithIdentifier:cellIdentifier];
+	if (!cell)
     {
-        cell = [[AQGridViewCell alloc] initWithFrame:CGRectMake(0, 0, 88, 88) reuseIdentifier:cellIdentifier];
-        cell.selectionStyle = AQGridViewCellSelectionStyleGray;
+        UINib* nib = [UINib nibWithNibName:@"GridTableViewCell" bundle:nil];
+        [nib instantiateWithOwner:self options:nil];
         
-        UIImageView* imageView = [[UIImageView alloc] initWithFrame:cell.contentView.bounds];
-        imageView.tag = 123;
-        imageView.clipsToBounds = YES;
-        imageView.contentMode = UIViewContentModeScaleAspectFill;
-        [cell.contentView addSubview:imageView];
-    }
-    
-    Photo* photo = [[ServiceManager allPhotos] objectAtIndex:index];
-    UIImageView* imageView = (UIImageView*)[cell viewWithTag:123];
-    [imageView setImageWithURL:[NSURL URLWithString:photo.gridImageURLString]
-                   placeholderImage:[UIImage imageNamed:@"placeholder"]];
+        cell = nibLoadedCell;
+        self.nibLoadedCell = nil;
+	}
 
+    NSInteger loc = indexPath.row * kNumberOfColumns;
+    NSInteger len = MIN( [[ServiceManager allPhotos] count] - loc, kNumberOfColumns );
+    NSRange range = NSMakeRange(loc, len);
+    NSArray* photos = [[ServiceManager allPhotos] subarrayWithRange:range];
+    cell.photos = photos;
+    
     return cell;
 }
 
 
 #pragma mark -
-#pragma mark Grid View Delegate
+#pragma mark Table View Delegate
 
-- (void)gridView:(AQGridView*)gridView didSelectItemAtIndex:(NSUInteger)index
-{
-    Photo* photo = [[ServiceManager allPhotos] objectAtIndex:index];
-    NSDictionary* userInfo = [NSDictionary dictionaryWithObject:photo forKey:@"photo"];
-    [[NSNotificationCenter defaultCenter] postNotificationName:SpreadDidSelectPhotoNotification object:self userInfo:userInfo];
-}
 
 
 @end
