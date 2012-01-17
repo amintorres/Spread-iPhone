@@ -221,6 +221,7 @@ typedef enum{
     detailViewController.photo = photo;
     detailViewController.originFrame = windowFrame;
     
+    detailViewController.view.frame = [self.view convertRect:detailViewController.view.frame fromView:nil];
     [self.view addSubview:detailViewController.view];
     [detailViewController animation1];
     
@@ -242,7 +243,7 @@ typedef enum{
     
     [self dismissModalViewControllerAnimated:NO];
     [self.view addSubview:detailViewController.view];
-    detailViewController.view.frame = self.view.bounds;
+    detailViewController.view.frame = [self.view convertRect:detailViewController.view.frame fromView:nil];
     
     detailViewController.view.alpha = 1.0;
     [UIView animateWithDuration:0.3 animations:^(void){
