@@ -33,7 +33,6 @@ typedef enum{
 @property (strong, nonatomic) IntroViewController* introViewController;
 @property (strong, nonatomic) ListViewController* listViewController;
 @property (strong, nonatomic) GridViewController* gridViewController;
-@property (strong, nonatomic) DetailViewController* detailViewController;
 @property (nonatomic) ContainerViewMode containerViewMode;
 
 - (void)showIntroView;
@@ -53,7 +52,7 @@ typedef enum{
 @synthesize headerView, containerView, toolbarView;
 @synthesize gridListButton;
 @synthesize cameraOverlayView;
-@synthesize introViewController, listViewController, gridViewController, detailViewController;
+@synthesize introViewController, listViewController, gridViewController;
 @synthesize containerViewMode;
 
 
@@ -150,16 +149,6 @@ typedef enum{
     return listViewController;
 }
 
-- (DetailViewController*)detailViewController
-{
-    if ( !detailViewController )
-    {
-        detailViewController = [[DetailViewController alloc] init];
-        detailViewController.modalTransitionStyle = UIModalTransitionStyleCrossDissolve;
-    }
-    return detailViewController;
-}
-
 
 #pragma mark -
 #pragma mark View Management
@@ -228,9 +217,11 @@ typedef enum{
     UIImageView* imageView = [self.listViewController imageViewForPhoto:photo];
     CGRect windowFrame = [imageView.superview convertRect:imageView.frame toView:nil];
 
-    self.detailViewController.photo = photo;
-    self.detailViewController.originFrame = windowFrame;
-    [self presentModalViewController:self.detailViewController animated:YES];
+    DetailViewController* detailViewController = [[DetailViewController alloc] init];
+    detailViewController.modalTransitionStyle = UIModalTransitionStyleCrossDissolve;
+    detailViewController.photo = photo;
+    detailViewController.originFrame = windowFrame;
+    [self presentModalViewController:detailViewController animated:YES];
 }
 
 - (void)hideDetailView
