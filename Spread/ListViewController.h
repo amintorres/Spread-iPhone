@@ -17,5 +17,6 @@
 @property (strong, nonatomic) IBOutlet ListTableViewCell *nibLoadedCell;
 
 - (void)scrollToPhoto:(Photo*)photo;
+- (UIImageView*)imageViewForPhoto:(Photo*)photo;
 
 @end

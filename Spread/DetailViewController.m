@@ -10,6 +10,7 @@
 #import "UIImageView+WebCache.h"
 #import "UILabel+Resizing.h"
 #import "UIView+Shortcut.h"
+#import "MasterViewController.h"
 
 #define kLabelSpacing   10.0
 
@@ -38,23 +39,7 @@
 
 - (void)viewDidLoad
 {
-    [super viewDidLoad];
-    
-    self.imageScrollView.maximumZoomScale = 2.0;
-    
-    SDWebImageManager *manager = [SDWebImageManager sharedManager];
-    NSURL* URL = [NSURL URLWithString:self.photo.largeImageURLString];
-    UIImage *cachedImage = [manager imageWithURL:URL];
-    
-    if (cachedImage)
-    {
-        [self setImage:cachedImage];
-    }
-    else
-    {
-        [self.activityIndicator startAnimating];
-        [manager downloadWithURL:URL delegate:self];
-    }
+    [super viewDidLoad];    
 }
 
 - (void)viewDidUnload
@@ -85,6 +70,105 @@
 
 #pragma mark -
 #pragma mark Image View
+
+- (void)fadeInFromRect:(CGRect)rect
+{
+    SDWebImageManager *manager = [SDWebImageManager sharedManager];
+    NSURL* feedImageURL = [NSURL URLWithString:self.photo.feedImageURLString];
+    UIImage *cachedFeedImage = [manager imageWithURL:feedImageURL];
+
+    //// Master view should ensure the feed image is already loaded. ////
+    if ( !cachedFeedImage )
+        return;
+    
+    [imageScrollView displayImage:cachedFeedImage];
+
+    UIImageView* transientImageView = [[UIImageView alloc] initWithFrame:rect];
+    transientImageView.clipsToBounds = YES;
+    transientImageView.contentMode = UIViewContentModeScaleAspectFill;
+    transientImageView.image = cachedFeedImage;
+    [self.view addSubview:transientImageView];
+    
+    imageScrollView.alpha = 0.0;
+    self.view.alpha = 0.0;
+    
+    [UIView animateWithDuration:0.3 animations:^(void){
+       
+        self.view.alpha = 1.0;
+        
+    } completion:^(BOOL finished){
+        
+        
+        [UIView animateWithDuration:0.3 animations:^(void){
+            
+            CGRect targetFrame = [imageScrollView convertRect:imageScrollView.imageView.frame toView:self.view];
+            transientImageView.frame = targetFrame;
+            
+        } completion:^(BOOL finished){
+            
+            imageScrollView.alpha = 1.0;
+            [transientImageView removeFromSuperview];            
+        }];
+    }];
+}
+
+- (void)fadeOutToRect:(CGRect)rect
+{
+    CGRect targetFrame = [imageScrollView convertRect:imageScrollView.imageView.frame toView:self.view];
+
+    UIImageView* transientImageView = [[UIImageView alloc] initWithFrame:targetFrame];
+    transientImageView.clipsToBounds = YES;
+    transientImageView.contentMode = UIViewContentModeScaleAspectFill;
+    transientImageView.image = imageScrollView.imageView.image;
+    [self.view addSubview:transientImageView];
+    
+    imageScrollView.alpha = 0.0;
+    
+    [UIView animateWithDuration:0.3 animations:^(void){
+        
+        transientImageView.frame = rect;
+        
+    } completion:^(BOOL finished){
+        
+        [UIView animateWithDuration:0.3 animations:^(void){
+
+            self.view.alpha = 0.0;
+            
+        } completion:^(BOOL finished){
+
+            [transientImageView removeFromSuperview];            
+            [self.view removeFromSuperview];
+        }];
+    }];
+}
+
+- (void)loadFeedImageAndThenLargImage
+{
+    SDWebImageManager *manager = [SDWebImageManager sharedManager];
+    NSURL* feedImageURL = [NSURL URLWithString:self.photo.feedImageURLString];
+    UIImage *cachedFeedImage = [manager imageWithURL:feedImageURL];
+
+    //// If the feed image is already loaded, show it first. ////
+    if (cachedFeedImage)
+    {
+        [self setImage:cachedFeedImage];
+    }
+    
+    //// Then load large image silently. ////
+    NSURL* largeImageURL = [NSURL URLWithString:self.photo.largeImageURLString];
+    UIImage *cachedLargeImage = [manager imageWithURL:largeImageURL];
+    
+    if (cachedLargeImage)
+    {
+        [self setImage:cachedLargeImage];
+    }
+    else
+    {
+        [self.activityIndicator startAnimating];
+        [manager downloadWithURL:largeImageURL delegate:self];
+    }
+}
+
 
 - (void)webImageManager:(SDWebImageManager *)imageManager didFinishWithImage:(UIImage *)image
 {
@@ -190,7 +274,7 @@
 
 - (IBAction)backButtonTapped:(id)sender
 {
-    [self dismissModalViewControllerAnimated:YES];
+    [[NSNotificationCenter defaultCenter] postNotificationName:SpreadDidDeselectPhotoNotification object:self];
 }
 
 - (IBAction)infoButtonTapped:(id)sender

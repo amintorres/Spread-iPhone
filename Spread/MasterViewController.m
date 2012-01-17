@@ -18,6 +18,7 @@
 NSString * const SpreadShouldLogoutNotification = @"SpreadShouldLogoutNotification";
 NSString * const SpreadShouldEditPhotoNotification = @"SpreadShouldEditPhotoNotification";
 NSString * const SpreadDidSelectPhotoNotification = @"SpreadDidSelectPhotoNotification";
+NSString * const SpreadDidDeselectPhotoNotification = @"SpreadDidDeselectPhotoNotification";
 
 typedef enum{
     ContainerViewModeIntro = 0,
@@ -32,6 +33,7 @@ typedef enum{
 @property (strong, nonatomic) IntroViewController* introViewController;
 @property (strong, nonatomic) ListViewController* listViewController;
 @property (strong, nonatomic) GridViewController* gridViewController;
+@property (strong, nonatomic) DetailViewController* detailViewController;
 @property (nonatomic) ContainerViewMode containerViewMode;
 
 - (void)showIntroView;
@@ -39,6 +41,8 @@ typedef enum{
 - (void)showListView;
 - (void)showGridView;
 - (void)editPhoto:(Photo*)photo;
+- (void)showDetailViewForPhoto:(Photo*)photo;
+- (void)hideDetailView;
 
 @end
 
@@ -49,7 +53,7 @@ typedef enum{
 @synthesize headerView, containerView, toolbarView;
 @synthesize gridListButton;
 @synthesize cameraOverlayView;
-@synthesize introViewController, listViewController, gridViewController;
+@synthesize introViewController, listViewController, gridViewController, detailViewController;
 @synthesize containerViewMode;
 
 
@@ -82,14 +86,17 @@ typedef enum{
         if ( notification.object == gridViewController )
         {
             [self showListView];
-            [listViewController scrollToPhoto:photo];
+            [self.listViewController scrollToPhoto:photo];
         }
         else if ( notification.object == listViewController )
         {
-            DetailViewController* detailViewController = [[DetailViewController alloc] init];
-            detailViewController.photo = photo;
-            [self presentModalViewController:detailViewController animated:YES];
+            [self showDetailViewForPhoto:photo];
         }
+    }];
+    
+    [[NSNotificationCenter defaultCenter] addObserverForName:SpreadDidDeselectPhotoNotification object:nil queue:nil usingBlock:^(NSNotification* notification){
+
+        [self hideDetailView];
     }];
 
     if ( [ServiceManager isSessionValid] )
@@ -120,7 +127,7 @@ typedef enum{
 {
     if ( !introViewController )
     {
-        self.introViewController = [[IntroViewController alloc] init];
+        introViewController = [[IntroViewController alloc] init];
     }
     return introViewController;
 }
@@ -129,7 +136,7 @@ typedef enum{
 {
     if ( !gridViewController )
     {
-        self.gridViewController = [[GridViewController alloc] init];
+        gridViewController = [[GridViewController alloc] init];
     }
     return gridViewController;
 }
@@ -138,9 +145,19 @@ typedef enum{
 {
     if ( !listViewController )
     {
-        self.listViewController = [[ListViewController alloc] init];
+        listViewController = [[ListViewController alloc] init];
     }
     return listViewController;
+}
+
+- (DetailViewController*)detailViewController
+{
+    if ( !detailViewController )
+    {
+        detailViewController = [[DetailViewController alloc] init];
+        detailViewController.modalTransitionStyle = UIModalTransitionStyleCrossDissolve;
+    }
+    return detailViewController;
 }
 
 
@@ -149,7 +166,7 @@ typedef enum{
 
 - (void)clearContainerView
 {
-    for ( UIView* subview in containerView.subviews )
+    for ( UIView* subview in self.containerView.subviews )
     {
         [subview removeFromSuperview];
     }    
@@ -159,22 +176,22 @@ typedef enum{
 {
     [self clearContainerView];
     
-    gridViewController.view.frame = containerView.bounds;
-    [containerView addSubview:self.gridViewController.view];
-    [gridListButton setImage:[UIImage imageNamed:@"icon_list"] forState:UIControlStateNormal];
+    self.gridViewController.view.frame = self.containerView.bounds;
+    [self.containerView addSubview:self.gridViewController.view];
+    [self.gridListButton setImage:[UIImage imageNamed:@"icon_list"] forState:UIControlStateNormal];
     
-    containerViewMode = ContainerViewModeGrid;
+    self.containerViewMode = ContainerViewModeGrid;
 }
 
 - (void)showListView
 {
     [self clearContainerView];
     
-    listViewController.view.frame = containerView.bounds;
-    [containerView addSubview:self.listViewController.view];
-    [gridListButton setImage:[UIImage imageNamed:@"icon_grid"] forState:UIControlStateNormal];
+    self.listViewController.view.frame = self.containerView.bounds;
+    [self.containerView addSubview:self.listViewController.view];
+    [self.gridListButton setImage:[UIImage imageNamed:@"icon_grid"] forState:UIControlStateNormal];
     
-    containerViewMode = ContainerViewModeList;
+    self.containerViewMode = ContainerViewModeList;
 }
 
 - (void)showIntroView
@@ -188,7 +205,7 @@ typedef enum{
                     }
                     completion:NULL]; 
     
-    containerViewMode = ContainerViewModeIntro;
+    self.containerViewMode = ContainerViewModeIntro;
 }
 
 - (void)hideIntroView
@@ -206,17 +223,36 @@ typedef enum{
     [self showListView];
 }
 
+- (void)showDetailViewForPhoto:(Photo*)photo
+{    
+    self.detailViewController.photo = photo;
+    [self.view addSubview:self.detailViewController.view];
+
+    UIImageView* imageView = [self.listViewController imageViewForPhoto:photo];
+    CGRect imageFrame = [imageView.superview convertRect:imageView.frame toView:self.view];
+    [self.detailViewController fadeInFromRect:imageFrame];
+}
+
+- (void)hideDetailView
+{
+    Photo* photo = self.detailViewController.photo;
+    UIImageView* imageView = [self.listViewController imageViewForPhoto:photo];
+    CGRect imageFrame = [imageView.superview convertRect:imageView.frame toView:self.view];
+
+    [self.detailViewController fadeOutToRect:imageFrame];
+}
+
 
 #pragma mark -
 #pragma mark IBAction
 
 - (IBAction)gridListButtonTapped:(id)sender
 {
-    if ( containerViewMode == ContainerViewModeList )
+    if ( self.containerViewMode == ContainerViewModeList )
     {
         [self showGridView];        
     }
-    else if ( containerViewMode == ContainerViewModeGrid )
+    else if ( self.containerViewMode == ContainerViewModeGrid )
     {
         [self showListView];
     }

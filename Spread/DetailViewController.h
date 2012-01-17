@@ -30,5 +30,8 @@
 - (IBAction)infoButtonTapped:(id)sender;
 - (IBAction)closeButtonTapped:(id)sender;
 - (IBAction)tapHandler:(UITapGestureRecognizer*)recognizer;
+- (void)loadFeedImageAndThenLargImage;
+- (void)fadeInFromRect:(CGRect)rect;
+- (void)fadeOutToRect:(CGRect)rect;
 
 @end

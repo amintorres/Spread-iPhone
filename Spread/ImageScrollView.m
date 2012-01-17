@@ -13,8 +13,6 @@
 
 @interface ImageScrollView ()
 
-@property (strong, nonatomic) UIImageView* imageView;
-
 - (void)setMaxMinZoomScalesForCurrentBounds;
 - (CGPoint)pointToCenterAfterRotation;
 - (CGFloat)scaleToRestoreAfterRotation;
