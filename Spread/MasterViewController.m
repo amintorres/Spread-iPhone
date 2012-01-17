@@ -215,6 +215,14 @@ typedef enum{
 - (void)showDetailViewForPhoto:(Photo*)photo
 {    
     UIImageView* imageView = [self.listViewController imageViewForPhoto:photo];
+    
+    if ( !imageView.image )
+    {
+        //// Only show detail view when feed image is available. ///
+        return;
+    }
+    
+    
     CGRect windowFrame = [imageView.superview convertRect:imageView.frame toView:nil];
 
     DetailViewController* detailViewController = [[DetailViewController alloc] init];

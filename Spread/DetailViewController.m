@@ -132,10 +132,7 @@
 
 - (void)animateImageIntoPlace
 {
-    SDWebImageManager *manager = [SDWebImageManager sharedManager];
-    NSURL* feedImageURL = [NSURL URLWithString:self.photo.feedImageURLString];
-    UIImage *cachedFeedImage = [manager imageWithURL:feedImageURL];
-    [self.imageScrollView displayImage:cachedFeedImage];
+    [self loadFeedImageAndThenLargImage];
 
     CGRect convertedFrame = [self.view convertRect:originFrame fromView:nil];
     self.transientImageView.frame = convertedFrame;
