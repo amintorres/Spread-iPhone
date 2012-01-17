@@ -17,6 +17,8 @@
 
 
 @interface DetailViewController ()
+
+@property (strong, nonatomic) UIImageView* transientImageView;
 - (void)setImage:(UIImage*)image;
 - (void)layoutInfoView;
 @end
@@ -31,7 +33,8 @@
 @synthesize overlayView;
 @synthesize infoScrollView, infoView, titleLabel, divider, descriptionLabel, closebutton;
 @synthesize photo;
-
+@synthesize originFrame;
+@synthesize transientImageView;
 
 
 #pragma mark -
@@ -39,7 +42,47 @@
 
 - (void)viewDidLoad
 {
-    [super viewDidLoad];    
+    [super viewDidLoad];
+}
+
+- (void)viewWillAppear:(BOOL)animated
+{
+    [super viewWillAppear:animated];
+    
+    SDWebImageManager *manager = [SDWebImageManager sharedManager];
+    NSURL* feedImageURL = [NSURL URLWithString:self.photo.feedImageURLString];
+    UIImage *cachedFeedImage = [manager imageWithURL:feedImageURL];
+    
+    //// Master view should ensure the feed image is already loaded. ////
+    if ( !cachedFeedImage )
+        return;
+    
+        
+    [self.imageScrollView displayImage:cachedFeedImage];
+    self.imageScrollView.alpha = 0.0;
+    
+    CGRect convertedFrame = CGRectOffset(self.originFrame, 0, -20);
+    self.transientImageView.frame = convertedFrame;
+    self.transientImageView.image = cachedFeedImage;
+    [self.view insertSubview:self.transientImageView aboveSubview:self.imageScrollView];
+}
+
+- (void)viewDidAppear:(BOOL)animated
+{
+    [super viewDidAppear:animated];
+    
+    CGRect targetFrame = [self.imageScrollView convertRect:self.imageScrollView.imageView.frame toView:self.view];
+
+    [UIView animateWithDuration:0.3 animations:^(void){
+        
+        self.transientImageView.transform = CGAffineTransformIdentity;
+        self.transientImageView.frame = targetFrame;
+        
+    } completion:^(BOOL finished){
+        
+        self.imageScrollView.alpha = 1.0;
+        [self.transientImageView removeFromSuperview];            
+    }];
 }
 
 - (void)viewDidUnload
@@ -59,88 +102,43 @@
 
 - (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)toInterfaceOrientation 
 {
-    return YES;
+    return ( toInterfaceOrientation != UIInterfaceOrientationPortraitUpsideDown );
 }
 
-- (void)willAnimateRotationToInterfaceOrientation:(UIInterfaceOrientation)toInterfaceOrientation duration:(NSTimeInterval)duration
+- (void)willRotateToInterfaceOrientation:(UIInterfaceOrientation)toInterfaceOrientation duration:(NSTimeInterval)duration
 {
+    if ( toInterfaceOrientation == UIInterfaceOrientationLandscapeLeft )
+    {
+        self.transientImageView.transform = CGAffineTransformMakeRotation(M_PI_2);
+    }
+    else if ( toInterfaceOrientation == UIInterfaceOrientationLandscapeRight )
+    {
+        self.transientImageView.transform = CGAffineTransformMakeRotation(-M_PI_2);
+    }
+    else if ( toInterfaceOrientation == UIInterfaceOrientationPortrait )
+    {
+        self.transientImageView.transform = CGAffineTransformIdentity;
+    }
+
+    self.originFrame = CGRectConvertBetweenOrientations(self.originFrame, self.interfaceOrientation, toInterfaceOrientation);
+
     [self layoutInfoView];
+}
+
+- (UIImageView*)transientImageView
+{
+    if ( !transientImageView )
+    {
+        transientImageView = [[UIImageView alloc] init];
+        transientImageView.clipsToBounds = YES;
+        transientImageView.contentMode = UIViewContentModeScaleAspectFill;
+    }
+    return transientImageView;
 }
 
 
 #pragma mark -
 #pragma mark Image View
-
-- (void)fadeInFromRect:(CGRect)rect
-{
-    SDWebImageManager *manager = [SDWebImageManager sharedManager];
-    NSURL* feedImageURL = [NSURL URLWithString:self.photo.feedImageURLString];
-    UIImage *cachedFeedImage = [manager imageWithURL:feedImageURL];
-
-    //// Master view should ensure the feed image is already loaded. ////
-    if ( !cachedFeedImage )
-        return;
-    
-    [imageScrollView displayImage:cachedFeedImage];
-
-    UIImageView* transientImageView = [[UIImageView alloc] initWithFrame:rect];
-    transientImageView.clipsToBounds = YES;
-    transientImageView.contentMode = UIViewContentModeScaleAspectFill;
-    transientImageView.image = cachedFeedImage;
-    [self.view addSubview:transientImageView];
-    
-    imageScrollView.alpha = 0.0;
-    self.view.alpha = 0.0;
-    
-    [UIView animateWithDuration:0.3 animations:^(void){
-       
-        self.view.alpha = 1.0;
-        
-    } completion:^(BOOL finished){
-        
-        
-        [UIView animateWithDuration:0.3 animations:^(void){
-            
-            CGRect targetFrame = [imageScrollView convertRect:imageScrollView.imageView.frame toView:self.view];
-            transientImageView.frame = targetFrame;
-            
-        } completion:^(BOOL finished){
-            
-            imageScrollView.alpha = 1.0;
-            [transientImageView removeFromSuperview];            
-        }];
-    }];
-}
-
-- (void)fadeOutToRect:(CGRect)rect
-{
-    CGRect targetFrame = [imageScrollView convertRect:imageScrollView.imageView.frame toView:self.view];
-
-    UIImageView* transientImageView = [[UIImageView alloc] initWithFrame:targetFrame];
-    transientImageView.clipsToBounds = YES;
-    transientImageView.contentMode = UIViewContentModeScaleAspectFill;
-    transientImageView.image = imageScrollView.imageView.image;
-    [self.view addSubview:transientImageView];
-    
-    imageScrollView.alpha = 0.0;
-    
-    [UIView animateWithDuration:0.3 animations:^(void){
-        
-        transientImageView.frame = rect;
-        
-    } completion:^(BOOL finished){
-        
-        [UIView animateWithDuration:0.3 animations:^(void){
-
-            self.view.alpha = 0.0;
-            
-        } completion:^(BOOL finished){
-
-            [transientImageView removeFromSuperview];            
-            [self.view removeFromSuperview];
-        }];
-    }];
-}
 
 - (void)loadFeedImageAndThenLargImage
 {
@@ -188,6 +186,8 @@
 
 - (void)layoutInfoView
 {
+    self.overlayView.frame = self.view.bounds;
+    
     titleLabel.text = photo.title;
     [titleLabel resizeToFitHeight];
 
@@ -274,7 +274,36 @@
 
 - (IBAction)backButtonTapped:(id)sender
 {
-    [[NSNotificationCenter defaultCenter] postNotificationName:SpreadDidDeselectPhotoNotification object:self];
+    CGRect targetFrame = [self.imageScrollView convertRect:self.imageScrollView.imageView.frame toView:self.view];
+    self.transientImageView.frame = targetFrame;
+    self.transientImageView.image = self.imageScrollView.imageView.image;
+    self.transientImageView.transform = CGAffineTransformIdentity;
+    [self.view insertSubview:self.transientImageView aboveSubview:self.imageScrollView];
+        
+    self.imageScrollView.alpha = 0.0;
+    
+    [UIView animateWithDuration:0.3 animations:^(void){
+        
+        CGRect convertedFrame = CGRectOffset(self.originFrame, 0, -20);
+        self.transientImageView.frame = convertedFrame;
+
+        if ( self.interfaceOrientation == UIInterfaceOrientationLandscapeLeft )
+        {
+            self.transientImageView.transform = CGAffineTransformMakeRotation(M_PI_2);
+        }
+        else if ( self.interfaceOrientation == UIInterfaceOrientationLandscapeRight )
+        {
+            self.transientImageView.transform = CGAffineTransformMakeRotation(-M_PI_2);
+        }
+        else if ( self.interfaceOrientation == UIInterfaceOrientationPortrait )
+        {
+            self.transientImageView.transform = CGAffineTransformIdentity;
+        }
+
+    } completion:^(BOOL finished){
+    
+        [self dismissModalViewControllerAnimated:YES];
+    }];
 }
 
 - (IBAction)infoButtonTapped:(id)sender

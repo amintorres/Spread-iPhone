@@ -225,21 +225,21 @@ typedef enum{
 
 - (void)showDetailViewForPhoto:(Photo*)photo
 {    
-    self.detailViewController.photo = photo;
-    [self.view addSubview:self.detailViewController.view];
-
     UIImageView* imageView = [self.listViewController imageViewForPhoto:photo];
-    CGRect imageFrame = [imageView.superview convertRect:imageView.frame toView:self.view];
-    [self.detailViewController fadeInFromRect:imageFrame];
+    CGRect windowFrame = [imageView.superview convertRect:imageView.frame toView:nil];
+
+    self.detailViewController.photo = photo;
+    self.detailViewController.originFrame = windowFrame;
+    [self presentModalViewController:self.detailViewController animated:YES];
 }
 
 - (void)hideDetailView
 {
-    Photo* photo = self.detailViewController.photo;
-    UIImageView* imageView = [self.listViewController imageViewForPhoto:photo];
-    CGRect imageFrame = [imageView.superview convertRect:imageView.frame toView:self.view];
-
-    [self.detailViewController fadeOutToRect:imageFrame];
+//    Photo* photo = self.detailViewController.photo;
+//    UIImageView* imageView = [self.listViewController imageViewForPhoto:photo];
+//    CGRect imageFrame = [imageView.superview convertRect:imageView.frame toView:self.view];
+//
+//    [self.detailViewController fadeOutToRect:imageFrame];
 }
 
 
