@@ -33,4 +33,7 @@
 - (IBAction)tapHandler:(UITapGestureRecognizer*)recognizer;
 - (void)loadFeedImageAndThenLargImage;
 
+- (void)animation1;
+- (void)animation2;
+
 @end

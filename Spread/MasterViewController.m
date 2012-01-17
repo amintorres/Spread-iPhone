@@ -218,19 +218,42 @@ typedef enum{
     CGRect windowFrame = [imageView.superview convertRect:imageView.frame toView:nil];
 
     DetailViewController* detailViewController = [[DetailViewController alloc] init];
-    detailViewController.modalTransitionStyle = UIModalTransitionStyleCrossDissolve;
     detailViewController.photo = photo;
     detailViewController.originFrame = windowFrame;
-    [self presentModalViewController:detailViewController animated:YES];
+    
+    [self.view addSubview:detailViewController.view];
+    [detailViewController animation1];
+    
+    detailViewController.view.alpha = 0.0;
+    [UIView animateWithDuration:0.3 animations:^(void){
+
+        detailViewController.view.alpha = 1.0;
+        
+    } completion:^(BOOL finished){
+       
+        [self presentModalViewController:detailViewController animated:NO];
+        [detailViewController animation2];
+    }];    
 }
 
 - (void)hideDetailView
 {
-//    Photo* photo = self.detailViewController.photo;
-//    UIImageView* imageView = [self.listViewController imageViewForPhoto:photo];
-//    CGRect imageFrame = [imageView.superview convertRect:imageView.frame toView:self.view];
-//
-//    [self.detailViewController fadeOutToRect:imageFrame];
+    UIViewController* detailViewController = self.modalViewController;
+    
+    [self dismissModalViewControllerAnimated:NO];
+    [self.view addSubview:detailViewController.view];
+    detailViewController.view.frame = self.view.bounds;
+    
+    detailViewController.view.alpha = 1.0;
+    [UIView animateWithDuration:0.3 animations:^(void){
+        
+        detailViewController.view.alpha = 0.0;
+        
+    } completion:^(BOOL finished){
+        
+        [detailViewController.view removeFromSuperview];
+        
+    }]; 
 }
 
 
