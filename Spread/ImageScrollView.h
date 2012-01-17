@@ -13,6 +13,8 @@
 
 @interface ImageScrollView : UIScrollView <UIScrollViewDelegate>
 
+@property (strong, nonatomic) UIImageView* imageView;
+
 - (void)displayImage:(UIImage *)image;
 
 @end

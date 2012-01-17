@@ -93,6 +93,13 @@
     [tableView scrollToRowAtIndexPath:indexPath atScrollPosition:UITableViewScrollPositionMiddle animated:YES];
 }
 
+- (UIImageView*)imageViewForPhoto:(Photo*)photo
+{
+    NSInteger index = [[ServiceManager allPhotos] indexOfObject:photo];
+    NSIndexPath* indexPath = [NSIndexPath indexPathForRow:index inSection:0];
+    ListTableViewCell* cell = (ListTableViewCell*)[self.tableView cellForRowAtIndexPath:indexPath];
+    return cell.imageView;
+}
 
 
 @end
