@@ -29,6 +29,8 @@
 		7C7C1AC014BDE9D500AA6CB2 /* libTestFlight.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 7C7C1ABC14BDE9D500AA6CB2 /* libTestFlight.a */; };
 		7C7C1AC114BDE9D500AA6CB2 /* README.txt in Resources */ = {isa = PBXBuildFile; fileRef = 7C7C1ABD14BDE9D500AA6CB2 /* README.txt */; };
 		7C7C1AC214BDE9D500AA6CB2 /* release_notes.txt in Resources */ = {isa = PBXBuildFile; fileRef = 7C7C1ABE14BDE9D500AA6CB2 /* release_notes.txt */; };
+		7C7E58CA14C6172000A03F22 /* GridTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 7C7E58C914C6172000A03F22 /* GridTableViewCell.xib */; };
+		7C7E58CD14C6173900A03F22 /* GridTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 7C7E58CC14C6173900A03F22 /* GridTableViewCell.m */; };
 		7C7F7AB414AB74AE00652401 /* EditViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7C7F7AB214AB74AE00652401 /* EditViewController.m */; };
 		7C7F7AB514AB74AE00652401 /* EditViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 7C7F7AB314AB74AE00652401 /* EditViewController.xib */; };
 		7C7F7AB714ABAEB000652401 /* AssetsLibrary.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7C7F7AB614ABAEB000652401 /* AssetsLibrary.framework */; };
@@ -201,6 +203,9 @@
 		7C7C1ABD14BDE9D500AA6CB2 /* README.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = README.txt; sourceTree = "<group>"; };
 		7C7C1ABE14BDE9D500AA6CB2 /* release_notes.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = release_notes.txt; sourceTree = "<group>"; };
 		7C7C1ABF14BDE9D500AA6CB2 /* TestFlight.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TestFlight.h; sourceTree = "<group>"; };
+		7C7E58C914C6172000A03F22 /* GridTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = GridTableViewCell.xib; sourceTree = "<group>"; };
+		7C7E58CB14C6173900A03F22 /* GridTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GridTableViewCell.h; sourceTree = "<group>"; };
+		7C7E58CC14C6173900A03F22 /* GridTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GridTableViewCell.m; sourceTree = "<group>"; };
 		7C7F7AB114AB74AE00652401 /* EditViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EditViewController.h; sourceTree = "<group>"; };
 		7C7F7AB214AB74AE00652401 /* EditViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EditViewController.m; sourceTree = "<group>"; };
 		7C7F7AB314AB74AE00652401 /* EditViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = EditViewController.xib; sourceTree = "<group>"; };
@@ -651,6 +656,9 @@
 				7CF8A610149BFA3B009FF755 /* GridViewController.h */,
 				7CF8A611149BFA3B009FF755 /* GridViewController.m */,
 				7CF8A612149BFA3B009FF755 /* GridViewController.xib */,
+				7C7E58CB14C6173900A03F22 /* GridTableViewCell.h */,
+				7C7E58CC14C6173900A03F22 /* GridTableViewCell.m */,
+				7C7E58C914C6172000A03F22 /* GridTableViewCell.xib */,
 			);
 			name = "Grid View";
 			sourceTree = "<group>";
@@ -847,6 +855,7 @@
 				7C3F37CE14C4D89C00E39B3F /* icon_cross@2x.png in Resources */,
 				7C3F37CF14C4D89C00E39B3F /* icon_info.png in Resources */,
 				7C3F37D014C4D89C00E39B3F /* icon_info@2x.png in Resources */,
+				7C7E58CA14C6172000A03F22 /* GridTableViewCell.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -923,6 +932,7 @@
 				7CFAFA3114C3B8F500597A6D /* DetailViewController.m in Sources */,
 				7CFAFA4614C3CC7C00597A6D /* ImageScrollView.m in Sources */,
 				7C3F37D314C4DE3F00E39B3F /* UILabel+Resizing.m in Sources */,
+				7C7E58CD14C6173900A03F22 /* GridTableViewCell.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
