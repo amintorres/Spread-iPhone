@@ -156,6 +156,15 @@ NSString * const ServiceManagerDidLoadPhotosNotification = @"ServiceManagerDidLo
     }];
 }
 
++ (void)updateUserInfo
+{
+    RKObjectManager* objectManager = [RKObjectManager sharedManager];
+    [objectManager loadObjectsAtResourcePath:[SpreadAPIDefinition loginPath] delegate:[ServiceManager sharedManager] block:^(RKObjectLoader* loader) {
+        
+        loader.objectMapping = [objectManager.mappingProvider objectMappingForClass:[User class]];
+    }];
+}
+
 + (void)logout
 {
     [User clearUser];
@@ -239,7 +248,10 @@ NSString * const ServiceManagerDidLoadPhotosNotification = @"ServiceManagerDidLo
     if ([objectLoader wasSentToResourcePath:[SpreadAPIDefinition loginPath]])
     {
         NSLog(@"Did load user: %@", objects);
-        [[NSNotificationCenter defaultCenter] postNotificationName:SpreadDidLoginNotification object:self];   
+        if ( [objectLoader isPOST] )
+        {
+            [[NSNotificationCenter defaultCenter] postNotificationName:SpreadDidLoginNotification object:self];   
+        }
     }
     else if ( [[objects lastObject] isMemberOfClass:[Photo class]] )
     {

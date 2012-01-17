@@ -26,6 +26,7 @@ extern NSString * const ServiceManagerDidLoadPhotosNotification;
 + (void)setupRestKit;
 
 + (void)loginWithUsername:(NSString*)username password:(NSString*)password;
++ (void)updateUserInfo;
 + (void)logout;
 + (void)requestInviteWithEmail:(NSString*)email name:(NSString*)name;
 + (void)loadDataFromServer;
