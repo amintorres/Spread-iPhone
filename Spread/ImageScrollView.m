@@ -13,6 +13,7 @@
 
 @interface ImageScrollView ()
 
+- (void)centerImageView;
 - (void)setMaxMinZoomScalesForCurrentBounds;
 - (CGPoint)pointToCenterAfterRotation;
 - (CGFloat)scaleToRestoreAfterRotation;
@@ -73,24 +74,7 @@
 {
     [super layoutSubviews];
     
-    // center the image as it becomes smaller than the size of the screen
-    
-    CGSize boundsSize = self.bounds.size;
-    CGRect frameToCenter = imageView.frame;
-    
-    // center horizontally
-    if (frameToCenter.size.width < boundsSize.width)
-        frameToCenter.origin.x = (boundsSize.width - frameToCenter.size.width) / 2;
-    else
-        frameToCenter.origin.x = 0;
-    
-    // center vertically
-    if (frameToCenter.size.height < boundsSize.height)
-        frameToCenter.origin.y = (boundsSize.height - frameToCenter.size.height) / 2;
-    else
-        frameToCenter.origin.y = 0;
-    
-    imageView.frame = frameToCenter;    
+    [self centerImageView];
 }
 
 
@@ -118,6 +102,30 @@
     self.contentSize = image.size;
     [self setMaxMinZoomScalesForCurrentBounds];
     self.zoomScale = self.minimumZoomScale;
+    
+    [self centerImageView];
+}
+
+- (void)centerImageView
+{
+    // center the image as it becomes smaller than the size of the screen
+    
+    CGSize boundsSize = self.bounds.size;
+    CGRect frameToCenter = imageView.frame;
+    
+    // center horizontally
+    if (frameToCenter.size.width < boundsSize.width)
+        frameToCenter.origin.x = (boundsSize.width - frameToCenter.size.width) / 2;
+    else
+        frameToCenter.origin.x = 0;
+    
+    // center vertically
+    if (frameToCenter.size.height < boundsSize.height)
+        frameToCenter.origin.y = (boundsSize.height - frameToCenter.size.height) / 2;
+    else
+        frameToCenter.origin.y = 0;
+    
+    imageView.frame = frameToCenter; 
 }
 
 - (void)setMaxMinZoomScalesForCurrentBounds
@@ -132,7 +140,8 @@
     
     // on high resolution screens we have double the pixel density, so we will be seeing every pixel if we limit the
     // maximum zoom scale to 0.5.
-    CGFloat maxScale = 1.0 / [[UIScreen mainScreen] scale];
+//    CGFloat maxScale = 1.0 / [[UIScreen mainScreen] scale];
+    CGFloat maxScale = 2.0;
     
     // don't let minScale exceed maxScale. (If the image is smaller than the screen, we don't want to force it to be zoomed.) 
     if (minScale > maxScale) {

@@ -21,6 +21,8 @@
 @property (strong, nonatomic) UIImageView* transientImageView;
 - (void)setImage:(UIImage*)image;
 - (void)layoutInfoView;
+- (void)showNavView;
+- (void)hideNavView;
 @end
 
 
@@ -43,6 +45,7 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+    [navView removeFromSuperview];
 }
 
 - (void)viewWillAppear:(BOOL)animated
@@ -90,8 +93,6 @@
         self.transientImageView.transform = CGAffineTransformIdentity;
     }
 
-//    self.originFrame = CGRectConvertBetweenOrientations(self.originFrame, self.interfaceOrientation, toInterfaceOrientation);
-
     [self layoutInfoView];
 }
 
@@ -121,7 +122,6 @@
         return;
     
     
-    [self.imageScrollView displayImage:cachedFeedImage];
     self.imageScrollView.alpha = 0.0;
     
     CGRect convertedFrame = [self.view convertRect:originFrame fromView:nil];
@@ -132,6 +132,11 @@
 
 - (void)animateImageIntoPlace
 {
+    SDWebImageManager *manager = [SDWebImageManager sharedManager];
+    NSURL* feedImageURL = [NSURL URLWithString:self.photo.feedImageURLString];
+    UIImage *cachedFeedImage = [manager imageWithURL:feedImageURL];
+    [self.imageScrollView displayImage:cachedFeedImage];
+
     CGRect convertedFrame = [self.view convertRect:originFrame fromView:nil];
     self.transientImageView.frame = convertedFrame;
     CGRect targetFrame = [self.imageScrollView convertRect:self.imageScrollView.imageView.frame toView:self.view];
@@ -144,13 +149,16 @@
     } completion:^(BOOL finished){
         
         self.imageScrollView.alpha = 1.0;
-        [self.transientImageView removeFromSuperview];            
+        [self.transientImageView removeFromSuperview];
+        
+        [self showNavView];
     }];
-    
 }
 
 - (void)animateImageBackToOriginalPlace
 {
+    [self hideNavView];
+    
     CGRect targetFrame = [self.imageScrollView convertRect:self.imageScrollView.imageView.frame toView:self.view];
     self.transientImageView.frame = targetFrame;
     self.transientImageView.image = self.imageScrollView.imageView.image;
@@ -180,7 +188,6 @@
     } completion:^(BOOL finished){
         
         [[NSNotificationCenter defaultCenter] postNotificationName:SpreadDidDeselectPhotoNotification object:self];
-        //        [self dismissModalViewControllerAnimated:YES];
     }];
 }
 
@@ -290,6 +297,7 @@
 {
     if ( !navView.superview )
     {
+        [navView setWidth:self.view.bounds.size.width];
         navView.alpha = 0.0;
         [self.view addSubview:navView];
         
