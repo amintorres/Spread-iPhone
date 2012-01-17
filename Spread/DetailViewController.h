@@ -33,7 +33,7 @@
 - (IBAction)tapHandler:(UITapGestureRecognizer*)recognizer;
 - (void)loadFeedImageAndThenLargImage;
 
-- (void)animation1;
-- (void)animation2;
+- (void)setupTransientImageView;
+- (void)animateImageIntoPlace;
 
 @end

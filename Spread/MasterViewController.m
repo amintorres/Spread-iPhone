@@ -221,11 +221,15 @@ typedef enum{
     detailViewController.photo = photo;
     detailViewController.originFrame = windowFrame;
     
-    detailViewController.view.frame = [self.view convertRect:detailViewController.view.frame fromView:nil];
-    [self.view addSubview:detailViewController.view];
-    [detailViewController animation1];
-    
     detailViewController.view.alpha = 0.0;
+    CGRect frame = [self.view convertRect:detailViewController.view.frame fromView:nil];
+    [self.view addSubview:detailViewController.view];
+    detailViewController.view.frame = frame;
+    
+    [detailViewController setupTransientImageView];
+
+    [[UIApplication sharedApplication] setStatusBarHidden:YES withAnimation:UIStatusBarAnimationFade];
+
     [UIView animateWithDuration:0.3 animations:^(void){
 
         detailViewController.view.alpha = 1.0;
@@ -233,17 +237,20 @@ typedef enum{
     } completion:^(BOOL finished){
        
         [self presentModalViewController:detailViewController animated:NO];
-        [detailViewController animation2];
+        [detailViewController animateImageIntoPlace];
     }];    
 }
 
 - (void)hideDetailView
 {
+    [[UIApplication sharedApplication] setStatusBarHidden:NO withAnimation:UIStatusBarAnimationFade];
+
     UIViewController* detailViewController = self.modalViewController;
-    
     [self dismissModalViewControllerAnimated:NO];
+    
+    CGRect frame = [self.view convertRect:detailViewController.view.frame fromView:nil];
     [self.view addSubview:detailViewController.view];
-    detailViewController.view.frame = [self.view convertRect:detailViewController.view.frame fromView:nil];
+    detailViewController.view.frame = frame;
     
     detailViewController.view.alpha = 1.0;
     [UIView animateWithDuration:0.3 animations:^(void){
@@ -253,7 +260,7 @@ typedef enum{
     } completion:^(BOOL finished){
         
         [detailViewController.view removeFromSuperview];
-        
+
     }]; 
 }
 

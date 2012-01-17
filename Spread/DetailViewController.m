@@ -45,57 +45,14 @@
     [super viewDidLoad];
 }
 
-- (void)animation1
-{
-    SDWebImageManager *manager = [SDWebImageManager sharedManager];
-    NSURL* feedImageURL = [NSURL URLWithString:self.photo.feedImageURLString];
-    UIImage *cachedFeedImage = [manager imageWithURL:feedImageURL];
-    
-    //// Master view should ensure the feed image is already loaded. ////
-    if ( !cachedFeedImage )
-        return;
-    
-    
-    [self.imageScrollView displayImage:cachedFeedImage];
-    self.imageScrollView.alpha = 0.0;
-    
-    CGRect convertedFrame1 = CGRectOffset(self.originFrame, 0, -20);
-    CGRect convertedFrame = [self.view convertRect:originFrame fromView:nil];
-    self.transientImageView.frame = convertedFrame;
-    self.transientImageView.image = cachedFeedImage;
-    [self.view insertSubview:self.transientImageView aboveSubview:self.imageScrollView];
-}
-
-- (void)animation2
-{
-    CGRect convertedFrame = CGRectOffset(self.originFrame, 0, -20);
-    self.transientImageView.frame = convertedFrame;
-    CGRect targetFrame = [self.imageScrollView convertRect:self.imageScrollView.imageView.frame toView:self.view];
-    
-    [UIView animateWithDuration:0.3 animations:^(void){
-        
-        self.transientImageView.transform = CGAffineTransformIdentity;
-        self.transientImageView.frame = targetFrame;
-        
-    } completion:^(BOOL finished){
-        
-        self.imageScrollView.alpha = 1.0;
-        [self.transientImageView removeFromSuperview];            
-    }];
-
-}
-
 - (void)viewWillAppear:(BOOL)animated
 {
     [super viewWillAppear:animated];
-    
-    
 }
 
 - (void)viewDidAppear:(BOOL)animated
 {
     [super viewDidAppear:animated];
-    
 }
 
 - (void)viewDidUnload
@@ -133,10 +90,14 @@
         self.transientImageView.transform = CGAffineTransformIdentity;
     }
 
-    self.originFrame = CGRectConvertBetweenOrientations(self.originFrame, self.interfaceOrientation, toInterfaceOrientation);
+//    self.originFrame = CGRectConvertBetweenOrientations(self.originFrame, self.interfaceOrientation, toInterfaceOrientation);
 
     [self layoutInfoView];
 }
+
+
+#pragma mark -
+#pragma mark Transition Animation
 
 - (UIImageView*)transientImageView
 {
@@ -147,6 +108,80 @@
         transientImageView.contentMode = UIViewContentModeScaleAspectFill;
     }
     return transientImageView;
+}
+
+- (void)setupTransientImageView
+{
+    SDWebImageManager *manager = [SDWebImageManager sharedManager];
+    NSURL* feedImageURL = [NSURL URLWithString:self.photo.feedImageURLString];
+    UIImage *cachedFeedImage = [manager imageWithURL:feedImageURL];
+    
+    //// Master view should ensure the feed image is already loaded. ////
+    if ( !cachedFeedImage )
+        return;
+    
+    
+    [self.imageScrollView displayImage:cachedFeedImage];
+    self.imageScrollView.alpha = 0.0;
+    
+    CGRect convertedFrame = [self.view convertRect:originFrame fromView:nil];
+    self.transientImageView.frame = convertedFrame;
+    self.transientImageView.image = cachedFeedImage;
+    [self.view insertSubview:self.transientImageView aboveSubview:self.imageScrollView];
+}
+
+- (void)animateImageIntoPlace
+{
+    CGRect convertedFrame = [self.view convertRect:originFrame fromView:nil];
+    self.transientImageView.frame = convertedFrame;
+    CGRect targetFrame = [self.imageScrollView convertRect:self.imageScrollView.imageView.frame toView:self.view];
+    
+    [UIView animateWithDuration:0.3 animations:^(void){
+        
+        self.transientImageView.transform = CGAffineTransformIdentity;
+        self.transientImageView.frame = targetFrame;
+        
+    } completion:^(BOOL finished){
+        
+        self.imageScrollView.alpha = 1.0;
+        [self.transientImageView removeFromSuperview];            
+    }];
+    
+}
+
+- (void)animateImageBackToOriginalPlace
+{
+    CGRect targetFrame = [self.imageScrollView convertRect:self.imageScrollView.imageView.frame toView:self.view];
+    self.transientImageView.frame = targetFrame;
+    self.transientImageView.image = self.imageScrollView.imageView.image;
+    self.transientImageView.transform = CGAffineTransformIdentity;
+    [self.view insertSubview:self.transientImageView aboveSubview:self.imageScrollView];
+    
+    self.imageScrollView.alpha = 0.0;
+    
+    [UIView animateWithDuration:0.3 animations:^(void){
+        
+        CGRect convertedFrame = [self.view convertRect:self.originFrame fromView:nil];
+        self.transientImageView.frame = convertedFrame;
+        
+        if ( self.interfaceOrientation == UIInterfaceOrientationLandscapeLeft )
+        {
+            self.transientImageView.transform = CGAffineTransformMakeRotation(M_PI_2);
+        }
+        else if ( self.interfaceOrientation == UIInterfaceOrientationLandscapeRight )
+        {
+            self.transientImageView.transform = CGAffineTransformMakeRotation(-M_PI_2);
+        }
+        else if ( self.interfaceOrientation == UIInterfaceOrientationPortrait )
+        {
+            self.transientImageView.transform = CGAffineTransformIdentity;
+        }
+        
+    } completion:^(BOOL finished){
+        
+        [[NSNotificationCenter defaultCenter] postNotificationName:SpreadDidDeselectPhotoNotification object:self];
+        //        [self dismissModalViewControllerAnimated:YES];
+    }];
 }
 
 
@@ -179,7 +214,6 @@
         [manager downloadWithURL:largeImageURL delegate:self];
     }
 }
-
 
 - (void)webImageManager:(SDWebImageManager *)imageManager didFinishWithImage:(UIImage *)image
 {
@@ -231,7 +265,6 @@
         }];
     }
 }
-
 
 - (void)hideOverlayView
 {
@@ -286,44 +319,9 @@
 #pragma mark -
 #pragma mark IBAction
 
-
-
-
 - (IBAction)backButtonTapped:(id)sender
 {
-    CGRect targetFrame = [self.imageScrollView convertRect:self.imageScrollView.imageView.frame toView:self.view];
-    self.transientImageView.frame = targetFrame;
-    self.transientImageView.image = self.imageScrollView.imageView.image;
-    self.transientImageView.transform = CGAffineTransformIdentity;
-    [self.view insertSubview:self.transientImageView aboveSubview:self.imageScrollView];
-    
-    self.imageScrollView.alpha = 0.0;
-    
-    [UIView animateWithDuration:0.3 animations:^(void){
-        
-        CGRect convertedFrame1 = CGRectOffset(self.originFrame, 0, 0);
-        CGRect test = CGRectMake(35, 114, 250, 250);
-        CGRect convertedFrame = [self.view convertRect:test fromView:nil];
-        self.transientImageView.frame = convertedFrame;
-        
-        if ( self.interfaceOrientation == UIInterfaceOrientationLandscapeLeft )
-        {
-            self.transientImageView.transform = CGAffineTransformMakeRotation(M_PI_2);
-        }
-        else if ( self.interfaceOrientation == UIInterfaceOrientationLandscapeRight )
-        {
-            self.transientImageView.transform = CGAffineTransformMakeRotation(-M_PI_2);
-        }
-        else if ( self.interfaceOrientation == UIInterfaceOrientationPortrait )
-        {
-            self.transientImageView.transform = CGAffineTransformIdentity;
-        }
-        
-    } completion:^(BOOL finished){
-        
-        [[NSNotificationCenter defaultCenter] postNotificationName:SpreadDidDeselectPhotoNotification object:self];
-//        [self dismissModalViewControllerAnimated:YES];
-    }];
+    [self animateImageBackToOriginalPlace];
 }
 
 - (IBAction)infoButtonTapped:(id)sender
@@ -347,5 +345,7 @@
         [self showNavView];
     }
 }
+
+
 
 @end
