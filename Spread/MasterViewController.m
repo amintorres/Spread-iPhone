@@ -251,8 +251,8 @@ typedef enum{
     CGRect frame = [self.view convertRect:detailViewController.view.frame fromView:nil];
     [self.view addSubview:detailViewController.view];
     detailViewController.view.frame = frame;
-    
     detailViewController.view.alpha = 1.0;
+
     [UIView animateWithDuration:0.3 animations:^(void){
         
         detailViewController.view.alpha = 0.0;
