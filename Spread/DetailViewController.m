@@ -45,10 +45,8 @@
     [super viewDidLoad];
 }
 
-- (void)viewWillAppear:(BOOL)animated
+- (void)animation1
 {
-    [super viewWillAppear:animated];
-    
     SDWebImageManager *manager = [SDWebImageManager sharedManager];
     NSURL* feedImageURL = [NSURL URLWithString:self.photo.feedImageURLString];
     UIImage *cachedFeedImage = [manager imageWithURL:feedImageURL];
@@ -57,7 +55,7 @@
     if ( !cachedFeedImage )
         return;
     
-        
+    
     [self.imageScrollView displayImage:cachedFeedImage];
     self.imageScrollView.alpha = 0.0;
     
@@ -67,12 +65,10 @@
     [self.view insertSubview:self.transientImageView aboveSubview:self.imageScrollView];
 }
 
-- (void)viewDidAppear:(BOOL)animated
+- (void)animation2
 {
-    [super viewDidAppear:animated];
-    
     CGRect targetFrame = [self.imageScrollView convertRect:self.imageScrollView.imageView.frame toView:self.view];
-
+    
     [UIView animateWithDuration:0.3 animations:^(void){
         
         self.transientImageView.transform = CGAffineTransformIdentity;
@@ -83,6 +79,20 @@
         self.imageScrollView.alpha = 1.0;
         [self.transientImageView removeFromSuperview];            
     }];
+
+}
+
+- (void)viewWillAppear:(BOOL)animated
+{
+    [super viewWillAppear:animated];
+    
+    
+}
+
+- (void)viewDidAppear:(BOOL)animated
+{
+    [super viewDidAppear:animated];
+    
 }
 
 - (void)viewDidUnload
@@ -219,6 +229,7 @@
     }
 }
 
+
 - (void)hideOverlayView
 {
     if ( overlayView.superview )
@@ -272,6 +283,9 @@
 #pragma mark -
 #pragma mark IBAction
 
+
+
+
 - (IBAction)backButtonTapped:(id)sender
 {
     CGRect targetFrame = [self.imageScrollView convertRect:self.imageScrollView.imageView.frame toView:self.view];
@@ -279,14 +293,14 @@
     self.transientImageView.image = self.imageScrollView.imageView.image;
     self.transientImageView.transform = CGAffineTransformIdentity;
     [self.view insertSubview:self.transientImageView aboveSubview:self.imageScrollView];
-        
+    
     self.imageScrollView.alpha = 0.0;
     
     [UIView animateWithDuration:0.3 animations:^(void){
         
         CGRect convertedFrame = CGRectOffset(self.originFrame, 0, -20);
         self.transientImageView.frame = convertedFrame;
-
+        
         if ( self.interfaceOrientation == UIInterfaceOrientationLandscapeLeft )
         {
             self.transientImageView.transform = CGAffineTransformMakeRotation(M_PI_2);
@@ -299,10 +313,11 @@
         {
             self.transientImageView.transform = CGAffineTransformIdentity;
         }
-
+        
     } completion:^(BOOL finished){
-    
-        [self dismissModalViewControllerAnimated:YES];
+        
+        [[NSNotificationCenter defaultCenter] postNotificationName:SpreadDidDeselectPhotoNotification object:self];
+//        [self dismissModalViewControllerAnimated:YES];
     }];
 }
 
