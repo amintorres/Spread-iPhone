@@ -59,7 +59,8 @@
     [self.imageScrollView displayImage:cachedFeedImage];
     self.imageScrollView.alpha = 0.0;
     
-    CGRect convertedFrame = CGRectOffset(self.originFrame, 0, -20);
+    CGRect convertedFrame1 = CGRectOffset(self.originFrame, 0, -20);
+    CGRect convertedFrame = [self.view convertRect:originFrame fromView:nil];
     self.transientImageView.frame = convertedFrame;
     self.transientImageView.image = cachedFeedImage;
     [self.view insertSubview:self.transientImageView aboveSubview:self.imageScrollView];
@@ -67,6 +68,8 @@
 
 - (void)animation2
 {
+    CGRect convertedFrame = CGRectOffset(self.originFrame, 0, -20);
+    self.transientImageView.frame = convertedFrame;
     CGRect targetFrame = [self.imageScrollView convertRect:self.imageScrollView.imageView.frame toView:self.view];
     
     [UIView animateWithDuration:0.3 animations:^(void){
@@ -298,7 +301,9 @@
     
     [UIView animateWithDuration:0.3 animations:^(void){
         
-        CGRect convertedFrame = CGRectOffset(self.originFrame, 0, -20);
+        CGRect convertedFrame1 = CGRectOffset(self.originFrame, 0, 0);
+        CGRect test = CGRectMake(35, 114, 250, 250);
+        CGRect convertedFrame = [self.view convertRect:test fromView:nil];
         self.transientImageView.frame = convertedFrame;
         
         if ( self.interfaceOrientation == UIInterfaceOrientationLandscapeLeft )
