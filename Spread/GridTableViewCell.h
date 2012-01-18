@@ -12,9 +12,16 @@
 
 @interface GridTableViewCell : UITableViewCell
 
-@property (strong, nonatomic) IBOutlet UIImageView *imageViewLeft;
-@property (strong, nonatomic) IBOutlet UIImageView *imageViewMiddle;
-@property (strong, nonatomic) IBOutlet UIImageView *imageViewRight;
+@property (strong, nonatomic) IBOutlet UIButton *leftButton;
+@property (strong, nonatomic) IBOutlet UIButton *middleButton;
+@property (strong, nonatomic) IBOutlet UIButton *rightButton;
+@property (strong, nonatomic) IBOutlet UIImageView *leftImageView;
+@property (strong, nonatomic) IBOutlet UIImageView *middleImageView;
+@property (strong, nonatomic) IBOutlet UIImageView *rightImageView;
 @property (strong, nonatomic) NSArray* photos;
+
+- (IBAction)leftButtonTapped:(id)sender;
+- (IBAction)middleButtonTapped:(id)sender;
+- (IBAction)rightButtonTapped:(id)sender;
 
 @end

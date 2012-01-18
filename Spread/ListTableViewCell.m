@@ -19,12 +19,21 @@
 
 - (void)setPhoto:(Photo *)aPhoto
 {
-    photo = aPhoto;
+    if ( photo == aPhoto )
+    {
+        //// Triggers by update. Use currently displaying image as placeholder to avoid flicker. ////
+        UIImage* oldImage = imageView.image;
+        [imageView setImageWithURL:[NSURL URLWithString:photo.feedImageURLString] placeholderImage:oldImage];
+    }
+    else
+    {
+        //// Triggers by scroll. Set placeholder to nil to clear image view first. ////
+        photo = aPhoto;
+        [imageView setImageWithURL:[NSURL URLWithString:photo.feedImageURLString]];
+    }
     
     titleLabel.text = photo.title;
     descriptionLabel.text = photo.photoDescription;
-    
-    [imageView setImageWithURL:[NSURL URLWithString:photo.feedImageURLString]];
 }
 
 
