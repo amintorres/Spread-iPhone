@@ -278,12 +278,6 @@ typedef enum{
 #pragma mark -
 #pragma mark IBAction
 
-- (IBAction)refreshButtonTapped:(id)sender
-{
-    [ServiceManager loadDataFromServer];
-    [ServiceManager updateUserInfo];
-}
-
 - (IBAction)gridListButtonTapped:(id)sender
 {
     if ( self.containerViewMode == ContainerViewModeList )

@@ -8,12 +8,11 @@
 
 #import <UIKit/UIKit.h>
 #import "ListTableViewCell.h"
+#import "PullRefreshTableViewController.h"
 
 
+@interface ListViewController : PullRefreshTableViewController
 
-@interface ListViewController : UIViewController
-
-@property (strong, nonatomic) IBOutlet UITableView *tableView;
 @property (strong, nonatomic) IBOutlet ListTableViewCell *nibLoadedCell;
 
 - (void)scrollToPhoto:(Photo*)photo;

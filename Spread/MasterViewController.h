@@ -25,7 +25,6 @@ extern NSString * const SpreadDidDeselectPhotoNotification;
 @property (strong, nonatomic) IBOutlet UIButton *gridListButton;
 @property (strong, nonatomic) IBOutlet UIView *cameraOverlayView;
 
-- (IBAction)refreshButtonTapped:(id)sender;
 - (IBAction)gridListButtonTapped:(id)sender;
 - (IBAction)cameraButtonTapped:(id)sender;
 - (IBAction)aboutButtonTapped:(id)sender;
