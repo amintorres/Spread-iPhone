@@ -154,6 +154,13 @@
 			remoteGlobalIDString = 7C9F93AE149960C300126908;
 			remoteInfo = Spread;
 		};
+		7CDEB3D514C8B23700518E98 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 7CDEB3CD14C8B23600518E98 /* PullToRefresh.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 1D6058910D05DD3D006BFB54;
+			remoteInfo = PullToRefresh;
+		};
 		7CE85AE714A221A6002874EA /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = 7CE85AE014A221A6002874EA /* SDWebImage.xcodeproj */;
@@ -269,6 +276,7 @@
 		7C9F93E7149960C400126908 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		7C9F93E9149960C400126908 /* SpreadTests.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SpreadTests.h; sourceTree = "<group>"; };
 		7C9F93EA149960C400126908 /* SpreadTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SpreadTests.m; sourceTree = "<group>"; };
+		7CDEB3CD14C8B23600518E98 /* PullToRefresh.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = PullToRefresh.xcodeproj; path = PullToRefresh/PullToRefresh.xcodeproj; sourceTree = SOURCE_ROOT; };
 		7CE85ADD14A21804002874EA /* SpreadAPIDefinition.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SpreadAPIDefinition.h; sourceTree = "<group>"; };
 		7CE85ADE14A21804002874EA /* SpreadAPIDefinition.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SpreadAPIDefinition.m; sourceTree = "<group>"; };
 		7CE85AE014A221A6002874EA /* SDWebImage.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = SDWebImage.xcodeproj; path = SDWebImage/SDWebImage.xcodeproj; sourceTree = "<group>"; };
@@ -349,6 +357,7 @@
 			isa = PBXGroup;
 			children = (
 				7C7C1ABB14BDE9D500AA6CB2 /* TestFlightSDK0.8.2 */,
+				7CDEB3CD14C8B23600518E98 /* PullToRefresh.xcodeproj */,
 				7C94C27814A2886C005531FB /* AQGridView.xcodeproj */,
 				7CE85AE014A221A6002874EA /* SDWebImage.xcodeproj */,
 				7C633039149FE50800BF2049 /* RestKit.xcodeproj */,
@@ -547,6 +556,14 @@
 			name = "Supporting Files";
 			sourceTree = "<group>";
 		};
+		7CDEB3CE14C8B23600518E98 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				7CDEB3D614C8B23700518E98 /* PullToRefresh.app */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
 		7CE85ADC14A217BA002874EA /* Utilities */ = {
 			isa = PBXGroup;
 			children = (
@@ -739,6 +756,10 @@
 					ProjectRef = 7C94C27814A2886C005531FB /* AQGridView.xcodeproj */;
 				},
 				{
+					ProductGroup = 7CDEB3CE14C8B23600518E98 /* Products */;
+					ProjectRef = 7CDEB3CD14C8B23600518E98 /* PullToRefresh.xcodeproj */;
+				},
+				{
 					ProductGroup = 7C63303A149FE50800BF2049 /* Products */;
 					ProjectRef = 7C633039149FE50800BF2049 /* RestKit.xcodeproj */;
 				},
@@ -789,6 +810,13 @@
 			fileType = archive.ar;
 			path = libAQGridView.a;
 			remoteRef = 7C94C27C14A2886C005531FB /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		7CDEB3D614C8B23700518E98 /* PullToRefresh.app */ = {
+			isa = PBXReferenceProxy;
+			fileType = wrapper.application;
+			path = PullToRefresh.app;
+			remoteRef = 7CDEB3D514C8B23700518E98 /* PBXContainerItemProxy */;
 			sourceTree = BUILT_PRODUCTS_DIR;
 		};
 		7CE85AE814A221A6002874EA /* libSDWebImage.a */ = {
