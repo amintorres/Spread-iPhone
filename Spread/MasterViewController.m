@@ -84,14 +84,14 @@ typedef enum{
     [[NSNotificationCenter defaultCenter] addObserverForName:SpreadDidSelectPhotoNotification object:nil queue:nil usingBlock:^(NSNotification* notification){
         
         Photo* photo = [notification.userInfo objectForKey:@"photo"];
-        if ( notification.object == gridViewController )
+        if ( notification.object == listViewController )
+        {
+            [self showDetailViewForPhoto:photo];
+        }
+        else
         {
             [self showListView];
             [self.listViewController scrollToPhoto:photo];
-        }
-        else if ( notification.object == listViewController )
-        {
-            [self showDetailViewForPhoto:photo];
         }
     }];
     
