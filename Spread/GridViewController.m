@@ -23,7 +23,6 @@
 
 @implementation GridViewController
 
-@synthesize tableView;
 @synthesize headerView;
 @synthesize footerView;
 @synthesize avatarImageView;
@@ -39,27 +38,20 @@
 {
     [super viewDidLoad];
     
-    [[NSNotificationCenter defaultCenter] addObserverForName:ServiceManagerDidLoadPhotosNotification object:nil queue:nil usingBlock:^(NSNotification* notification){
-        
-        [tableView reloadData];
-    }];
-    
-    tableView.tableHeaderView = headerView;
-    tableView.tableFooterView = footerView;
+    self.tableView.tableHeaderView = headerView;
+    self.tableView.tableFooterView = footerView;
     
     [self updateUserInfo];
-    
 }
 
 - (void)viewWillAppear:(BOOL)animated
 {
     [super viewWillAppear:animated];
-    [tableView reloadData];
+    [self.tableView reloadData];
 }
 
 - (void)viewDidUnload
 {
-    self.tableView = nil;
     self.headerView = nil;
     self.footerView = nil;
     self.avatarImageView = nil;

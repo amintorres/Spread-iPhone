@@ -8,11 +8,11 @@
 
 #import <UIKit/UIKit.h>
 #import "GridTableViewCell.h"
+#import "PullRefreshTableViewController.h"
 
 
-@interface GridViewController : UIViewController
+@interface GridViewController : PullRefreshTableViewController
 
-@property (strong, nonatomic) IBOutlet UITableView *tableView;
 @property (strong, nonatomic) IBOutlet UIView *headerView;
 @property (strong, nonatomic) IBOutlet UIView *footerView;
 @property (strong, nonatomic) IBOutlet UIImageView *avatarImageView;

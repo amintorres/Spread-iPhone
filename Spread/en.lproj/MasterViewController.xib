@@ -13,7 +13,6 @@
 		<array key="IBDocument.IntegratedClassDependencies">
 			<string>IBUINavigationItem</string>
 			<string>IBUIButton</string>
-			<string>IBUIBarButtonItem</string>
 			<string>IBUIView</string>
 			<string>IBUINavigationBar</string>
 			<string>IBProxyObject</string>
@@ -52,12 +51,6 @@
 							<object class="IBUINavigationItem" id="764139847">
 								<reference key="IBUINavigationBar" ref="585005293"/>
 								<string key="IBUITitle"/>
-								<object class="IBUIBarButtonItem" key="IBUIRightBarButtonItem" id="1044853147">
-									<string key="targetRuntimeIdentifier">IBCocoaTouchFramework</string>
-									<int key="IBUIStyle">1</int>
-									<reference key="IBUINavigationItem" ref="764139847"/>
-									<int key="IBUISystemItemIdentifier">13</int>
-								</object>
 								<string key="targetRuntimeIdentifier">IBCocoaTouchFramework</string>
 							</object>
 						</array>
@@ -163,7 +156,6 @@
 								<string key="NSFrame">{{193, 0}, {50, 50}}</string>
 								<reference key="NSSuperview" ref="261824752"/>
 								<reference key="NSWindow"/>
-								<reference key="NSNextKeyView"/>
 								<string key="NSReuseIdentifierKey">_NS:225</string>
 								<bool key="IBUIOpaque">NO</bool>
 								<string key="targetRuntimeIdentifier">IBCocoaTouchFramework</string>
@@ -201,7 +193,6 @@
 				<string key="NSFrame">{{0, 20}, {320, 460}}</string>
 				<reference key="NSSuperview"/>
 				<reference key="NSWindow"/>
-				<reference key="NSNextKeyView"/>
 				<string key="NSReuseIdentifierKey">_NS:196</string>
 				<object class="NSColor" key="IBUIBackgroundColor">
 					<int key="NSColorSpace">3</int>
@@ -491,14 +482,6 @@
 					</object>
 					<int key="connectionID">51</int>
 				</object>
-				<object class="IBConnectionRecord">
-					<object class="IBCocoaTouchEventConnection" key="connection">
-						<string key="label">refreshButtonTapped:</string>
-						<reference key="source" ref="1044853147"/>
-						<reference key="destination" ref="841351856"/>
-					</object>
-					<int key="connectionID">59</int>
-				</object>
 			</array>
 			<object class="IBMutableOrderedSet" key="objectRecords">
 				<array key="orderedObjects">
@@ -623,15 +606,8 @@
 					<object class="IBObjectRecord">
 						<int key="objectID">55</int>
 						<reference key="object" ref="764139847"/>
-						<array class="NSMutableArray" key="children">
-							<reference ref="1044853147"/>
-						</array>
+						<array class="NSMutableArray" key="children"/>
 						<reference key="parent" ref="585005293"/>
-					</object>
-					<object class="IBObjectRecord">
-						<int key="objectID">56</int>
-						<reference key="object" ref="1044853147"/>
-						<reference key="parent" ref="764139847"/>
 					</object>
 				</array>
 			</object>
@@ -655,7 +631,6 @@
 				<string key="50.IBPluginDependency">com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
 				<string key="54.IBPluginDependency">com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
 				<string key="55.IBPluginDependency">com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
-				<string key="56.IBPluginDependency">com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
 				<string key="6.IBPluginDependency">com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
 			</dictionary>
 			<dictionary class="NSMutableDictionary" key="unlocalizedProperties"/>
@@ -674,7 +649,6 @@
 						<string key="albumButtonTapped:">id</string>
 						<string key="cameraButtonTapped:">id</string>
 						<string key="gridListButtonTapped:">id</string>
-						<string key="refreshButtonTapped:">id</string>
 					</dictionary>
 					<dictionary class="NSMutableDictionary" key="actionInfosByName">
 						<object class="IBActionInfo" key="aboutButtonTapped:">
@@ -691,10 +665,6 @@
 						</object>
 						<object class="IBActionInfo" key="gridListButtonTapped:">
 							<string key="name">gridListButtonTapped:</string>
-							<string key="candidateClassName">id</string>
-						</object>
-						<object class="IBActionInfo" key="refreshButtonTapped:">
-							<string key="name">refreshButtonTapped:</string>
 							<string key="candidateClassName">id</string>
 						</object>
 					</dictionary>

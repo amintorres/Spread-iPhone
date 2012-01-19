@@ -16,7 +16,6 @@
 
 @implementation ListViewController
 
-@synthesize tableView;
 @synthesize nibLoadedCell;
 
 
@@ -27,24 +26,18 @@
 {
     [super viewDidLoad];
     
-    tableView.backgroundColor = [UIColor colorWithWhite:0.8 alpha:1.0];
-    tableView.separatorColor = [UIColor colorWithWhite:0.8 alpha:1.0];
-    
-    [[NSNotificationCenter defaultCenter] addObserverForName:ServiceManagerDidLoadPhotosNotification object:nil queue:nil usingBlock:^(NSNotification* notification){
-       
-        [tableView reloadData];
-    }];
+    self.tableView.backgroundColor = [UIColor clearColor];
+    self.tableView.separatorColor = [UIColor colorWithWhite:0.8 alpha:1.0];
 }
 
 - (void)viewWillAppear:(BOOL)animated
 {
     [super viewWillAppear:animated];
-    [tableView reloadData];
+    [self.tableView reloadData];
 }
 
 - (void)viewDidUnload
 {
-    self.tableView = nil;
     self.nibLoadedCell = nil;
     [super viewDidUnload];
 }
@@ -90,7 +83,7 @@
 {
     NSInteger index = [[ServiceManager allPhotos] indexOfObject:photo];
     NSIndexPath* indexPath = [NSIndexPath indexPathForRow:index inSection:0];
-    [tableView scrollToRowAtIndexPath:indexPath atScrollPosition:UITableViewScrollPositionMiddle animated:YES];
+    [self.tableView scrollToRowAtIndexPath:indexPath atScrollPosition:UITableViewScrollPositionMiddle animated:YES];
 }
 
 - (UIImageView*)imageViewForPhoto:(Photo*)photo
