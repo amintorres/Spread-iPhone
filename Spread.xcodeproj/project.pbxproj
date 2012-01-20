@@ -1015,7 +1015,7 @@
 					"\"$(SOURCE_ROOT)/AQGridView\"/**",
 				);
 				INFOPLIST_FILE = "Spread/Spread-Info.plist";
-				IPHONEOS_DEPLOYMENT_TARGET = 4.1;
+				IPHONEOS_DEPLOYMENT_TARGET = 4.3;
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
 					"\"$(SRCROOT)/TestFlightSDK0.8.2\"",
@@ -1103,7 +1103,7 @@
 					"\"$(SOURCE_ROOT)/AQGridView\"/**",
 				);
 				INFOPLIST_FILE = "Spread/Spread-Info.plist";
-				IPHONEOS_DEPLOYMENT_TARGET = 4.1;
+				IPHONEOS_DEPLOYMENT_TARGET = 4.3;
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
 					"\"$(SRCROOT)/TestFlightSDK0.8.2\"",
@@ -1128,7 +1128,7 @@
 					"\"$(SOURCE_ROOT)/AQGridView\"/**",
 				);
 				INFOPLIST_FILE = "Spread/Spread-Info.plist";
-				IPHONEOS_DEPLOYMENT_TARGET = 4.1;
+				IPHONEOS_DEPLOYMENT_TARGET = 4.3;
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
 					"\"$(SRCROOT)/TestFlightSDK0.8.2\"",
