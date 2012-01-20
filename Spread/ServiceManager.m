@@ -159,7 +159,7 @@ NSString * const ServiceManagerDidLoadPhotosNotification = @"ServiceManagerDidLo
 + (void)updateUserInfo
 {
     RKObjectManager* objectManager = [RKObjectManager sharedManager];
-    [objectManager loadObjectsAtResourcePath:[SpreadAPIDefinition loginPath] delegate:[ServiceManager sharedManager] block:^(RKObjectLoader* loader) {
+    [objectManager loadObjectsAtResourcePath:[SpreadAPIDefinition userInfoPath] delegate:[ServiceManager sharedManager] block:^(RKObjectLoader* loader) {
         
         loader.objectMapping = [objectManager.mappingProvider objectMappingForClass:[User class]];
     }];
