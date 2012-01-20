@@ -13,6 +13,7 @@
 NSString * const SpreadDidLoginNotification = @"SpreadDidLoginNotification";
 NSString * const SpreadDidLoadUserInfoNotification = @"SpreadDidLoadUserInfoNotification";
 NSString * const SpreadDidLoadPhotosNotification = @"SpreadDidLoadPhotosNotification";
+NSString * const SpreadDidRequestInviteNotification = @"SpreadDidRequestInviteNotification";
 
 
 
@@ -179,8 +180,8 @@ NSString * const SpreadDidLoadPhotosNotification = @"SpreadDidLoadPhotosNotifica
 + (void)requestInviteWithEmail:(NSString*)email name:(NSString*)name
 {
     NSDictionary* params = [NSDictionary dictionaryWithObjectsAndKeys:
-                            email, @"params[:user][:email]",
-                            name, @"params[:user][:name]", nil];
+                            email, @"ri[email]",
+                            name, @"ri[name]", nil];
     [[RKClient sharedClient] post:[SpreadAPIDefinition invitePath] params:params delegate:[ServiceManager sharedManager]]; 
 }
 
@@ -303,7 +304,17 @@ NSString * const SpreadDidLoadPhotosNotification = @"SpreadDidLoadPhotosNotifica
 {
     if ([request wasSentToResourcePath:[SpreadAPIDefinition invitePath]])
     {
-        NSLog(@"response: %@", response);
+        NSDictionary* JSONDict = [response parsedBody:nil];
+        if ( [[JSONDict objectForKey:@"success"] boolValue] )
+        {
+            UIAlertView* alert = [[UIAlertView alloc] initWithTitle:@"Request Sent" message:@"Thanks! We'll send you an invite as soon as we can." delegate:self cancelButtonTitle:@"Dismiss" otherButtonTitles:nil];
+            [alert show];
+        }
+        else
+        {
+            UIAlertView* alert = [[UIAlertView alloc] initWithTitle:@"Invalid Request" message:@"Please try again." delegate:nil cancelButtonTitle:@"Dismiss" otherButtonTitles:nil];
+            [alert show];            
+        }
     }
 }
 
@@ -312,8 +323,15 @@ NSString * const SpreadDidLoadPhotosNotification = @"SpreadDidLoadPhotosNotifica
     if ([request wasSentToResourcePath:[SpreadAPIDefinition invitePath]])
     {
         NSLog(@"error: %@", error);
+        UIAlertView* alert = [[UIAlertView alloc] initWithTitle:@"Error" message:@"Something's wrong with the network. Please try again." delegate:nil cancelButtonTitle:@"Dismiss" otherButtonTitles:nil];
+        [alert show];
     }
 }
 
+
+- (void)alertView:(UIAlertView *)alertView didDismissWithButtonIndex:(NSInteger)buttonIndex
+{
+    [[NSNotificationCenter defaultCenter] postNotificationName:SpreadDidRequestInviteNotification object:self];
+}
 
 @end
