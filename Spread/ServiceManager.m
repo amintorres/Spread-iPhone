@@ -52,7 +52,8 @@ NSString * const SpreadDidRequestInviteNotification = @"SpreadDidRequestInviteNo
     {
         NSFetchRequest* request = [Photo fetchRequest];
         NSSortDescriptor* descriptor = [NSSortDescriptor sortDescriptorWithKey:@"createdDate" ascending:NO];
-        [request setSortDescriptors:[NSArray arrayWithObject:descriptor]];
+        request.sortDescriptors = [NSArray arrayWithObject:descriptor];
+        request.predicate = [NSPredicate predicateWithFormat:@"photoID != nil"];
         
         allPhotos = [Photo objectsWithFetchRequest:request];
     }
@@ -84,13 +85,14 @@ NSString * const SpreadDidRequestInviteNotification = @"SpreadDidRequestInviteNo
      */
     RKManagedObjectMapping* photoMapping = [RKManagedObjectMapping mappingForClass:[Photo class]];
     photoMapping.primaryKeyAttribute = @"photoID";
+    photoMapping.rootKeyPath = @"photo";
     [photoMapping mapKeyPath:@"id" toAttribute:@"photoID"];
     [photoMapping mapKeyPath:@"camera" toAttribute:@"camera"];
     [photoMapping mapKeyPath:@"captured_at" toAttribute:@"capturedDate"];
     [photoMapping mapKeyPath:@"created_at" toAttribute:@"createdDate"];
-    [photoMapping mapKeyPath:@"image.thumb.url" toAttribute:@"gridImageURLString"];
-    [photoMapping mapKeyPath:@"image.iphone.url" toAttribute:@"feedImageURLString"];
-    [photoMapping mapKeyPath:@"image.url" toAttribute:@"largeImageURLString"];
+    [photoMapping mapKeyPath:@"image.iphone.grid.url" toAttribute:@"gridImageURLString"];
+    [photoMapping mapKeyPath:@"image.iphone.square.url" toAttribute:@"feedImageURLString"];
+    [photoMapping mapKeyPath:@"image.iphone.url" toAttribute:@"largeImageURLString"];
     [photoMapping mapKeyPath:@"description" toAttribute:@"photoDescription"];
     [photoMapping mapKeyPath:@"title" toAttribute:@"title"];
     [photoMapping mapKeyPath:@"tag_list_csv" toAttribute:@"csvTags"];
@@ -263,11 +265,7 @@ NSString * const SpreadDidRequestInviteNotification = @"SpreadDidRequestInviteNo
     }
     else if ( [[objects lastObject] isMemberOfClass:[Photo class]] )
     {
-        NSFetchRequest* request = [Photo fetchRequest];
-        NSSortDescriptor* descriptor = [NSSortDescriptor sortDescriptorWithKey:@"createdDate" ascending:NO];
-        [request setSortDescriptors:[NSArray arrayWithObject:descriptor]];
-        
-        self.allPhotos = [Photo objectsWithFetchRequest:request];
+        self.allPhotos = nil;   // This will trigger reload on the next access.
         [[NSNotificationCenter defaultCenter] postNotificationName:SpreadDidLoadPhotosNotification object:self];
     }
 }
