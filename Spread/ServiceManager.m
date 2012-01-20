@@ -132,7 +132,6 @@ NSString * const SpreadDidLoadPhotosNotification = @"SpreadDidLoadPhotosNotifica
 }
 
 
-
 #pragma mark -
 #pragma mark Login/Logout
 
@@ -179,8 +178,10 @@ NSString * const SpreadDidLoadPhotosNotification = @"SpreadDidLoadPhotosNotifica
 
 + (void)requestInviteWithEmail:(NSString*)email name:(NSString*)name
 {
-    UIAlertView* alert = [[UIAlertView alloc] initWithTitle:@"TBD" message:nil delegate:nil cancelButtonTitle:@"Dismiss" otherButtonTitles:nil];
-    [alert show];
+    NSDictionary* params = [NSDictionary dictionaryWithObjectsAndKeys:
+                            email, @"params[:user][:email]",
+                            name, @"params[:user][:name]", nil];
+    [[RKClient sharedClient] post:[SpreadAPIDefinition invitePath] params:params delegate:[ServiceManager sharedManager]]; 
 }
 
 
@@ -299,11 +300,19 @@ NSString * const SpreadDidLoadPhotosNotification = @"SpreadDidLoadPhotosNotifica
 #pragma mark RKRequest Delegate
 
 - (void)request:(RKRequest*)request didLoadResponse:(RKResponse*)response
-{      
+{
+    if ([request wasSentToResourcePath:[SpreadAPIDefinition invitePath]])
+    {
+        NSLog(@"response: %@", response);
+    }
 }
 
 - (void)request:(RKRequest *)request didFailLoadWithError:(NSError *)error
 {
+    if ([request wasSentToResourcePath:[SpreadAPIDefinition invitePath]])
+    {
+        NSLog(@"error: %@", error);
+    }
 }
 
 

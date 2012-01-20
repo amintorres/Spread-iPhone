@@ -25,6 +25,16 @@
 
 
 #pragma mark -
+#pragma mark Invite Path
+
++ (NSString*)invitePath
+{
+    static NSString* const invitePath = @"/ri";
+    return invitePath;
+}
+
+
+#pragma mark -
 #pragma mark User Path
 
 + (NSString*)loginPath

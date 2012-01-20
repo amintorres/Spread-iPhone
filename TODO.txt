@@ -11,4 +11,4 @@
 
 - Add subviews in 'About' page.
 
-- Redo grid view.
+- Add invite.

@@ -17,6 +17,9 @@
 + (NSString*)baseURL;
 
 
+// Invite
++ (NSString*)invitePath;
+
 // User Path
 + (NSString*)loginPath;
 + (NSString*)logoutPath;
