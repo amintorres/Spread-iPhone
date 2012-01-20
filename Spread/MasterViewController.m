@@ -211,6 +211,7 @@ typedef enum{
                     completion:NULL];
     
     [ServiceManager loadDataFromServer];
+    [ServiceManager loadUserInfoFromServer];
     [self showListView];
 }
 

@@ -17,9 +17,12 @@
 + (NSString*)baseURL;
 
 
-// Path
+// User Path
 + (NSString*)loginPath;
 + (NSString*)logoutPath;
++ (NSString*)userInfoPath;
+
+// Photo Path
 + (NSString*)allPhotosPath;
 + (NSString*)postPhotoPath;
 + (NSString*)putPhotoPath;

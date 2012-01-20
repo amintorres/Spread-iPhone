@@ -42,7 +42,7 @@
     [self.view insertSubview:self.pullRefreshHeaderView belowSubview:self.tableView];
     
     
-    [[NSNotificationCenter defaultCenter] addObserverForName:ServiceManagerDidLoadPhotosNotification object:nil queue:nil usingBlock:^(NSNotification* notification){
+    [[NSNotificationCenter defaultCenter] addObserverForName:SpreadDidLoadPhotosNotification object:nil queue:nil usingBlock:^(NSNotification* notification){
         
         [self.tableView reloadData];
         [self stopLoading];
@@ -148,7 +148,7 @@
 - (void)refresh
 {
     [ServiceManager loadDataFromServer];
-    [ServiceManager updateUserInfo];
+    [ServiceManager loadUserInfoFromServer];
 }
 
 

@@ -25,7 +25,7 @@
 
 
 #pragma mark -
-#pragma mark Path
+#pragma mark User Path
 
 + (NSString*)loginPath
 {
@@ -38,6 +38,16 @@
     static NSString* const logoutPath = @"/logout";
     return logoutPath;
 }
+
++ (NSString*)userInfoPath
+{
+    NSString* userInfoPath = [NSString stringWithFormat:@"/users/me.json?%@", [self userCredentialsQuery]];
+    return userInfoPath;
+}
+
+
+#pragma mark -
+#pragma mark Photo Path
 
 + (NSString*)allPhotosPath
 {

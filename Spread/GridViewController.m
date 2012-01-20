@@ -42,6 +42,11 @@
     self.tableView.tableFooterView = footerView;
     
     [self updateUserInfo];
+    
+    [[NSNotificationCenter defaultCenter] addObserverForName:SpreadDidLoginNotification object:nil queue:nil usingBlock:^(NSNotification* notification){
+        
+        [self updateUserInfo];
+    }];
 }
 
 - (void)viewWillAppear:(BOOL)animated
