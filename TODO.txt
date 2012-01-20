@@ -10,5 +10,3 @@
 - Add upload progress bar.
 
 - Add subviews in 'About' page.
-
-- Add invite.
