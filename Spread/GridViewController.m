@@ -43,7 +43,7 @@
     
     [self updateUserInfo];
     
-    [[NSNotificationCenter defaultCenter] addObserverForName:SpreadDidLoginNotification object:nil queue:nil usingBlock:^(NSNotification* notification){
+    [[NSNotificationCenter defaultCenter] addObserverForName:SpreadDidLoadUserInfoNotification object:nil queue:nil usingBlock:^(NSNotification* notification){
         
         [self updateUserInfo];
     }];
@@ -53,6 +53,7 @@
 {
     [super viewWillAppear:animated];
     [self.tableView reloadData];
+    [self updateUserInfo];
 }
 
 - (void)viewDidUnload

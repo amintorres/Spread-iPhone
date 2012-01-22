@@ -102,5 +102,16 @@
 }
 
 
+#pragma mark -
+#pragma mark Support Email
+
++ (NSString*)supportEmail
+{
+    static NSString* const supportEmail = @"joinspread@gmail.com";
+    return supportEmail;
+}
+
+
+
 
 @end

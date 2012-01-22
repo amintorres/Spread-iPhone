@@ -20,6 +20,12 @@
 		7C3F37D014C4D89C00E39B3F /* icon_info@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 7C3F37CA14C4D89C00E39B3F /* icon_info@2x.png */; };
 		7C3F37D314C4DE3F00E39B3F /* UILabel+Resizing.m in Sources */ = {isa = PBXBuildFile; fileRef = 7C3F37D214C4DE3F00E39B3F /* UILabel+Resizing.m */; };
 		7C57F26D14BFA5A300906DE8 /* Entitlements.plist in Resources */ = {isa = PBXBuildFile; fileRef = 7C57F26C14BFA5A300906DE8 /* Entitlements.plist */; };
+		7C62EA1F14CCB5400003FFF4 /* About.html in Resources */ = {isa = PBXBuildFile; fileRef = 7C62EA1C14CCB5400003FFF4 /* About.html */; };
+		7C62EA2014CCB5400003FFF4 /* privacy.html in Resources */ = {isa = PBXBuildFile; fileRef = 7C62EA1D14CCB5400003FFF4 /* privacy.html */; };
+		7C62EA2114CCB5400003FFF4 /* terms.html in Resources */ = {isa = PBXBuildFile; fileRef = 7C62EA1E14CCB5400003FFF4 /* terms.html */; };
+		7C62EA2514CCB56E0003FFF4 /* WebViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7C62EA2314CCB56E0003FFF4 /* WebViewController.m */; };
+		7C62EA2614CCB56E0003FFF4 /* WebViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 7C62EA2414CCB56E0003FFF4 /* WebViewController.xib */; };
+		7C62EA2814CCB77B0003FFF4 /* MessageUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7C62EA2714CCB77B0003FFF4 /* MessageUI.framework */; };
 		7C66003014AA1C3A00C285B1 /* ListTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 7C66002F14AA1C3A00C285B1 /* ListTableViewCell.m */; };
 		7C66003214AA1C4C00C285B1 /* ListTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 7C66003114AA1C4C00C285B1 /* ListTableViewCell.xib */; };
 		7C6CFBF114BD2BE70048644C /* RoundedRectButton.m in Sources */ = {isa = PBXBuildFile; fileRef = 7C6CFBF014BD2BE70048644C /* RoundedRectButton.m */; };
@@ -184,6 +190,13 @@
 		7C3F37D214C4DE3F00E39B3F /* UILabel+Resizing.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UILabel+Resizing.m"; sourceTree = "<group>"; };
 		7C57F26C14BFA5A300906DE8 /* Entitlements.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Entitlements.plist; sourceTree = SOURCE_ROOT; };
 		7C5AC38614AC083D00856DC9 /* ImageIO.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = ImageIO.framework; path = System/Library/Frameworks/ImageIO.framework; sourceTree = SDKROOT; };
+		7C62EA1C14CCB5400003FFF4 /* About.html */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.html; path = About.html; sourceTree = "<group>"; };
+		7C62EA1D14CCB5400003FFF4 /* privacy.html */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.html; path = privacy.html; sourceTree = "<group>"; };
+		7C62EA1E14CCB5400003FFF4 /* terms.html */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.html; path = terms.html; sourceTree = "<group>"; };
+		7C62EA2214CCB56E0003FFF4 /* WebViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WebViewController.h; sourceTree = "<group>"; };
+		7C62EA2314CCB56E0003FFF4 /* WebViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WebViewController.m; sourceTree = "<group>"; };
+		7C62EA2414CCB56E0003FFF4 /* WebViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = WebViewController.xib; sourceTree = "<group>"; };
+		7C62EA2714CCB77B0003FFF4 /* MessageUI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MessageUI.framework; path = System/Library/Frameworks/MessageUI.framework; sourceTree = SDKROOT; };
 		7C633039149FE50800BF2049 /* RestKit.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = RestKit.xcodeproj; path = RestKit/RestKit.xcodeproj; sourceTree = "<group>"; };
 		7C66002E14AA1C3A00C285B1 /* ListTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ListTableViewCell.h; sourceTree = "<group>"; };
 		7C66002F14AA1C3A00C285B1 /* ListTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ListTableViewCell.m; sourceTree = "<group>"; };
@@ -316,6 +329,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				7C62EA2814CCB77B0003FFF4 /* MessageUI.framework in Frameworks */,
 				7C7C1AC014BDE9D500AA6CB2 /* libTestFlight.a in Frameworks */,
 				7C7F7AB714ABAEB000652401 /* AssetsLibrary.framework in Frameworks */,
 				7C8D9BC014A28F3200D1D5DC /* QuartzCore.framework in Frameworks */,
@@ -347,6 +361,16 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		7C62EA1B14CCB5400003FFF4 /* HTML */ = {
+			isa = PBXGroup;
+			children = (
+				7C62EA1C14CCB5400003FFF4 /* About.html */,
+				7C62EA1D14CCB5400003FFF4 /* privacy.html */,
+				7C62EA1E14CCB5400003FFF4 /* terms.html */,
+			);
+			path = HTML;
+			sourceTree = "<group>";
+		};
 		7C633037149FE4FB00BF2049 /* External */ = {
 			isa = PBXGroup;
 			children = (
@@ -416,6 +440,9 @@
 				7C86FF8214AF6FF5001B907A /* AboutViewController.h */,
 				7C86FF8314AF6FF5001B907A /* AboutViewController.m */,
 				7C86FF8414AF6FF5001B907A /* AboutViewController.xib */,
+				7C62EA2214CCB56E0003FFF4 /* WebViewController.h */,
+				7C62EA2314CCB56E0003FFF4 /* WebViewController.m */,
+				7C62EA2414CCB56E0003FFF4 /* WebViewController.xib */,
 			);
 			name = "About View";
 			sourceTree = "<group>";
@@ -460,6 +487,7 @@
 		7C9F93A4149960C300126908 = {
 			isa = PBXGroup;
 			children = (
+				7C62EA2714CCB77B0003FFF4 /* MessageUI.framework */,
 				7C633037149FE4FB00BF2049 /* External */,
 				7C9F93BB149960C300126908 /* Spread */,
 				7C9F93E3149960C400126908 /* SpreadTests */,
@@ -507,6 +535,7 @@
 				7C86FF8B14AF8692001B907A /* Categories */,
 				7CE85ADC14A217BA002874EA /* Utilities */,
 				7C9890A314A041A8009E22F1 /* Data Model */,
+				7C62EA1B14CCB5400003FFF4 /* HTML */,
 				7CE85AEC14A223EB002874EA /* Images */,
 				7C9F93BC149960C300126908 /* Supporting Files */,
 			);
@@ -848,6 +877,10 @@
 				7CDEB40F14C8BC6B00518E98 /* PullRefreshHeaderView.xib in Resources */,
 				7CDEB41214C8BD9300518E98 /* spread_logo_gray.png in Resources */,
 				7CDEB41314C8BD9300518E98 /* spread_logo_gray@2x.png in Resources */,
+				7C62EA1F14CCB5400003FFF4 /* About.html in Resources */,
+				7C62EA2014CCB5400003FFF4 /* privacy.html in Resources */,
+				7C62EA2114CCB5400003FFF4 /* terms.html in Resources */,
+				7C62EA2614CCB56E0003FFF4 /* WebViewController.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -927,6 +960,7 @@
 				7C7E58CD14C6173900A03F22 /* GridTableViewCell.m in Sources */,
 				7CDEB40214C8B8EA00518E98 /* PullRefreshTableViewController.m in Sources */,
 				7CDEB40D14C8BC5800518E98 /* PullRefreshHeaderView.m in Sources */,
+				7C62EA2514CCB56E0003FFF4 /* WebViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

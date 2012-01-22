@@ -9,6 +9,8 @@
 #import "AboutViewController.h"
 #import "MasterViewController.h"
 #import "ServiceManager.h"
+#import "WebViewController.h"
+#import "SpreadAPIDefinition.h"
 
 
 typedef enum{
@@ -164,21 +166,35 @@ typedef enum{
     
     if ( indexPath.section == TableViewSectionMain )
     {
+        NSURL* URL = nil;
         switch (indexPath.row)
         {
             case TableViewMainSectionRowAbout:
+                URL = [[NSBundle mainBundle] URLForResource:@"About" withExtension:@"html"];
                 break;
                 
             case TableViewMainSectionRowTeam:
                 break;
                 
             case TableViewMainSectionRowTerms:
+                URL = [[NSBundle mainBundle] URLForResource:@"terms" withExtension:@"html"];
                 break;
                 
             case TableViewMainSectionRowFeedback:
             default:
-                break;
+            {
+                MFMailComposeViewController* controller = [[MFMailComposeViewController alloc] init];
+                controller.mailComposeDelegate = self;
+                [controller setSubject:@"Contact / Feedback from iPhone app"];
+                [controller setToRecipients:[NSArray arrayWithObject:[SpreadAPIDefinition supportEmail]]];
+                [self presentModalViewController:controller animated:YES];
+                return;
+            }
         }
+        
+        WebViewController* viewController = [[WebViewController alloc] init];
+        viewController.URL = URL;
+        [self.navigationController pushViewController:viewController animated:YES];
     }
     else
     {
@@ -190,6 +206,15 @@ typedef enum{
                 break;
         }
     }
+}
+
+
+#pragma mark -
+#pragma mark Mail Composer Controller Delegate
+
+- (void)mailComposeController:(MFMailComposeViewController*)controller didFinishWithResult:(MFMailComposeResult)result error:(NSError*)error;
+{
+    [self dismissModalViewControllerAnimated:YES];
 }
 
 

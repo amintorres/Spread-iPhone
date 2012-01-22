@@ -37,4 +37,8 @@
 + (NSString*)userCredentialsQuery;
 
 
+// Support Email
++ (NSString*)supportEmail;
+
+
 @end
