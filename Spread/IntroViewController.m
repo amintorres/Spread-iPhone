@@ -45,6 +45,7 @@ static const CGFloat kGroup2InviteOffset        = 150;
 @interface IntroViewController ()
 @property (nonatomic) IntroViewState currentState;
 @property (nonatomic) BOOL isAnimating;
+- (void)animateToState:(IntroViewState)state;
 - (void)setIdleState;
 @end
 
@@ -74,6 +75,12 @@ static const CGFloat kGroup2InviteOffset        = 150;
     
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(keyboardWillShow:) name:UIKeyboardWillShowNotification object:nil];
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(keyboardWillHide:) name:UIKeyboardWillHideNotification object:nil];
+    
+    
+    [[NSNotificationCenter defaultCenter] addObserverForName:SpreadDidRequestInviteNotification object:nil queue:nil usingBlock:^(NSNotification* notification){
+        
+        [self animateToState:IntroViewStateIdle];
+    }];
 }
 
 - (void)viewDidDisappear:(BOOL)animated
@@ -251,16 +258,25 @@ static const CGFloat kGroup2InviteOffset        = 150;
 
 - (IBAction)logoButtonTapped:(id)sender
 {
+    [textField0 resignFirstResponder];
+    [textField1 resignFirstResponder];
+
     [self animateToState:IntroViewStateIdle];
 }
 
 - (IBAction)startButtonTapped:(id)sender
 {
+    [textField0 resignFirstResponder];
+    [textField1 resignFirstResponder];
+
     [self animateToState:IntroViewStateLogin];
 }
 
 - (IBAction)loginButtonTapped:(id)sender
 {
+    [textField0 resignFirstResponder];
+    [textField1 resignFirstResponder];
+
     NSString* username = textField0.text;
     NSString* password = textField1.text;
     [ServiceManager loginWithUsername:username password:password];
@@ -268,6 +284,9 @@ static const CGFloat kGroup2InviteOffset        = 150;
 
 - (IBAction)inviteButtonTapped:(id)sender
 {
+    [textField0 resignFirstResponder];
+    [textField1 resignFirstResponder];
+
     if ( currentState == IntroViewStateInvite )
     {
         NSString* email = textField0.text;

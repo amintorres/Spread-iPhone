@@ -11,7 +11,9 @@
 #import "User+Spread.h"
 
 NSString * const SpreadDidLoginNotification = @"SpreadDidLoginNotification";
-NSString * const ServiceManagerDidLoadPhotosNotification = @"ServiceManagerDidLoadPhotosNotification";
+NSString * const SpreadDidLoadUserInfoNotification = @"SpreadDidLoadUserInfoNotification";
+NSString * const SpreadDidLoadPhotosNotification = @"SpreadDidLoadPhotosNotification";
+NSString * const SpreadDidRequestInviteNotification = @"SpreadDidRequestInviteNotification";
 
 
 
@@ -50,7 +52,8 @@ NSString * const ServiceManagerDidLoadPhotosNotification = @"ServiceManagerDidLo
     {
         NSFetchRequest* request = [Photo fetchRequest];
         NSSortDescriptor* descriptor = [NSSortDescriptor sortDescriptorWithKey:@"createdDate" ascending:NO];
-        [request setSortDescriptors:[NSArray arrayWithObject:descriptor]];
+        request.sortDescriptors = [NSArray arrayWithObject:descriptor];
+        request.predicate = [NSPredicate predicateWithFormat:@"photoID != nil"];
         
         allPhotos = [Photo objectsWithFetchRequest:request];
     }
@@ -82,13 +85,14 @@ NSString * const ServiceManagerDidLoadPhotosNotification = @"ServiceManagerDidLo
      */
     RKManagedObjectMapping* photoMapping = [RKManagedObjectMapping mappingForClass:[Photo class]];
     photoMapping.primaryKeyAttribute = @"photoID";
+    photoMapping.rootKeyPath = @"photo";
     [photoMapping mapKeyPath:@"id" toAttribute:@"photoID"];
     [photoMapping mapKeyPath:@"camera" toAttribute:@"camera"];
     [photoMapping mapKeyPath:@"captured_at" toAttribute:@"capturedDate"];
     [photoMapping mapKeyPath:@"created_at" toAttribute:@"createdDate"];
-    [photoMapping mapKeyPath:@"image.thumb.url" toAttribute:@"gridImageURLString"];
-    [photoMapping mapKeyPath:@"image.iphone.url" toAttribute:@"feedImageURLString"];
-    [photoMapping mapKeyPath:@"image.url" toAttribute:@"largeImageURLString"];
+    [photoMapping mapKeyPath:@"image.iphone.grid.url" toAttribute:@"gridImageURLString"];
+    [photoMapping mapKeyPath:@"image.iphone.square.url" toAttribute:@"feedImageURLString"];
+    [photoMapping mapKeyPath:@"image.iphone.url" toAttribute:@"largeImageURLString"];
     [photoMapping mapKeyPath:@"description" toAttribute:@"photoDescription"];
     [photoMapping mapKeyPath:@"title" toAttribute:@"title"];
     [photoMapping mapKeyPath:@"tag_list_csv" toAttribute:@"csvTags"];
@@ -123,12 +127,12 @@ NSString * const ServiceManagerDidLoadPhotosNotification = @"ServiceManagerDidLo
     [objectManager.router routeClass:[Photo class] toResourcePath:[SpreadAPIDefinition deletePhotoPath] forMethod:RKRequestMethodDELETE];
     
     [objectManager.router routeClass:[User class] toResourcePath:[SpreadAPIDefinition loginPath] forMethod:RKRequestMethodPOST];
+    [objectManager.router routeClass:[User class] toResourcePath:[SpreadAPIDefinition userInfoPath] forMethod:RKRequestMethodGET];
 
     
     RKLogConfigureByName("RestKit/Network", RKLogLevelDefault);
     RKLogConfigureByName("RestKit/ObjectMapping", RKLogLevelDefault);
 }
-
 
 
 #pragma mark -
@@ -148,7 +152,7 @@ NSString * const ServiceManagerDidLoadPhotosNotification = @"ServiceManagerDidLo
     [objectManager postObject:user delegate:[ServiceManager sharedManager] block:^(RKObjectLoader *loader){
         
         loader.objectMapping = [objectManager.mappingProvider objectMappingForClass:[User class]];
-        
+        loader.objectMapping.rootKeyPath = nil;
         RKParams* params = [RKParams params];
         [params setValue:username forParam:@"user_session[email]"];
         [params setValue:password forParam:@"user_session[password]"];
@@ -156,12 +160,13 @@ NSString * const ServiceManagerDidLoadPhotosNotification = @"ServiceManagerDidLo
     }];
 }
 
-+ (void)updateUserInfo
++ (void)loadUserInfoFromServer
 {
     RKObjectManager* objectManager = [RKObjectManager sharedManager];
     [objectManager loadObjectsAtResourcePath:[SpreadAPIDefinition userInfoPath] delegate:[ServiceManager sharedManager] block:^(RKObjectLoader* loader) {
         
         loader.objectMapping = [objectManager.mappingProvider objectMappingForClass:[User class]];
+        loader.objectMapping.rootKeyPath = @"user";
     }];
 }
 
@@ -176,8 +181,10 @@ NSString * const ServiceManagerDidLoadPhotosNotification = @"ServiceManagerDidLo
 
 + (void)requestInviteWithEmail:(NSString*)email name:(NSString*)name
 {
-    UIAlertView* alert = [[UIAlertView alloc] initWithTitle:@"TBD" message:nil delegate:nil cancelButtonTitle:@"Dismiss" otherButtonTitles:nil];
-    [alert show];
+    NSDictionary* params = [NSDictionary dictionaryWithObjectsAndKeys:
+                            email, @"ri[email]",
+                            name, @"ri[name]", nil];
+    [[RKClient sharedClient] post:[SpreadAPIDefinition invitePath] params:params delegate:[ServiceManager sharedManager]]; 
 }
 
 
@@ -247,20 +254,19 @@ NSString * const ServiceManagerDidLoadPhotosNotification = @"ServiceManagerDidLo
 {
     if ([objectLoader wasSentToResourcePath:[SpreadAPIDefinition loginPath]])
     {
-        NSLog(@"Did load user: %@", objects);
         if ( [objectLoader isPOST] )
         {
             [[NSNotificationCenter defaultCenter] postNotificationName:SpreadDidLoginNotification object:self];   
         }
     }
+    else if ([objectLoader wasSentToResourcePath:[SpreadAPIDefinition userInfoPath]])
+    {
+        [[NSNotificationCenter defaultCenter] postNotificationName:SpreadDidLoadUserInfoNotification object:self];
+    }
     else if ( [[objects lastObject] isMemberOfClass:[Photo class]] )
     {
-        NSFetchRequest* request = [Photo fetchRequest];
-        NSSortDescriptor* descriptor = [NSSortDescriptor sortDescriptorWithKey:@"createdDate" ascending:NO];
-        [request setSortDescriptors:[NSArray arrayWithObject:descriptor]];
-        
-        self.allPhotos = [Photo objectsWithFetchRequest:request];
-        [[NSNotificationCenter defaultCenter] postNotificationName:ServiceManagerDidLoadPhotosNotification object:self];
+        self.allPhotos = nil;   // This will trigger reload on the next access.
+        [[NSNotificationCenter defaultCenter] postNotificationName:SpreadDidLoadPhotosNotification object:self];
     }
 }
 
@@ -293,12 +299,37 @@ NSString * const ServiceManagerDidLoadPhotosNotification = @"ServiceManagerDidLo
 #pragma mark RKRequest Delegate
 
 - (void)request:(RKRequest*)request didLoadResponse:(RKResponse*)response
-{      
+{
+    if ([request wasSentToResourcePath:[SpreadAPIDefinition invitePath]])
+    {
+        NSDictionary* JSONDict = [response parsedBody:nil];
+        if ( [[JSONDict objectForKey:@"success"] boolValue] )
+        {
+            UIAlertView* alert = [[UIAlertView alloc] initWithTitle:@"Request Sent" message:@"Thanks! We'll send you an invite as soon as we can." delegate:self cancelButtonTitle:@"Dismiss" otherButtonTitles:nil];
+            [alert show];
+        }
+        else
+        {
+            UIAlertView* alert = [[UIAlertView alloc] initWithTitle:@"Invalid Request" message:@"Please try again." delegate:nil cancelButtonTitle:@"Dismiss" otherButtonTitles:nil];
+            [alert show];            
+        }
+    }
 }
 
 - (void)request:(RKRequest *)request didFailLoadWithError:(NSError *)error
 {
+    if ([request wasSentToResourcePath:[SpreadAPIDefinition invitePath]])
+    {
+        NSLog(@"error: %@", error);
+        UIAlertView* alert = [[UIAlertView alloc] initWithTitle:@"Error" message:@"Something's wrong with the network. Please try again." delegate:nil cancelButtonTitle:@"Dismiss" otherButtonTitles:nil];
+        [alert show];
+    }
 }
 
+
+- (void)alertView:(UIAlertView *)alertView didDismissWithButtonIndex:(NSInteger)buttonIndex
+{
+    [[NSNotificationCenter defaultCenter] postNotificationName:SpreadDidRequestInviteNotification object:self];
+}
 
 @end

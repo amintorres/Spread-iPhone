@@ -12,7 +12,9 @@
 #import "User.h"
 
 extern NSString * const SpreadDidLoginNotification;
-extern NSString * const ServiceManagerDidLoadPhotosNotification;
+extern NSString * const SpreadDidLoadUserInfoNotification;
+extern NSString * const SpreadDidLoadPhotosNotification;
+extern NSString * const SpreadDidRequestInviteNotification;
 
 
 @interface ServiceManager : NSObject <RKObjectLoaderDelegate, RKRequestDelegate>
@@ -26,7 +28,7 @@ extern NSString * const ServiceManagerDidLoadPhotosNotification;
 + (void)setupRestKit;
 
 + (void)loginWithUsername:(NSString*)username password:(NSString*)password;
-+ (void)updateUserInfo;
++ (void)loadUserInfoFromServer;
 + (void)logout;
 + (void)requestInviteWithEmail:(NSString*)email name:(NSString*)name;
 + (void)loadDataFromServer;
