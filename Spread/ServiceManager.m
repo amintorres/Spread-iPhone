@@ -172,6 +172,7 @@ NSString * const SpreadDidRequestInviteNotification = @"SpreadDidRequestInviteNo
 
 + (void)logout
 {
+    [ServiceManager sharedManager].allPhotos = nil;
     [User clearUser];
     [[RKClient sharedClient].requestCache invalidateAll];
     [[RKObjectManager sharedManager].objectStore deletePersistantStore];
@@ -259,11 +260,11 @@ NSString * const SpreadDidRequestInviteNotification = @"SpreadDidRequestInviteNo
             [[NSNotificationCenter defaultCenter] postNotificationName:SpreadDidLoginNotification object:self];   
         }
     }
-    else if ([objectLoader wasSentToResourcePath:[SpreadAPIDefinition userInfoPath]])
+    else if ( [objectLoader wasSentToResourcePath:[SpreadAPIDefinition userInfoPath]] )
     {
         [[NSNotificationCenter defaultCenter] postNotificationName:SpreadDidLoadUserInfoNotification object:self];
     }
-    else if ( [[objects lastObject] isMemberOfClass:[Photo class]] )
+    else if ( [objectLoader wasSentToResourcePath:[SpreadAPIDefinition allPhotosPath]] || [[objects lastObject] isMemberOfClass:[Photo class]] )    // "allPhotosPath" might return an empty array.
     {
         self.allPhotos = nil;   // This will trigger reload on the next access.
         [[NSNotificationCenter defaultCenter] postNotificationName:SpreadDidLoadPhotosNotification object:self];

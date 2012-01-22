@@ -17,7 +17,7 @@ static User* currentUser = nil;
 @implementation User (Spread)
 
 
-+ (id)currentUser
++ (User*)currentUser
 {
     if ( !currentUser )
     {

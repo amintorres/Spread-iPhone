@@ -9,4 +9,10 @@
 
 - Add upload progress bar.
 
-- Add subviews in 'About' page.
+- Add 'team' in 'About' page.
+
+- Customize camera view.
+
+- Add new user messages.
+
+- Add error handling messages.

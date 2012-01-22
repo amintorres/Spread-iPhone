@@ -33,6 +33,8 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+    
+    self.view.backgroundColor = [UIColor clearColor];
 
     UINib* nib = [UINib nibWithNibName:@"PullRefreshHeaderView" bundle:nil];
     [nib instantiateWithOwner:self options:nil];

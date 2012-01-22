@@ -14,6 +14,7 @@
 #import "AboutViewController.h"
 #import "DetailViewController.h"
 #import "UINavigationBar+Customize.h"
+#import "User+Spread.h"
 
 NSString * const SpreadShouldLogoutNotification = @"SpreadShouldLogoutNotification";
 NSString * const SpreadShouldEditPhotoNotification = @"SpreadShouldEditPhotoNotification";
@@ -39,6 +40,7 @@ typedef enum{
 - (void)hideIntroView;
 - (void)showListView;
 - (void)showGridView;
+- (void)showWelcomeView;
 - (void)editPhoto:(Photo*)photo;
 - (void)showDetailViewForPhoto:(Photo*)photo;
 - (void)hideDetailView;
@@ -52,6 +54,8 @@ typedef enum{
 @synthesize navigationBar, containerView, toolbarView;
 @synthesize gridListButton;
 @synthesize cameraOverlayView;
+@synthesize welcomeView;
+@synthesize welcomeLabel;
 @synthesize introViewController, listViewController, gridViewController;
 @synthesize containerViewMode;
 
@@ -73,6 +77,18 @@ typedef enum{
     [[NSNotificationCenter defaultCenter] addObserverForName:SpreadShouldLogoutNotification object:nil queue:nil usingBlock:^(NSNotification* notification){
         
         [self showIntroView];
+    }];
+    
+    [[NSNotificationCenter defaultCenter] addObserverForName:SpreadDidLoadPhotosNotification object:nil queue:nil usingBlock:^(NSNotification* notification){
+
+        if ( [[ServiceManager allPhotos] count] )
+        {
+            [self showListView];
+        }
+        else
+        {
+            [self showWelcomeView];
+        }
     }];
     
     [[NSNotificationCenter defaultCenter] addObserverForName:SpreadShouldEditPhotoNotification object:nil queue:nil usingBlock:^(NSNotification* notification){
@@ -117,6 +133,8 @@ typedef enum{
     self.toolbarView = nil;
     self.gridListButton = nil;
     self.cameraOverlayView = nil;
+    [self setWelcomeView:nil];
+    [self setWelcomeLabel:nil];
     [super viewDidUnload];
 }
 
@@ -170,6 +188,7 @@ typedef enum{
     self.gridViewController.view.frame = self.containerView.bounds;
     [self.containerView addSubview:self.gridViewController.view];
     [self.gridListButton setImage:[UIImage imageNamed:@"icon_list"] forState:UIControlStateNormal];
+    self.gridListButton.enabled = YES;
     
     self.containerViewMode = ContainerViewModeGrid;
 }
@@ -181,8 +200,19 @@ typedef enum{
     self.listViewController.view.frame = self.containerView.bounds;
     [self.containerView addSubview:self.listViewController.view];
     [self.gridListButton setImage:[UIImage imageNamed:@"icon_grid"] forState:UIControlStateNormal];
+    self.gridListButton.enabled = YES;
     
     self.containerViewMode = ContainerViewModeList;
+}
+
+- (void)showWelcomeView
+{
+    [self clearContainerView];
+    
+    self.welcomeLabel.text = [NSString stringWithFormat:@"Welcome, %@ we look forward to all the great moments you'll capture", [User currentUser].name];
+    
+    [self.containerView addSubview:self.welcomeView];
+    self.gridListButton.enabled = NO;
 }
 
 - (void)showIntroView

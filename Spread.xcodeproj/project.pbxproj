@@ -88,6 +88,8 @@
 		7C9F93E0149960C400126908 /* CoreData.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7C9F93B9149960C300126908 /* CoreData.framework */; };
 		7C9F93E8149960C400126908 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 7C9F93E6149960C400126908 /* InfoPlist.strings */; };
 		7C9F93EB149960C400126908 /* SpreadTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 7C9F93EA149960C400126908 /* SpreadTests.m */; };
+		7CC4A9E814CCD3DF00DCA3EA /* icon_arraow_down.png in Resources */ = {isa = PBXBuildFile; fileRef = 7CC4A9E614CCD3DF00DCA3EA /* icon_arraow_down.png */; };
+		7CC4A9E914CCD3DF00DCA3EA /* icon_arraow_down@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 7CC4A9E714CCD3DF00DCA3EA /* icon_arraow_down@2x.png */; };
 		7CDEB40214C8B8EA00518E98 /* PullRefreshTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7CDEB40114C8B8EA00518E98 /* PullRefreshTableViewController.m */; };
 		7CDEB40D14C8BC5800518E98 /* PullRefreshHeaderView.m in Sources */ = {isa = PBXBuildFile; fileRef = 7CDEB40C14C8BC5800518E98 /* PullRefreshHeaderView.m */; };
 		7CDEB40F14C8BC6B00518E98 /* PullRefreshHeaderView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 7CDEB40E14C8BC6B00518E98 /* PullRefreshHeaderView.xib */; };
@@ -278,6 +280,8 @@
 		7C9F93E7149960C400126908 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		7C9F93E9149960C400126908 /* SpreadTests.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SpreadTests.h; sourceTree = "<group>"; };
 		7C9F93EA149960C400126908 /* SpreadTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SpreadTests.m; sourceTree = "<group>"; };
+		7CC4A9E614CCD3DF00DCA3EA /* icon_arraow_down.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = icon_arraow_down.png; sourceTree = "<group>"; };
+		7CC4A9E714CCD3DF00DCA3EA /* icon_arraow_down@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "icon_arraow_down@2x.png"; sourceTree = "<group>"; };
 		7CDEB40014C8B8EA00518E98 /* PullRefreshTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PullRefreshTableViewController.h; sourceTree = "<group>"; };
 		7CDEB40114C8B8EA00518E98 /* PullRefreshTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PullRefreshTableViewController.m; sourceTree = "<group>"; };
 		7CDEB40B14C8BC5800518E98 /* PullRefreshHeaderView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PullRefreshHeaderView.h; sourceTree = "<group>"; };
@@ -487,7 +491,6 @@
 		7C9F93A4149960C300126908 = {
 			isa = PBXGroup;
 			children = (
-				7C62EA2714CCB77B0003FFF4 /* MessageUI.framework */,
 				7C633037149FE4FB00BF2049 /* External */,
 				7C9F93BB149960C300126908 /* Spread */,
 				7C9F93E3149960C400126908 /* SpreadTests */,
@@ -508,6 +511,7 @@
 		7C9F93B2149960C300126908 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				7C62EA2714CCB77B0003FFF4 /* MessageUI.framework */,
 				7C5AC38614AC083D00856DC9 /* ImageIO.framework */,
 				7C7F7AB614ABAEB000652401 /* AssetsLibrary.framework */,
 				7C8D9BBF14A28F3200D1D5DC /* QuartzCore.framework */,
@@ -598,6 +602,8 @@
 		7CE85AEC14A223EB002874EA /* Images */ = {
 			isa = PBXGroup;
 			children = (
+				7CC4A9E614CCD3DF00DCA3EA /* icon_arraow_down.png */,
+				7CC4A9E714CCD3DF00DCA3EA /* icon_arraow_down@2x.png */,
 				7C34A6D014BFD4B6009ED21D /* button_black.png */,
 				7C34A6D114BFD4B6009ED21D /* button_black@2x.png */,
 				7C3F37C514C4D89C00E39B3F /* icon_arrow.png */,
@@ -881,6 +887,8 @@
 				7C62EA2014CCB5400003FFF4 /* privacy.html in Resources */,
 				7C62EA2114CCB5400003FFF4 /* terms.html in Resources */,
 				7C62EA2614CCB56E0003FFF4 /* WebViewController.xib in Resources */,
+				7CC4A9E814CCD3DF00DCA3EA /* icon_arraow_down.png in Resources */,
+				7CC4A9E914CCD3DF00DCA3EA /* icon_arraow_down@2x.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
