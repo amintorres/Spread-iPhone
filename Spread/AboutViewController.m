@@ -193,6 +193,7 @@ typedef enum{
         }
         
         WebViewController* viewController = [[WebViewController alloc] init];
+        viewController.title = [self.tableView cellForRowAtIndexPath:indexPath].textLabel.text;
         viewController.URL = URL;
         [self.navigationController pushViewController:viewController animated:YES];
     }
