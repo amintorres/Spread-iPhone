@@ -21,7 +21,7 @@ typedef enum{
 
 typedef enum{
     TableViewMainSectionRowAbout = 0,
-    TableViewMainSectionRowTeam,
+//    TableViewMainSectionRowTeam,
     TableViewMainSectionRowTerms,
     TableViewMainSectionRowFeedback,
     TableViewMainSectionRowCount
@@ -129,9 +129,9 @@ typedef enum{
                 cell.textLabel.text = @"About";
                 break;
                 
-            case TableViewMainSectionRowTeam:
-                cell.textLabel.text = @"Team";
-                break;
+//            case TableViewMainSectionRowTeam:
+//                cell.textLabel.text = @"Team";
+//                break;
                 
             case TableViewMainSectionRowTerms:
                 cell.textLabel.text = @"Terms";
@@ -173,8 +173,8 @@ typedef enum{
                 URL = [[NSBundle mainBundle] URLForResource:@"About" withExtension:@"html"];
                 break;
                 
-            case TableViewMainSectionRowTeam:
-                break;
+//            case TableViewMainSectionRowTeam:
+//                break;
                 
             case TableViewMainSectionRowTerms:
                 URL = [[NSBundle mainBundle] URLForResource:@"terms" withExtension:@"html"];
