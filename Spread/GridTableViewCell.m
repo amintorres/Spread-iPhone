@@ -31,7 +31,7 @@
     }
     else
     {
-        [button setImage:nil forState:UIControlStateNormal];
+        imageView.image = nil;
         button.enabled = NO;
     }
 }

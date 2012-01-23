@@ -198,6 +198,7 @@ NSString * const SpreadDidRequestInviteNotification = @"SpreadDidRequestInviteNo
     [objectManager loadObjectsAtResourcePath:[SpreadAPIDefinition allPhotosPath] delegate:[ServiceManager sharedManager] block:^(RKObjectLoader* loader) {
         
         loader.objectMapping = [objectManager.mappingProvider objectMappingForClass:[Photo class]];
+        loader.objectMapping.rootKeyPath = @"photo";
     }];
 }
 
@@ -207,6 +208,7 @@ NSString * const SpreadDidRequestInviteNotification = @"SpreadDidRequestInviteNo
     [objectManager postObject:photo delegate:[ServiceManager sharedManager] block:^(RKObjectLoader *loader){
         
         loader.objectMapping = [objectManager.mappingProvider objectMappingForClass:[Photo class]];
+        loader.objectMapping.rootKeyPath = nil;
 
         RKParams* params = [RKParams params];
         [params setValue:photo.title forParam:@"photo[title]"];
@@ -224,7 +226,8 @@ NSString * const SpreadDidRequestInviteNotification = @"SpreadDidRequestInviteNo
     [objectManager putObject:photo delegate:[ServiceManager sharedManager] block:^(RKObjectLoader *loader){
         
         loader.objectMapping = [objectManager.mappingProvider objectMappingForClass:[Photo class]];
-        
+        loader.objectMapping.rootKeyPath = nil;
+
         RKParams* params = [RKParams params];
         [params setValue:photo.photoID forParam:@"photo[id]"];
         [params setValue:photo.title forParam:@"photo[title]"];
@@ -240,7 +243,8 @@ NSString * const SpreadDidRequestInviteNotification = @"SpreadDidRequestInviteNo
     [objectManager deleteObject:photo delegate:[ServiceManager sharedManager] block:^(RKObjectLoader *loader){
         
         loader.objectMapping = [objectManager.mappingProvider objectMappingForClass:[Photo class]];
-        
+        loader.objectMapping.rootKeyPath = nil;
+
         RKParams* params = [RKParams params];
         [params setValue:photo.photoID forParam:@"photo[id]"];
         loader.params = params;

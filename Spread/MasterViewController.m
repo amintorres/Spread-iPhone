@@ -83,7 +83,14 @@ typedef enum{
 
         if ( [[ServiceManager allPhotos] count] )
         {
-            [self showListView];
+            if ( self.containerViewMode == ContainerViewModeGrid )
+            {
+                [self showGridView];
+            }
+            else
+            {
+                [self showListView];
+            }
         }
         else
         {
