@@ -13,6 +13,4 @@
 
 - Customize camera view.
 
-- Add new user messages.
-
 - Add error handling messages.

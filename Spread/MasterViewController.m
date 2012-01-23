@@ -209,7 +209,7 @@ typedef enum{
 {
     [self clearContainerView];
     
-    self.welcomeLabel.text = [NSString stringWithFormat:@"Welcome, %@ we look forward to all the great moments you'll capture", [User currentUser].name];
+    self.welcomeLabel.text = [NSString stringWithFormat:@"Welcome, %@.\nWe look forward to all the great moments you'll capture!", [User currentUser].name];
     
     [self.containerView addSubview:self.welcomeView];
     self.gridListButton.enabled = NO;
