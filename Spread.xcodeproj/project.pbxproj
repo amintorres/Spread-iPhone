@@ -19,6 +19,11 @@
 		7C3F37CF14C4D89C00E39B3F /* icon_info.png in Resources */ = {isa = PBXBuildFile; fileRef = 7C3F37C914C4D89C00E39B3F /* icon_info.png */; };
 		7C3F37D014C4D89C00E39B3F /* icon_info@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 7C3F37CA14C4D89C00E39B3F /* icon_info@2x.png */; };
 		7C3F37D314C4DE3F00E39B3F /* UILabel+Resizing.m in Sources */ = {isa = PBXBuildFile; fileRef = 7C3F37D214C4DE3F00E39B3F /* UILabel+Resizing.m */; };
+		7C46C14814CF5B7900682737 /* CameraViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7C46C14614CF5B7900682737 /* CameraViewController.m */; };
+		7C46C14914CF5B7900682737 /* CameraViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 7C46C14714CF5B7900682737 /* CameraViewController.xib */; };
+		7C46C14C14CF5C2C00682737 /* UploadProgressView.m in Sources */ = {isa = PBXBuildFile; fileRef = 7C46C14B14CF5C2C00682737 /* UploadProgressView.m */; };
+		7C46C14E14CF5C3D00682737 /* UploadProgressView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 7C46C14D14CF5C3D00682737 /* UploadProgressView.xib */; };
+		7C46C15014CF5F9100682737 /* texture_green.png in Resources */ = {isa = PBXBuildFile; fileRef = 7C46C14F14CF5F9100682737 /* texture_green.png */; };
 		7C57F26D14BFA5A300906DE8 /* Entitlements.plist in Resources */ = {isa = PBXBuildFile; fileRef = 7C57F26C14BFA5A300906DE8 /* Entitlements.plist */; };
 		7C62EA1F14CCB5400003FFF4 /* About.html in Resources */ = {isa = PBXBuildFile; fileRef = 7C62EA1C14CCB5400003FFF4 /* About.html */; };
 		7C62EA2014CCB5400003FFF4 /* privacy.html in Resources */ = {isa = PBXBuildFile; fileRef = 7C62EA1D14CCB5400003FFF4 /* privacy.html */; };
@@ -190,6 +195,13 @@
 		7C3F37CA14C4D89C00E39B3F /* icon_info@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "icon_info@2x.png"; sourceTree = "<group>"; };
 		7C3F37D114C4DE3F00E39B3F /* UILabel+Resizing.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UILabel+Resizing.h"; sourceTree = "<group>"; };
 		7C3F37D214C4DE3F00E39B3F /* UILabel+Resizing.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UILabel+Resizing.m"; sourceTree = "<group>"; };
+		7C46C14514CF5B7900682737 /* CameraViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CameraViewController.h; sourceTree = "<group>"; };
+		7C46C14614CF5B7900682737 /* CameraViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CameraViewController.m; sourceTree = "<group>"; };
+		7C46C14714CF5B7900682737 /* CameraViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = CameraViewController.xib; sourceTree = "<group>"; };
+		7C46C14A14CF5C2C00682737 /* UploadProgressView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UploadProgressView.h; sourceTree = "<group>"; };
+		7C46C14B14CF5C2C00682737 /* UploadProgressView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UploadProgressView.m; sourceTree = "<group>"; };
+		7C46C14D14CF5C3D00682737 /* UploadProgressView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = UploadProgressView.xib; sourceTree = "<group>"; };
+		7C46C14F14CF5F9100682737 /* texture_green.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = texture_green.png; sourceTree = "<group>"; };
 		7C57F26C14BFA5A300906DE8 /* Entitlements.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Entitlements.plist; sourceTree = SOURCE_ROOT; };
 		7C5AC38614AC083D00856DC9 /* ImageIO.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = ImageIO.framework; path = System/Library/Frameworks/ImageIO.framework; sourceTree = SDKROOT; };
 		7C62EA1C14CCB5400003FFF4 /* About.html */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.html; path = About.html; sourceTree = "<group>"; };
@@ -410,6 +422,12 @@
 				7C6CFBF014BD2BE70048644C /* RoundedRectButton.m */,
 				7C8E2A2414C351AF00E6E714 /* PlaceholderTextView.h */,
 				7C8E2A2514C351AF00E6E714 /* PlaceholderTextView.m */,
+				7C46C14A14CF5C2C00682737 /* UploadProgressView.h */,
+				7C46C14B14CF5C2C00682737 /* UploadProgressView.m */,
+				7C46C14D14CF5C3D00682737 /* UploadProgressView.xib */,
+				7C46C14514CF5B7900682737 /* CameraViewController.h */,
+				7C46C14614CF5B7900682737 /* CameraViewController.m */,
+				7C46C14714CF5B7900682737 /* CameraViewController.xib */,
 			);
 			name = "UI Elements";
 			sourceTree = "<group>";
@@ -627,6 +645,7 @@
 				7C86FF9B14AF8EFC001B907A /* texture_blue.png */,
 				7C86FF9C14AF8EFC001B907A /* texture_gray.png */,
 				7C86FFB314AFC37B001B907A /* texture_red.png */,
+				7C46C14F14CF5F9100682737 /* texture_green.png */,
 				7C86FF8F14AF87AE001B907A /* navbar_background.png */,
 				7C86FF9014AF87AE001B907A /* navbar_background@2x.png */,
 				7C8E2A2014C3449B00E6E714 /* navbar_background_withlogo.png */,
@@ -889,6 +908,9 @@
 				7C62EA2614CCB56E0003FFF4 /* WebViewController.xib in Resources */,
 				7CC4A9E814CCD3DF00DCA3EA /* icon_arraow_down.png in Resources */,
 				7CC4A9E914CCD3DF00DCA3EA /* icon_arraow_down@2x.png in Resources */,
+				7C46C14914CF5B7900682737 /* CameraViewController.xib in Resources */,
+				7C46C14E14CF5C3D00682737 /* UploadProgressView.xib in Resources */,
+				7C46C15014CF5F9100682737 /* texture_green.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -969,6 +991,8 @@
 				7CDEB40214C8B8EA00518E98 /* PullRefreshTableViewController.m in Sources */,
 				7CDEB40D14C8BC5800518E98 /* PullRefreshHeaderView.m in Sources */,
 				7C62EA2514CCB56E0003FFF4 /* WebViewController.m in Sources */,
+				7C46C14814CF5B7900682737 /* CameraViewController.m in Sources */,
+				7C46C14C14CF5C2C00682737 /* UploadProgressView.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

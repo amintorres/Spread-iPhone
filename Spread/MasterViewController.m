@@ -9,6 +9,8 @@
 #import "MasterViewController.h"
 #import "ServiceManager.h"
 #import "IntroViewController.h"
+#import "ListViewController.h"
+#import "GridViewController.h"
 #import "ReviewViewController.h"
 #import "EditViewController.h"
 #import "AboutViewController.h"
@@ -36,6 +38,7 @@ typedef enum{
 @property (strong, nonatomic) GridViewController* gridViewController;
 @property (nonatomic) ContainerViewMode containerViewMode;
 
+- (void)addObservations;
 - (void)showIntroView;
 - (void)hideIntroView;
 - (void)showListView;
@@ -50,12 +53,11 @@ typedef enum{
 
 
 @implementation MasterViewController
+@synthesize uploadProgressView;
 
-@synthesize navigationBar, containerView, toolbarView;
+@synthesize navigationBar, containerView;
 @synthesize gridListButton;
-@synthesize cameraOverlayView;
-@synthesize welcomeView;
-@synthesize welcomeLabel;
+@synthesize welcomeView, welcomeLabel;
 @synthesize introViewController, listViewController, gridViewController;
 @synthesize containerViewMode;
 
@@ -69,6 +71,41 @@ typedef enum{
     
     [self.navigationBar customizeBackground];
     
+    UINib* nib = [UINib nibWithNibName:@"UploadProgressView" bundle:nil];
+    [nib instantiateWithOwner:self options:nil];
+    self.navigationBar.topItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithCustomView:self.uploadProgressView];
+    
+    
+    [self addObservations];
+
+    
+    if ( [ServiceManager isSessionValid] )
+    {
+        [self hideIntroView];
+    }
+    else
+    {
+        [self showIntroView];        
+    }
+}
+
+- (void)viewDidUnload
+{
+    self.navigationBar = nil;
+    self.containerView = nil;
+    self.gridListButton = nil;
+    [self setWelcomeView:nil];
+    [self setWelcomeLabel:nil];
+    [self setUploadProgressView:nil];
+    [super viewDidUnload];
+}
+
+
+#pragma mark -
+#pragma mark Observations
+
+- (void)addObservations
+{
     [[NSNotificationCenter defaultCenter] addObserverForName:SpreadDidLoginNotification object:nil queue:nil usingBlock:^(NSNotification* notification){
         
         [self hideIntroView];
@@ -80,7 +117,7 @@ typedef enum{
     }];
     
     [[NSNotificationCenter defaultCenter] addObserverForName:SpreadDidLoadPhotosNotification object:nil queue:nil usingBlock:^(NSNotification* notification){
-
+        
         if ( [[ServiceManager allPhotos] count] )
         {
             if ( self.containerViewMode == ContainerViewModeGrid )
@@ -119,30 +156,15 @@ typedef enum{
     }];
     
     [[NSNotificationCenter defaultCenter] addObserverForName:SpreadDidDeselectPhotoNotification object:nil queue:nil usingBlock:^(NSNotification* notification){
-
+        
         [self hideDetailView];
     }];
+    
+    [[NSNotificationCenter defaultCenter] addObserverForName:SpreadDidStartSendingPhotoNotification object:nil queue:nil usingBlock:^(NSNotification* notification){
 
-    if ( [ServiceManager isSessionValid] )
-    {
-        [self hideIntroView];
-    }
-    else
-    {
-        [self showIntroView];        
-    }
-}
-
-- (void)viewDidUnload
-{
-    self.navigationBar = nil;
-    self.containerView = nil;
-    self.toolbarView = nil;
-    self.gridListButton = nil;
-    self.cameraOverlayView = nil;
-    [self setWelcomeView:nil];
-    [self setWelcomeLabel:nil];
-    [super viewDidUnload];
+        self.uploadProgressView.object = notification.object;
+        [self.uploadProgressView startSending];
+    }];
 }
 
 

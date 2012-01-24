@@ -7,8 +7,7 @@
 //
 
 #import <UIKit/UIKit.h>
-#import "ListViewController.h"
-#import "GridViewController.h"
+#import "UploadProgressView.h"
 
 extern NSString * const SpreadShouldLogoutNotification;
 extern NSString * const SpreadShouldEditPhotoNotification;
@@ -21,11 +20,10 @@ extern NSString * const SpreadDidDeselectPhotoNotification;
 
 @property (strong, nonatomic) IBOutlet UINavigationBar *navigationBar;
 @property (strong, nonatomic) IBOutlet UIView *containerView;
-@property (strong, nonatomic) IBOutlet UIView *toolbarView;
 @property (strong, nonatomic) IBOutlet UIButton *gridListButton;
-@property (strong, nonatomic) IBOutlet UIView *cameraOverlayView;
 @property (strong, nonatomic) IBOutlet UIView *welcomeView;
 @property (strong, nonatomic) IBOutlet UILabel *welcomeLabel;
+@property (strong, nonatomic) IBOutlet UploadProgressView *uploadProgressView;
 
 - (IBAction)gridListButtonTapped:(id)sender;
 - (IBAction)cameraButtonTapped:(id)sender;

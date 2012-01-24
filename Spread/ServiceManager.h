@@ -16,6 +16,12 @@ extern NSString * const SpreadDidLoadUserInfoNotification;
 extern NSString * const SpreadDidLoadPhotosNotification;
 extern NSString * const SpreadDidRequestInviteNotification;
 
+extern NSString * const SpreadDidStartSendingPhotoNotification;
+extern NSString * const SpreadDidSendPhotoBodyDataNotification;
+extern NSString * const SpreadDidFinishSendingPhotoNotification;
+extern NSString * const SpreadDidFailSendingPhotoNotification;
+
+
 
 @interface ServiceManager : NSObject <RKObjectLoaderDelegate, RKRequestDelegate>
 

@@ -15,6 +15,11 @@ NSString * const SpreadDidLoadUserInfoNotification = @"SpreadDidLoadUserInfoNoti
 NSString * const SpreadDidLoadPhotosNotification = @"SpreadDidLoadPhotosNotification";
 NSString * const SpreadDidRequestInviteNotification = @"SpreadDidRequestInviteNotification";
 
+NSString * const SpreadDidStartSendingPhotoNotification = @"SpreadDidStartSendingPhotoNotification";
+NSString * const SpreadDidSendPhotoBodyDataNotification = @"SpreadDidSendPhotoBodyDataNotification";
+NSString * const SpreadDidFinishSendingPhotoNotification = @"SpreadDidFinishSendingPhotoNotification";
+NSString * const SpreadDidFailSendingPhotoNotification = @"SpreadDidFailSendingPhotoNotification";
+
 
 
 @interface ServiceManager ()
@@ -205,7 +210,7 @@ NSString * const SpreadDidRequestInviteNotification = @"SpreadDidRequestInviteNo
 + (void)postPhoto:(Photo*)photo imageData:(NSData*)imageData
 {
     RKObjectManager* objectManager = [RKObjectManager sharedManager];
-    [objectManager postObject:photo delegate:[ServiceManager sharedManager] block:^(RKObjectLoader *loader){
+    RKObjectLoader* loader = [objectManager postObject:photo delegate:[ServiceManager sharedManager] block:^(RKObjectLoader *loader){
         
         loader.objectMapping = [objectManager.mappingProvider objectMappingForClass:[Photo class]];
         loader.objectMapping.rootKeyPath = nil;
@@ -218,6 +223,8 @@ NSString * const SpreadDidRequestInviteNotification = @"SpreadDidRequestInviteNo
         attachment.fileName = @"image.jpg";
         loader.params = params;
     }];
+    
+    [[NSNotificationCenter defaultCenter] postNotificationName:SpreadDidStartSendingPhotoNotification object:loader];
 }
 
 + (void)updatePhoto:(Photo*)photo
@@ -319,6 +326,10 @@ NSString * const SpreadDidRequestInviteNotification = @"SpreadDidRequestInviteNo
             [alert show];            
         }
     }
+    else if ( [request wasSentToResourcePath:[SpreadAPIDefinition postPhotoPath]] )
+    {
+        [[NSNotificationCenter defaultCenter] postNotificationName:SpreadDidFinishSendingPhotoNotification object:request];
+    }
 }
 
 - (void)request:(RKRequest *)request didFailLoadWithError:(NSError *)error
@@ -329,8 +340,30 @@ NSString * const SpreadDidRequestInviteNotification = @"SpreadDidRequestInviteNo
         UIAlertView* alert = [[UIAlertView alloc] initWithTitle:@"Error" message:@"Something's wrong with the network. Please try again." delegate:nil cancelButtonTitle:@"Dismiss" otherButtonTitles:nil];
         [alert show];
     }
+    else if ( [request wasSentToResourcePath:[SpreadAPIDefinition postPhotoPath]] )
+    {
+        NSDictionary* userInfo = [NSDictionary dictionaryWithObject:error forKey:@"error"];
+        [[NSNotificationCenter defaultCenter] postNotificationName:SpreadDidFinishSendingPhotoNotification object:request userInfo:userInfo];
+    }
 }
 
+- (void)request:(RKRequest *)request didSendBodyData:(NSInteger)bytesWritten totalBytesWritten:(NSInteger)totalBytesWritten totalBytesExpectedToWrite:(NSInteger)totalBytesExpectedToWrite
+{
+    if ( [request wasSentToResourcePath:[SpreadAPIDefinition postPhotoPath]] )
+    {
+        NSDictionary* userInfo = [NSDictionary dictionaryWithObjectsAndKeys:
+                                  [NSNumber numberWithInteger:bytesWritten], @"bytesWritten",
+                                  [NSNumber numberWithInteger:totalBytesWritten], @"totalBytesWritten",
+                                  [NSNumber numberWithInteger:totalBytesExpectedToWrite], @"totalBytesExpectedToWrite",
+                                  nil];
+        
+        [[NSNotificationCenter defaultCenter] postNotificationName:SpreadDidSendPhotoBodyDataNotification object:request userInfo:userInfo];
+    }
+}
+
+
+#pragma mark -
+#pragma mark UIAlertView Delegate
 
 - (void)alertView:(UIAlertView *)alertView didDismissWithButtonIndex:(NSInteger)buttonIndex
 {
