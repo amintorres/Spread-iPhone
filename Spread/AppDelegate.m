@@ -9,6 +9,7 @@
 #import <RestKit/RestKit.h>
 #import <RestKit/CoreData.h>
 #import "TestFlight.h"
+#import "FlurryAnalytics.h"
 #import "AppDelegate.h"
 #import "MasterViewController.h"
 #import "Photo.h"
@@ -29,7 +30,10 @@
     [ServiceManager setupRestKit];
     
     [TestFlight takeOff:@"f319601b6e6c25b7c3f258bcdaa9e768_NTI4NDQyMDEyLTAxLTExIDEwOjU2OjEzLjE1NDkxNQ"];
-    
+
+    [FlurryAnalytics startSession:@"ZY7N6UAGKKFHYMUJ4LK1"];
+    [FlurryAnalytics logAllPageViews:self.navigationController];
+
     self.window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
 
     MasterViewController *masterViewController = [[MasterViewController alloc] initWithNibName:@"MasterViewController" bundle:nil];

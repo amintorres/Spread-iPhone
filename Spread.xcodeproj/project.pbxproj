@@ -126,6 +126,7 @@
 		7CFAFA3114C3B8F500597A6D /* DetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7CFAFA2F14C3B8F500597A6D /* DetailViewController.m */; };
 		7CFAFA3214C3B8F500597A6D /* DetailViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 7CFAFA3014C3B8F500597A6D /* DetailViewController.xib */; };
 		7CFAFA4614C3CC7C00597A6D /* ImageScrollView.m in Sources */ = {isa = PBXBuildFile; fileRef = 7CFAFA4514C3CC7C00597A6D /* ImageScrollView.m */; };
+		7CFC5A0714D1176D008AC151 /* libFlurryAnalytics.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 7CFC5A0614D1176D008AC151 /* libFlurryAnalytics.a */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -338,6 +339,8 @@
 		7CFAFA3014C3B8F500597A6D /* DetailViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = DetailViewController.xib; sourceTree = "<group>"; };
 		7CFAFA4414C3CC7C00597A6D /* ImageScrollView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ImageScrollView.h; sourceTree = "<group>"; };
 		7CFAFA4514C3CC7C00597A6D /* ImageScrollView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ImageScrollView.m; sourceTree = "<group>"; };
+		7CFC5A0514D1176D008AC151 /* FlurryAnalytics.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FlurryAnalytics.h; sourceTree = "<group>"; };
+		7CFC5A0614D1176D008AC151 /* libFlurryAnalytics.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libFlurryAnalytics.a; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -360,6 +363,7 @@
 				7C9F93B6149960C300126908 /* Foundation.framework in Frameworks */,
 				7C9F93B8149960C300126908 /* CoreGraphics.framework in Frameworks */,
 				7C9F93BA149960C300126908 /* CoreData.framework in Frameworks */,
+				7CFC5A0714D1176D008AC151 /* libFlurryAnalytics.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -390,6 +394,7 @@
 		7C633037149FE4FB00BF2049 /* External */ = {
 			isa = PBXGroup;
 			children = (
+				7CFC5A0414D1176D008AC151 /* FlurryAnalytics */,
 				7C7C1ABB14BDE9D500AA6CB2 /* TestFlightSDK0.8.2 */,
 				7CE85AE014A221A6002874EA /* SDWebImage.xcodeproj */,
 				7C633039149FE50800BF2049 /* RestKit.xcodeproj */,
@@ -725,6 +730,15 @@
 				7CFAFA3014C3B8F500597A6D /* DetailViewController.xib */,
 			);
 			name = "Detail View";
+			sourceTree = "<group>";
+		};
+		7CFC5A0414D1176D008AC151 /* FlurryAnalytics */ = {
+			isa = PBXGroup;
+			children = (
+				7CFC5A0514D1176D008AC151 /* FlurryAnalytics.h */,
+				7CFC5A0614D1176D008AC151 /* libFlurryAnalytics.a */,
+			);
+			path = FlurryAnalytics;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -1085,6 +1099,7 @@
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
 					"\"$(SRCROOT)/TestFlightSDK0.8.2\"",
+					"\"$(SRCROOT)/FlurryAnalytics\"",
 				);
 				OTHER_LDFLAGS = (
 					"-ObjC",
@@ -1173,6 +1188,7 @@
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
 					"\"$(SRCROOT)/TestFlightSDK0.8.2\"",
+					"\"$(SRCROOT)/FlurryAnalytics\"",
 				);
 				OTHER_LDFLAGS = (
 					"-ObjC",
@@ -1198,6 +1214,7 @@
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
 					"\"$(SRCROOT)/TestFlightSDK0.8.2\"",
+					"\"$(SRCROOT)/FlurryAnalytics\"",
 				);
 				OTHER_LDFLAGS = (
 					"-ObjC",
