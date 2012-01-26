@@ -37,6 +37,7 @@
 		7C6CFBFB14BD46A90048644C /* UILabel+Crossfade.m in Sources */ = {isa = PBXBuildFile; fileRef = 7C6CFBFA14BD46A90048644C /* UILabel+Crossfade.m */; };
 		7C6CFBFE14BD46B80048644C /* UITextField+Crossfade.m in Sources */ = {isa = PBXBuildFile; fileRef = 7C6CFBFD14BD46B80048644C /* UITextField+Crossfade.m */; };
 		7C6CFC0114BD48760048644C /* UIView+Shortcut.m in Sources */ = {isa = PBXBuildFile; fileRef = 7C6CFC0014BD48760048644C /* UIView+Shortcut.m */; };
+		7C76DF2114D1D01E007A03B5 /* NSError+Spread.m in Sources */ = {isa = PBXBuildFile; fileRef = 7C76DF2014D1D01E007A03B5 /* NSError+Spread.m */; };
 		7C7C1AC014BDE9D500AA6CB2 /* libTestFlight.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 7C7C1ABC14BDE9D500AA6CB2 /* libTestFlight.a */; };
 		7C7C1AC114BDE9D500AA6CB2 /* README.txt in Resources */ = {isa = PBXBuildFile; fileRef = 7C7C1ABD14BDE9D500AA6CB2 /* README.txt */; };
 		7C7C1AC214BDE9D500AA6CB2 /* release_notes.txt in Resources */ = {isa = PBXBuildFile; fileRef = 7C7C1ABE14BDE9D500AA6CB2 /* release_notes.txt */; };
@@ -224,6 +225,8 @@
 		7C6CFBFD14BD46B80048644C /* UITextField+Crossfade.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UITextField+Crossfade.m"; sourceTree = "<group>"; };
 		7C6CFBFF14BD48760048644C /* UIView+Shortcut.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIView+Shortcut.h"; sourceTree = "<group>"; };
 		7C6CFC0014BD48760048644C /* UIView+Shortcut.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIView+Shortcut.m"; sourceTree = "<group>"; };
+		7C76DF1F14D1D01E007A03B5 /* NSError+Spread.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSError+Spread.h"; sourceTree = "<group>"; };
+		7C76DF2014D1D01E007A03B5 /* NSError+Spread.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSError+Spread.m"; sourceTree = "<group>"; };
 		7C7C1ABC14BDE9D500AA6CB2 /* libTestFlight.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libTestFlight.a; sourceTree = "<group>"; };
 		7C7C1ABD14BDE9D500AA6CB2 /* README.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = README.txt; sourceTree = "<group>"; };
 		7C7C1ABE14BDE9D500AA6CB2 /* release_notes.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = release_notes.txt; sourceTree = "<group>"; };
@@ -487,6 +490,8 @@
 				7C6CFBFD14BD46B80048644C /* UITextField+Crossfade.m */,
 				7C6CFBFF14BD48760048644C /* UIView+Shortcut.h */,
 				7C6CFC0014BD48760048644C /* UIView+Shortcut.m */,
+				7C76DF1F14D1D01E007A03B5 /* NSError+Spread.h */,
+				7C76DF2014D1D01E007A03B5 /* NSError+Spread.m */,
 			);
 			name = Categories;
 			sourceTree = "<group>";
@@ -1007,6 +1012,7 @@
 				7C62EA2514CCB56E0003FFF4 /* WebViewController.m in Sources */,
 				7C46C14814CF5B7900682737 /* CameraViewController.m in Sources */,
 				7C46C14C14CF5C2C00682737 /* UploadProgressView.m in Sources */,
+				7C76DF2114D1D01E007A03B5 /* NSError+Spread.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

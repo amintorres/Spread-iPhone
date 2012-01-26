@@ -14,5 +14,6 @@
 
 - (void)storeDetailsToUserDefault;
 - (void)loadDetailsFromUserDefault;
+- (BOOL)validate:(NSError**)error;
 
 @end

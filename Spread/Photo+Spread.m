@@ -9,6 +9,7 @@
 #import "Photo+Spread.h"
 #import "UserDefaultHelper.h"
 #import "Tag+Spread.h"
+#import "NSError+Spread.h"
 
 
 
@@ -44,6 +45,17 @@
     NSArray* sortedTagNames = [sortedTags valueForKeyPath:@"@unionOfObjects.name"];
     NSString* csvString = [sortedTagNames componentsJoinedByString:@", "];
     return csvString;
+}
+
+- (BOOL)validate:(NSError**)error
+{
+    if ( [self.title length] < 4 )
+    {
+        *error = [NSError invalidPhotoTitleError];
+        return NO;
+    }
+    
+    return YES;
 }
 
 

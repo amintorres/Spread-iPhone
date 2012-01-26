@@ -143,6 +143,14 @@ typedef enum{
     photo.title = titleTextField.text;
     photo.csvTags = tagsTextField.text;
     photo.photoDescription = descriptionTextView.text;
+    
+    NSError* error = nil;
+    if ( ![photo validate:&error] )
+    {
+        UIAlertView* alert = [[UIAlertView alloc] initWithTitle:nil message:[error localizedDescription] delegate:nil cancelButtonTitle:@"Dismiss" otherButtonTitles:nil];
+        [alert show];
+        return;
+    }
 
     if ( editMode == EditModeCreate )
     {
