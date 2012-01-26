@@ -23,7 +23,7 @@ extern NSString * const SpreadDidFailSendingPhotoNotification;
 
 
 
-@interface ServiceManager : NSObject <RKObjectLoaderDelegate, RKRequestDelegate>
+@interface ServiceManager : NSObject <RKObjectLoaderDelegate, RKRequestDelegate, RKManagedObjectCache>
 
 @property (strong, nonatomic) NSArray* allPhotos;
 

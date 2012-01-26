@@ -80,6 +80,7 @@ NSString * const SpreadDidFailSendingPhotoNotification = @"SpreadDidFailSendingP
     
     // Initialize object store
     objectManager.objectStore = [RKManagedObjectStore objectStoreWithStoreFilename:@"Spread.sqlite"];
+    objectManager.objectStore.managedObjectCache = [self sharedManager];
     
     
     // Setup our object mappings    
@@ -366,5 +367,22 @@ NSString * const SpreadDidFailSendingPhotoNotification = @"SpreadDidFailSendingP
 {
     [[NSNotificationCenter defaultCenter] postNotificationName:SpreadDidRequestInviteNotification object:self];
 }
+
+
+#pragma mark -
+#pragma mark RKManagedObjectCache Protocal
+
+- (NSArray*)fetchRequestsForResourcePath:(NSString*)resourcePath
+{
+	if ( [resourcePath isEqualToString:[SpreadAPIDefinition allPhotosPath]] )
+    {
+		NSFetchRequest* request = [Photo fetchRequest];
+		return [NSArray arrayWithObject:request];
+	}
+	    
+	return nil;
+}
+
+
 
 @end
