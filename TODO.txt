@@ -14,3 +14,6 @@
 - Customize camera view.
 
 - Add error handling messages.
+
+
+- Upload : Title must be at least 4 characters long.
