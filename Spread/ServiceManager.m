@@ -203,7 +203,6 @@ NSString * const SpreadDidFailSendingPhotoNotification = @"SpreadDidFailSendingP
     [objectManager loadObjectsAtResourcePath:[SpreadAPIDefinition allPhotosPath] delegate:[ServiceManager sharedManager] block:^(RKObjectLoader* loader) {
         
         loader.objectMapping = [objectManager.mappingProvider objectMappingForClass:[Photo class]];
-        loader.objectMapping.rootKeyPath = @"photo";
     }];
 }
 
@@ -213,7 +212,6 @@ NSString * const SpreadDidFailSendingPhotoNotification = @"SpreadDidFailSendingP
     RKObjectLoader* loader = [objectManager postObject:photo delegate:[ServiceManager sharedManager] block:^(RKObjectLoader *loader){
         
         loader.objectMapping = [objectManager.mappingProvider objectMappingForClass:[Photo class]];
-        loader.objectMapping.rootKeyPath = nil;
 
         RKParams* params = [RKParams params];
         [params setValue:photo.title forParam:@"photo[title]"];
@@ -233,7 +231,6 @@ NSString * const SpreadDidFailSendingPhotoNotification = @"SpreadDidFailSendingP
     [objectManager putObject:photo delegate:[ServiceManager sharedManager] block:^(RKObjectLoader *loader){
         
         loader.objectMapping = [objectManager.mappingProvider objectMappingForClass:[Photo class]];
-        loader.objectMapping.rootKeyPath = nil;
 
         RKParams* params = [RKParams params];
         [params setValue:photo.photoID forParam:@"photo[id]"];
