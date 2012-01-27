@@ -104,6 +104,7 @@
 		7CE85ADF14A21804002874EA /* SpreadAPIDefinition.m in Sources */ = {isa = PBXBuildFile; fileRef = 7CE85ADE14A21804002874EA /* SpreadAPIDefinition.m */; };
 		7CE85AEB14A22330002874EA /* libSDWebImage.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 7CE85AE814A221A6002874EA /* libSDWebImage.a */; };
 		7CE85AEE14A223EB002874EA /* Placeholder.png in Resources */ = {isa = PBXBuildFile; fileRef = 7CE85AED14A223EB002874EA /* Placeholder.png */; };
+		7CF7A7B414D2599F0043EBA9 /* UIAlertView+Utilities.m in Sources */ = {isa = PBXBuildFile; fileRef = 7CF7A7B314D2599F0043EBA9 /* UIAlertView+Utilities.m */; };
 		7CF8A609149BFA12009FF755 /* IntroViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7CF8A607149BFA12009FF755 /* IntroViewController.m */; };
 		7CF8A60A149BFA12009FF755 /* IntroViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 7CF8A608149BFA12009FF755 /* IntroViewController.xib */; };
 		7CF8A60E149BFA2F009FF755 /* ListViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7CF8A60C149BFA2F009FF755 /* ListViewController.m */; };
@@ -309,6 +310,8 @@
 		7CE85ADE14A21804002874EA /* SpreadAPIDefinition.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SpreadAPIDefinition.m; sourceTree = "<group>"; };
 		7CE85AE014A221A6002874EA /* SDWebImage.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = SDWebImage.xcodeproj; path = SDWebImage/SDWebImage.xcodeproj; sourceTree = "<group>"; };
 		7CE85AED14A223EB002874EA /* Placeholder.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Placeholder.png; sourceTree = "<group>"; };
+		7CF7A7B214D2599F0043EBA9 /* UIAlertView+Utilities.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIAlertView+Utilities.h"; sourceTree = "<group>"; };
+		7CF7A7B314D2599F0043EBA9 /* UIAlertView+Utilities.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIAlertView+Utilities.m"; sourceTree = "<group>"; };
 		7CF8A606149BFA12009FF755 /* IntroViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IntroViewController.h; sourceTree = "<group>"; };
 		7CF8A607149BFA12009FF755 /* IntroViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = IntroViewController.m; sourceTree = "<group>"; };
 		7CF8A608149BFA12009FF755 /* IntroViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = IntroViewController.xib; sourceTree = "<group>"; };
@@ -492,6 +495,8 @@
 				7C6CFC0014BD48760048644C /* UIView+Shortcut.m */,
 				7C76DF1F14D1D01E007A03B5 /* NSError+Spread.h */,
 				7C76DF2014D1D01E007A03B5 /* NSError+Spread.m */,
+				7CF7A7B214D2599F0043EBA9 /* UIAlertView+Utilities.h */,
+				7CF7A7B314D2599F0043EBA9 /* UIAlertView+Utilities.m */,
 			);
 			name = Categories;
 			sourceTree = "<group>";
@@ -1013,6 +1018,7 @@
 				7C46C14814CF5B7900682737 /* CameraViewController.m in Sources */,
 				7C46C14C14CF5C2C00682737 /* UploadProgressView.m in Sources */,
 				7C76DF2114D1D01E007A03B5 /* NSError+Spread.m in Sources */,
+				7CF7A7B414D2599F0043EBA9 /* UIAlertView+Utilities.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

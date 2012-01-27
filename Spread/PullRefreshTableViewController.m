@@ -9,9 +9,11 @@
 #import <QuartzCore/QuartzCore.h>
 #import "PullRefreshTableViewController.h"
 #import "ServiceManager.h"
+#import "UIAlertView+Utilities.h"
 
 
 @interface PullRefreshTableViewController ()
+@property (strong, nonatomic) UIAlertView* alert;
 @property (nonatomic) BOOL isDragging;
 @property (nonatomic) BOOL isLoading;
 - (void)startLoading;
@@ -25,6 +27,7 @@
 @synthesize tableView;
 @synthesize pullRefreshHeaderView;
 @synthesize isDragging, isLoading;
+@synthesize alert;
 
 
 #pragma mark -
@@ -56,6 +59,11 @@
     self.tableView = nil;
     self.pullRefreshHeaderView = nil;
     [super viewDidUnload];
+}
+
+- (void)dealloc
+{
+    [[NSNotificationCenter defaultCenter] removeObserver:self];
 }
 
 
@@ -149,10 +157,20 @@
 
 - (void)refresh
 {
-    [ServiceManager loadDataFromServer];
     [ServiceManager loadUserInfoFromServer];
+    RKObjectLoader* loader = [ServiceManager loadDataFromServer];
+    
+    [[NSNotificationCenter defaultCenter] addObserverForName:SpreadDidFailNotification object:loader queue:nil usingBlock:^(NSNotification* notification){
+        
+        [[NSNotificationCenter defaultCenter] removeObserver:self name:SpreadDidFailNotification object:notification.object];
+        [self stopLoading];
+        [UIAlertView showAlertWithError:[notification.userInfo objectForKey:@"error"]];
+    }];
 }
 
-
+- (void)alertView:(UIAlertView *)alertView didDismissWithButtonIndex:(NSInteger)buttonIndex
+{
+    self.alert = nil;
+}
 
 @end

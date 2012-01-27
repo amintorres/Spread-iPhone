@@ -21,6 +21,8 @@ extern NSString * const SpreadDidSendPhotoBodyDataNotification;
 extern NSString * const SpreadDidFinishSendingPhotoNotification;
 extern NSString * const SpreadDidFailSendingPhotoNotification;
 
+extern NSString * const SpreadDidFailNotification;
+
 
 
 @interface ServiceManager : NSObject <RKObjectLoaderDelegate, RKRequestDelegate, RKManagedObjectCache>
@@ -33,14 +35,14 @@ extern NSString * const SpreadDidFailSendingPhotoNotification;
 
 + (void)setupRestKit;
 
-+ (void)loginWithUsername:(NSString*)username password:(NSString*)password;
-+ (void)loadUserInfoFromServer;
++ (RKObjectLoader*)loginWithUsername:(NSString*)username password:(NSString*)password;
++ (RKObjectLoader*)loadUserInfoFromServer;
 + (void)logout;
 + (void)requestInviteWithEmail:(NSString*)email name:(NSString*)name;
-+ (void)loadDataFromServer;
-+ (void)postPhoto:(Photo*)photo imageData:(NSData*)imageData;
-+ (void)updatePhoto:(Photo*)photo;
-+ (void)deletePhoto:(Photo*)photo;
++ (RKObjectLoader*)loadDataFromServer;
++ (RKObjectLoader*)postPhoto:(Photo*)photo imageData:(NSData*)imageData;
++ (RKObjectLoader*)updatePhoto:(Photo*)photo;
++ (RKObjectLoader*)deletePhoto:(Photo*)photo;
 
 
 @end

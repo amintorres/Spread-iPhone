@@ -12,6 +12,7 @@
 #import "UITextField+Crossfade.h"
 #import "UIView+Shortcut.h"
 #import "ServiceManager.h"
+#import "UIAlertView+Utilities.h"
 
 
 typedef enum{
@@ -279,7 +280,13 @@ static const CGFloat kGroup2InviteOffset        = 150;
 
     NSString* username = textField0.text;
     NSString* password = textField1.text;
-    [ServiceManager loginWithUsername:username password:password];
+    RKObjectLoader* loader = [ServiceManager loginWithUsername:username password:password];
+    
+    [[NSNotificationCenter defaultCenter] addObserverForName:SpreadDidFailNotification object:loader queue:nil usingBlock:^(NSNotification* notification){
+        
+        [[NSNotificationCenter defaultCenter] removeObserver:self name:SpreadDidFailNotification object:notification.object];
+        [UIAlertView showAlertWithError:[notification.userInfo objectForKey:@"error"]];
+    }];
 }
 
 - (IBAction)inviteButtonTapped:(id)sender

@@ -20,6 +20,8 @@ NSString * const SpreadDidSendPhotoBodyDataNotification = @"SpreadDidSendPhotoBo
 NSString * const SpreadDidFinishSendingPhotoNotification = @"SpreadDidFinishSendingPhotoNotification";
 NSString * const SpreadDidFailSendingPhotoNotification = @"SpreadDidFailSendingPhotoNotification";
 
+NSString * const SpreadDidFailNotification = @"SpreadDidFailNotification";
+
 
 
 @interface ServiceManager ()
@@ -150,12 +152,12 @@ NSString * const SpreadDidFailSendingPhotoNotification = @"SpreadDidFailSendingP
     return ( storedToken != nil );
 }
 
-+ (void)loginWithUsername:(NSString*)username password:(NSString*)password
++ (RKObjectLoader*)loginWithUsername:(NSString*)username password:(NSString*)password
 {
     User* user = [User currentUser];
     
     RKObjectManager* objectManager = [RKObjectManager sharedManager];
-    [objectManager postObject:user delegate:[ServiceManager sharedManager] block:^(RKObjectLoader *loader){
+    RKObjectLoader* loader = [objectManager postObject:user delegate:[ServiceManager sharedManager] block:^(RKObjectLoader *loader){
         
         loader.objectMapping = [objectManager.mappingProvider objectMappingForClass:[User class]];
         loader.objectMapping.rootKeyPath = nil;
@@ -164,16 +166,20 @@ NSString * const SpreadDidFailSendingPhotoNotification = @"SpreadDidFailSendingP
         [params setValue:password forParam:@"user_session[password]"];
         loader.params = params;
     }];
+    
+    return loader;
 }
 
-+ (void)loadUserInfoFromServer
++ (RKObjectLoader*)loadUserInfoFromServer
 {
     RKObjectManager* objectManager = [RKObjectManager sharedManager];
-    [objectManager loadObjectsAtResourcePath:[SpreadAPIDefinition userInfoPath] delegate:[ServiceManager sharedManager] block:^(RKObjectLoader* loader) {
+    RKObjectLoader* loader = [objectManager loadObjectsAtResourcePath:[SpreadAPIDefinition userInfoPath] delegate:[ServiceManager sharedManager] block:^(RKObjectLoader* loader) {
         
         loader.objectMapping = [objectManager.mappingProvider objectMappingForClass:[User class]];
         loader.objectMapping.rootKeyPath = @"user";
     }];
+    
+    return loader;
 }
 
 + (void)logout
@@ -198,16 +204,18 @@ NSString * const SpreadDidFailSendingPhotoNotification = @"SpreadDidFailSendingP
 #pragma mark -
 #pragma mark Photo Data
 
-+ (void)loadDataFromServer
++ (RKObjectLoader*)loadDataFromServer
 {
     RKObjectManager* objectManager = [RKObjectManager sharedManager];
-    [objectManager loadObjectsAtResourcePath:[SpreadAPIDefinition allPhotosPath] delegate:[ServiceManager sharedManager] block:^(RKObjectLoader* loader) {
+    RKObjectLoader* loader = [objectManager loadObjectsAtResourcePath:[SpreadAPIDefinition allPhotosPath] delegate:[ServiceManager sharedManager] block:^(RKObjectLoader* loader) {
         
         loader.objectMapping = [objectManager.mappingProvider objectMappingForClass:[Photo class]];
     }];
+    
+    return loader;
 }
 
-+ (void)postPhoto:(Photo*)photo imageData:(NSData*)imageData
++ (RKObjectLoader*)postPhoto:(Photo*)photo imageData:(NSData*)imageData
 {
     RKObjectManager* objectManager = [RKObjectManager sharedManager];
     RKObjectLoader* loader = [objectManager postObject:photo delegate:[ServiceManager sharedManager] block:^(RKObjectLoader *loader){
@@ -224,12 +232,13 @@ NSString * const SpreadDidFailSendingPhotoNotification = @"SpreadDidFailSendingP
     }];
     
     [[NSNotificationCenter defaultCenter] postNotificationName:SpreadDidStartSendingPhotoNotification object:loader];
+    return loader;
 }
 
-+ (void)updatePhoto:(Photo*)photo
++ (RKObjectLoader*)updatePhoto:(Photo*)photo
 {
     RKObjectManager* objectManager = [RKObjectManager sharedManager];
-    [objectManager putObject:photo delegate:[ServiceManager sharedManager] block:^(RKObjectLoader *loader){
+    RKObjectLoader* loader = [objectManager putObject:photo delegate:[ServiceManager sharedManager] block:^(RKObjectLoader *loader){
         
         loader.objectMapping = [objectManager.mappingProvider objectMappingForClass:[Photo class]];
 
@@ -240,12 +249,14 @@ NSString * const SpreadDidFailSendingPhotoNotification = @"SpreadDidFailSendingP
         [params setValue:photo.photoDescription forParam:@"photo[description]"];
         loader.params = params;
     }];
+    
+    return loader;
 }
 
-+ (void)deletePhoto:(Photo*)photo
++ (RKObjectLoader*)deletePhoto:(Photo*)photo
 {
     RKObjectManager* objectManager = [RKObjectManager sharedManager];
-    [objectManager deleteObject:photo delegate:[ServiceManager sharedManager] block:^(RKObjectLoader *loader){
+    RKObjectLoader* loader = [objectManager deleteObject:photo delegate:[ServiceManager sharedManager] block:^(RKObjectLoader *loader){
         
         loader.objectMapping = [objectManager.mappingProvider objectMappingForClass:[Photo class]];
         loader.objectMapping.rootKeyPath = nil;
@@ -254,6 +265,8 @@ NSString * const SpreadDidFailSendingPhotoNotification = @"SpreadDidFailSendingP
         [params setValue:photo.photoID forParam:@"photo[id]"];
         loader.params = params;
     }];
+    
+    return loader;
 }
 
 
@@ -282,26 +295,35 @@ NSString * const SpreadDidFailSendingPhotoNotification = @"SpreadDidFailSendingP
 
 - (void)objectLoader:(RKObjectLoader*)objectLoader didFailWithError:(NSError*)error
 {
-    NSString* responseString = [objectLoader.response bodyAsString];
-    NSLog(@"Hit error: %@", error);
-    NSLog(@"Response string: %@", responseString);
-    
-    if ( [[objectLoader resourcePath] isEqualToString:[SpreadAPIDefinition loginPath]] )
-    {
-        if ( objectLoader.response.statusCode == 422 )
+    //// Do dispatch so that observers get notifications AFTER they get the objects back. ////
+    dispatch_async(dispatch_get_main_queue(), ^{
+        
+        NSLog(@"Hit error: %@", error);
+        
+        NSString* responseString = [objectLoader.response bodyAsString];
+        NSLog(@"Response string: %@", responseString);
+        
+        NSDictionary* userInfo = [NSDictionary dictionaryWithObjectsAndKeys:error, @"error", nil];
+        [[NSNotificationCenter defaultCenter] postNotificationName:SpreadDidFailNotification object:objectLoader userInfo:userInfo];
+        
+        
+        if ( [[objectLoader resourcePath] isEqualToString:[SpreadAPIDefinition loginPath]] )
         {
-            if ( [objectLoader.response isJSON] )
+            if ( objectLoader.response.statusCode == 422 )
             {
-                NSError* error = nil;
-                NSDictionary* JSONDict = [objectLoader.response parsedBody:&error];
-                NSArray* allValues = [JSONDict allValues];
-                NSString* reason = ( [allValues count] ) ? [[allValues objectAtIndex:0] objectAtIndex:0] : @"Please try again";
-                
-                UIAlertView* alert = [[UIAlertView alloc] initWithTitle:@"Login Failed" message:reason delegate:nil cancelButtonTitle:@"Dismiss" otherButtonTitles:nil];
-                [alert show];
+                if ( [objectLoader.response isJSON] )
+                {
+                    NSError* error = nil;
+                    NSDictionary* JSONDict = [objectLoader.response parsedBody:&error];
+                    NSArray* allValues = [JSONDict allValues];
+                    NSString* reason = ( [allValues count] ) ? [[allValues objectAtIndex:0] objectAtIndex:0] : @"Please try again";
+                    
+                    UIAlertView* alert = [[UIAlertView alloc] initWithTitle:@"Login Failed" message:reason delegate:nil cancelButtonTitle:@"Dismiss" otherButtonTitles:nil];
+                    [alert show];
+                }
             }
         }
-    }
+    });
 }
 
 
@@ -332,17 +354,21 @@ NSString * const SpreadDidFailSendingPhotoNotification = @"SpreadDidFailSendingP
 
 - (void)request:(RKRequest *)request didFailLoadWithError:(NSError *)error
 {
-    if ([request wasSentToResourcePath:[SpreadAPIDefinition invitePath]])
-    {
-        NSLog(@"error: %@", error);
-        UIAlertView* alert = [[UIAlertView alloc] initWithTitle:@"Error" message:@"Something's wrong with the network. Please try again." delegate:nil cancelButtonTitle:@"Dismiss" otherButtonTitles:nil];
-        [alert show];
-    }
-    else if ( [request wasSentToResourcePath:[SpreadAPIDefinition postPhotoPath]] )
-    {
-        NSDictionary* userInfo = [NSDictionary dictionaryWithObject:error forKey:@"error"];
-        [[NSNotificationCenter defaultCenter] postNotificationName:SpreadDidFinishSendingPhotoNotification object:request userInfo:userInfo];
-    }
+    //// Do dispatch so that observers get notifications AFTER they get the objects back. ////
+    dispatch_async(dispatch_get_main_queue(), ^{
+        
+        if ([request wasSentToResourcePath:[SpreadAPIDefinition invitePath]])
+        {
+            NSLog(@"error: %@", error);
+            UIAlertView* alert = [[UIAlertView alloc] initWithTitle:@"Error" message:@"Something's wrong with the network. Please try again." delegate:nil cancelButtonTitle:@"Dismiss" otherButtonTitles:nil];
+            [alert show];
+        }
+        else if ( [request wasSentToResourcePath:[SpreadAPIDefinition postPhotoPath]] )
+        {
+            NSDictionary* userInfo = [NSDictionary dictionaryWithObject:error forKey:@"error"];
+            [[NSNotificationCenter defaultCenter] postNotificationName:SpreadDidFailSendingPhotoNotification object:request userInfo:userInfo];
+        }
+    });
 }
 
 - (void)request:(RKRequest *)request didSendBodyData:(NSInteger)bytesWritten totalBytesWritten:(NSInteger)totalBytesWritten totalBytesExpectedToWrite:(NSInteger)totalBytesExpectedToWrite
