@@ -9,6 +9,7 @@
 #import "MasterViewController.h"
 #import "ServiceManager.h"
 #import "IntroViewController.h"
+#import "WelcomeViewController.h"
 #import "ListViewController.h"
 #import "GridViewController.h"
 #import "ReviewViewController.h"
@@ -34,6 +35,7 @@ typedef enum{
 @interface MasterViewController ()
 
 @property (strong, nonatomic) IntroViewController* introViewController;
+@property (strong, nonatomic) WelcomeViewController* welcomeViewController;
 @property (strong, nonatomic) ListViewController* listViewController;
 @property (strong, nonatomic) GridViewController* gridViewController;
 @property (nonatomic) ContainerViewMode containerViewMode;
@@ -57,8 +59,7 @@ typedef enum{
 
 @synthesize navigationBar, containerView;
 @synthesize gridListButton;
-@synthesize welcomeView, welcomeLabel;
-@synthesize introViewController, listViewController, gridViewController;
+@synthesize introViewController, welcomeViewController, listViewController, gridViewController;
 @synthesize containerViewMode;
 
 
@@ -94,9 +95,7 @@ typedef enum{
     self.navigationBar = nil;
     self.containerView = nil;
     self.gridListButton = nil;
-    [self setWelcomeView:nil];
-    [self setWelcomeLabel:nil];
-    [self setUploadProgressView:nil];
+    self.uploadProgressView = nil;
     [super viewDidUnload];
 }
 
@@ -180,6 +179,15 @@ typedef enum{
     return introViewController;
 }
 
+- (WelcomeViewController*)welcomeViewController
+{
+    if ( !welcomeViewController )
+    {
+        welcomeViewController = [[WelcomeViewController alloc] init];
+    }
+    return welcomeViewController;
+}
+
 - (GridViewController*)gridViewController
 {
     if ( !gridViewController )
@@ -238,9 +246,8 @@ typedef enum{
 {
     [self clearContainerView];
     
-    self.welcomeLabel.text = [NSString stringWithFormat:@"Welcome, %@.\nWe look forward to all the great moments you'll capture!", [User currentUser].name];
-    
-    [self.containerView addSubview:self.welcomeView];
+    self.welcomeViewController.view.frame = self.containerView.bounds;
+    [self.containerView addSubview:self.welcomeViewController.view];
     self.gridListButton.enabled = NO;
 }
 
@@ -269,9 +276,17 @@ typedef enum{
                     }
                     completion:NULL];
     
+    if ( [[ServiceManager allPhotos] count] )
+    {
+        [self showListView];
+    }
+    else
+    {
+        [self showWelcomeView];
+    }
+
     [ServiceManager loadDataFromServer];
     [ServiceManager loadUserInfoFromServer];
-    [self showListView];
 }
 
 - (void)showDetailViewForPhoto:(Photo*)photo
