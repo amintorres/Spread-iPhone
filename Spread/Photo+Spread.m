@@ -19,13 +19,14 @@
 - (void)storeDetailsToUserDefault
 {
     [UserDefaultHelper setStoredTitle:self.title];
-    [UserDefaultHelper setStoredTags:nil];
+    [UserDefaultHelper setStoredTags:self.csvTags];
     [UserDefaultHelper setStoredDescription:self.photoDescription];
 }
 
 - (void)loadDetailsFromUserDefault
 {
     self.title = [UserDefaultHelper storedTitle];
+    self.csvTags = [UserDefaultHelper storedTags];
     self.photoDescription = [UserDefaultHelper storedDescription];
 }
 

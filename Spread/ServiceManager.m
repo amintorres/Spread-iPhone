@@ -275,22 +275,26 @@ NSString * const SpreadDidFailNotification = @"SpreadDidFailNotification";
 
 - (void)objectLoader:(RKObjectLoader*)objectLoader didLoadObjects:(NSArray*)objects
 {
-    if ([objectLoader wasSentToResourcePath:[SpreadAPIDefinition loginPath]])
-    {
-        if ( [objectLoader isPOST] )
+    //// Do dispatch so that observers get notifications AFTER they get the objects back. ////
+    dispatch_async(dispatch_get_main_queue(), ^{
+
+        if ([objectLoader wasSentToResourcePath:[SpreadAPIDefinition loginPath]])
         {
-            [[NSNotificationCenter defaultCenter] postNotificationName:SpreadDidLoginNotification object:self];   
+            if ( [objectLoader isPOST] )
+            {
+                [[NSNotificationCenter defaultCenter] postNotificationName:SpreadDidLoginNotification object:self];   
+            }
         }
-    }
-    else if ( [objectLoader wasSentToResourcePath:[SpreadAPIDefinition userInfoPath]] )
-    {
-        [[NSNotificationCenter defaultCenter] postNotificationName:SpreadDidLoadUserInfoNotification object:self];
-    }
-    else if ( [objectLoader wasSentToResourcePath:[SpreadAPIDefinition allPhotosPath]] || [[objects lastObject] isMemberOfClass:[Photo class]] )    // "allPhotosPath" might return an empty array.
-    {
-        self.allPhotos = nil;   // This will trigger reload on the next access.
-        [[NSNotificationCenter defaultCenter] postNotificationName:SpreadDidLoadPhotosNotification object:self];
-    }
+        else if ( [objectLoader wasSentToResourcePath:[SpreadAPIDefinition userInfoPath]] )
+        {
+            [[NSNotificationCenter defaultCenter] postNotificationName:SpreadDidLoadUserInfoNotification object:self];
+        }
+        else if ( [objectLoader wasSentToResourcePath:[SpreadAPIDefinition allPhotosPath]] || [[objects lastObject] isMemberOfClass:[Photo class]] )    // "allPhotosPath" might return an empty array.
+        {
+            self.allPhotos = nil;   // This will trigger reload on the next access.
+            [[NSNotificationCenter defaultCenter] postNotificationName:SpreadDidLoadPhotosNotification object:self];
+        }
+    });
 }
 
 - (void)objectLoader:(RKObjectLoader*)objectLoader didFailWithError:(NSError*)error

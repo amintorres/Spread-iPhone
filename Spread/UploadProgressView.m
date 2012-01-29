@@ -43,94 +43,90 @@
 
 - (void)startSending
 {
-    dispatch_async(dispatch_get_main_queue(), ^{
-
-        self.hidden = NO;
-        self.alpha = 1.0;
-        
-        self.progressView.hidden = NO;
-        self.progressView.progress = 0.0;
-        
-        self.textLabel.hidden = YES;
-        
-        self.retryButton.hidden = YES;
-        
-        [self.activityIndicator stopAnimating];
-    });
+    self.hidden = NO;
+    self.alpha = 1.0;
+    
+    self.progressView.hidden = NO;
+    self.progressView.progress = 0.0;
+    
+    self.textLabel.hidden = YES;
+    
+    self.retryButton.hidden = YES;
+    
+    [self.activityIndicator stopAnimating];
 }
 
 - (void)didSendPhotoBodyData:(NSNotification*)notification
 {
-    dispatch_async(dispatch_get_main_queue(), ^{
-        
-        NSDictionary* userInfo = notification.userInfo;
-        NSNumber* totalBytesWritten = [userInfo objectForKey:@"totalBytesWritten"];
-        NSNumber* totalBytesExpectedToWrite = [userInfo objectForKey:@"totalBytesExpectedToWrite"];
-        
-        float progress = [totalBytesWritten floatValue] / [totalBytesExpectedToWrite floatValue];
-        
-        if ( progress < 1.0 )
-        {
-            [self.progressView setProgress:progress animated:YES];
-        }
-        else
-        {
-            //// There's latency between 'request sent' and 'response receive'.
-            
-            self.progressView.hidden = YES;
-            
-            self.textLabel.hidden = NO;
-            self.textLabel.text = @"Processing...";
-            self.textLabel.textColor = [UIColor whiteColor];
-        
-            [self.activityIndicator startAnimating];
-        }
-    });
-}
-
-- (void)didFinishSendingPhoto:(NSNotification*)notification
-{
-    dispatch_async(dispatch_get_main_queue(), ^{
+    self.textLabel.hidden = YES;    
+    self.retryButton.hidden = YES;
+    
+    NSDictionary* userInfo = notification.userInfo;
+    NSNumber* totalBytesWritten = [userInfo objectForKey:@"totalBytesWritten"];
+    NSNumber* totalBytesExpectedToWrite = [userInfo objectForKey:@"totalBytesExpectedToWrite"];
+    
+    float progress = [totalBytesWritten floatValue] / [totalBytesExpectedToWrite floatValue];
+    
+    if ( progress < 1.0 )
+    {
+        self.progressView.hidden = NO;
+        self.progressView.progress = progress;
+    }
+    else
+    {
+        //// There's latency between 'request sent' and 'response receive'.
         
         self.progressView.hidden = YES;
         
         self.textLabel.hidden = NO;
-        self.textLabel.text = @"Photo sent!";
+        self.textLabel.text = @"Processing...";
         self.textLabel.textColor = [UIColor whiteColor];
         
-        [self.activityIndicator stopAnimating];
+        [self.activityIndicator startAnimating];
+    }
+}
+
+- (void)didFinishSendingPhoto:(NSNotification*)notification
+{       
+    self.progressView.hidden = YES;
+    
+    self.textLabel.hidden = NO;
+    self.textLabel.text = @"Photo sent!";
+    self.textLabel.textColor = [UIColor whiteColor];
+    
+    [self.activityIndicator stopAnimating];
+    
+    self.retryButton.hidden = YES;
+    
+    
+    [UIView animateWithDuration:0.3 delay:1.0 options:UIViewAnimationOptionCurveEaseInOut animations:^(void){
         
-        [UIView animateWithDuration:0.3 delay:1.0 options:UIViewAnimationOptionCurveEaseInOut animations:^(void){
-            
-            self.alpha = 0.0;
-            
-        } completion:^(BOOL finished){
-            
-            self.hidden = YES;
-            self.object = nil;
-        }];
-    });
+        self.alpha = 0.0;
+        
+    } completion:^(BOOL finished){
+        
+        self.hidden = YES;
+        self.object = nil;
+    }];
 }
 
 - (void)didFailSendingPhoto:(NSNotification*)notification
-{
-    dispatch_async(dispatch_get_main_queue(), ^{
-        
-        self.textLabel.hidden = YES;
-        self.textLabel.text = @"Upload failed!";
-        self.textLabel.textColor = [UIColor redColor];
-        
-        self.retryButton.hidden = NO;
-        
-        [self.activityIndicator stopAnimating];
-    });
+{        
+    self.progressView.hidden = YES;
+    self.textLabel.hidden = NO;
+    self.textLabel.text = @"Upload failed!";
+    self.textLabel.textColor = [UIColor redColor];
+    
+    self.retryButton.hidden = NO;
+    
+    [self.activityIndicator stopAnimating];
 }
 
 - (IBAction)retryButtonTapped:(id)sender
 {
     if ( [object isKindOfClass:[RKObjectLoader class]] )
     {
-        [(RKObjectLoader*)sender sendAsynchronously];
+        [(RKObjectLoader*)object sendAsynchronously];
     }
 }
 
