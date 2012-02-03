@@ -158,7 +158,7 @@
 - (void)refresh
 {
     [ServiceManager loadUserInfoFromServer];
-    RKObjectLoader* loader = [ServiceManager loadDataFromServer];
+    RKObjectLoader* loader = [ServiceManager loadUserPhotos];
     
     [[NSNotificationCenter defaultCenter] addObserverForName:SpreadDidFailNotification object:loader queue:nil usingBlock:^(NSNotification* notification){
         

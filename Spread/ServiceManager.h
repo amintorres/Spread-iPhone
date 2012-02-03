@@ -23,14 +23,22 @@ extern NSString * const SpreadDidFailSendingPhotoNotification;
 
 extern NSString * const SpreadDidFailNotification;
 
+typedef enum {
+    PhotoTypeUsers = 0,
+    PhotoTypePopular,
+    PhotoTypeRecent,
+}PhotoType;
+
 
 
 @interface ServiceManager : NSObject <RKObjectLoaderDelegate, RKRequestDelegate, RKManagedObjectCache>
 
-@property (strong, nonatomic) NSArray* allPhotos;
+@property (strong, nonatomic) NSArray* userPhotos;
+@property (strong, nonatomic) NSArray* popularPhotos;
+@property (strong, nonatomic) NSArray* recentPhotos;
 
 + (ServiceManager*)sharedManager;
-+ (NSArray*)allPhotos;
++ (NSArray*)photosOfType:(PhotoType)type;
 + (BOOL)isSessionValid;
 
 + (void)setupRestKit;
@@ -39,7 +47,9 @@ extern NSString * const SpreadDidFailNotification;
 + (RKObjectLoader*)loadUserInfoFromServer;
 + (void)logout;
 + (void)requestInviteWithEmail:(NSString*)email name:(NSString*)name;
-+ (RKObjectLoader*)loadDataFromServer;
++ (RKObjectLoader*)loadUserPhotos;
++ (RKObjectLoader*)loadPopularPhotos;
++ (RKObjectLoader*)loadRecentPhotos;
 + (RKObjectLoader*)postPhoto:(Photo*)photo imageData:(NSData*)imageData;
 + (RKObjectLoader*)updatePhoto:(Photo*)photo;
 + (RKObjectLoader*)deletePhoto:(Photo*)photo;

@@ -59,7 +59,7 @@
 #pragma mark -
 #pragma mark Photo Paths
 
-+ (NSString*)allPhotosPath
++ (NSString*)userPhotosPath
 {
     NSString* allPhotosPath = [NSString stringWithFormat:@"/photos/uploaded.json?%@", [self userCredentialsQuery]];
     return allPhotosPath;
@@ -81,6 +81,18 @@
 {
     NSString* deletePhotoPath = [NSString stringWithFormat:@"/photos/:photoID?%@", [self userCredentialsQuery]];
     return deletePhotoPath;
+}
+
++ (NSString*)popularPhotosPath
+{
+    NSString* popularPhotosPath = [NSString stringWithFormat:@"/photos/popular.json?%@", [self userCredentialsQuery]];
+    return popularPhotosPath;
+}
+
++ (NSString*)recentPhotosPath
+{
+    NSString* recentPhotosPath = [NSString stringWithFormat:@"/photos/recent.json?%@", [self userCredentialsQuery]];
+    return recentPhotosPath;
 }
 
 

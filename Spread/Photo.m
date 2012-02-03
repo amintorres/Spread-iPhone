@@ -2,8 +2,8 @@
 //  Photo.m
 //  Spread
 //
-//  Created by Joseph Lin on 1/15/12.
-//  Copyright (c) 2012 Joseph Lin. All rights reserved.
+//  Created by Joseph Lin on 2/2/12.
+//  Copyright (c) 2012 R/GA. All rights reserved.
 //
 
 #import "Photo.h"
@@ -15,13 +15,17 @@
 @dynamic camera;
 @dynamic capturedDate;
 @dynamic createdDate;
+@dynamic csvTags;
 @dynamic feedImageURLString;
 @dynamic gridImageURLString;
 @dynamic largeImageURLString;
 @dynamic photoDescription;
 @dynamic photoID;
 @dynamic title;
-@dynamic csvTags;
+@dynamic favoritesCount;
+@dynamic isPopular;
+@dynamic isRecent;
+@dynamic userID;
 @dynamic tags;
 
 @end

@@ -9,6 +9,7 @@
 #import <UIKit/UIKit.h>
 #import "GridTableViewCell.h"
 #import "PullRefreshTableViewController.h"
+#import "ServiceManager.h"
 
 
 @interface GridViewController : PullRefreshTableViewController
@@ -19,5 +20,6 @@
 @property (strong, nonatomic) IBOutlet UILabel *nameLabel;
 @property (strong, nonatomic) IBOutlet UILabel *numberOfPhotosLabel;
 @property (strong, nonatomic) IBOutlet GridTableViewCell *nibLoadedCell;
+@property (nonatomic) PhotoType photoType;
 
 @end

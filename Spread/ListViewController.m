@@ -9,7 +9,6 @@
 #import "ListViewController.h"
 #import "Photo.h"
 #import "UIImageView+WebCache.h"
-#import "ServiceManager.h"
 #import "MasterViewController.h"
 
 
@@ -17,6 +16,7 @@
 @implementation ListViewController
 
 @synthesize nibLoadedCell;
+@synthesize photoType;
 
 
 #pragma mark -
@@ -48,7 +48,7 @@
 
 - (NSInteger)tableView:(UITableView *)table numberOfRowsInSection:(NSInteger)section
 {
-	return [[ServiceManager allPhotos] count];
+	return [[ServiceManager photosOfType:self.photoType] count];
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
@@ -64,14 +64,14 @@
         self.nibLoadedCell = nil;
 	}
 
-    cell.photo = [[ServiceManager allPhotos] objectAtIndex:indexPath.row];
+    cell.photo = [[ServiceManager photosOfType:self.photoType] objectAtIndex:indexPath.row];
     
 	return cell;
 }
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    Photo* photo = [[ServiceManager allPhotos] objectAtIndex:indexPath.row];
+    Photo* photo = [[ServiceManager photosOfType:self.photoType] objectAtIndex:indexPath.row];
     NSDictionary* userInfo = [NSDictionary dictionaryWithObject:photo forKey:@"photo"];
     [[NSNotificationCenter defaultCenter] postNotificationName:SpreadDidSelectPhotoNotification object:self userInfo:userInfo];
 }
@@ -81,14 +81,14 @@
 
 - (void)scrollToPhoto:(Photo*)photo
 {
-    NSInteger index = [[ServiceManager allPhotos] indexOfObject:photo];
+    NSInteger index = [[ServiceManager photosOfType:self.photoType] indexOfObject:photo];
     NSIndexPath* indexPath = [NSIndexPath indexPathForRow:index inSection:0];
     [self.tableView scrollToRowAtIndexPath:indexPath atScrollPosition:UITableViewScrollPositionMiddle animated:YES];
 }
 
 - (UIImageView*)imageViewForPhoto:(Photo*)photo
 {
-    NSInteger index = [[ServiceManager allPhotos] indexOfObject:photo];
+    NSInteger index = [[ServiceManager photosOfType:self.photoType] indexOfObject:photo];
     NSIndexPath* indexPath = [NSIndexPath indexPathForRow:index inSection:0];
     ListTableViewCell* cell = (ListTableViewCell*)[self.tableView cellForRowAtIndexPath:indexPath];
     return cell.imageView;

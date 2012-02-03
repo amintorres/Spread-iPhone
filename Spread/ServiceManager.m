@@ -32,7 +32,7 @@ NSString * const SpreadDidFailNotification = @"SpreadDidFailNotification";
 
 @implementation ServiceManager
 
-@synthesize allPhotos;
+@synthesize userPhotos, popularPhotos, recentPhotos;
 
 
 + (ServiceManager*)sharedManager
@@ -48,23 +48,61 @@ NSString * const SpreadDidFailNotification = @"SpreadDidFailNotification";
     }
 }
 
-+ (NSArray*)allPhotos
++ (NSArray*)photosOfType:(PhotoType)type
 {
-    return [[self sharedManager] allPhotos];
+    switch (type) {
+        case PhotoTypeUsers:
+            return [[self sharedManager] userPhotos];            
+            
+        case PhotoTypePopular:
+            return [[self sharedManager] popularPhotos];            
+            
+        case PhotoTypeRecent:
+        default:
+            return [[self sharedManager] recentPhotos];            
+    }    
 }
 
-- (NSArray*)allPhotos
+- (NSArray*)userPhotos
 {
-    if ( !allPhotos )
+    if ( !userPhotos )
     {
         NSFetchRequest* request = [Photo fetchRequest];
         NSSortDescriptor* descriptor = [NSSortDescriptor sortDescriptorWithKey:@"createdDate" ascending:NO];
         request.sortDescriptors = [NSArray arrayWithObject:descriptor];
-        request.predicate = [NSPredicate predicateWithFormat:@"photoID != nil"];
+        request.predicate = [NSPredicate predicateWithFormat:@"photoID != nil AND userID == %@", [User currentUser].userID];
         
-        allPhotos = [Photo objectsWithFetchRequest:request];
+        userPhotos = [Photo objectsWithFetchRequest:request];
     }
-    return allPhotos;
+    return userPhotos;
+}
+
+- (NSArray*)popularPhotos
+{
+    if ( !popularPhotos )
+    {
+        NSFetchRequest* request = [Photo fetchRequest];
+        NSSortDescriptor* descriptor = [NSSortDescriptor sortDescriptorWithKey:@"favoritesCount" ascending:NO];
+        request.sortDescriptors = [NSArray arrayWithObject:descriptor];
+        request.predicate = [NSPredicate predicateWithFormat:@"photoID != nil AND isPopular == YES"];
+        
+        popularPhotos = [Photo objectsWithFetchRequest:request];
+    }
+    return popularPhotos;
+}
+
+- (NSArray*)recentPhotos
+{
+    if ( !recentPhotos )
+    {
+        NSFetchRequest* request = [Photo fetchRequest];
+        NSSortDescriptor* descriptor = [NSSortDescriptor sortDescriptorWithKey:@"createdDate" ascending:NO];
+        request.sortDescriptors = [NSArray arrayWithObject:descriptor];
+        request.predicate = [NSPredicate predicateWithFormat:@"photoID != nil AND isRecent == YES"];
+        
+        recentPhotos = [Photo objectsWithFetchRequest:request];
+    }
+    return recentPhotos;
 }
 
 
@@ -95,9 +133,11 @@ NSString * const SpreadDidFailNotification = @"SpreadDidFailNotification";
     photoMapping.primaryKeyAttribute = @"photoID";
     photoMapping.rootKeyPath = @"photo";
     [photoMapping mapKeyPath:@"id" toAttribute:@"photoID"];
+    [photoMapping mapKeyPath:@"user_id" toAttribute:@"userID"];
     [photoMapping mapKeyPath:@"camera" toAttribute:@"camera"];
     [photoMapping mapKeyPath:@"captured_at" toAttribute:@"capturedDate"];
     [photoMapping mapKeyPath:@"created_at" toAttribute:@"createdDate"];
+    [photoMapping mapKeyPath:@"favorites_count" toAttribute:@"favoritesCount"];
     [photoMapping mapKeyPath:@"image.iphone.grid.url" toAttribute:@"gridImageURLString"];
     [photoMapping mapKeyPath:@"image.iphone.square.url" toAttribute:@"feedImageURLString"];
     [photoMapping mapKeyPath:@"image.iphone.url" toAttribute:@"largeImageURLString"];
@@ -184,7 +224,7 @@ NSString * const SpreadDidFailNotification = @"SpreadDidFailNotification";
 
 + (void)logout
 {
-    [ServiceManager sharedManager].allPhotos = nil;
+    [ServiceManager sharedManager].userPhotos = nil;
     [User clearUser];
     [[RKClient sharedClient].requestCache invalidateAll];
     [[RKObjectManager sharedManager].objectStore deletePersistantStore];
@@ -204,12 +244,40 @@ NSString * const SpreadDidFailNotification = @"SpreadDidFailNotification";
 #pragma mark -
 #pragma mark Photo Data
 
-+ (RKObjectLoader*)loadDataFromServer
++ (RKObjectLoader*)loadUserPhotos
 {
     RKObjectManager* objectManager = [RKObjectManager sharedManager];
-    RKObjectLoader* loader = [objectManager loadObjectsAtResourcePath:[SpreadAPIDefinition allPhotosPath] delegate:[ServiceManager sharedManager] block:^(RKObjectLoader* loader) {
+    RKObjectLoader* loader = [objectManager loadObjectsAtResourcePath:[SpreadAPIDefinition userPhotosPath] delegate:[ServiceManager sharedManager] block:^(RKObjectLoader* loader) {
         
         loader.objectMapping = [objectManager.mappingProvider objectMappingForClass:[Photo class]];
+        loader.objectMapping.rootKeyPath = @"photo";
+
+    }];
+    
+    return loader;
+}
+
++ (RKObjectLoader*)loadPopularPhotos
+{
+    RKObjectManager* objectManager = [RKObjectManager sharedManager];
+    RKObjectLoader* loader = [objectManager loadObjectsAtResourcePath:[SpreadAPIDefinition popularPhotosPath] delegate:[ServiceManager sharedManager] block:^(RKObjectLoader* loader) {
+        
+        loader.objectMapping = [objectManager.mappingProvider objectMappingForClass:[Photo class]];
+        loader.objectMapping.rootKeyPath = nil;
+
+    }];
+    
+    return loader;
+}
+
++ (RKObjectLoader*)loadRecentPhotos
+{
+    RKObjectManager* objectManager = [RKObjectManager sharedManager];
+    RKObjectLoader* loader = [objectManager loadObjectsAtResourcePath:[SpreadAPIDefinition recentPhotosPath] delegate:[ServiceManager sharedManager] block:^(RKObjectLoader* loader) {
+        
+        loader.objectMapping = [objectManager.mappingProvider objectMappingForClass:[Photo class]];
+        loader.objectMapping.rootKeyPath = nil;
+        
     }];
     
     return loader;
@@ -289,9 +357,24 @@ NSString * const SpreadDidFailNotification = @"SpreadDidFailNotification";
         {
             [[NSNotificationCenter defaultCenter] postNotificationName:SpreadDidLoadUserInfoNotification object:self];
         }
-        else if ( [objectLoader wasSentToResourcePath:[SpreadAPIDefinition allPhotosPath]] || [[objects lastObject] isMemberOfClass:[Photo class]] )    // "allPhotosPath" might return an empty array.
+        else if ( [objectLoader wasSentToResourcePath:[SpreadAPIDefinition userPhotosPath]]
+                 || [objectLoader wasSentToResourcePath:[SpreadAPIDefinition popularPhotosPath]]
+                 || [objectLoader wasSentToResourcePath:[SpreadAPIDefinition recentPhotosPath]]
+                 || [[objects lastObject] isMemberOfClass:[Photo class]] )
         {
-            self.allPhotos = nil;   // This will trigger reload on the next access.
+            if ( [objectLoader wasSentToResourcePath:[SpreadAPIDefinition popularPhotosPath]] )
+            {
+                [objects makeObjectsPerformSelector:@selector(setIsPopular:) withObject:[NSNumber numberWithBool:YES]];
+            }
+            else if ( [objectLoader wasSentToResourcePath:[SpreadAPIDefinition recentPhotosPath]] )
+            {
+                [objects makeObjectsPerformSelector:@selector(setIsRecent:) withObject:[NSNumber numberWithBool:YES]];
+            }
+
+            // This will trigger reload on the next access.
+            self.userPhotos = nil;
+            self.popularPhotos = nil;
+            self.recentPhotos = nil;
             [[NSNotificationCenter defaultCenter] postNotificationName:SpreadDidLoadPhotosNotification object:self];
         }
     });
@@ -404,9 +487,24 @@ NSString * const SpreadDidFailNotification = @"SpreadDidFailNotification";
 
 - (NSArray*)fetchRequestsForResourcePath:(NSString*)resourcePath
 {
-	if ( [resourcePath isEqualToString:[SpreadAPIDefinition allPhotosPath]] )
+	if ( [resourcePath isEqualToString:[SpreadAPIDefinition userPhotosPath]] )
     {
 		NSFetchRequest* request = [Photo fetchRequest];
+        request.predicate = [NSPredicate predicateWithFormat:@"userID == %@", [User currentUser].userID];
+        return [NSArray arrayWithObject:request];
+	}
+    
+    else if ( [resourcePath isEqualToString:[SpreadAPIDefinition popularPhotosPath]] )
+    {
+		NSFetchRequest* request = [Photo fetchRequest];
+        request.predicate = [NSPredicate predicateWithFormat:@"isPopular == YES"];
+		return [NSArray arrayWithObject:request];
+	}
+    
+    else if ( [resourcePath isEqualToString:[SpreadAPIDefinition recentPhotosPath]] )
+    {
+		NSFetchRequest* request = [Photo fetchRequest];
+        request.predicate = [NSPredicate predicateWithFormat:@"isRecent == YES"];
 		return [NSArray arrayWithObject:request];
 	}
 	    

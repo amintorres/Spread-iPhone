@@ -9,7 +9,6 @@
 #import "GridViewController.h"
 #import "Photo.h"
 #import "UIImageView+WebCache.h"
-#import "ServiceManager.h"
 #import "User+Spread.h"
 #import "MasterViewController.h"
 
@@ -29,6 +28,7 @@
 @synthesize nameLabel;
 @synthesize numberOfPhotosLabel;
 @synthesize nibLoadedCell;
+@synthesize photoType;
 
 
 #pragma mark -
@@ -87,7 +87,7 @@
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-    float count = (float)[[ServiceManager allPhotos] count] / kNumberOfColumns;
+    float count = (float)[[ServiceManager photosOfType:self.photoType] count] / kNumberOfColumns;
     return ceilf(count);
 }
 
@@ -106,9 +106,9 @@
 	}
 
     NSInteger loc = indexPath.row * kNumberOfColumns;
-    NSInteger len = MIN( [[ServiceManager allPhotos] count] - loc, kNumberOfColumns );
+    NSInteger len = MIN( [[ServiceManager photosOfType:self.photoType] count] - loc, kNumberOfColumns );
     NSRange range = NSMakeRange(loc, len);
-    NSArray* photos = [[ServiceManager allPhotos] subarrayWithRange:range];
+    NSArray* photos = [[ServiceManager photosOfType:self.photoType] subarrayWithRange:range];
     cell.photos = photos;
     
     return cell;

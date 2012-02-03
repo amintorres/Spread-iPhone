@@ -26,10 +26,12 @@
 + (NSString*)userInfoPath;
 
 // Photo Path
-+ (NSString*)allPhotosPath;
++ (NSString*)userPhotosPath;
 + (NSString*)postPhotoPath;
 + (NSString*)putPhotoPath;
 + (NSString*)deletePhotoPath;
++ (NSString*)popularPhotosPath;
++ (NSString*)recentPhotosPath;
 
 
 // Query

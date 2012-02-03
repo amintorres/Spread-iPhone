@@ -38,6 +38,7 @@ typedef enum{
 @property (strong, nonatomic) WelcomeViewController* welcomeViewController;
 @property (strong, nonatomic) ListViewController* listViewController;
 @property (strong, nonatomic) GridViewController* gridViewController;
+@property (strong, nonatomic) UploadProgressView *uploadProgressView;
 @property (nonatomic) ContainerViewMode containerViewMode;
 
 - (void)addObservations;
@@ -96,6 +97,7 @@ typedef enum{
     self.containerView = nil;
     self.gridListButton = nil;
     self.uploadProgressView = nil;
+    [self setGridListButton:nil];
     [super viewDidUnload];
 }
 
@@ -117,7 +119,7 @@ typedef enum{
     
     [[NSNotificationCenter defaultCenter] addObserverForName:SpreadDidLoadPhotosNotification object:nil queue:nil usingBlock:^(NSNotification* notification){
         
-        if ( [[ServiceManager allPhotos] count] )
+        if ( [[ServiceManager photosOfType:PhotoTypeUsers] count] )
         {
             if ( self.containerViewMode == ContainerViewModeGrid )
             {
@@ -222,9 +224,10 @@ typedef enum{
 {
     [self clearContainerView];
     
+    [self.gridViewController.tableView reloadData];
     self.gridViewController.view.frame = self.containerView.bounds;
     [self.containerView addSubview:self.gridViewController.view];
-    [self.gridListButton setImage:[UIImage imageNamed:@"icon_list"] forState:UIControlStateNormal];
+    self.gridListButton.image = [UIImage imageNamed:@"icon_list"];
     self.gridListButton.enabled = YES;
     
     self.containerViewMode = ContainerViewModeGrid;
@@ -234,10 +237,12 @@ typedef enum{
 {
     [self clearContainerView];
     
+    [self.listViewController.tableView reloadData];
     self.listViewController.view.frame = self.containerView.bounds;
     [self.containerView addSubview:self.listViewController.view];
-    [self.gridListButton setImage:[UIImage imageNamed:@"icon_grid"] forState:UIControlStateNormal];
+    self.gridListButton.image = [UIImage imageNamed:@"icon_grid"];
     self.gridListButton.enabled = YES;
+
     
     self.containerViewMode = ContainerViewModeList;
 }
@@ -276,16 +281,16 @@ typedef enum{
                     }
                     completion:NULL];
     
-    if ( [[ServiceManager allPhotos] count] )
+    if ( [[ServiceManager photosOfType:PhotoTypeUsers] count] )
     {
-        [self showListView];
+        [self showGridView];
     }
     else
     {
         [self showWelcomeView];
     }
 
-    [ServiceManager loadDataFromServer];
+    [ServiceManager loadUserPhotos];
     [ServiceManager loadUserInfoFromServer];
 }
 
@@ -365,6 +370,22 @@ typedef enum{
     }
 }
 
+- (IBAction)popularButtonTapped:(id)sender
+{
+    self.listViewController.photoType = PhotoTypePopular;
+    self.gridViewController.photoType = PhotoTypePopular;
+    [self showGridView];
+    [ServiceManager loadPopularPhotos];
+}
+
+- (IBAction)recentButtonTapped:(id)sender
+{
+    self.listViewController.photoType = PhotoTypeRecent;
+    self.gridViewController.photoType = PhotoTypeRecent;
+    [self showGridView];
+    [ServiceManager loadRecentPhotos];
+}
+
 - (IBAction)cameraButtonTapped:(id)sender
 {
     if ( [UIImagePickerController isSourceTypeAvailable:UIImagePickerControllerSourceTypeCamera] )
@@ -379,28 +400,12 @@ typedef enum{
     }
 }
 
-- (void)actionSheet:(UIActionSheet *)actionSheet didDismissWithButtonIndex:(NSInteger)buttonIndex
+- (IBAction)myPhotoButtonTapped:(id)sender
 {
-    if ( buttonIndex == actionSheet.cancelButtonIndex )
-    {
-        return;
-    }
-
-
-    UIImagePickerController* imagePicker = [[UIImagePickerController alloc] init];
-    
-    if ( [UIImagePickerController isSourceTypeAvailable:UIImagePickerControllerSourceTypeCamera] && buttonIndex == actionSheet.firstOtherButtonIndex )
-    {
-        imagePicker.sourceType = UIImagePickerControllerSourceTypeCamera;
-    }
-    else
-    {
-        imagePicker.sourceType = UIImagePickerControllerSourceTypePhotoLibrary;
-    }
-    
-    imagePicker.delegate = self;
-    imagePicker.allowsEditing = NO;
-    [self presentModalViewController:imagePicker animated:YES];
+    self.listViewController.photoType = PhotoTypeUsers;
+    self.gridViewController.photoType = PhotoTypeUsers;
+    [self showGridView];
+    [ServiceManager loadUserPhotos];
 }
 
 - (IBAction)aboutButtonTapped:(id)sender
@@ -419,8 +424,32 @@ typedef enum{
     [self presentModalViewController:editViewController animated:YES];
 }
 
-- (IBAction)albumButtonTapped:(id)sender
+
+#pragma mark -
+#pragma mark UIAlertView Delegate
+
+- (void)actionSheet:(UIActionSheet *)actionSheet didDismissWithButtonIndex:(NSInteger)buttonIndex
 {
+    if ( buttonIndex == actionSheet.cancelButtonIndex )
+    {
+        return;
+    }
+    
+    
+    UIImagePickerController* imagePicker = [[UIImagePickerController alloc] init];
+    
+    if ( [UIImagePickerController isSourceTypeAvailable:UIImagePickerControllerSourceTypeCamera] && buttonIndex == actionSheet.firstOtherButtonIndex )
+    {
+        imagePicker.sourceType = UIImagePickerControllerSourceTypeCamera;
+    }
+    else
+    {
+        imagePicker.sourceType = UIImagePickerControllerSourceTypePhotoLibrary;
+    }
+    
+    imagePicker.delegate = self;
+    imagePicker.allowsEditing = NO;
+    [self presentModalViewController:imagePicker animated:YES];
 }
 
 

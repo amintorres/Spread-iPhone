@@ -5,16 +5,12 @@
         <attribute name="capturedDate" optional="YES" attributeType="Date" syncable="YES"/>
         <attribute name="createdDate" optional="YES" attributeType="Date" syncable="YES"/>
         <attribute name="csvTags" optional="YES" transient="YES" attributeType="String" syncable="YES"/>
-        <attribute name="favoritesCount" optional="YES" attributeType="Integer 64" defaultValueString="0" syncable="YES"/>
         <attribute name="feedImageURLString" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="gridImageURLString" optional="YES" attributeType="String" syncable="YES"/>
-        <attribute name="isPopular" optional="YES" attributeType="Boolean" syncable="YES"/>
-        <attribute name="isRecent" optional="YES" attributeType="Boolean" syncable="YES"/>
         <attribute name="largeImageURLString" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="photoDescription" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="photoID" optional="YES" attributeType="Integer 64" syncable="YES"/>
         <attribute name="title" optional="YES" attributeType="String" syncable="YES"/>
-        <attribute name="userID" optional="YES" attributeType="Integer 64" defaultValueString="0" syncable="YES"/>
         <relationship name="tags" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Tag" inverseName="photos" inverseEntity="Tag" syncable="YES"/>
     </entity>
     <entity name="Tag" representedClassName="Tag" syncable="YES">
@@ -29,8 +25,8 @@
         <attribute name="userID" optional="YES" attributeType="Integer 64" defaultValueString="0" syncable="YES"/>
     </entity>
     <elements>
-        <element name="Photo" positionX="160" positionY="192" width="128" height="270"/>
-        <element name="Tag" positionX="160" positionY="192" width="128" height="75"/>
-        <element name="User" positionX="160" positionY="192" width="128" height="120"/>
+        <element name="Photo" positionX="160" positionY="192" width="128" height="210"/>
+        <element name="Tag" positionX="-306" positionY="78" width="128" height="75"/>
+        <element name="User" positionX="-756" positionY="267" width="128" height="120"/>
     </elements>
 </model>
