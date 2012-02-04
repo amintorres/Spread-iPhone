@@ -20,13 +20,14 @@
 
 #pragma mark -
 
-- (void)setImageView:(UIImageView*)imageView andButton:(UIButton*)button withPhotoAtIndex:(NSInteger)index
+- (void)setImageView:(UIImageView*)imageView andButton:(UIButton*)button withPhotoAtIndex:(NSInteger)index useCurrentImageAsPlaceholder:(BOOL)useCurrentImageAsPlaceholder
 {
     if ( index < [photos count] )
     {
         Photo* photo = [photos objectAtIndex:index];
-        NSURL* URL = [NSURL URLWithString:photo.gridImageURLString];
-        [imageView setImageWithURL:URL];
+
+        UIImage* oldImage = ( useCurrentImageAsPlaceholder ) ? imageView.image : nil;
+        [imageView setImageWithURL:[NSURL URLWithString:photo.gridImageURLString] placeholderImage:oldImage ];
         button.enabled = YES;
     }
     else
@@ -51,11 +52,12 @@
 
 - (void)setPhotos:(NSArray *)thePhotos
 {
+    BOOL isUpdate = ( [photos isEqualToArray:thePhotos] );
     photos = thePhotos;
-
-    [self setImageView:leftImageView andButton:leftButton withPhotoAtIndex:0];
-    [self setImageView:middleImageView andButton:middleButton withPhotoAtIndex:1];
-    [self setImageView:rightImageView andButton:rightButton withPhotoAtIndex:2];
+    
+    [self setImageView:leftImageView andButton:leftButton withPhotoAtIndex:0 useCurrentImageAsPlaceholder:isUpdate];
+    [self setImageView:middleImageView andButton:middleButton withPhotoAtIndex:1 useCurrentImageAsPlaceholder:isUpdate];
+    [self setImageView:rightImageView andButton:rightButton withPhotoAtIndex:2 useCurrentImageAsPlaceholder:isUpdate];
 }
 
 - (IBAction)leftButtonTapped:(id)sender

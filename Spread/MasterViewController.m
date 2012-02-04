@@ -56,11 +56,14 @@ typedef enum{
 
 
 @implementation MasterViewController
-@synthesize uploadProgressView;
 
 @synthesize navigationBar, containerView;
 @synthesize gridListButton;
+@synthesize popularButton;
+@synthesize recentButton;
+@synthesize myPhotoButton;
 @synthesize introViewController, welcomeViewController, listViewController, gridViewController;
+@synthesize uploadProgressView;
 @synthesize containerViewMode;
 
 
@@ -98,6 +101,9 @@ typedef enum{
     self.gridListButton = nil;
     self.uploadProgressView = nil;
     [self setGridListButton:nil];
+    [self setPopularButton:nil];
+    [self setRecentButton:nil];
+    [self setMyPhotoButton:nil];
     [super viewDidUnload];
 }
 
@@ -283,6 +289,7 @@ typedef enum{
     
     if ( [[ServiceManager photosOfType:PhotoTypeUsers] count] )
     {
+        [self myPhotoButtonTapped:myPhotoButton];
         [self showGridView];
     }
     else
@@ -372,6 +379,10 @@ typedef enum{
 
 - (IBAction)popularButtonTapped:(id)sender
 {
+    self.popularButton.selected = YES;
+    self.recentButton.selected = NO;
+    self.myPhotoButton.selected = NO;
+    
     self.listViewController.photoType = PhotoTypePopular;
     self.gridViewController.photoType = PhotoTypePopular;
     [self showGridView];
@@ -380,6 +391,10 @@ typedef enum{
 
 - (IBAction)recentButtonTapped:(id)sender
 {
+    self.popularButton.selected = NO;
+    self.recentButton.selected = YES;
+    self.myPhotoButton.selected = NO;
+
     self.listViewController.photoType = PhotoTypeRecent;
     self.gridViewController.photoType = PhotoTypeRecent;
     [self showGridView];
@@ -402,6 +417,10 @@ typedef enum{
 
 - (IBAction)myPhotoButtonTapped:(id)sender
 {
+    self.popularButton.selected = NO;
+    self.recentButton.selected = NO;
+    self.myPhotoButton.selected = YES;
+
     self.listViewController.photoType = PhotoTypeUsers;
     self.gridViewController.photoType = PhotoTypeUsers;
     [self showGridView];

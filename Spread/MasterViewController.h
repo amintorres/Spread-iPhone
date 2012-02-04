@@ -21,6 +21,9 @@ extern NSString * const SpreadDidDeselectPhotoNotification;
 @property (strong, nonatomic) IBOutlet UINavigationBar *navigationBar;
 @property (strong, nonatomic) IBOutlet UIView *containerView;
 @property (strong, nonatomic) IBOutlet UIBarButtonItem *gridListButton;
+@property (strong, nonatomic) IBOutlet UIButton *popularButton;
+@property (strong, nonatomic) IBOutlet UIButton *recentButton;
+@property (strong, nonatomic) IBOutlet UIButton *myPhotoButton;
 
 - (IBAction)gridListButtonTapped:(id)sender;
 - (IBAction)popularButtonTapped:(id)sender;
