@@ -11,6 +11,7 @@
 #import "UIImageView+WebCache.h"
 #import "User+Spread.h"
 #import "MasterViewController.h"
+#import "UIView+Shortcut.h"
 
 #define kNumberOfColumns    3
 
@@ -23,6 +24,8 @@
 @implementation GridViewController
 
 @synthesize headerView;
+@synthesize popularHeaderView;
+@synthesize recentHeaderView;
 @synthesize footerView;
 @synthesize noPhotoView;
 @synthesize avatarImageView;
@@ -66,6 +69,8 @@
     self.numberOfPhotosLabel = nil;
     [self setNibLoadedCell:nil];
     [self setNoPhotoView:nil];
+    [self setPopularHeaderView:nil];
+    [self setRecentHeaderView:nil];
     [super viewDidUnload];
 }
 
@@ -73,10 +78,31 @@
 {
     [super reloadTableView];
     
-    int count = [[ServiceManager photosOfType:self.photoType] count];
-    self.tableView.tableHeaderView = (count) ? self.headerView : self.noPhotoView;
-    self.tableView.tableFooterView = (count) ? self.footerView : nil;
-    self.tableView.scrollEnabled = (count);
+    switch (self.photoType) {
+        case PhotoTypeUsers:
+            self.tableView.tableHeaderView = self.headerView;
+            break;
+            
+        case PhotoTypePopular:
+            self.tableView.tableHeaderView = self.popularHeaderView;
+            break;
+            
+        case PhotoTypeRecent:
+        default:
+            self.tableView.tableHeaderView = self.recentHeaderView;
+            break;
+    }
+    
+    if ( [[ServiceManager photosOfType:self.photoType] count] )
+    {
+        self.tableView.tableFooterView = self.footerView;
+        self.tableView.scrollEnabled = YES;
+    }
+    else
+    {
+        self.tableView.tableFooterView = self.noPhotoView;
+        self.tableView.scrollEnabled = NO;        
+    }
 }
 
 

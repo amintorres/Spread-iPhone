@@ -15,6 +15,8 @@
 @interface GridViewController : PullRefreshTableViewController
 
 @property (strong, nonatomic) IBOutlet UIView *headerView;
+@property (strong, nonatomic) IBOutlet UIView *popularHeaderView;
+@property (strong, nonatomic) IBOutlet UIView *recentHeaderView;
 @property (strong, nonatomic) IBOutlet UIView *footerView;
 @property (strong, nonatomic) IBOutlet UIView *noPhotoView;
 @property (strong, nonatomic) IBOutlet UIImageView *avatarImageView;
