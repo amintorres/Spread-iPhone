@@ -24,6 +24,7 @@
 
 @synthesize headerView;
 @synthesize footerView;
+@synthesize noPhotoView;
 @synthesize avatarImageView;
 @synthesize nameLabel;
 @synthesize numberOfPhotosLabel;
@@ -39,8 +40,8 @@
     [super viewDidLoad];
     
     self.tableView.tableHeaderView = headerView;
-    self.tableView.tableFooterView = footerView;
     
+    [self reloadTableView];    
     [self updateUserInfo];
     
     [[NSNotificationCenter defaultCenter] addObserverForName:SpreadDidLoadUserInfoNotification object:nil queue:nil usingBlock:^(NSNotification* notification){
@@ -64,7 +65,18 @@
     self.nameLabel = nil;
     self.numberOfPhotosLabel = nil;
     [self setNibLoadedCell:nil];
+    [self setNoPhotoView:nil];
     [super viewDidUnload];
+}
+
+- (void)reloadTableView
+{
+    [super reloadTableView];
+    
+    int count = [[ServiceManager photosOfType:self.photoType] count];
+    self.tableView.tableHeaderView = (count) ? self.headerView : self.noPhotoView;
+    self.tableView.tableFooterView = (count) ? self.footerView : nil;
+    self.tableView.scrollEnabled = (count);
 }
 
 

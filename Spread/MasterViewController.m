@@ -125,20 +125,13 @@ typedef enum{
     
     [[NSNotificationCenter defaultCenter] addObserverForName:SpreadDidLoadPhotosNotification object:nil queue:nil usingBlock:^(NSNotification* notification){
         
-        if ( [[ServiceManager photosOfType:PhotoTypeUsers] count] )
+        if ( self.containerViewMode == ContainerViewModeGrid )
         {
-            if ( self.containerViewMode == ContainerViewModeGrid )
-            {
-                [self showGridView];
-            }
-            else
-            {
-                [self showListView];
-            }
+            [self showGridView];
         }
         else
         {
-            [self showWelcomeView];
+            [self showListView];
         }
     }];
     
@@ -230,13 +223,20 @@ typedef enum{
 {
     [self clearContainerView];
     
-    [self.gridViewController.tableView reloadData];
-    self.gridViewController.view.frame = self.containerView.bounds;
-    [self.containerView addSubview:self.gridViewController.view];
-    self.gridListButton.image = [UIImage imageNamed:@"icon_list"];
-    self.gridListButton.enabled = YES;
+    if ( ![[ServiceManager photosOfType:PhotoTypeUsers] count] && self.gridViewController.photoType == PhotoTypeUsers )
+    {
+        [self showWelcomeView];
+    }
+    else
+    {
+        [self.gridViewController reloadTableView];
+        self.gridViewController.view.frame = self.containerView.bounds;
+        [self.containerView addSubview:self.gridViewController.view];
+        self.gridListButton.image = [UIImage imageNamed:@"icon_list"];
+        self.gridListButton.enabled = YES;
+    }
     
-    self.containerViewMode = ContainerViewModeGrid;
+    self.containerViewMode = ContainerViewModeGrid;        
 }
 
 - (void)showListView
@@ -287,15 +287,8 @@ typedef enum{
                     }
                     completion:NULL];
     
-    if ( [[ServiceManager photosOfType:PhotoTypeUsers] count] )
-    {
-        [self myPhotoButtonTapped:myPhotoButton];
-        [self showGridView];
-    }
-    else
-    {
-        [self showWelcomeView];
-    }
+    [self myPhotoButtonTapped:myPhotoButton];
+    [self showGridView];
 
     [ServiceManager loadUserPhotos];
     [ServiceManager loadUserInfoFromServer];

@@ -83,7 +83,7 @@
 {
     NSInteger index = [[ServiceManager photosOfType:self.photoType] indexOfObject:photo];
     NSIndexPath* indexPath = [NSIndexPath indexPathForRow:index inSection:0];
-    [self.tableView scrollToRowAtIndexPath:indexPath atScrollPosition:UITableViewScrollPositionMiddle animated:YES];
+    [self.tableView scrollToRowAtIndexPath:indexPath atScrollPosition:UITableViewScrollPositionMiddle animated:NO];
 }
 
 - (UIImageView*)imageViewForPhoto:(Photo*)photo

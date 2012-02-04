@@ -16,5 +16,6 @@
 @property (strong, nonatomic) IBOutlet PullRefreshHeaderView *pullRefreshHeaderView;
 
 - (void)refresh;
+- (void)reloadTableView;
 
 @end

@@ -49,7 +49,7 @@
     
     [[NSNotificationCenter defaultCenter] addObserverForName:SpreadDidLoadPhotosNotification object:nil queue:nil usingBlock:^(NSNotification* notification){
         
-        [self.tableView reloadData];
+        [self reloadTableView];
         [self stopLoading];
     }];
 }
@@ -64,6 +64,12 @@
 - (void)dealloc
 {
     [[NSNotificationCenter defaultCenter] removeObserver:self];
+}
+
+- (void)reloadTableView
+{
+    //// Give subclass a chance to do additional work. ////
+    [self.tableView reloadData];
 }
 
 
