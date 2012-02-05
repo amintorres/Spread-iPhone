@@ -115,7 +115,7 @@
     [avatarImageView setImageWithURL:currentUser.avatarURL];
     nameLabel.text = currentUser.name;
     
-    NSInteger photoCount = [Photo count:nil];
+    NSInteger photoCount = [[ServiceManager photosOfType:PhotoTypeUsers] count];
     numberOfPhotosLabel.text = [NSString stringWithFormat:@"%d", photoCount];
 }
      
