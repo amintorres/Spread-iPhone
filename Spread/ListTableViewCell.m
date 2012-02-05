@@ -13,7 +13,7 @@
 
 @implementation ListTableViewCell
 
-@synthesize imageView, titleLabel, descriptionLabel;
+@synthesize imageView, titleLabel, descriptionLabel, editButton;
 @synthesize photo;
 
 

@@ -16,6 +16,7 @@
 @property (strong, nonatomic) IBOutlet UIImageView *imageView;
 @property (strong, nonatomic) IBOutlet UILabel *titleLabel;
 @property (strong, nonatomic) IBOutlet UILabel *descriptionLabel;
+@property (strong, nonatomic) IBOutlet UIButton *editButton;
 @property (strong, nonatomic) Photo *photo;
 
 - (IBAction)editButtonTapped:(id)sender;

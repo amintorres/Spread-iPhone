@@ -65,15 +65,19 @@
 	}
 
     cell.photo = [[ServiceManager photosOfType:self.photoType] objectAtIndex:indexPath.row];
-    
+    cell.editButton.hidden = ( self.photoType != PhotoTypeUsers );
+
 	return cell;
 }
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    Photo* photo = [[ServiceManager photosOfType:self.photoType] objectAtIndex:indexPath.row];
-    NSDictionary* userInfo = [NSDictionary dictionaryWithObject:photo forKey:@"photo"];
-    [[NSNotificationCenter defaultCenter] postNotificationName:SpreadDidSelectPhotoNotification object:self userInfo:userInfo];
+    if ( self.photoType == PhotoTypeUsers )
+    {
+        Photo* photo = [[ServiceManager photosOfType:self.photoType] objectAtIndex:indexPath.row];    
+        NSDictionary* userInfo = [NSDictionary dictionaryWithObject:photo forKey:@"photo"];
+        [[NSNotificationCenter defaultCenter] postNotificationName:SpreadDidSelectPhotoNotification object:self userInfo:userInfo];
+    }
 }
 
 
