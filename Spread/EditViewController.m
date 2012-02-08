@@ -214,12 +214,26 @@ typedef enum{
 
 - (CGFloat)tableView:(UITableView *)tableView heightForFooterInSection:(NSInteger)section
 {
-    return sectionFooterView.bounds.size.height;    
+    if ( editMode == EditModeCreate )
+    {
+        return sectionFooterView.bounds.size.height;    
+    }
+    else
+    {
+        return 5.0;
+    }
 }
 
 - (UIView *)tableView:(UITableView *)tableView viewForFooterInSection:(NSInteger)section
 {
-    return sectionFooterView;
+    if ( editMode == EditModeCreate )
+    {
+        return sectionFooterView;       
+    }
+    else
+    {
+        return nil;
+    }
 }
 
 - (NSInteger)tableView:(UITableView *)table numberOfRowsInSection:(NSInteger)section

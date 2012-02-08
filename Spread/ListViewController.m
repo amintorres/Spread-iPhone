@@ -72,12 +72,9 @@
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    if ( self.photoType == PhotoTypeUsers )
-    {
-        Photo* photo = [[ServiceManager photosOfType:self.photoType] objectAtIndex:indexPath.row];    
-        NSDictionary* userInfo = [NSDictionary dictionaryWithObject:photo forKey:@"photo"];
-        [[NSNotificationCenter defaultCenter] postNotificationName:SpreadDidSelectPhotoNotification object:self userInfo:userInfo];
-    }
+    Photo* photo = [[ServiceManager photosOfType:self.photoType] objectAtIndex:indexPath.row];    
+    NSDictionary* userInfo = [NSDictionary dictionaryWithObject:photo forKey:@"photo"];
+    [[NSNotificationCenter defaultCenter] postNotificationName:SpreadDidSelectPhotoNotification object:self userInfo:userInfo];
 }
 
 
