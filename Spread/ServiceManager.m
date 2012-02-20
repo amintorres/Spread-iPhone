@@ -44,6 +44,13 @@ NSString * const SpreadDidFailNotification = @"SpreadDidFailNotification";
         if (!sharedManager)
             sharedManager = [[ServiceManager alloc] init];
         
+        [[NSNotificationCenter defaultCenter] addObserverForName:NSManagedObjectContextWillSaveNotification object:nil queue:nil usingBlock:^(NSNotification* notification){
+            
+            sharedManager.userPhotos = nil;
+            sharedManager.popularPhotos = nil;
+            sharedManager.recentPhotos = nil;
+        }];
+        
         return sharedManager;
     }
 }
