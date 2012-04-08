@@ -91,6 +91,11 @@
 		7C46C14914CF5B7900682737 /* CameraViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 7C46C14714CF5B7900682737 /* CameraViewController.xib */; };
 		7C46C14C14CF5C2C00682737 /* UploadProgressView.m in Sources */ = {isa = PBXBuildFile; fileRef = 7C46C14B14CF5C2C00682737 /* UploadProgressView.m */; };
 		7C46C14E14CF5C3D00682737 /* UploadProgressView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 7C46C14D14CF5C3D00682737 /* UploadProgressView.xib */; };
+		7C4991D21531BEC0007A4663 /* libTestFlight.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 7C4991CE1531BEC0007A4663 /* libTestFlight.a */; };
+		7C4991D31531BEC0007A4663 /* README.txt in Resources */ = {isa = PBXBuildFile; fileRef = 7C4991CF1531BEC0007A4663 /* README.txt */; };
+		7C4991D41531BEC0007A4663 /* release_notes.txt in Resources */ = {isa = PBXBuildFile; fileRef = 7C4991D01531BEC0007A4663 /* release_notes.txt */; };
+		7C4991D61531BF58007A4663 /* libz.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 7C4991D51531BF58007A4663 /* libz.dylib */; };
+		7C4991D81531BF75007A4663 /* MapKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7C4991D71531BF75007A4663 /* MapKit.framework */; };
 		7C57F26D14BFA5A300906DE8 /* Entitlements.plist in Resources */ = {isa = PBXBuildFile; fileRef = 7C57F26C14BFA5A300906DE8 /* Entitlements.plist */; };
 		7C62EA1F14CCB5400003FFF4 /* About.html in Resources */ = {isa = PBXBuildFile; fileRef = 7C62EA1C14CCB5400003FFF4 /* About.html */; };
 		7C62EA2014CCB5400003FFF4 /* privacy.html in Resources */ = {isa = PBXBuildFile; fileRef = 7C62EA1D14CCB5400003FFF4 /* privacy.html */; };
@@ -105,9 +110,6 @@
 		7C6CFBFE14BD46B80048644C /* UITextField+Crossfade.m in Sources */ = {isa = PBXBuildFile; fileRef = 7C6CFBFD14BD46B80048644C /* UITextField+Crossfade.m */; };
 		7C6CFC0114BD48760048644C /* UIView+Shortcut.m in Sources */ = {isa = PBXBuildFile; fileRef = 7C6CFC0014BD48760048644C /* UIView+Shortcut.m */; };
 		7C76DF2114D1D01E007A03B5 /* NSError+Spread.m in Sources */ = {isa = PBXBuildFile; fileRef = 7C76DF2014D1D01E007A03B5 /* NSError+Spread.m */; };
-		7C7C1AC014BDE9D500AA6CB2 /* libTestFlight.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 7C7C1ABC14BDE9D500AA6CB2 /* libTestFlight.a */; };
-		7C7C1AC114BDE9D500AA6CB2 /* README.txt in Resources */ = {isa = PBXBuildFile; fileRef = 7C7C1ABD14BDE9D500AA6CB2 /* README.txt */; };
-		7C7C1AC214BDE9D500AA6CB2 /* release_notes.txt in Resources */ = {isa = PBXBuildFile; fileRef = 7C7C1ABE14BDE9D500AA6CB2 /* release_notes.txt */; };
 		7C7E58CA14C6172000A03F22 /* GridTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 7C7E58C914C6172000A03F22 /* GridTableViewCell.xib */; };
 		7C7E58CD14C6173900A03F22 /* GridTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 7C7E58CC14C6173900A03F22 /* GridTableViewCell.m */; };
 		7C7F7AB414AB74AE00652401 /* EditViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7C7F7AB214AB74AE00652401 /* EditViewController.m */; };
@@ -170,6 +172,13 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
+		7C4991CB1531BEB8007A4663 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 7C633039149FE50800BF2049 /* RestKit.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 259C301615128079003066A2;
+			remoteInfo = RestKitResources;
+		};
 		7C633040149FE50800BF2049 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = 7C633039149FE50800BF2049 /* RestKit.xcodeproj */;
@@ -317,6 +326,12 @@
 		7C46C14A14CF5C2C00682737 /* UploadProgressView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UploadProgressView.h; sourceTree = "<group>"; };
 		7C46C14B14CF5C2C00682737 /* UploadProgressView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UploadProgressView.m; sourceTree = "<group>"; };
 		7C46C14D14CF5C3D00682737 /* UploadProgressView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = UploadProgressView.xib; sourceTree = "<group>"; };
+		7C4991CE1531BEC0007A4663 /* libTestFlight.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libTestFlight.a; sourceTree = "<group>"; };
+		7C4991CF1531BEC0007A4663 /* README.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = README.txt; sourceTree = "<group>"; };
+		7C4991D01531BEC0007A4663 /* release_notes.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = release_notes.txt; sourceTree = "<group>"; };
+		7C4991D11531BEC0007A4663 /* TestFlight.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TestFlight.h; sourceTree = "<group>"; };
+		7C4991D51531BF58007A4663 /* libz.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libz.dylib; path = usr/lib/libz.dylib; sourceTree = SDKROOT; };
+		7C4991D71531BF75007A4663 /* MapKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MapKit.framework; path = System/Library/Frameworks/MapKit.framework; sourceTree = SDKROOT; };
 		7C57F26C14BFA5A300906DE8 /* Entitlements.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Entitlements.plist; sourceTree = SOURCE_ROOT; };
 		7C5AC38614AC083D00856DC9 /* ImageIO.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = ImageIO.framework; path = System/Library/Frameworks/ImageIO.framework; sourceTree = SDKROOT; };
 		7C62EA1C14CCB5400003FFF4 /* About.html */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.html; path = About.html; sourceTree = "<group>"; };
@@ -340,10 +355,6 @@
 		7C6CFC0014BD48760048644C /* UIView+Shortcut.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIView+Shortcut.m"; sourceTree = "<group>"; };
 		7C76DF1F14D1D01E007A03B5 /* NSError+Spread.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSError+Spread.h"; sourceTree = "<group>"; };
 		7C76DF2014D1D01E007A03B5 /* NSError+Spread.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSError+Spread.m"; sourceTree = "<group>"; };
-		7C7C1ABC14BDE9D500AA6CB2 /* libTestFlight.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libTestFlight.a; sourceTree = "<group>"; };
-		7C7C1ABD14BDE9D500AA6CB2 /* README.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = README.txt; sourceTree = "<group>"; };
-		7C7C1ABE14BDE9D500AA6CB2 /* release_notes.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = release_notes.txt; sourceTree = "<group>"; };
-		7C7C1ABF14BDE9D500AA6CB2 /* TestFlight.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TestFlight.h; sourceTree = "<group>"; };
 		7C7E58C914C6172000A03F22 /* GridTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = GridTableViewCell.xib; sourceTree = "<group>"; };
 		7C7E58CB14C6173900A03F22 /* GridTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GridTableViewCell.h; sourceTree = "<group>"; };
 		7C7E58CC14C6173900A03F22 /* GridTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GridTableViewCell.m; sourceTree = "<group>"; };
@@ -434,8 +445,9 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				7C4991D81531BF75007A4663 /* MapKit.framework in Frameworks */,
+				7C4991D61531BF58007A4663 /* libz.dylib in Frameworks */,
 				7C62EA2814CCB77B0003FFF4 /* MessageUI.framework in Frameworks */,
-				7C7C1AC014BDE9D500AA6CB2 /* libTestFlight.a in Frameworks */,
 				7C7F7AB714ABAEB000652401 /* AssetsLibrary.framework in Frameworks */,
 				7C8D9BC014A28F3200D1D5DC /* QuartzCore.framework in Frameworks */,
 				7CE85AEB14A22330002874EA /* libSDWebImage.a in Frameworks */,
@@ -450,6 +462,7 @@
 				7C9F93B8149960C300126908 /* CoreGraphics.framework in Frameworks */,
 				7C9F93BA149960C300126908 /* CoreData.framework in Frameworks */,
 				7CFC5A0714D1176D008AC151 /* libFlurryAnalytics.a in Frameworks */,
+				7C4991D21531BEC0007A4663 /* libTestFlight.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -467,6 +480,17 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		7C4991CD1531BEC0007A4663 /* TestFlightSDK */ = {
+			isa = PBXGroup;
+			children = (
+				7C4991CE1531BEC0007A4663 /* libTestFlight.a */,
+				7C4991CF1531BEC0007A4663 /* README.txt */,
+				7C4991D01531BEC0007A4663 /* release_notes.txt */,
+				7C4991D11531BEC0007A4663 /* TestFlight.h */,
+			);
+			path = TestFlightSDK;
+			sourceTree = "<group>";
+		};
 		7C62EA1B14CCB5400003FFF4 /* HTML */ = {
 			isa = PBXGroup;
 			children = (
@@ -481,7 +505,7 @@
 			isa = PBXGroup;
 			children = (
 				7CFC5A0414D1176D008AC151 /* FlurryAnalytics */,
-				7C7C1ABB14BDE9D500AA6CB2 /* TestFlightSDK0.8.2 */,
+				7C4991CD1531BEC0007A4663 /* TestFlightSDK */,
 				7CE85AE014A221A6002874EA /* SDWebImage.xcodeproj */,
 				7C633039149FE50800BF2049 /* RestKit.xcodeproj */,
 			);
@@ -495,6 +519,7 @@
 				7C633043149FE50800BF2049 /* RestKitTests.octest */,
 				7C633045149FE50800BF2049 /* RestKit.framework */,
 				7C633047149FE50800BF2049 /* RestKitFrameworkTests.octest */,
+				7C4991CC1531BEB8007A4663 /* RestKitResources.bundle */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -525,17 +550,6 @@
 				7C382A9A14DCC80B0038BC3E /* ToggleButton.m */,
 			);
 			name = "UI Elements";
-			sourceTree = "<group>";
-		};
-		7C7C1ABB14BDE9D500AA6CB2 /* TestFlightSDK0.8.2 */ = {
-			isa = PBXGroup;
-			children = (
-				7C7C1ABC14BDE9D500AA6CB2 /* libTestFlight.a */,
-				7C7C1ABD14BDE9D500AA6CB2 /* README.txt */,
-				7C7C1ABE14BDE9D500AA6CB2 /* release_notes.txt */,
-				7C7C1ABF14BDE9D500AA6CB2 /* TestFlight.h */,
-			);
-			path = TestFlightSDK0.8.2;
 			sourceTree = "<group>";
 		};
 		7C7F7AB014AB747200652401 /* Edit View */ = {
@@ -628,6 +642,8 @@
 		7C9F93B2149960C300126908 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				7C4991D71531BF75007A4663 /* MapKit.framework */,
+				7C4991D51531BF58007A4663 /* libz.dylib */,
 				7C62EA2714CCB77B0003FFF4 /* MessageUI.framework */,
 				7C5AC38614AC083D00856DC9 /* ImageIO.framework */,
 				7C7F7AB614ABAEB000652401 /* AssetsLibrary.framework */,
@@ -951,6 +967,13 @@
 /* End PBXProject section */
 
 /* Begin PBXReferenceProxy section */
+		7C4991CC1531BEB8007A4663 /* RestKitResources.bundle */ = {
+			isa = PBXReferenceProxy;
+			fileType = wrapper.cfbundle;
+			path = RestKitResources.bundle;
+			remoteRef = 7C4991CB1531BEB8007A4663 /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
 		7C633041149FE50800BF2049 /* libRestKit.a */ = {
 			isa = PBXReferenceProxy;
 			fileType = archive.ar;
@@ -1001,8 +1024,6 @@
 				7C66003214AA1C4C00C285B1 /* ListTableViewCell.xib in Resources */,
 				7C7F7AB514AB74AE00652401 /* EditViewController.xib in Resources */,
 				7C86FF8614AF6FF5001B907A /* AboutViewController.xib in Resources */,
-				7C7C1AC114BDE9D500AA6CB2 /* README.txt in Resources */,
-				7C7C1AC214BDE9D500AA6CB2 /* release_notes.txt in Resources */,
 				7C57F26D14BFA5A300906DE8 /* Entitlements.plist in Resources */,
 				7CFAFA1514C38DA500597A6D /* ReviewViewController.xib in Resources */,
 				7CFAFA1D14C39D4900597A6D /* TODO.txt in Resources */,
@@ -1091,6 +1112,8 @@
 				7C382A9814DCC6A50038BC3E /* texture_red.png in Resources */,
 				7C85D1D114E7826C0048813E /* icon.png in Resources */,
 				7C85D1D214E782700048813E /* icon@2x.png in Resources */,
+				7C4991D31531BEC0007A4663 /* README.txt in Resources */,
+				7C4991D41531BEC0007A4663 /* release_notes.txt in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1270,8 +1293,8 @@
 				IPHONEOS_DEPLOYMENT_TARGET = 4.3;
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
-					"\"$(SRCROOT)/TestFlightSDK0.8.2\"",
 					"\"$(SRCROOT)/FlurryAnalytics\"",
+					"\"$(SRCROOT)/TestFlightSDK\"",
 				);
 				OTHER_LDFLAGS = (
 					"-ObjC",
@@ -1360,8 +1383,8 @@
 				IPHONEOS_DEPLOYMENT_TARGET = 4.3;
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
-					"\"$(SRCROOT)/TestFlightSDK0.8.2\"",
 					"\"$(SRCROOT)/FlurryAnalytics\"",
+					"\"$(SRCROOT)/TestFlightSDK\"",
 				);
 				OTHER_LDFLAGS = (
 					"-ObjC",
@@ -1388,8 +1411,8 @@
 				IPHONEOS_DEPLOYMENT_TARGET = 4.3;
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
-					"\"$(SRCROOT)/TestFlightSDK0.8.2\"",
 					"\"$(SRCROOT)/FlurryAnalytics\"",
+					"\"$(SRCROOT)/TestFlightSDK\"",
 				);
 				OTHER_LDFLAGS = (
 					"-ObjC",
