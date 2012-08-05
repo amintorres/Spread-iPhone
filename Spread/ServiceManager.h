@@ -7,7 +7,6 @@
 //
 
 #import <Foundation/Foundation.h>
-#import <RestKit/RestKit.h>
 #import "Photo.h"
 #import "User.h"
 

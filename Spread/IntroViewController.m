@@ -7,68 +7,34 @@
 //
 
 #import "IntroViewController.h"
-#import "MasterViewController.h"
-#import "UILabel+Crossfade.h"
-#import "UITextField+Crossfade.h"
-#import "UIView+Shortcut.h"
-#import "ServiceManager.h"
-#import "UIAlertView+Utilities.h"
-
+//#import "ServiceManager.h"
 
 typedef enum{
     IntroViewStateIdle = 0,   
     IntroViewStateLogin,   
-    IntroViewStateInvite,   
+    IntroViewStateLoginWithKeyboard,
 } IntroViewState;
-
-typedef enum{
-    AnimateDirectionUp = -1,
-    AnimateDirectionDown = 1,   
-} AnimateDirection;
-
-static const CGFloat kHeaderImageViewY          = 0;
-static const CGFloat kLogoButtonY               = 290;
-static const CGFloat kCaptionLabelY             = 320;
-static const CGFloat kStartButtonY              = 400;
-static const CGFloat kTextFieldContainerViewY   = 510;
-static const CGFloat kLoginButtonY              = 610;
-static const CGFloat kInviteCaptionLabelY       = 730;
-static const CGFloat kInviteButtonY             = 760;
-
-static const CGFloat kGroup0LoginOffset         = 300;
-static const CGFloat kGroup1LoginOffset         = 260;
-static const CGFloat kGroup2LoginOffset         = 370;
-static const CGFloat kGroup2InviteOffset        = 150;
-
 
 
 
 @interface IntroViewController ()
 @property (nonatomic) IntroViewState currentState;
 @property (nonatomic) BOOL isAnimating;
-- (void)animateToState:(IntroViewState)state;
-- (void)setIdleState;
 @end
 
 
-@implementation IntroViewController
 
-@synthesize headerImageView;
-@synthesize logoButton;
-@synthesize captionLabel;
-@synthesize startButton;
-@synthesize textFieldContainerView;
-@synthesize textField0;
-@synthesize textField1;
-@synthesize loginButton;
-@synthesize inviteCaptionLabel;
-@synthesize inviteButton;
+@implementation IntroViewController
+@synthesize headerImageView, logoButton, captionLabel;
+@synthesize facebookLoginButton, loginButton;
+@synthesize textFieldContainerView, emailTextField, passwordTextField;
+@synthesize registerLabel, registerButton;
 @synthesize currentState;
 @synthesize isAnimating;
 
 
-#pragma mark -
-#pragma mark View lifecycle
+
+#pragma mark - View lifecycle
 
 - (void)viewDidLoad
 {
@@ -78,280 +44,137 @@ static const CGFloat kGroup2InviteOffset        = 150;
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(keyboardWillHide:) name:UIKeyboardWillHideNotification object:nil];
     
     
-    [[NSNotificationCenter defaultCenter] addObserverForName:SpreadDidRequestInviteNotification object:nil queue:nil usingBlock:^(NSNotification* notification){
-        
-        [self animateToState:IntroViewStateIdle];
-    }];
+//    if ( [ServiceManager isSessionValid] )
+//    {
+//        [self performSegueWithIdentifier:@"MenuSegue" sender:self];
+//    }
 }
 
 - (void)viewDidDisappear:(BOOL)animated
 {
-    [self setIdleState];
+    self.currentState = IntroViewStateIdle;
     [super viewDidDisappear:animated];
 }
 
-- (void)viewDidUnload
+
+#pragma mark - View States Management
+
+- (void)setCurrentState:(IntroViewState)theState
 {
-    self.headerImageView = nil;
-    self.logoButton = nil;
-    self.captionLabel = nil;
-    self.startButton = nil;
-    self.textFieldContainerView = nil;
-    self.textField0 = nil;
-    self.textField1 = nil;
-    self.loginButton = nil;
-    self.inviteCaptionLabel = nil;
-    self.inviteButton = nil;
-    [super viewDidUnload];
-}
-
-
-- (void)setIdleState
-{
-    [headerImageView setY:kHeaderImageViewY];
-    [logoButton setY:kLogoButtonY];
-    [captionLabel setY:kCaptionLabelY];
-    [startButton setY:kStartButtonY];
-    [textFieldContainerView setY:kTextFieldContainerViewY];
-    [loginButton setY:kLoginButtonY];
-    [inviteCaptionLabel setY:kInviteCaptionLabelY];
-    [inviteButton setY:kInviteButtonY];
-    
-    startButton.alpha = 1.0;
-    loginButton.alpha = 1.0;
-    inviteCaptionLabel.alpha = 1.0;
-    
-    textField0.text = nil;
-    textField1.text = nil;
-}
-
-- (void)setLoginState
-{
-    [headerImageView setY:kHeaderImageViewY - kGroup0LoginOffset];
-
-    [logoButton setY:kLogoButtonY - kGroup1LoginOffset];
-    [captionLabel setY:kCaptionLabelY - kGroup1LoginOffset];
-    [startButton setY:kStartButtonY - kGroup1LoginOffset];
-    
-    [textFieldContainerView setY:kTextFieldContainerViewY - kGroup2LoginOffset];
-    [loginButton setY:kLoginButtonY - kGroup2LoginOffset];
-    [inviteCaptionLabel setY:kInviteCaptionLabelY - kGroup2LoginOffset];
-    [inviteButton setY:kInviteButtonY - kGroup2LoginOffset];
-    
-    startButton.alpha = 0.0;
-    loginButton.alpha = 1.0;
-    inviteCaptionLabel.alpha = 1.0;
-    
-    //// TextField 1 is password ////
-    textField1.autocapitalizationType = UITextAutocapitalizationTypeNone;
-    textField1.autocorrectionType = UITextAutocorrectionTypeNo;
-    textField1.secureTextEntry = YES;
-}
-
-- (void)setLoginStateKeyboardOpen
-{
-    CGFloat keyboardOffset = 70.0;
-    
-    [logoButton setY:kLogoButtonY - kGroup1LoginOffset - keyboardOffset];
-    [captionLabel setY:kCaptionLabelY - kGroup1LoginOffset - keyboardOffset];
-    
-    [textFieldContainerView setY:kTextFieldContainerViewY - kGroup2LoginOffset - keyboardOffset];
-    [loginButton setY:kLoginButtonY - kGroup2LoginOffset - keyboardOffset];
-    [inviteCaptionLabel setY:kInviteCaptionLabelY - kGroup2LoginOffset - keyboardOffset];
-    [inviteButton setY:kInviteButtonY - kGroup2LoginOffset - keyboardOffset];
-}
-
-- (void)setInviteState
-{
-    [headerImageView setY:kHeaderImageViewY - kGroup0LoginOffset];
-    
-    [logoButton setY:kLogoButtonY - kGroup1LoginOffset];
-    [captionLabel setY:kCaptionLabelY - kGroup1LoginOffset];
-    [startButton setY:kStartButtonY - kGroup1LoginOffset];
-    
-    [textFieldContainerView setY:kTextFieldContainerViewY - kGroup2LoginOffset];
-    [loginButton setY:kLoginButtonY - kGroup2LoginOffset];
-    
-    [inviteCaptionLabel setY:kInviteCaptionLabelY - kGroup2LoginOffset - kGroup2InviteOffset];
-    [inviteButton setY:kInviteButtonY - kGroup2LoginOffset - kGroup2InviteOffset];
-    
-    startButton.alpha = 0.0;
-    loginButton.alpha = 0.0;
-    inviteCaptionLabel.alpha = 0.0;
-
-    //// TextField 1 is full name ////
-    textField1.autocapitalizationType = UITextAutocapitalizationTypeWords;
-    textField1.autocorrectionType = UITextAutocorrectionTypeYes;
-    textField1.secureTextEntry = NO;  
-}
-
-- (void)setInviteStateKeyboardOpen
-{
-    CGFloat keyboardOffset = 70.0;
-
-    [logoButton setY:kLogoButtonY - kGroup1LoginOffset - keyboardOffset];
-    [captionLabel setY:kCaptionLabelY - kGroup1LoginOffset - keyboardOffset];
-    
-    [textFieldContainerView setY:kTextFieldContainerViewY - kGroup2LoginOffset - keyboardOffset];
-
-    [inviteCaptionLabel setY:kInviteCaptionLabelY - kGroup2LoginOffset - kGroup2InviteOffset - keyboardOffset];
-    [inviteButton setY:kInviteButtonY - kGroup2LoginOffset - kGroup2InviteOffset - keyboardOffset];
-}
-
-- (void)animateToState:(IntroViewState)state
-{
-    if ( isAnimating )
+    if (self.isAnimating)
         return;
     
-
-    currentState = state;
-    
-    NSString* caption = nil;
-    NSString* textField1PlaceHolder = nil;
+    currentState = theState;
     
     switch (currentState)
     {
-        case IntroViewStateIdle:
-            caption = @"Spread is platform that allows citizens to capture news worthy photographs and make themavailable to blogs and news organizations for purchase.";
-            break;
-            
         case IntroViewStateLogin:
-            caption = @"Spread is invite only for now.\nUse your email and and\npassword bellow to log in.";
-            textField1PlaceHolder = @"Password";
+            [self showStateWithReference:[IntroViewController loginState]];
             break;
             
-        case IntroViewStateInvite:
+        case IntroViewStateLoginWithKeyboard:
+            [self showStateWithReference:[IntroViewController loginWithKeyboardState]];
+            break;
+            
         default:
-            caption = @"Requesting an invite.\nFill the short form bellow and we will\nsend you an invitation code.";
-            textField1PlaceHolder = @"Full name";
+            [self showStateWithReference:[IntroViewController idleState]];
+            self.emailTextField.text = nil;
+            self.passwordTextField.text = nil;
             break;
     }
-    
-    [captionLabel crossFadeToText:caption duration:0.7];
-    [textField1 crossFadeToPlaceHolder:textField1PlaceHolder duration:0.7];
-    
-    isAnimating = YES;
-    
-    [UIView animateWithDuration:0.7 animations:^(void){
-        
-        switch (currentState)
-        {
-            case IntroViewStateIdle:
-                [self setIdleState];
-                break;
-                
-            case IntroViewStateLogin:
-                [self setLoginState];
-                break;
-                
-            case IntroViewStateInvite:
-            default:
-                [self setInviteState];
-                break;
-        }
+}
 
-        
-    } completion:^(BOOL finished){
-        isAnimating = NO;
+- (void)showStateWithReference:(IntroViewController*)reference
+{
+    self.isAnimating = YES;
+    [UIView animateWithDuration:0.3 animations:^{
+        [self configUIElement:self.headerImageView withReferenceElement:reference.headerImageView];
+        [self configUIElement:self.logoButton withReferenceElement:reference.logoButton];
+        [self configUIElement:self.captionLabel withReferenceElement:reference.captionLabel];
+        [self configUIElement:self.facebookLoginButton withReferenceElement:reference.facebookLoginButton];
+        [self configUIElement:self.loginButton withReferenceElement:reference.loginButton];
+        [self configUIElement:self.textFieldContainerView withReferenceElement:reference.textFieldContainerView];
+        [self configUIElement:self.registerLabel withReferenceElement:reference.registerLabel];
+        [self configUIElement:self.registerButton withReferenceElement:reference.registerButton];
+    } completion:^(BOOL finished) {
+        self.isAnimating = NO;
     }];
 }
 
+- (void)configUIElement:(UIView*)element withReferenceElement:(UIView*)referenceElement
+{
+    element.frame = referenceElement.frame;
+    element.alpha = referenceElement.alpha;
+    if ([element.subviews count])
+    {
+        for ( UIView* subview in element.subviews )
+        {
+            subview.alpha = referenceElement.alpha;
+        }
+    }
+}
+
+
+#pragma mark - IBAction
 
 - (IBAction)logoButtonTapped:(id)sender
 {
-    [textField0 resignFirstResponder];
-    [textField1 resignFirstResponder];
+    [self.emailTextField resignFirstResponder];
+    [self.passwordTextField resignFirstResponder];
 
-    [self animateToState:IntroViewStateIdle];
-}
-
-- (IBAction)startButtonTapped:(id)sender
-{
-    [textField0 resignFirstResponder];
-    [textField1 resignFirstResponder];
-
-    [self animateToState:IntroViewStateLogin];
+    self.currentState = IntroViewStateIdle;
 }
 
 - (IBAction)loginButtonTapped:(id)sender
 {
-    [textField0 resignFirstResponder];
-    [textField1 resignFirstResponder];
-
-    NSString* username = textField0.text;
-    NSString* password = textField1.text;
-    RKObjectLoader* loader = [ServiceManager loginWithUsername:username password:password];
-    
-    [[NSNotificationCenter defaultCenter] addObserverForName:SpreadDidFailNotification object:loader queue:nil usingBlock:^(NSNotification* notification){
-        
-        [[NSNotificationCenter defaultCenter] removeObserver:self name:SpreadDidFailNotification object:notification.object];
-        [UIAlertView showAlertWithError:[notification.userInfo objectForKey:@"error"]];
-    }];
-}
-
-- (IBAction)inviteButtonTapped:(id)sender
-{
-    [textField0 resignFirstResponder];
-    [textField1 resignFirstResponder];
-
-    if ( currentState == IntroViewStateInvite )
+    if ( self.currentState == IntroViewStateIdle )
     {
-        NSString* email = textField0.text;
-        NSString* name = textField1.text;
-        // TODO: Invite API
-        [ServiceManager requestInviteWithEmail:email name:name];
+        self.currentState = IntroViewStateLogin;
     }
     else
     {
-        textField1.text = nil;
-        [self animateToState:IntroViewStateInvite];
+        [self.emailTextField resignFirstResponder];
+        [self.passwordTextField resignFirstResponder];
+        
+//        NSString* email = self.emailTextField.text;
+//        NSString* password = self.passwordTextField.text;
+//
+//        RKObjectLoader* loader = [ServiceManager loginWithUsername:username password:password];
+//        
+//        [[NSNotificationCenter defaultCenter] addObserverForName:SpreadDidFailNotification object:loader queue:nil usingBlock:^(NSNotification* notification){
+//            
+//            [[NSNotificationCenter defaultCenter] removeObserver:self name:SpreadDidFailNotification object:notification.object];
+//            [UIAlertView showAlertWithError:[notification.userInfo objectForKey:@"error"]];
+//        }];
+    }
+}
+
+- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
+{
+    if ( [segue.identifier isEqualToString:@"MenuSegue"] )
+    {
+//        [ServiceManager loadUserPhotos];
+//        [ServiceManager loadUserInfoFromServer];
     }
 }
 
 
-#pragma mark -
-#pragma mark TextField Delegate
+#pragma mark - TextField Delegate
 
 - (void)keyboardWillShow:(NSNotification *)notification
 {
-    [UIView animateWithDuration:0.3 animations:^(void){
-        
-        switch (currentState)
-        {
-            case IntroViewStateIdle:
-                break;
-                
-            case IntroViewStateLogin:
-                [self setLoginStateKeyboardOpen];
-                break;
-                
-            case IntroViewStateInvite:
-            default:
-                [self setInviteStateKeyboardOpen];
-                break;
-        }
-    }];
+    if (self.currentState == IntroViewStateLogin)
+    {
+        self.currentState = IntroViewStateLoginWithKeyboard;
+    }
 }
 
 - (void)keyboardWillHide:(NSNotification *)notification
 {
-    [UIView animateWithDuration:0.3 animations:^(void){
-        
-        switch (currentState)
-        {
-            case IntroViewStateIdle:
-                break;
-                
-            case IntroViewStateLogin:
-                [self setLoginState];
-                break;
-                
-            case IntroViewStateInvite:
-            default:
-                [self setInviteState];
-                break;
-        }
-    }];
+    if (self.currentState == IntroViewStateLoginWithKeyboard)
+    {
+        self.currentState = IntroViewStateLogin;
+    }
 }
 
 - (BOOL)textFieldShouldReturn:(UITextField *)textField
@@ -360,5 +183,49 @@ static const CGFloat kGroup2InviteOffset        = 150;
     return YES;
 }
 
+
+#pragma mark - Singletons for layout reference
+
++ (IntroViewController*)idleState
+{
+    static IntroViewController *_idleState = nil;
+    
+    static dispatch_once_t onceToken;
+    dispatch_once(&onceToken, ^{
+        UIStoryboard* storyboard = [UIStoryboard storyboardWithName:@"MainStoryboard" bundle:nil];
+        _idleState = [storyboard instantiateViewControllerWithIdentifier:@"IntroViewController"];
+        [_idleState view];
+    });
+    
+    return _idleState;
+}
+
++ (IntroViewController*)loginState
+{
+    static IntroViewController *_loginState = nil;
+    
+    static dispatch_once_t onceToken;
+    dispatch_once(&onceToken, ^{
+        UIStoryboard* storyboard = [UIStoryboard storyboardWithName:@"MainStoryboard" bundle:nil];
+        _loginState = [storyboard instantiateViewControllerWithIdentifier:@"IntroViewControllerLogin"];
+        [_loginState view];
+    });
+    
+    return _loginState;
+}
+
++ (IntroViewController*)loginWithKeyboardState
+{
+    static IntroViewController *_loginWithKeyboardState = nil;
+    
+    static dispatch_once_t onceToken;
+    dispatch_once(&onceToken, ^{
+        UIStoryboard* storyboard = [UIStoryboard storyboardWithName:@"MainStoryboard" bundle:nil];
+        _loginWithKeyboardState = [storyboard instantiateViewControllerWithIdentifier:@"IntroViewControllerLoginWithKeyboard"];
+        [_loginWithKeyboardState view];
+    });
+    
+    return _loginWithKeyboardState;
+}
 
 @end

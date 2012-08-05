@@ -10,7 +10,6 @@
 #import <QuartzCore/QuartzCore.h>
 
 
-
 @implementation RoundedRectButton
 
 - (void)layoutSubviews
@@ -18,7 +17,7 @@
     [super layoutSubviews];
     
     self.layer.masksToBounds = YES;
-    self.layer.cornerRadius = 3.0;
+    self.layer.cornerRadius = 5.0;
 }
 
 @end

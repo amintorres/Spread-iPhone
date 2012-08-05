@@ -15,11 +15,11 @@
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
                     <connections>
-                        <segue destination="GyX-lL-DyD" kind="relationship" relationship="rootViewController" id="Qh6-tE-Jh0"/>
+                        <segue destination="tRJ-20-jrI" kind="relationship" relationship="rootViewController" id="Ws3-Xf-Qj5"/>
                     </connections>
                 </navigationController>
             </objects>
-            <point key="canvasLocation" x="267" y="89"/>
+            <point key="canvasLocation" x="208" y="-1042"/>
         </scene>
         <!--Menu View Controller-->
         <scene sceneID="NRe-hb-dXB">
@@ -145,9 +145,415 @@
                         <color key="backgroundColor" white="0.95000000000000007" alpha="1" colorSpace="calibratedWhite"/>
                     </view>
                     <navigationItem key="navigationItem" id="5r4-io-Tyn"/>
+                    <simulatedScreenMetrics key="simulatedDestinationMetrics"/>
                 </viewController>
             </objects>
-            <point key="canvasLocation" x="801" y="89"/>
+            <point key="canvasLocation" x="787" y="31"/>
+        </scene>
+        <!--Intro View Controller-->
+        <scene sceneID="9cX-Bt-zIy">
+            <objects>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="NaX-NL-TqZ" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <viewController storyboardIdentifier="IntroViewController" id="tRJ-20-jrI" customClass="IntroViewController" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="PR1-6T-vAq">
+                        <rect key="frame" x="0.0" y="20" width="320" height="550"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" image="intro_background.png" id="TKI-3H-lkS">
+                                <rect key="frame" x="0.0" y="0.0" width="320" height="240"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            </imageView>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="RNG-4G-Pbq">
+                                <rect key="frame" x="110" y="250" width="100" height="30"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
+                                <state key="normal" image="icon-spread-large.png">
+                                    <color key="titleColor" red="0.19607843459999999" green="0.30980393290000002" blue="0.52156865600000002" alpha="1" colorSpace="calibratedRGB"/>
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <state key="highlighted">
+                                    <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <connections>
+                                    <action selector="logoButtonTapped:" destination="tRJ-20-jrI" eventType="touchUpInside" id="yuF-Kc-vhL"/>
+                                </connections>
+                            </button>
+                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="Spread is a marketplace for new and creative photography." textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" minimumFontSize="10" id="4yh-MC-WIR">
+                                <rect key="frame" x="50" y="280" width="220" height="40"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="13"/>
+                                <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="lcd-pK-EoU" customClass="RoundedRectButton">
+                                <rect key="frame" x="30" y="330" width="260" height="50"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
+                                <state key="normal" title="Login with Facebook" backgroundImage="texture_blue.png">
+                                    <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <state key="highlighted">
+                                    <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="B2d-ak-RdJ" customClass="RoundedRectButton">
+                                <rect key="frame" x="30" y="390" width="260" height="50"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
+                                <state key="normal" title="Login with us" backgroundImage="texture_blue.png">
+                                    <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <state key="highlighted">
+                                    <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <connections>
+                                    <action selector="loginButtonTapped:" destination="tRJ-20-jrI" eventType="touchUpInside" id="ZNZ-03-n5q"/>
+                                </connections>
+                            </button>
+                            <view alpha="0.0" contentMode="scaleToFill" id="YKJ-L8-AVZ">
+                                <rect key="frame" x="30" y="290" width="260" height="90"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <subviews>
+                                    <button opaque="NO" alpha="0.0" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="H5f-yM-eA4">
+                                        <rect key="frame" x="0.0" y="0.0" width="260" height="90"/>
+                                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                                        <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
+                                        <state key="normal">
+                                            <color key="titleColor" red="0.19607843459999999" green="0.30980393290000002" blue="0.52156865600000002" alpha="1" colorSpace="calibratedRGB"/>
+                                            <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                        </state>
+                                        <state key="highlighted">
+                                            <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                        </state>
+                                    </button>
+                                    <view alpha="0.0" contentMode="scaleToFill" id="QzB-rT-nI2">
+                                        <rect key="frame" x="0.0" y="45" width="260" height="1"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
+                                    </view>
+                                    <textField opaque="NO" clipsSubviews="YES" alpha="0.0" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Email Address" minimumFontSize="17" id="NKa-DE-aW4">
+                                        <rect key="frame" x="10" y="0.0" width="240" height="45"/>
+                                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                        <textInputTraits key="textInputTraits" autocorrectionType="no" keyboardType="emailAddress" returnKeyType="done"/>
+                                        <connections>
+                                            <outlet property="delegate" destination="tRJ-20-jrI" id="IT4-yh-xOC"/>
+                                        </connections>
+                                    </textField>
+                                    <textField opaque="NO" clipsSubviews="YES" alpha="0.0" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Password" minimumFontSize="17" id="2Qo-Ti-5up">
+                                        <rect key="frame" x="10" y="45" width="240" height="45"/>
+                                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                        <textInputTraits key="textInputTraits" autocorrectionType="no" returnKeyType="done" secureTextEntry="YES"/>
+                                        <connections>
+                                            <outlet property="delegate" destination="tRJ-20-jrI" id="XeH-89-TQM"/>
+                                        </connections>
+                                    </textField>
+                                </subviews>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                            </view>
+                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" alpha="0.0" contentMode="left" text="Don't have an account?" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" minimumFontSize="10" id="hf5-E6-xZV">
+                                <rect key="frame" x="30" y="470" width="260" height="20"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="boldSystem" pointSize="12"/>
+                                <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <button opaque="NO" alpha="0.0" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="TJk-2W-vuM" customClass="RoundedRectButton">
+                                <rect key="frame" x="30" y="490" width="260" height="50"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
+                                <state key="normal" title="Request an invite" backgroundImage="texture_gray.png">
+                                    <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <state key="highlighted">
+                                    <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                            </button>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                    </view>
+                    <navigationItem key="navigationItem" id="oJX-sl-LyK"/>
+                    <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
+                    <connections>
+                        <outlet property="captionLabel" destination="4yh-MC-WIR" id="iZB-DV-LpT"/>
+                        <outlet property="emailTextField" destination="NKa-DE-aW4" id="zdj-vO-3Qr"/>
+                        <outlet property="facebookLoginButton" destination="lcd-pK-EoU" id="Ypr-FU-7GQ"/>
+                        <outlet property="headerImageView" destination="TKI-3H-lkS" id="pqw-PB-wlo"/>
+                        <outlet property="loginButton" destination="B2d-ak-RdJ" id="R84-OA-FVB"/>
+                        <outlet property="logoButton" destination="RNG-4G-Pbq" id="aQp-NM-ud4"/>
+                        <outlet property="passwordTextField" destination="2Qo-Ti-5up" id="8iV-tR-45O"/>
+                        <outlet property="registerButton" destination="TJk-2W-vuM" id="AAw-Xp-g62"/>
+                        <outlet property="registerLabel" destination="hf5-E6-xZV" id="kJq-Jv-6NE"/>
+                        <outlet property="textFieldContainerView" destination="YKJ-L8-AVZ" id="0nn-JD-PIc"/>
+                        <segue destination="GyX-lL-DyD" kind="push" identifier="MenuSegue" id="Lfw-hY-kaR"/>
+                    </connections>
+                </viewController>
+            </objects>
+            <point key="canvasLocation" x="787" y="-1087"/>
+        </scene>
+        <!--Intro View Controller-->
+        <scene sceneID="Hdh-SR-Z1q">
+            <objects>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="ind-xb-KqQ" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <viewController storyboardIdentifier="IntroViewControllerLogin" id="ge5-iE-CEG" customClass="IntroViewController" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="7Fx-i2-tli">
+                        <rect key="frame" x="0.0" y="20" width="320" height="460"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" image="intro_background.png" id="7on-O2-lGi">
+                                <rect key="frame" x="0.0" y="0.0" width="320" height="100"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            </imageView>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="Ph9-n9-id3">
+                                <rect key="frame" x="110" y="110" width="100" height="30"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
+                                <state key="normal" image="icon-spread-large.png">
+                                    <color key="titleColor" red="0.19607843459999999" green="0.30980393290000002" blue="0.52156865600000002" alpha="1" colorSpace="calibratedRGB"/>
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <state key="highlighted">
+                                    <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                            </button>
+                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="Spread is a marketplace for new and creative photography." textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" minimumFontSize="10" id="s3m-Gc-3zB">
+                                <rect key="frame" x="50" y="140" width="220" height="40"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="13"/>
+                                <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <button opaque="NO" alpha="0.0" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="Tu6-iP-39c" customClass="RoundedRectButton">
+                                <rect key="frame" x="30" y="190" width="260" height="50"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
+                                <state key="normal" title="Login with Facebook" backgroundImage="texture_blue.png">
+                                    <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <state key="highlighted">
+                                    <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                            </button>
+                            <view contentMode="scaleToFill" id="YwG-NG-Q8c">
+                                <rect key="frame" x="30" y="190" width="260" height="90"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <subviews>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="Fne-jC-gFD">
+                                        <rect key="frame" x="0.0" y="0.0" width="260" height="90"/>
+                                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                                        <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
+                                        <state key="normal">
+                                            <color key="titleColor" red="0.19607843459999999" green="0.30980393290000002" blue="0.52156865600000002" alpha="1" colorSpace="calibratedRGB"/>
+                                            <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                        </state>
+                                        <state key="highlighted">
+                                            <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                        </state>
+                                    </button>
+                                    <view contentMode="scaleToFill" id="WSw-AM-dIq">
+                                        <rect key="frame" x="0.0" y="45" width="260" height="1"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
+                                    </view>
+                                    <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Email Address" minimumFontSize="17" id="LSh-ls-nIU">
+                                        <rect key="frame" x="10" y="0.0" width="240" height="45"/>
+                                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                        <textInputTraits key="textInputTraits" autocorrectionType="no" keyboardType="emailAddress" returnKeyType="done"/>
+                                    </textField>
+                                    <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Password" minimumFontSize="17" id="ylA-xq-Kz2">
+                                        <rect key="frame" x="10" y="45" width="240" height="45"/>
+                                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                        <textInputTraits key="textInputTraits" autocorrectionType="no" returnKeyType="done" secureTextEntry="YES"/>
+                                    </textField>
+                                </subviews>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                            </view>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="Nct-cK-CwB" customClass="RoundedRectButton">
+                                <rect key="frame" x="30" y="290" width="260" height="50"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
+                                <state key="normal" title="Login with us" backgroundImage="texture_blue.png">
+                                    <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <state key="highlighted">
+                                    <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                            </button>
+                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="Don't have an account?" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" minimumFontSize="10" id="NhH-P1-IlD">
+                                <rect key="frame" x="30" y="370" width="260" height="20"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="boldSystem" pointSize="12"/>
+                                <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="w9d-lN-ZEP" customClass="RoundedRectButton">
+                                <rect key="frame" x="30" y="390" width="260" height="50"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
+                                <state key="normal" title="Request an invite" backgroundImage="texture_gray.png">
+                                    <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <state key="highlighted">
+                                    <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                            </button>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                    </view>
+                    <connections>
+                        <outlet property="captionLabel" destination="s3m-Gc-3zB" id="wkj-D1-yek"/>
+                        <outlet property="emailTextField" destination="LSh-ls-nIU" id="WIl-tW-AWg"/>
+                        <outlet property="facebookLoginButton" destination="Tu6-iP-39c" id="wYe-b6-hv2"/>
+                        <outlet property="headerImageView" destination="7on-O2-lGi" id="ik9-Lk-1Fe"/>
+                        <outlet property="loginButton" destination="Nct-cK-CwB" id="Ryq-dN-7hg"/>
+                        <outlet property="logoButton" destination="Ph9-n9-id3" id="njW-lt-dOe"/>
+                        <outlet property="passwordTextField" destination="ylA-xq-Kz2" id="Fz5-yV-3A8"/>
+                        <outlet property="registerButton" destination="w9d-lN-ZEP" id="T4X-2Y-HLP"/>
+                        <outlet property="registerLabel" destination="NhH-P1-IlD" id="avW-d2-Jax"/>
+                        <outlet property="textFieldContainerView" destination="YwG-NG-Q8c" id="fNV-dK-w4Q"/>
+                    </connections>
+                </viewController>
+            </objects>
+            <point key="canvasLocation" x="1170" y="-1087"/>
+        </scene>
+        <!--Intro View Controller-->
+        <scene sceneID="Uxv-Ad-eJz">
+            <objects>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="6Lq-eZ-1Wz" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <viewController storyboardIdentifier="IntroViewControllerLoginWithKeyboard" id="yPu-Pu-05U" customClass="IntroViewController" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="siK-DW-gC6">
+                        <rect key="frame" x="0.0" y="20" width="320" height="460"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" image="intro_background.png" id="KVd-a6-Jtl">
+                                <rect key="frame" x="0.0" y="-100" width="320" height="100"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            </imageView>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="Rdm-oe-gI8">
+                                <rect key="frame" x="110" y="10" width="100" height="30"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
+                                <state key="normal" image="icon-spread-large.png">
+                                    <color key="titleColor" red="0.19607843459999999" green="0.30980393290000002" blue="0.52156865600000002" alpha="1" colorSpace="calibratedRGB"/>
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <state key="highlighted">
+                                    <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                            </button>
+                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="Spread is a marketplace for new and creative photography." textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" minimumFontSize="10" id="Dbj-22-wtJ">
+                                <rect key="frame" x="50" y="40" width="220" height="40"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="13"/>
+                                <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <button opaque="NO" alpha="0.0" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="mdy-CJ-s80" customClass="RoundedRectButton">
+                                <rect key="frame" x="30" y="90" width="260" height="50"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
+                                <state key="normal" title="Login with Facebook" backgroundImage="texture_blue.png">
+                                    <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <state key="highlighted">
+                                    <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                            </button>
+                            <view contentMode="scaleToFill" id="0or-S4-HnW">
+                                <rect key="frame" x="30" y="90" width="260" height="90"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <subviews>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="CJd-EL-Cip">
+                                        <rect key="frame" x="0.0" y="0.0" width="260" height="90"/>
+                                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                                        <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
+                                        <state key="normal">
+                                            <color key="titleColor" red="0.19607843459999999" green="0.30980393290000002" blue="0.52156865600000002" alpha="1" colorSpace="calibratedRGB"/>
+                                            <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                        </state>
+                                        <state key="highlighted">
+                                            <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                        </state>
+                                    </button>
+                                    <view contentMode="scaleToFill" id="Yu7-Nc-oBs">
+                                        <rect key="frame" x="0.0" y="45" width="260" height="1"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
+                                    </view>
+                                    <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Email Address" minimumFontSize="17" id="BT4-b0-aPm">
+                                        <rect key="frame" x="10" y="0.0" width="240" height="45"/>
+                                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                        <textInputTraits key="textInputTraits" autocorrectionType="no" keyboardType="emailAddress" returnKeyType="done"/>
+                                    </textField>
+                                    <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Password" minimumFontSize="17" id="PXC-gW-XXV">
+                                        <rect key="frame" x="10" y="45" width="240" height="45"/>
+                                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                        <textInputTraits key="textInputTraits" autocorrectionType="no" returnKeyType="done" secureTextEntry="YES"/>
+                                    </textField>
+                                </subviews>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                            </view>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="Ixq-2A-aDa" customClass="RoundedRectButton">
+                                <rect key="frame" x="30" y="190" width="260" height="50"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
+                                <state key="normal" title="Login with us" backgroundImage="texture_blue.png">
+                                    <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <state key="highlighted">
+                                    <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                            </button>
+                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" alpha="0.0" contentMode="left" text="Don't have an account?" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" minimumFontSize="10" id="jFi-2I-Gnu">
+                                <rect key="frame" x="30" y="370" width="260" height="20"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="boldSystem" pointSize="12"/>
+                                <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <button opaque="NO" alpha="0.0" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="Tue-Da-1Ec" customClass="RoundedRectButton">
+                                <rect key="frame" x="30" y="390" width="260" height="50"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
+                                <state key="normal" title="Request an invite" backgroundImage="texture_gray.png">
+                                    <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <state key="highlighted">
+                                    <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                            </button>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                    </view>
+                    <connections>
+                        <outlet property="captionLabel" destination="Dbj-22-wtJ" id="eon-da-TWG"/>
+                        <outlet property="emailTextField" destination="BT4-b0-aPm" id="mVm-6B-2C2"/>
+                        <outlet property="facebookLoginButton" destination="mdy-CJ-s80" id="270-xz-uY9"/>
+                        <outlet property="headerImageView" destination="KVd-a6-Jtl" id="IGC-Ac-5K6"/>
+                        <outlet property="loginButton" destination="Ixq-2A-aDa" id="nWw-7y-sSw"/>
+                        <outlet property="logoButton" destination="Rdm-oe-gI8" id="pSV-Tz-gxK"/>
+                        <outlet property="passwordTextField" destination="PXC-gW-XXV" id="StB-An-yx9"/>
+                        <outlet property="registerButton" destination="Tue-Da-1Ec" id="Ncb-kw-cBg"/>
+                        <outlet property="registerLabel" destination="jFi-2I-Gnu" id="i0A-kw-Ykd"/>
+                        <outlet property="textFieldContainerView" destination="0or-S4-HnW" id="dGy-nb-Fbi"/>
+                    </connections>
+                </viewController>
+            </objects>
+            <point key="canvasLocation" x="1547" y="-1087"/>
         </scene>
         <!--Requests View Controller-->
         <scene sceneID="mJN-Kz-5qC">
@@ -319,7 +725,7 @@ Requests</string>
                     </connections>
                 </viewController>
             </objects>
-            <point key="canvasLocation" x="1293" y="-335"/>
+            <point key="canvasLocation" x="1522" y="31"/>
         </scene>
     </scenes>
     <resources>
@@ -332,14 +738,35 @@ Requests</string>
         <image name="icon-recent.png" width="60" height="60"/>
         <image name="icon-request.png" width="60" height="60"/>
         <image name="icon-search.png" width="60" height="60"/>
+        <image name="icon-spread-large.png" width="100" height="30"/>
         <image name="icon-spread.png" width="125" height="60"/>
         <image name="icon-upload.png" width="60" height="60"/>
+        <image name="intro_background.png" width="320" height="250"/>
+        <image name="texture_blue.png" width="40" height="40"/>
+        <image name="texture_gray.png" width="40" height="40"/>
     </resources>
     <classes>
         <class className="BaseViewController" superclassName="UIViewController">
             <source key="sourceIdentifier" type="project" relativePath="./Classes/BaseViewController.h"/>
             <relationships>
                 <relationship kind="action" name="backButtonTapped:"/>
+            </relationships>
+        </class>
+        <class className="IntroViewController" superclassName="UIViewController">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/IntroViewController.h"/>
+            <relationships>
+                <relationship kind="action" name="loginButtonTapped:"/>
+                <relationship kind="action" name="logoButtonTapped:"/>
+                <relationship kind="outlet" name="captionLabel" candidateClass="UILabel"/>
+                <relationship kind="outlet" name="emailTextField" candidateClass="UITextField"/>
+                <relationship kind="outlet" name="facebookLoginButton" candidateClass="RoundedRectButton"/>
+                <relationship kind="outlet" name="headerImageView" candidateClass="UIImageView"/>
+                <relationship kind="outlet" name="loginButton" candidateClass="RoundedRectButton"/>
+                <relationship kind="outlet" name="logoButton" candidateClass="UIButton"/>
+                <relationship kind="outlet" name="passwordTextField" candidateClass="UITextField"/>
+                <relationship kind="outlet" name="registerButton" candidateClass="RoundedRectButton"/>
+                <relationship kind="outlet" name="registerLabel" candidateClass="UILabel"/>
+                <relationship kind="outlet" name="textFieldContainerView" candidateClass="UIView"/>
             </relationships>
         </class>
         <class className="MenuViewController" superclassName="UIViewController">
@@ -362,6 +789,9 @@ Requests</string>
                 <relationship kind="outlet" name="totalPriceLabel" candidateClass="UILabel"/>
                 <relationship kind="outlet" name="totalRequestsLabel" candidateClass="UILabel"/>
             </relationships>
+        </class>
+        <class className="RoundedRectButton" superclassName="UIButton">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/RoundedRectButton.h"/>
         </class>
     </classes>
     <simulatedMetricsContainer key="defaultSimulatedMetrics">
