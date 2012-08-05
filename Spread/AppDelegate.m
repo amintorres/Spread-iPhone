@@ -10,6 +10,7 @@
 #import "TestFlight.h"
 #import "FlurryAnalytics.h"
 #import "MenuViewController.h"
+#import <FacebookSDK/FacebookSDK.h>
 
 
 
@@ -29,6 +30,11 @@
 //    [FlurryAnalytics logAllPageViews:self.navigationController];
 
     return YES;
+}
+
+- (BOOL)application:(UIApplication *)application openURL:(NSURL *)url sourceApplication:(NSString *)sourceApplication annotation:(id)annotation
+{
+    return [FBSession.activeSession handleOpenURL:url];
 }
 
 

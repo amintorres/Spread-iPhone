@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		7C10770115CED63000D78CBA /* FacebookSDK.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7C10770015CED63000D78CBA /* FacebookSDK.framework */; };
+		7C10770315CED63D00D78CBA /* FacebookSDKResources.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 7C10770215CED63D00D78CBA /* FacebookSDKResources.bundle */; };
 		7C2CFFB014D4677600D617D8 /* WelcomeViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 7C2CFFAE14D4677600D617D8 /* WelcomeViewController.xib */; };
 		7C46C14914CF5B7900682737 /* CameraViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 7C46C14714CF5B7900682737 /* CameraViewController.xib */; };
 		7C46C14E14CF5C3D00682737 /* UploadProgressView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 7C46C14D14CF5C3D00682737 /* UploadProgressView.xib */; };
@@ -206,6 +208,8 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		7C10770015CED63000D78CBA /* FacebookSDK.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = FacebookSDK.framework; path = ../../FacebookSDK/FacebookSDK.framework; sourceTree = "<group>"; };
+		7C10770215CED63D00D78CBA /* FacebookSDKResources.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; name = FacebookSDKResources.bundle; path = ../../FacebookSDK/FacebookSDK.framework/Versions/A/Resources/FacebookSDKResources.bundle; sourceTree = "<group>"; };
 		7C2C001014D4946B00D617D8 /* icon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = icon.png; path = ../../icon.png; sourceTree = "<group>"; };
 		7C2C001214D4946F00D617D8 /* icon@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "icon@2x.png"; path = "../../icon@2x.png"; sourceTree = "<group>"; };
 		7C2CB64614BF2D3B006727FD /* UserDefaultHelper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UserDefaultHelper.h; sourceTree = "<group>"; };
@@ -470,6 +474,7 @@
 				7C9F93BA149960C300126908 /* CoreData.framework in Frameworks */,
 				7CFC5A0714D1176D008AC151 /* libFlurryAnalytics.a in Frameworks */,
 				7C4991D21531BEC0007A4663 /* libTestFlight.a in Frameworks */,
+				7C10770115CED63000D78CBA /* FacebookSDK.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -794,6 +799,8 @@
 		7C9F93B2149960C300126908 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				7C10770215CED63D00D78CBA /* FacebookSDKResources.bundle */,
+				7C10770015CED63000D78CBA /* FacebookSDK.framework */,
 				7C4991D71531BF75007A4663 /* MapKit.framework */,
 				7C4991D51531BF58007A4663 /* libz.dylib */,
 				7C62EA2714CCB77B0003FFF4 /* MessageUI.framework */,
@@ -1215,6 +1222,7 @@
 				7C7F398815CE0FC700EE18DF /* texture_red.png in Resources */,
 				7C7F398B15CE104C00EE18DF /* icon-spread-large.png in Resources */,
 				7C7F398C15CE104C00EE18DF /* icon-spread-large@2x.png in Resources */,
+				7C10770315CED63D00D78CBA /* FacebookSDKResources.bundle in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1355,6 +1363,10 @@
 				CODE_SIGN_ENTITLEMENTS = Entitlements.plist;
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution: AMIN TORRES";
 				COMPRESS_PNG_FILES = NO;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"\"$(SRCROOT)/../../FacebookSDK\"",
+				);
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "Spread/Spread-Prefix.pch";
 				HEADER_SEARCH_PATHS = "\"$(SOURCE_ROOT)/SDWebImage\"";
@@ -1365,7 +1377,10 @@
 					"\"$(SRCROOT)/FlurryAnalytics\"",
 					"\"$(SRCROOT)/TestFlightSDK\"",
 				);
-				OTHER_LDFLAGS = "-ObjC";
+				OTHER_LDFLAGS = (
+					"-ObjC",
+					"-lsqlite3.0",
+				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "7EFE9C68-9D66-4F67-88EC-396C3A818202";
 				WRAPPER_EXTENSION = app;
@@ -1438,6 +1453,10 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				COMPRESS_PNG_FILES = NO;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"\"$(SRCROOT)/../../FacebookSDK\"",
+				);
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "Spread/Spread-Prefix.pch";
 				HEADER_SEARCH_PATHS = "\"$(SOURCE_ROOT)/SDWebImage\"";
@@ -1448,7 +1467,10 @@
 					"\"$(SRCROOT)/FlurryAnalytics\"",
 					"\"$(SRCROOT)/TestFlightSDK\"",
 				);
-				OTHER_LDFLAGS = "-ObjC";
+				OTHER_LDFLAGS = (
+					"-ObjC",
+					"-lsqlite3.0",
+				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				WRAPPER_EXTENSION = app;
 			};
@@ -1459,6 +1481,10 @@
 			buildSettings = {
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution";
 				COMPRESS_PNG_FILES = NO;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"\"$(SRCROOT)/../../FacebookSDK\"",
+				);
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "Spread/Spread-Prefix.pch";
 				HEADER_SEARCH_PATHS = "\"$(SOURCE_ROOT)/SDWebImage\"";
@@ -1469,7 +1495,10 @@
 					"\"$(SRCROOT)/FlurryAnalytics\"",
 					"\"$(SRCROOT)/TestFlightSDK\"",
 				);
-				OTHER_LDFLAGS = "-ObjC";
+				OTHER_LDFLAGS = (
+					"-ObjC",
+					"-lsqlite3.0",
+				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "";
 				WRAPPER_EXTENSION = app;

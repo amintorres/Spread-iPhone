@@ -24,6 +24,7 @@
 @property (strong, nonatomic) IBOutlet RoundedRectButton *registerButton;
 
 - (IBAction)logoButtonTapped:(id)sender;
+- (IBAction)facebookLoginButtonTapped:(id)sender;
 - (IBAction)loginButtonTapped:(id)sender;
 
 @end

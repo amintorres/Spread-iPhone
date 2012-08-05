@@ -27,6 +27,8 @@ typedef enum {
     PhotoTypeRecent,
 }PhotoType;
 
+typedef void (^ServiceManagerHandler)(id response, BOOL success, NSError *error);
+
 
 
 @interface ServiceManager : NSObject
@@ -36,7 +38,8 @@ typedef enum {
 + (ServiceManager*)sharedManager;
 
 - (BOOL)isSessionValid;
-- (void)loginWithEmail:(NSString*)email password:(NSString*)password completion:(void (^)(BOOL success))completion;
+- (void)loginWithEmail:(NSString*)email password:(NSString*)password completion:(ServiceManagerHandler)completion;
+- (void)loginWithFacebookToken:(NSString*)token completion:(ServiceManagerHandler)completion;
 
 //+ (void)loginWithEmail:(NSString*)email password:(NSString*)password response:^(BOOL success)response;
 

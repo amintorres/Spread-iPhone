@@ -23,6 +23,7 @@ NSString * const SpreadDidFailNotification = @"SpreadDidFailNotification";
 
 static NSString* const baseURL = @"http://dev.spread.cm";
 static NSString* const loginPath = @"api/v1/user/sign_in";
+static NSString* const facebookLoginPath = @"api/v1/fb_authenticate";
 
 
 
@@ -44,23 +45,64 @@ static NSString* const loginPath = @"api/v1/user/sign_in";
     return ( self.oauthToken != nil );
 }
 
-- (void)loginWithEmail:(NSString*)email password:(NSString*)password completion:(void (^)(BOOL success))completion
+- (void)loginWithEmail:(NSString*)email password:(NSString*)password completion:(ServiceManagerHandler)completion
 {
     NSURL *URL = [[NSURL URLWithString:baseURL] URLByAppendingPathComponent:loginPath];
 
     NSMutableURLRequest *request = [NSMutableURLRequest requestWithURL:URL];
     request.HTTPMethod = @"POST";
     NSString *postString = [[NSDictionary dictionaryWithObjectsAndKeys:
-                             email, @"user[email]",
-                             password, @"user[password]",
+                             email, @"email",
+                             password, @"password",
                              nil] paramString];
     request.HTTPBody = [postString dataUsingEncoding:NSUTF8StringEncoding];
 
     
-    [NSURLConnection sendAsynchronousRequest:request queue:nil completionHandler:^(NSURLResponse *response, NSData *data, NSError *error) {
+    [NSURLConnection sendAsynchronousRequest:request queue:[NSOperationQueue mainQueue] completionHandler:^(NSURLResponse *response, NSData *data, NSError *error) {
       
-        NSString* string = [[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding];
-        NSLog(@"string: %@", string);
+        NSError* JSONError = nil;
+        id result = [NSJSONSerialization JSONObjectWithData:data options:0 error:&JSONError];
+        NSLog(@"result: %@", result);
+        
+        if (error)
+        {
+            NSLog(@"error: %@", error);
+            completion(result, NO, error);
+        }
+        else
+        {
+            completion(result, YES, nil);
+        }
+    }];
+}
+
+- (void)loginWithFacebookToken:(NSString*)token completion:(ServiceManagerHandler)completion
+{
+    NSURL *URL = [[NSURL URLWithString:baseURL] URLByAppendingPathComponent:facebookLoginPath];
+    
+    NSMutableURLRequest *request = [NSMutableURLRequest requestWithURL:URL];
+    request.HTTPMethod = @"POST";
+    NSString *postString = [[NSDictionary dictionaryWithObjectsAndKeys:
+                             token, @"fb_access_token",
+                             nil] paramString];
+    request.HTTPBody = [postString dataUsingEncoding:NSUTF8StringEncoding];
+    
+    
+    [NSURLConnection sendAsynchronousRequest:request queue:[NSOperationQueue mainQueue] completionHandler:^(NSURLResponse *response, NSData *data, NSError *error) {
+        
+        NSError* JSONError = nil;
+        id result = [NSJSONSerialization JSONObjectWithData:data options:0 error:&JSONError];
+        NSLog(@"result: %@", result);
+
+        if (error)
+        {
+            NSLog(@"error: %@", error);
+            completion(result, NO, error);
+        }
+        else
+        {
+            completion(result, YES, nil);
+        }
     }];
 }
 

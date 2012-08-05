@@ -8,6 +8,7 @@
 
 #import "IntroViewController.h"
 #import "ServiceManager.h"
+#import <FacebookSDK/FacebookSDK.h>
 
 typedef enum{
     IntroViewStateIdle = 0,   
@@ -125,6 +126,46 @@ typedef enum{
     self.currentState = IntroViewStateIdle;
 }
 
+- (IBAction)facebookLoginButtonTapped:(id)sender
+{
+    [FBSession sessionOpenWithPermissions:nil completionHandler:^(FBSession *session, FBSessionState state, NSError *error) {
+
+        if ( session.isOpen )
+        {
+            [[ServiceManager sharedManager] loginWithFacebookToken:session.accessToken completion:^(id response, BOOL success, NSError *error) {
+
+                if (success)
+                {
+                    [self performSegueWithIdentifier:@"MenuSegue" sender:self];
+                }
+                else
+                {
+                    NSString* message = nil;
+                    
+                    if ([response isKindOfClass:[NSDictionary class]])
+                    {
+                        message = [response objectForKey:@"message"];
+                    }
+                    
+                    if (!message)
+                    {
+                        message = error.localizedDescription;
+                    }
+
+                    UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:@"Error" message:message delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil];
+                    [alertView show];
+                }
+            }];
+        }
+        
+        if (error)
+        {
+            UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:@"Error" message:error.localizedDescription delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil];
+            [alertView show];
+        }
+    }];
+}
+
 - (IBAction)loginButtonTapped:(id)sender
 {
     if ( self.currentState == IntroViewStateIdle )
@@ -138,7 +179,7 @@ typedef enum{
         
         NSString* email = self.emailTextField.text;
         NSString* password = self.passwordTextField.text;
-        [[ServiceManager sharedManager] loginWithEmail:email password:password completion:^(BOOL success) {
+        [[ServiceManager sharedManager] loginWithEmail:email password:password completion:^(id response, BOOL success, NSError *error) {
             
         }];
 //        [ServiceManager loginWithUsername:email password:password];
