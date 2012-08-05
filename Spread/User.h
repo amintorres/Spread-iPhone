@@ -15,7 +15,6 @@
 @property (nonatomic, retain) NSString * avatarPath;
 @property (nonatomic, retain) NSString * email;
 @property (nonatomic, retain) NSString * name;
-@property (nonatomic, retain) NSString * singleAccessToken;
-@property (nonatomic, retain) NSNumber * userID;
+@property (nonatomic, retain) NSString * userID;
 
 @end

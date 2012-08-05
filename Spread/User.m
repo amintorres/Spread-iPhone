@@ -14,7 +14,6 @@
 @dynamic avatarPath;
 @dynamic email;
 @dynamic name;
-@dynamic singleAccessToken;
 @dynamic userID;
 
 @end

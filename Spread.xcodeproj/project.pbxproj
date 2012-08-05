@@ -129,6 +129,10 @@
 		7C7F398C15CE104C00EE18DF /* icon-spread-large@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 7C7F398A15CE104C00EE18DF /* icon-spread-large@2x.png */; };
 		7C7F398E15CE15F300EE18DF /* IntroViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7CF8A607149BFA12009FF755 /* IntroViewController.m */; };
 		7C7F399115CE248A00EE18DF /* RoundedRectButton.m in Sources */ = {isa = PBXBuildFile; fileRef = 7C6CFBF014BD2BE70048644C /* RoundedRectButton.m */; };
+		7C7F399415CE2CED00EE18DF /* Spread.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 7C7F399215CE2CED00EE18DF /* Spread.xcdatamodeld */; };
+		7C7F399615CE2D3200EE18DF /* User.m in Sources */ = {isa = PBXBuildFile; fileRef = 7CFAFA1F14C39F6800597A6D /* User.m */; };
+		7C7F399715CE2E7000EE18DF /* ServiceManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 7C8D9BC314A2994500D1D5DC /* ServiceManager.m */; };
+		7C7F399B15CE321B00EE18DF /* NSDictionary+Utilities.m in Sources */ = {isa = PBXBuildFile; fileRef = 7C7F399A15CE321B00EE18DF /* NSDictionary+Utilities.m */; };
 		7C7F7AB514AB74AE00652401 /* EditViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 7C7F7AB314AB74AE00652401 /* EditViewController.xib */; };
 		7C7F7AB714ABAEB000652401 /* AssetsLibrary.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7C7F7AB614ABAEB000652401 /* AssetsLibrary.framework */; };
 		7C85D1D114E7826C0048813E /* icon.png in Resources */ = {isa = PBXBuildFile; fileRef = 7C2C001014D4946B00D617D8 /* icon.png */; };
@@ -142,7 +146,6 @@
 		7C9F93C0149960C300126908 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 7C9F93BE149960C300126908 /* InfoPlist.strings */; };
 		7C9F93C2149960C300126908 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 7C9F93C1149960C300126908 /* main.m */; };
 		7C9F93C6149960C300126908 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 7C9F93C5149960C300126908 /* AppDelegate.m */; };
-		7C9F93C9149960C300126908 /* Spread.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 7C9F93C7149960C300126908 /* Spread.xcdatamodeld */; };
 		7C9F93D2149960C300126908 /* MasterViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 7C9F93D0149960C300126908 /* MasterViewController.xib */; };
 		7C9F93DD149960C400126908 /* SenTestingKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7C9F93DC149960C400126908 /* SenTestingKit.framework */; };
 		7C9F93DE149960C400126908 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7C9F93B3149960C300126908 /* UIKit.framework */; };
@@ -212,7 +215,6 @@
 		7C2CFFAE14D4677600D617D8 /* WelcomeViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = WelcomeViewController.xib; sourceTree = "<group>"; };
 		7C2CFFB314D47ED600D617D8 /* RoundedBorderButton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RoundedBorderButton.h; sourceTree = "<group>"; };
 		7C2CFFB414D47ED600D617D8 /* RoundedBorderButton.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RoundedBorderButton.m; sourceTree = "<group>"; };
-		7C327F3914DB8568004BCFA3 /* Spread 2.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = "Spread 2.xcdatamodel"; sourceTree = "<group>"; };
 		7C327F3D14DB91A1004BCFA3 /* Photo.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Photo.h; sourceTree = "<group>"; };
 		7C327F3E14DB91A1004BCFA3 /* Photo.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Photo.m; sourceTree = "<group>"; };
 		7C382A9914DCC80B0038BC3E /* ToggleButton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ToggleButton.h; sourceTree = "<group>"; };
@@ -362,6 +364,9 @@
 		7C7F393F15CE0FC700EE18DF /* texture_red.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = texture_red.png; path = Images/texture_red.png; sourceTree = "<group>"; };
 		7C7F398915CE104C00EE18DF /* icon-spread-large.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "icon-spread-large.png"; sourceTree = "<group>"; };
 		7C7F398A15CE104C00EE18DF /* icon-spread-large@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "icon-spread-large@2x.png"; sourceTree = "<group>"; };
+		7C7F399315CE2CED00EE18DF /* Spread.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Spread.xcdatamodel; sourceTree = "<group>"; };
+		7C7F399915CE321B00EE18DF /* NSDictionary+Utilities.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSDictionary+Utilities.h"; sourceTree = "<group>"; };
+		7C7F399A15CE321B00EE18DF /* NSDictionary+Utilities.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSDictionary+Utilities.m"; sourceTree = "<group>"; };
 		7C7F7AB114AB74AE00652401 /* EditViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EditViewController.h; sourceTree = "<group>"; };
 		7C7F7AB214AB74AE00652401 /* EditViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EditViewController.m; sourceTree = "<group>"; };
 		7C7F7AB314AB74AE00652401 /* EditViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = EditViewController.xib; sourceTree = "<group>"; };
@@ -389,7 +394,6 @@
 		7C9F93C3149960C300126908 /* Spread-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "Spread-Prefix.pch"; sourceTree = "<group>"; };
 		7C9F93C4149960C300126908 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		7C9F93C5149960C300126908 /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
-		7C9F93C8149960C300126908 /* Spread.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Spread.xcdatamodel; sourceTree = "<group>"; };
 		7C9F93CA149960C300126908 /* MasterViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MasterViewController.h; sourceTree = "<group>"; };
 		7C9F93CB149960C300126908 /* MasterViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MasterViewController.m; sourceTree = "<group>"; };
 		7C9F93D1149960C300126908 /* en */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = en; path = en.lproj/MasterViewController.xib; sourceTree = "<group>"; };
@@ -684,6 +688,25 @@
 			name = Utilities;
 			sourceTree = "<group>";
 		};
+		7C7F399515CE2D2200EE18DF /* Data Model */ = {
+			isa = PBXGroup;
+			children = (
+				7C7F399215CE2CED00EE18DF /* Spread.xcdatamodeld */,
+				7CFAFA1E14C39F6800597A6D /* User.h */,
+				7CFAFA1F14C39F6800597A6D /* User.m */,
+			);
+			name = "Data Model";
+			sourceTree = "<group>";
+		};
+		7C7F399815CE31FA00EE18DF /* Categories */ = {
+			isa = PBXGroup;
+			children = (
+				7C7F399915CE321B00EE18DF /* NSDictionary+Utilities.h */,
+				7C7F399A15CE321B00EE18DF /* NSDictionary+Utilities.m */,
+			);
+			name = Categories;
+			sourceTree = "<group>";
+		};
 		7C7F7AB014AB747200652401 /* Edit View */ = {
 			isa = PBXGroup;
 			children = (
@@ -734,9 +757,6 @@
 		7C9890A314A041A8009E22F1 /* Data Model */ = {
 			isa = PBXGroup;
 			children = (
-				7C9F93C7149960C300126908 /* Spread.xcdatamodeld */,
-				7CFAFA1E14C39F6800597A6D /* User.h */,
-				7CFAFA1F14C39F6800597A6D /* User.m */,
 				7C327F3D14DB91A1004BCFA3 /* Photo.h */,
 				7C327F3E14DB91A1004BCFA3 /* Photo.m */,
 				7CFAFA2114C39F8900597A6D /* Tag.h */,
@@ -801,7 +821,9 @@
 				7C9F93C5149960C300126908 /* AppDelegate.m */,
 				7C7F388015CDFD7200EE18DF /* MainStoryboard.storyboard */,
 				7C7F38B915CDFE0F00EE18DF /* View Controller */,
+				7C7F399515CE2D2200EE18DF /* Data Model */,
 				7C7F398F15CE23B000EE18DF /* Utilities */,
+				7C7F399815CE31FA00EE18DF /* Categories */,
 				7C7F398D15CE147C00EE18DF /* UI Elements */,
 				7C7F38F515CE0DFF00EE18DF /* OLD */,
 				7CE85AEC14A223EB002874EA /* Images */,
@@ -1242,13 +1264,16 @@
 			files = (
 				7C9F93C2149960C300126908 /* main.m in Sources */,
 				7C9F93C6149960C300126908 /* AppDelegate.m in Sources */,
-				7C9F93C9149960C300126908 /* Spread.xcdatamodeld in Sources */,
 				7C7F38BC15CDFE3000EE18DF /* MenuViewController.m in Sources */,
 				7C7F38E415CE03DF00EE18DF /* RequestsViewController.m in Sources */,
 				7C7F38F115CE07B900EE18DF /* BaseViewController.m in Sources */,
 				7C7F38F415CE0B9800EE18DF /* RequestCell.m in Sources */,
 				7C7F398E15CE15F300EE18DF /* IntroViewController.m in Sources */,
 				7C7F399115CE248A00EE18DF /* RoundedRectButton.m in Sources */,
+				7C7F399415CE2CED00EE18DF /* Spread.xcdatamodeld in Sources */,
+				7C7F399615CE2D3200EE18DF /* User.m in Sources */,
+				7C7F399715CE2E7000EE18DF /* ServiceManager.m in Sources */,
+				7C7F399B15CE321B00EE18DF /* NSDictionary+Utilities.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1521,13 +1546,12 @@
 /* End XCConfigurationList section */
 
 /* Begin XCVersionGroup section */
-		7C9F93C7149960C300126908 /* Spread.xcdatamodeld */ = {
+		7C7F399215CE2CED00EE18DF /* Spread.xcdatamodeld */ = {
 			isa = XCVersionGroup;
 			children = (
-				7C327F3914DB8568004BCFA3 /* Spread 2.xcdatamodel */,
-				7C9F93C8149960C300126908 /* Spread.xcdatamodel */,
+				7C7F399315CE2CED00EE18DF /* Spread.xcdatamodel */,
 			);
-			currentVersion = 7C9F93C8149960C300126908 /* Spread.xcdatamodel */;
+			currentVersion = 7C7F399315CE2CED00EE18DF /* Spread.xcdatamodel */;
 			path = Spread.xcdatamodeld;
 			sourceTree = "<group>";
 			versionGroupType = wrapper.xcdatamodel;

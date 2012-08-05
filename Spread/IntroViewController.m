@@ -7,7 +7,7 @@
 //
 
 #import "IntroViewController.h"
-//#import "ServiceManager.h"
+#import "ServiceManager.h"
 
 typedef enum{
     IntroViewStateIdle = 0,   
@@ -44,10 +44,10 @@ typedef enum{
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(keyboardWillHide:) name:UIKeyboardWillHideNotification object:nil];
     
     
-//    if ( [ServiceManager isSessionValid] )
-//    {
-//        [self performSegueWithIdentifier:@"MenuSegue" sender:self];
-//    }
+    if ( [[ServiceManager sharedManager] isSessionValid] )
+    {
+        [self performSegueWithIdentifier:@"MenuSegue" sender:self];
+    }
 }
 
 - (void)viewDidDisappear:(BOOL)animated
@@ -136,8 +136,12 @@ typedef enum{
         [self.emailTextField resignFirstResponder];
         [self.passwordTextField resignFirstResponder];
         
-//        NSString* email = self.emailTextField.text;
-//        NSString* password = self.passwordTextField.text;
+        NSString* email = self.emailTextField.text;
+        NSString* password = self.passwordTextField.text;
+        [[ServiceManager sharedManager] loginWithEmail:email password:password completion:^(BOOL success) {
+            
+        }];
+//        [ServiceManager loginWithUsername:email password:password];
 //
 //        RKObjectLoader* loader = [ServiceManager loginWithUsername:username password:password];
 //        
