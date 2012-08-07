@@ -6,7 +6,7 @@
 //  Copyright (c) 2012 Joseph Lin. All rights reserved.
 //
 
-#import <Foundation/Foundation.h>
+#import "NSManagedObject+Utilities.h"
 #import "User.h"
 
 

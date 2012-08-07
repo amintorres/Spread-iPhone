@@ -2,8 +2,8 @@
 //  Tag.m
 //  Spread
 //
-//  Created by Joseph Lin on 1/15/12.
-//  Copyright (c) 2012 Joseph Lin. All rights reserved.
+//  Created by Joseph Lin on 8/6/12.
+//  Copyright (c) 2012 R/GA. All rights reserved.
 //
 
 #import "Tag.h"
@@ -13,6 +13,7 @@
 @implementation Tag
 
 @dynamic name;
+@dynamic tagID;
 @dynamic photos;
 
 @end

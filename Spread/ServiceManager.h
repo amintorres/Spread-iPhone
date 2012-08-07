@@ -41,6 +41,8 @@ typedef void (^ServiceManagerHandler)(id response, BOOL success, NSError *error)
 - (void)loginWithEmail:(NSString*)email password:(NSString*)password completion:(ServiceManagerHandler)completion;
 - (void)loginWithFacebookToken:(NSString*)token completion:(ServiceManagerHandler)completion;
 
+- (void)loadRecentPhotosWithHandler:(ServiceManagerHandler)completion;
+
 //+ (void)loginWithEmail:(NSString*)email password:(NSString*)password response:^(BOOL success)response;
 
 //@property (strong, nonatomic) NSArray* userPhotos;

@@ -40,19 +40,6 @@
 
 #pragma mark - Core Data stack
 
-- (NSManagedObjectContext *)managedObjectContext
-{
-    if (!managedObjectContext)
-    {
-        if (self.persistentStoreCoordinator)
-        {
-            managedObjectContext = [[NSManagedObjectContext alloc] init];
-            managedObjectContext.persistentStoreCoordinator = self.persistentStoreCoordinator;
-        }
-    }
-    return managedObjectContext;
-}
-
 - (NSManagedObjectModel *)managedObjectModel
 {
     if (!managedObjectModel)

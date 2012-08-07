@@ -9,6 +9,7 @@
 #import "ServiceManager.h"
 #import "NSDictionary+Utilities.h"
 #import "User+Spread.h"
+#import "Photo+Spread.h"
 
 NSString * const SpreadDidLoginNotification = @"SpreadDidLoginNotification";
 NSString * const SpreadDidLoadUserInfoNotification = @"SpreadDidLoadUserInfoNotification";
@@ -24,7 +25,7 @@ NSString * const SpreadDidFailNotification = @"SpreadDidFailNotification";
 static NSString* const baseURL = @"http://dev.spread.cm";
 static NSString* const loginPath = @"api/v1/user/sign_in";
 static NSString* const facebookLoginPath = @"api/v1/fb_authenticate";
-
+static NSString* const recentPhotoPath = @"api/v1/news_photos/recent.json";
 
 
 @interface ServiceManager ()
@@ -38,7 +39,32 @@ static NSString* const facebookLoginPath = @"api/v1/fb_authenticate";
 //@synthesize userPhotos, popularPhotos, recentPhotos;
 
 
+#pragma mark - Singleton
+
++ (ServiceManager*)sharedManager
+{
+    static ServiceManager *_sharedManager = nil;
+    
+    static dispatch_once_t onceToken;
+    dispatch_once(&onceToken, ^{
+        _sharedManager = [[ServiceManager alloc] init];
+    });
+    
+    return _sharedManager;
+}
+
+
 #pragma mark - Login/Logout
+
+- (NSString*)oauthToken
+{
+    return [[NSUserDefaults standardUserDefaults] objectForKey:@"oauthToken"];
+}
+
+- (void)setOauthToken:(NSString*)token
+{
+    [[NSUserDefaults standardUserDefaults] setObject:token forKey:@"oauthToken"];
+}
 
 - (BOOL)isSessionValid
 {
@@ -51,11 +77,11 @@ static NSString* const facebookLoginPath = @"api/v1/fb_authenticate";
 
     NSMutableURLRequest *request = [NSMutableURLRequest requestWithURL:URL];
     request.HTTPMethod = @"POST";
-    NSString *postString = [[NSDictionary dictionaryWithObjectsAndKeys:
-                             email, @"email",
-                             password, @"password",
-                             nil] paramString];
-    request.HTTPBody = [postString dataUsingEncoding:NSUTF8StringEncoding];
+    NSString *param = [[NSDictionary dictionaryWithObjectsAndKeys:
+                        email, @"email",
+                        password, @"password",
+                        nil] paramString];
+    request.HTTPBody = [param dataUsingEncoding:NSUTF8StringEncoding];
 
     
     [NSURLConnection sendAsynchronousRequest:request queue:[NSOperationQueue mainQueue] completionHandler:^(NSURLResponse *response, NSData *data, NSError *error) {
@@ -82,10 +108,10 @@ static NSString* const facebookLoginPath = @"api/v1/fb_authenticate";
     
     NSMutableURLRequest *request = [NSMutableURLRequest requestWithURL:URL];
     request.HTTPMethod = @"POST";
-    NSString *postString = [[NSDictionary dictionaryWithObjectsAndKeys:
-                             token, @"fb_access_token",
-                             nil] paramString];
-    request.HTTPBody = [postString dataUsingEncoding:NSUTF8StringEncoding];
+    NSString *param = [[NSDictionary dictionaryWithObjectsAndKeys:
+                        token, @"fb_access_token",
+                        nil] paramString];
+    request.HTTPBody = [param dataUsingEncoding:NSUTF8StringEncoding];
     
     
     [NSURLConnection sendAsynchronousRequest:request queue:[NSOperationQueue mainQueue] completionHandler:^(NSURLResponse *response, NSData *data, NSError *error) {
@@ -101,34 +127,43 @@ static NSString* const facebookLoginPath = @"api/v1/fb_authenticate";
         }
         else
         {
+            self.oauthToken = [result objectForKey:@"authentication_token"];
             completion(result, YES, nil);
         }
     }];
 }
 
-- (NSString*)oauthToken
-{
-    return [[NSUserDefaults standardUserDefaults] objectForKey:@"oauthToken"];
-}
 
-- (void)setOauthToken:(NSString*)token
-{
-    [[NSUserDefaults standardUserDefaults] setObject:token forKey:@"oauthToken"];
-}
+#pragma mark - Recent Photo
 
-+ (ServiceManager*)sharedManager
+- (void)loadRecentPhotosWithHandler:(ServiceManagerHandler)completion
 {
-    static ServiceManager *_sharedManager = nil;
+    NSString *param = [[NSDictionary dictionaryWithObjectsAndKeys:
+                        self.oauthToken, @"authentication_token",
+                        nil] paramString];
+    NSString* URLString = [NSString stringWithFormat:@"%@/%@?%@", baseURL, recentPhotoPath, param];
+    NSURL *URL = [NSURL URLWithString:URLString];
+    NSURLRequest *request = [NSURLRequest requestWithURL:URL];
     
-    static dispatch_once_t onceToken;
-    dispatch_once(&onceToken, ^{
-        _sharedManager = [[ServiceManager alloc] init];
-    });
-    
-    return _sharedManager;
+    [NSURLConnection sendAsynchronousRequest:request queue:[NSOperationQueue mainQueue] completionHandler:^(NSURLResponse *response, NSData *data, NSError *error) {
+        
+        NSError* JSONError = nil;
+        id result = [NSJSONSerialization JSONObjectWithData:data options:0 error:&JSONError];
+        NSLog(@"result: %@", result);
+        
+        if (error)
+        {
+            NSLog(@"error: %@", error);
+            completion(result, NO, error);
+        }
+        else
+        {
+            [Photo objectsWithArray:result completion:^(NSArray *photos) {
+                completion(photos, YES, nil);
+            }];
+        }
+    }];
 }
-
-
 
 
 

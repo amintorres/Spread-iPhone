@@ -16,19 +16,35 @@
 @implementation Photo (Spread)
 
 
-- (void)storeDetailsToUserDefault
++ (NSManagedObject *)objectWithDict:(NSDictionary*)dict inContext:(NSManagedObjectContext*)context
 {
-    [UserDefaultHelper setStoredTitle:self.title];
-    [UserDefaultHelper setStoredTags:self.csvTags];
-    [UserDefaultHelper setStoredDescription:self.photoDescription];
-}
+    Photo* photo = (Photo*)[super objectWithDict:dict inContext:context];
+    photo.photoID = [dict objectForKey:@"id"];
+    photo.name = [dict objectForKey:@"name"];
+    photo.photoDescription = [dict objectForKey:@"description"];
+    photo.impressionsCount = [dict objectForKey:@"impressions_count"];
+    photo.favoritesCount = [dict objectForKey:@"favorites_count"];
+    photo.commentsCount = [dict objectForKey:@"comments_count"];
+//    photo.createdDate = [dict objectForKey:@"created_at"];
+//    photo.updatedDate = [dict objectForKey:@"updated_at"];
 
-- (void)loadDetailsFromUserDefault
-{
-    self.title = [UserDefaultHelper storedTitle];
-    self.csvTags = [UserDefaultHelper storedTags];
-    self.photoDescription = [UserDefaultHelper storedDescription];
+	return photo;
 }
+//
+//
+//- (void)storeDetailsToUserDefault
+//{
+//    [UserDefaultHelper setStoredTitle:self.title];
+//    [UserDefaultHelper setStoredTags:self.csvTags];
+//    [UserDefaultHelper setStoredDescription:self.photoDescription];
+//}
+//
+//- (void)loadDetailsFromUserDefault
+//{
+//    self.title = [UserDefaultHelper storedTitle];
+//    self.csvTags = [UserDefaultHelper storedTags];
+//    self.photoDescription = [UserDefaultHelper storedDescription];
+//}
 
 - (void)setCsvTags:(NSString *)csvTags
 {
@@ -47,17 +63,17 @@
     NSString* csvString = [sortedTagNames componentsJoinedByString:@", "];
     return csvString;
 }
-
-- (BOOL)validate:(NSError**)error
-{
-    if ( [self.title length] < 4 )
-    {
-        *error = [NSError invalidPhotoTitleError];
-        return NO;
-    }
-    
-    return YES;
-}
+//
+//- (BOOL)validate:(NSError**)error
+//{
+//    if ( [self.title length] < 4 )
+//    {
+//        *error = [NSError invalidPhotoTitleError];
+//        return NO;
+//    }
+//    
+//    return YES;
+//}
 
 
 @end
