@@ -18,6 +18,7 @@
 - (void)deleteObject;
 
 + (NSManagedObject *)objectInContext:(NSManagedObjectContext*)context;
++ (NSManagedObject *)objectWithID:(NSString*)requestedID inContext:(NSManagedObjectContext*)context;
 + (NSManagedObject *)objectWithDict:(NSDictionary*)dict inContext:(NSManagedObjectContext*)context;
 + (void)objectsWithArray:(NSArray*)array completion:(void(^)(NSArray* photos))completion;
 

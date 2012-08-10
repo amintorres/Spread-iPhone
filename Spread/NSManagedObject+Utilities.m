@@ -36,7 +36,7 @@
     static dispatch_once_t onceToken;
     dispatch_once(&onceToken, ^{
         _privateMOC = [[NSManagedObjectContext alloc] initWithConcurrencyType:NSPrivateQueueConcurrencyType];
-        _privateMOC.persistentStoreCoordinator = [self persistentStoreCoordinator];
+        _privateMOC.parentContext = [self mainMOC];
     });
     return _privateMOC;
 }
@@ -60,7 +60,11 @@
 
 + (NSEntityDescription *)entityInContext:(NSManagedObjectContext*)context
 {
-    return [NSEntityDescription entityForName:NSStringFromClass([self class]) inManagedObjectContext:context];
+    __block NSEntityDescription* entity = nil;
+    [context performBlockAndWait:^{
+        entity = [NSEntityDescription entityForName:NSStringFromClass([self class]) inManagedObjectContext:context];
+    }];
+    return entity;
 }
 
 + (NSManagedObject *)objectInContext:(NSManagedObjectContext*)context
@@ -72,9 +76,34 @@
 	return object;
 }
 
++ (NSManagedObject *)objectWithID:(id)requestedID inContext:(NSManagedObjectContext*)context
+{
+    NSString* modelIDKey = [self modelIDKey];
+    if (modelIDKey && requestedID)
+    {
+        NSPredicate* predicate = [NSPredicate predicateWithFormat:@"%@ == %@", modelIDKey, requestedID];
+        NSArray* result = [self objectsWithPredicate:predicate sortDescriptors:nil inContext:context];
+        if ([result count])
+        {
+            // Return object with the requested ID.
+            return [result objectAtIndex:0];
+        }
+    }
+    
+    // If not found, return nil.
+    return nil;
+}
+
 + (NSManagedObject *)objectWithDict:(NSDictionary*)dict inContext:(NSManagedObjectContext*)context
 {
-    NSManagedObject* object = [self objectInContext:context];
+    id requestedID = [dict objectForKey:[self jsonIDKey]];
+    NSManagedObject* object = [self objectWithID:requestedID inContext:context];
+
+    if (!object)
+    {
+        object = [self objectInContext:context];
+    }
+
 	return object;
 }
 
@@ -82,26 +111,54 @@
 {
     [[self privateMOC] performBlock:^{
         
-        __block NSMutableArray *photos = [NSMutableArray arrayWithCapacity:[array count]];
+        __block NSMutableArray *moids = [NSMutableArray arrayWithCapacity:[array count]];
         for (NSDictionary* dict in array)
         {
             id privateMO = [self objectWithDict:dict inContext:[self privateMOC]];
             NSManagedObjectID *moid = [privateMO objectID];
-            
-            [[self mainMOC] performBlockAndWait:^{
+            [moids addObject:moid];
+        }
+        [[self privateMOC] save:nil];
+        
+        [[self mainMOC] performBlock:^{
+
+            [[self mainMOC] save:nil];
+
+            __block NSMutableArray *photos = [NSMutableArray arrayWithCapacity:[array count]];
+            for (id moid in moids)
+            {
                 id mainMO = [[self mainMOC] objectWithID:moid];
                 [photos addObject:mainMO];
-            }];
-        }
-        completion(photos);
+            }
+            completion(photos);
+        }];
     }];
 }
 
-//+ (NSArray *)objectsWithPredicate:(NSPredicate*)predicate sortDescriptors:(NSArray*)sortDescriptors inContext:(NSManagedObjectContext*)context
-//{
-//    
-//}
++ (NSArray *)objectsWithPredicate:(NSPredicate*)predicate sortDescriptors:(NSArray*)sortDescriptors inContext:(NSManagedObjectContext*)context
+{
+    __block NSArray* result = nil;
+    [context performBlockAndWait:^{
+        NSFetchRequest* request = [NSFetchRequest new];
+        request.entity = [self entityInContext:context];
+        request.predicate = predicate;
+        request.sortDescriptors = sortDescriptors;
+        NSError* error = nil;
+        result = [context executeFetchRequest:request error:&error];
+    }];
+	return result;
+}
 
 
+// Subclass should override these to provide correct values.
++ (NSString *)modelIDKey
+{
+    return @"id";
+}
+
++ (NSString *)jsonIDKey
+{
+    return @"id";
+}
 
 @end

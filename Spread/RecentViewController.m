@@ -49,12 +49,17 @@
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-    return [self.photos count];
+    return ceil( (float)[self.photos count] / 4 );
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     FourImagesCell *cell = [self.tableView dequeueReusableCellWithIdentifier:@"FourImagesCell"];
+    
+    NSUInteger start = indexPath.row * 4;
+    NSUInteger end = MIN(start + 4, [self.photos count]);
+    cell.photos = [self.photos subarrayWithRange:NSMakeRange(start, end - start)];
+    
     return cell;
 }
 

@@ -10,6 +10,7 @@
 #import "UserDefaultHelper.h"
 #import "Tag+Spread.h"
 #import "NSError+Spread.h"
+#import "NSDate+Spread.h"
 
 
 
@@ -19,17 +20,30 @@
 + (NSManagedObject *)objectWithDict:(NSDictionary*)dict inContext:(NSManagedObjectContext*)context
 {
     Photo* photo = (Photo*)[super objectWithDict:dict inContext:context];
-    photo.photoID = [dict objectForKey:@"id"];
+    photo.photoID = [dict objectForKey:[self jsonIDKey]];
     photo.name = [dict objectForKey:@"name"];
     photo.photoDescription = [dict objectForKey:@"description"];
     photo.impressionsCount = [dict objectForKey:@"impressions_count"];
     photo.favoritesCount = [dict objectForKey:@"favorites_count"];
     photo.commentsCount = [dict objectForKey:@"comments_count"];
-//    photo.createdDate = [dict objectForKey:@"created_at"];
-//    photo.updatedDate = [dict objectForKey:@"updated_at"];
+    photo.createdDate = [NSDate dateFromServerString:[dict objectForKey:@"created_at"]];
+    photo.updatedDate = [NSDate dateFromServerString:[dict objectForKey:@"updated_at"]];
 
+    NSDictionary* images = [dict objectForKey:@"images"];
+    photo.gridImageURLString = [[images objectForKey:@"thumb"] objectForKey:@"url"];
+    photo.feedImageURLString = [[images objectForKey:@"square"] objectForKey:@"url"];
+    photo.largeImageURLString = [[images objectForKey:@"web_preview"] objectForKey:@"url"];
+    
+    NSArray* tags = [dict objectForKey:@"tags"];
+    for (NSDictionary* dict in tags)
+    {
+        Tag* tag = (Tag*)[Tag objectWithDict:dict inContext:context];
+        [photo addTagsObject:tag];
+    }
+    
 	return photo;
 }
+
 //
 //
 //- (void)storeDetailsToUserDefault
@@ -75,5 +89,14 @@
 //    return YES;
 //}
 
++ (NSString *)modelIDKey
+{
+    return @"photoID";
+}
+
++ (NSString *)jsonIDKey
+{
+    return @"id";
+}
 
 @end

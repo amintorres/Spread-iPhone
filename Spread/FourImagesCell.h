@@ -15,5 +15,6 @@
 @property (nonatomic, strong) IBOutlet UIButton* button1;
 @property (nonatomic, strong) IBOutlet UIButton* button2;
 @property (nonatomic, strong) IBOutlet UIButton* button3;
+@property (nonatomic, strong) NSArray* photos;
 
 @end

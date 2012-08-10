@@ -2,7 +2,7 @@
 //  User.h
 //  Spread
 //
-//  Created by Joseph Lin on 8/6/12.
+//  Created by Joseph Lin on 8/10/12.
 //  Copyright (c) 2012 R/GA. All rights reserved.
 //
 
@@ -15,8 +15,8 @@
 
 @property (nonatomic, retain) NSString * imageURLString;
 @property (nonatomic, retain) NSString * name;
-@property (nonatomic, retain) NSString * userID;
 @property (nonatomic, retain) NSString * nickname;
+@property (nonatomic, retain) NSNumber * userID;
 @property (nonatomic, retain) Photo *photos;
 
 @end

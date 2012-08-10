@@ -76,5 +76,14 @@ static User* currentUser = nil;
     return avatarURL;
 }
 
++ (NSString *)modelIDKey
+{
+    return @"userID";
+}
+
++ (NSString *)jsonIDKey
+{
+    return @"id";
+}
 
 @end

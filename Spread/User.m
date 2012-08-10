@@ -2,7 +2,7 @@
 //  User.m
 //  Spread
 //
-//  Created by Joseph Lin on 8/6/12.
+//  Created by Joseph Lin on 8/10/12.
 //  Copyright (c) 2012 R/GA. All rights reserved.
 //
 
@@ -14,8 +14,8 @@
 
 @dynamic imageURLString;
 @dynamic name;
-@dynamic userID;
 @dynamic nickname;
+@dynamic userID;
 @dynamic photos;
 
 @end

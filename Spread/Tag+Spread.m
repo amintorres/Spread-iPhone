@@ -12,6 +12,11 @@
 
 @implementation Tag (Spread)
 
++ (NSManagedObject *)objectWithDict:(NSDictionary*)dict inContext:(NSManagedObjectContext*)context
+{
+    
+}
+
 
 + (NSSet*)tagsFromCSV:(NSString*)csvString
 {
@@ -34,6 +39,16 @@
     }
     
     return tags;
+}
+
++ (NSString *)modelIDKey
+{
+    return @"tagID";
+}
+
++ (NSString *)jsonIDKey
+{
+    return @"id";
 }
 
 

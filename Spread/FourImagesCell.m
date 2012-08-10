@@ -7,26 +7,39 @@
 //
 
 #import "FourImagesCell.h"
+#import "Photo+Spread.h"
 
 
 @implementation FourImagesCell
 @synthesize button0, button1, button2, button3;
+@synthesize photos;
 
 
-- (id)initWithStyle:(UITableViewCellStyle)style reuseIdentifier:(NSString *)reuseIdentifier
+- (void)setPhotos:(NSArray *)thePhotos
 {
-    self = [super initWithStyle:style reuseIdentifier:reuseIdentifier];
-    if (self) {
-        // Initialization code
+    photos = thePhotos;
+    NSArray* buttons = [NSArray arrayWithObjects:self.button0, self.button1, self.button2, self.button3, nil];
+    
+    for (int i = 0; i < [photos count]; i++ )
+    {
+        Photo* photo = [photos objectAtIndex:i];
+        UIButton* button = [buttons objectAtIndex:i];
+        
+        NSURL* URL = [NSURL URLWithString:photo.gridImageURLString];
+        NSURLRequest* request = [NSURLRequest requestWithURL:URL cachePolicy:NSURLRequestUseProtocolCachePolicy timeoutInterval:10.0];
+        [NSURLConnection sendAsynchronousRequest:request queue:[NSOperationQueue mainQueue] completionHandler:^(NSURLResponse *response, NSData *data, NSError *error) {
+            if (data)
+            {
+                UIImage* image = [UIImage imageWithData:data];
+                [button setImage:image forState:UIControlStateNormal];
+            }
+        }];
     }
-    return self;
 }
 
-- (void)setSelected:(BOOL)selected animated:(BOOL)animated
+- (void)prepareForReuse
 {
-    [super setSelected:selected animated:animated];
-
-    // Configure the view for the selected state
+    
 }
 
 @end
