@@ -43,26 +43,6 @@ typedef void (^ServiceManagerHandler)(id response, BOOL success, NSError *error)
 
 - (void)loadRecentPhotosWithHandler:(ServiceManagerHandler)completion;
 - (void)loadPopularPhotosWithHandler:(ServiceManagerHandler)completion;
-
-//+ (void)loginWithEmail:(NSString*)email password:(NSString*)password response:^(BOOL success)response;
-
-//@property (strong, nonatomic) NSArray* userPhotos;
-//@property (strong, nonatomic) NSArray* popularPhotos;
-//@property (strong, nonatomic) NSArray* recentPhotos;
-//
-//+ (NSArray*)photosOfType:(PhotoType)type;
-
-
-//+ (RKObjectLoader*)loginWithUsername:(NSString*)username password:(NSString*)password;
-//+ (RKObjectLoader*)loadUserInfoFromServer;
-//+ (void)logout;
-//+ (void)requestInviteWithEmail:(NSString*)email name:(NSString*)name;
-//+ (RKObjectLoader*)loadUserPhotos;
-//+ (RKObjectLoader*)loadPopularPhotos;
-//+ (RKObjectLoader*)loadRecentPhotos;
-//+ (RKObjectLoader*)postPhoto:(Photo*)photo imageData:(NSData*)imageData;
-//+ (RKObjectLoader*)updatePhoto:(Photo*)photo;
-//+ (RKObjectLoader*)deletePhoto:(Photo*)photo;
-
+- (void)loadUserPhotosWithHandler:(ServiceManagerHandler)completion;
 
 @end

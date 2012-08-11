@@ -29,7 +29,7 @@
             Photo* photo = [photos objectAtIndex:i];
             
             NSURL* URL = [NSURL URLWithString:photo.gridImageURLString];
-            NSURLRequest* request = [NSURLRequest requestWithURL:URL cachePolicy:NSURLRequestUseProtocolCachePolicy timeoutInterval:10.0];
+            NSURLRequest *request = [NSURLRequest requestWithURL:URL cachePolicy:NSURLRequestReturnCacheDataElseLoad timeoutInterval:10.0];
             [NSURLConnection sendAsynchronousRequest:request queue:[NSOperationQueue mainQueue] completionHandler:^(NSURLResponse *response, NSData *data, NSError *error) {
                 if (data)
                 {
