@@ -20,20 +20,29 @@
     photos = thePhotos;
     NSArray* buttons = [NSArray arrayWithObjects:self.button0, self.button1, self.button2, self.button3, nil];
     
-    for (int i = 0; i < [photos count]; i++ )
+    for (int i = 0; i < 4; i++ )
     {
-        Photo* photo = [photos objectAtIndex:i];
         UIButton* button = [buttons objectAtIndex:i];
         
-        NSURL* URL = [NSURL URLWithString:photo.gridImageURLString];
-        NSURLRequest* request = [NSURLRequest requestWithURL:URL cachePolicy:NSURLRequestUseProtocolCachePolicy timeoutInterval:10.0];
-        [NSURLConnection sendAsynchronousRequest:request queue:[NSOperationQueue mainQueue] completionHandler:^(NSURLResponse *response, NSData *data, NSError *error) {
-            if (data)
-            {
-                UIImage* image = [UIImage imageWithData:data];
-                [button setImage:image forState:UIControlStateNormal];
-            }
-        }];
+        if ( i < [photos count] )
+        {
+            Photo* photo = [photos objectAtIndex:i];
+            
+            NSURL* URL = [NSURL URLWithString:photo.gridImageURLString];
+            NSURLRequest* request = [NSURLRequest requestWithURL:URL cachePolicy:NSURLRequestUseProtocolCachePolicy timeoutInterval:10.0];
+            [NSURLConnection sendAsynchronousRequest:request queue:[NSOperationQueue mainQueue] completionHandler:^(NSURLResponse *response, NSData *data, NSError *error) {
+                if (data)
+                {
+                    UIImage* image = [UIImage imageWithData:data];
+                    [button setImage:image forState:UIControlStateNormal];
+                    button.hidden = NO;
+                }
+            }];
+        }
+        else
+        {
+            button.hidden = YES;
+        }
     }
 }
 

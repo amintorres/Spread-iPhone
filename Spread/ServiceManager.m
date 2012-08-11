@@ -26,6 +26,7 @@ static NSString* const baseURL = @"http://dev.spread.cm";
 static NSString* const loginPath = @"api/v1/user/sign_in";
 static NSString* const facebookLoginPath = @"api/v1/fb_authenticate";
 static NSString* const recentPhotoPath = @"api/v1/news_photos/recent.json";
+static NSString* const popularPhotoPath = @"api/v1/news_photos/popular.json";
 
 
 @interface ServiceManager ()
@@ -142,6 +143,35 @@ static NSString* const recentPhotoPath = @"api/v1/news_photos/recent.json";
                         self.oauthToken, @"authentication_token",
                         nil] paramString];
     NSString* URLString = [NSString stringWithFormat:@"%@/%@?%@", baseURL, recentPhotoPath, param];
+    NSURL *URL = [NSURL URLWithString:URLString];
+    NSURLRequest *request = [NSURLRequest requestWithURL:URL];
+    
+    [NSURLConnection sendAsynchronousRequest:request queue:[NSOperationQueue mainQueue] completionHandler:^(NSURLResponse *response, NSData *data, NSError *error) {
+        
+        NSError* JSONError = nil;
+        id result = [NSJSONSerialization JSONObjectWithData:data options:0 error:&JSONError];
+        NSLog(@"result: %@", result);
+        
+        if (error)
+        {
+            NSLog(@"error: %@", error);
+            completion(result, NO, error);
+        }
+        else
+        {
+            [Photo objectsWithArray:result completion:^(NSArray *photos) {
+                completion(photos, YES, nil);
+            }];
+        }
+    }];
+}
+
+- (void)loadPopularPhotosWithHandler:(ServiceManagerHandler)completion
+{
+    NSString *param = [[NSDictionary dictionaryWithObjectsAndKeys:
+                        self.oauthToken, @"authentication_token",
+                        nil] paramString];
+    NSString* URLString = [NSString stringWithFormat:@"%@/%@?%@", baseURL, popularPhotoPath, param];
     NSURL *URL = [NSURL URLWithString:URLString];
     NSURLRequest *request = [NSURLRequest requestWithURL:URL];
     

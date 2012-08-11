@@ -1,18 +1,18 @@
 //
-//  RecentViewController.m
+//  PopularViewController.m
 //  Spread
 //
-//  Created by Joseph Lin on 8/6/12.
+//  Created by Joseph Lin on 8/11/12.
 //  Copyright (c) 2012 R/GA. All rights reserved.
 //
 
-#import "RecentViewController.h"
+#import "PopularViewController.h"
 #import "FourImagesCell.h"
 #import "ServiceManager.h"
 
 
 
-@interface RecentViewController ()
+@interface PopularViewController ()
 
 @property (nonatomic, strong) NSArray* photos;
 
@@ -20,7 +20,7 @@
 
 
 
-@implementation RecentViewController
+@implementation PopularViewController
 @synthesize totalPhotosLabel, tableView;
 
 
@@ -35,8 +35,8 @@
 {
     [super viewDidAppear:animated];
     
-    [[ServiceManager sharedManager] loadRecentPhotosWithHandler:^(id response, BOOL success, NSError *error) {
-       
+    [[ServiceManager sharedManager] loadPopularPhotosWithHandler:^(id response, BOOL success, NSError *error) {
+        
         if (success)
         {
             dispatch_async(dispatch_get_main_queue(), ^{

@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		7C10770115CED63000D78CBA /* FacebookSDK.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7C10770015CED63000D78CBA /* FacebookSDK.framework */; };
 		7C10770315CED63D00D78CBA /* FacebookSDKResources.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 7C10770215CED63D00D78CBA /* FacebookSDKResources.bundle */; };
+		7C25A5D115D7091A0014465B /* PopularViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7C25A5D015D7091A0014465B /* PopularViewController.m */; };
 		7C2CFFB014D4677600D617D8 /* WelcomeViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 7C2CFFAE14D4677600D617D8 /* WelcomeViewController.xib */; };
 		7C46C14914CF5B7900682737 /* CameraViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 7C46C14714CF5B7900682737 /* CameraViewController.xib */; };
 		7C46C14E14CF5C3D00682737 /* UploadProgressView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 7C46C14D14CF5C3D00682737 /* UploadProgressView.xib */; };
@@ -219,6 +220,8 @@
 /* Begin PBXFileReference section */
 		7C10770015CED63000D78CBA /* FacebookSDK.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = FacebookSDK.framework; path = ../../FacebookSDK/FacebookSDK.framework; sourceTree = "<group>"; };
 		7C10770215CED63D00D78CBA /* FacebookSDKResources.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; name = FacebookSDKResources.bundle; path = ../../FacebookSDK/FacebookSDK.framework/Versions/A/Resources/FacebookSDKResources.bundle; sourceTree = "<group>"; };
+		7C25A5CF15D7091A0014465B /* PopularViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PopularViewController.h; sourceTree = "<group>"; };
+		7C25A5D015D7091A0014465B /* PopularViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PopularViewController.m; sourceTree = "<group>"; };
 		7C2C001014D4946B00D617D8 /* icon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = icon.png; path = ../../icon.png; sourceTree = "<group>"; };
 		7C2C001214D4946F00D617D8 /* icon@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "icon@2x.png"; path = "../../icon@2x.png"; sourceTree = "<group>"; };
 		7C2CB64614BF2D3B006727FD /* UserDefaultHelper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UserDefaultHelper.h; sourceTree = "<group>"; };
@@ -576,7 +579,7 @@
 				7CF8A615149BFA69009FF755 /* Intro */,
 				7C7F38BD15CDFE3300EE18DF /* Menu */,
 				7C7F38E615CE03E700EE18DF /* Requests */,
-				7C886F4E15D0BB890024603C /* Recent Photo */,
+				7C886F4E15D0BB890024603C /* Recent/Popular Photo */,
 			);
 			name = "View Controller";
 			sourceTree = "<group>";
@@ -793,15 +796,17 @@
 			name = Categories;
 			sourceTree = "<group>";
 		};
-		7C886F4E15D0BB890024603C /* Recent Photo */ = {
+		7C886F4E15D0BB890024603C /* Recent/Popular Photo */ = {
 			isa = PBXGroup;
 			children = (
 				7C886F4F15D0BBA10024603C /* RecentViewController.h */,
 				7C886F5015D0BBA10024603C /* RecentViewController.m */,
+				7C25A5CF15D7091A0014465B /* PopularViewController.h */,
+				7C25A5D015D7091A0014465B /* PopularViewController.m */,
 				7C886F5615D0BE800024603C /* FourImagesCell.h */,
 				7C886F5715D0BE800024603C /* FourImagesCell.m */,
 			);
-			name = "Recent Photo";
+			name = "Recent/Popular Photo";
 			sourceTree = "<group>";
 		};
 		7C9890A314A041A8009E22F1 /* Data Model */ = {
@@ -1328,6 +1333,7 @@
 				7CF5879B15D4BF3200769AA7 /* User.m in Sources */,
 				7CF5879E15D4BF3200769AA7 /* Tag.m in Sources */,
 				7CF587A115D4BF3300769AA7 /* Photo.m in Sources */,
+				7C25A5D115D7091A0014465B /* PopularViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
