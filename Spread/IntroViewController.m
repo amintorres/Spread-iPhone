@@ -8,7 +8,7 @@
 
 #import "IntroViewController.h"
 #import "ServiceManager.h"
-#import <FacebookSDK/FacebookSDK.h>
+#import "FacebookSDK.h"
 
 typedef enum{
     IntroViewStateIdle = 0,   

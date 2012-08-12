@@ -7,8 +7,6 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		7C10770115CED63000D78CBA /* FacebookSDK.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7C10770015CED63000D78CBA /* FacebookSDK.framework */; };
-		7C10770315CED63D00D78CBA /* FacebookSDKResources.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 7C10770215CED63D00D78CBA /* FacebookSDKResources.bundle */; };
 		7C25A5D115D7091A0014465B /* PopularViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7C25A5D015D7091A0014465B /* PopularViewController.m */; };
 		7C25A5D415D7100C0014465B /* UserViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7C25A5D315D7100C0014465B /* UserViewController.m */; };
 		7C2CFFB014D4677600D617D8 /* WelcomeViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 7C2CFFAE14D4677600D617D8 /* WelcomeViewController.xib */; };
@@ -162,6 +160,7 @@
 		7C9F93E0149960C400126908 /* CoreData.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7C9F93B9149960C300126908 /* CoreData.framework */; };
 		7C9F93E8149960C400126908 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 7C9F93E6149960C400126908 /* InfoPlist.strings */; };
 		7C9F93EB149960C400126908 /* SpreadTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 7C9F93EA149960C400126908 /* SpreadTests.m */; };
+		7CAC9E8015D8587500E30562 /* libfacebook_ios_sdk.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 7CAC9E7D15D8586100E30562 /* libfacebook_ios_sdk.a */; };
 		7CDEB40F14C8BC6B00518E98 /* PullRefreshHeaderView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 7CDEB40E14C8BC6B00518E98 /* PullRefreshHeaderView.xib */; };
 		7CF5879815D4B6F200769AA7 /* NSDate+Spread.m in Sources */ = {isa = PBXBuildFile; fileRef = 7CF5879715D4B6F200769AA7 /* NSDate+Spread.m */; };
 		7CF5879B15D4BF3200769AA7 /* User.m in Sources */ = {isa = PBXBuildFile; fileRef = 7CF5879A15D4BF3100769AA7 /* User.m */; };
@@ -209,6 +208,27 @@
 			remoteGlobalIDString = 7C9F93AE149960C300126908;
 			remoteInfo = Spread;
 		};
+		7CAC9E7C15D8586100E30562 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 7CAC9E7415D8586100E30562 /* facebook-ios-sdk.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = D2AAC07E0554694100DB518D;
+			remoteInfo = "facebook-ios-sdk";
+		};
+		7CAC9E7E15D8586100E30562 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 7CAC9E7415D8586100E30562 /* facebook-ios-sdk.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = B9CBC519152537270036AA71;
+			remoteInfo = FacebookSDKTests;
+		};
+		7CAC9E8115D858D500E30562 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 7CAC9E7415D8586100E30562 /* facebook-ios-sdk.xcodeproj */;
+			proxyType = 1;
+			remoteGlobalIDString = D2AAC07D0554694100DB518D;
+			remoteInfo = "facebook-ios-sdk";
+		};
 		7CE85AE714A221A6002874EA /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = 7CE85AE014A221A6002874EA /* SDWebImage.xcodeproj */;
@@ -219,8 +239,6 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
-		7C10770015CED63000D78CBA /* FacebookSDK.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = FacebookSDK.framework; path = ../../FacebookSDK/FacebookSDK.framework; sourceTree = "<group>"; };
-		7C10770215CED63D00D78CBA /* FacebookSDKResources.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; name = FacebookSDKResources.bundle; path = ../../FacebookSDK/FacebookSDK.framework/Versions/A/Resources/FacebookSDKResources.bundle; sourceTree = "<group>"; };
 		7C25A5CF15D7091A0014465B /* PopularViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PopularViewController.h; sourceTree = "<group>"; };
 		7C25A5D015D7091A0014465B /* PopularViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PopularViewController.m; sourceTree = "<group>"; };
 		7C25A5D215D7100C0014465B /* UserViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UserViewController.h; sourceTree = "<group>"; };
@@ -428,6 +446,7 @@
 		7C9F93E7149960C400126908 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		7C9F93E9149960C400126908 /* SpreadTests.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SpreadTests.h; sourceTree = "<group>"; };
 		7C9F93EA149960C400126908 /* SpreadTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SpreadTests.m; sourceTree = "<group>"; };
+		7CAC9E7415D8586100E30562 /* facebook-ios-sdk.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = "facebook-ios-sdk.xcodeproj"; path = "facebook-ios-sdk/src/facebook-ios-sdk.xcodeproj"; sourceTree = "<group>"; };
 		7CDEB40014C8B8EA00518E98 /* PullRefreshTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PullRefreshTableViewController.h; sourceTree = "<group>"; };
 		7CDEB40114C8B8EA00518E98 /* PullRefreshTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PullRefreshTableViewController.m; sourceTree = "<group>"; };
 		7CDEB40B14C8BC5800518E98 /* PullRefreshHeaderView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PullRefreshHeaderView.h; sourceTree = "<group>"; };
@@ -481,6 +500,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				7CAC9E8015D8587500E30562 /* libfacebook_ios_sdk.a in Frameworks */,
 				7C7F387B15CDF65B00EE18DF /* ImageIO.framework in Frameworks */,
 				7C7F387815CDF5F500EE18DF /* libSDWebImageARC.a in Frameworks */,
 				7C4991D81531BF75007A4663 /* MapKit.framework in Frameworks */,
@@ -499,7 +519,6 @@
 				7C9F93BA149960C300126908 /* CoreData.framework in Frameworks */,
 				7CFC5A0714D1176D008AC151 /* libFlurryAnalytics.a in Frameworks */,
 				7C4991D21531BEC0007A4663 /* libTestFlight.a in Frameworks */,
-				7C10770115CED63000D78CBA /* FacebookSDK.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -543,6 +562,7 @@
 			children = (
 				7CFC5A0414D1176D008AC151 /* FlurryAnalytics */,
 				7C4991CD1531BEC0007A4663 /* TestFlightSDK */,
+				7CAC9E7415D8586100E30562 /* facebook-ios-sdk.xcodeproj */,
 				7CE85AE014A221A6002874EA /* SDWebImage.xcodeproj */,
 			);
 			name = External;
@@ -844,8 +864,6 @@
 		7C9F93B2149960C300126908 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
-				7C10770215CED63D00D78CBA /* FacebookSDKResources.bundle */,
-				7C10770015CED63000D78CBA /* FacebookSDK.framework */,
 				7C4991D71531BF75007A4663 /* MapKit.framework */,
 				7C4991D51531BF58007A4663 /* libz.dylib */,
 				7C62EA2714CCB77B0003FFF4 /* MessageUI.framework */,
@@ -914,6 +932,15 @@
 				7C9F93E6149960C400126908 /* InfoPlist.strings */,
 			);
 			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		7CAC9E7515D8586100E30562 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				7CAC9E7D15D8586100E30562 /* libfacebook_ios_sdk.a */,
+				7CAC9E7F15D8586100E30562 /* FacebookSDKTests.octest */,
+			);
+			name = Products;
 			sourceTree = "<group>";
 		};
 		7CE85ADC14A217BA002874EA /* Utilities */ = {
@@ -1059,6 +1086,7 @@
 			buildRules = (
 			);
 			dependencies = (
+				7CAC9E8215D858D500E30562 /* PBXTargetDependency */,
 				7C7F387A15CDF63E00EE18DF /* PBXTargetDependency */,
 			);
 			name = Spread;
@@ -1106,6 +1134,10 @@
 			projectDirPath = "";
 			projectReferences = (
 				{
+					ProductGroup = 7CAC9E7515D8586100E30562 /* Products */;
+					ProjectRef = 7CAC9E7415D8586100E30562 /* facebook-ios-sdk.xcodeproj */;
+				},
+				{
 					ProductGroup = 7CE85AE114A221A6002874EA /* Products */;
 					ProjectRef = 7CE85AE014A221A6002874EA /* SDWebImage.xcodeproj */;
 				},
@@ -1131,6 +1163,20 @@
 			fileType = archive.ar;
 			path = "libSDWebImageARC+MKAnnotation.a";
 			remoteRef = 7C7F387415CDF55900EE18DF /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		7CAC9E7D15D8586100E30562 /* libfacebook_ios_sdk.a */ = {
+			isa = PBXReferenceProxy;
+			fileType = archive.ar;
+			path = libfacebook_ios_sdk.a;
+			remoteRef = 7CAC9E7C15D8586100E30562 /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		7CAC9E7F15D8586100E30562 /* FacebookSDKTests.octest */ = {
+			isa = PBXReferenceProxy;
+			fileType = wrapper.cfbundle;
+			path = FacebookSDKTests.octest;
+			remoteRef = 7CAC9E7E15D8586100E30562 /* PBXContainerItemProxy */;
 			sourceTree = BUILT_PRODUCTS_DIR;
 		};
 		7CE85AE814A221A6002874EA /* libSDWebImage.a */ = {
@@ -1269,7 +1315,6 @@
 				7C7F398815CE0FC700EE18DF /* texture_red.png in Resources */,
 				7C7F398B15CE104C00EE18DF /* icon-spread-large.png in Resources */,
 				7C7F398C15CE104C00EE18DF /* icon-spread-large@2x.png in Resources */,
-				7C10770315CED63D00D78CBA /* FacebookSDKResources.bundle in Resources */,
 				7C886F5415D0BCA00024603C /* icon-gray-photo.png in Resources */,
 				7C886F5515D0BCA00024603C /* icon-gray-photo@2x.png in Resources */,
 			);
@@ -1364,6 +1409,11 @@
 			target = 7C9F93AE149960C300126908 /* Spread */;
 			targetProxy = 7C9F93E1149960C400126908 /* PBXContainerItemProxy */;
 		};
+		7CAC9E8215D858D500E30562 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			name = "facebook-ios-sdk";
+			targetProxy = 7CAC9E8115D858D500E30562 /* PBXContainerItemProxy */;
+		};
 /* End PBXTargetDependency section */
 
 /* Begin PBXVariantGroup section */
@@ -1421,13 +1471,13 @@
 				CODE_SIGN_ENTITLEMENTS = Entitlements.plist;
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution: AMIN TORRES";
 				COMPRESS_PNG_FILES = NO;
-				FRAMEWORK_SEARCH_PATHS = (
-					"$(inherited)",
-					"\"$(SRCROOT)/../../FacebookSDK\"",
-				);
+				FRAMEWORK_SEARCH_PATHS = "$(inherited)";
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "Spread/Spread-Prefix.pch";
-				HEADER_SEARCH_PATHS = "\"$(SOURCE_ROOT)/SDWebImage\"";
+				HEADER_SEARCH_PATHS = (
+					"\"$(SOURCE_ROOT)/SDWebImage\"",
+					"\"$(SOURCE_ROOT)/facebook-ios-sdk/src\"",
+				);
 				INFOPLIST_FILE = "Spread/Spread-Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 5.0;
 				LIBRARY_SEARCH_PATHS = (
@@ -1511,13 +1561,13 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				COMPRESS_PNG_FILES = NO;
-				FRAMEWORK_SEARCH_PATHS = (
-					"$(inherited)",
-					"\"$(SRCROOT)/../../FacebookSDK\"",
-				);
+				FRAMEWORK_SEARCH_PATHS = "$(inherited)";
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "Spread/Spread-Prefix.pch";
-				HEADER_SEARCH_PATHS = "\"$(SOURCE_ROOT)/SDWebImage\"";
+				HEADER_SEARCH_PATHS = (
+					"\"$(SOURCE_ROOT)/SDWebImage\"",
+					"\"$(SOURCE_ROOT)/facebook-ios-sdk/src\"",
+				);
 				INFOPLIST_FILE = "Spread/Spread-Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 5.0;
 				LIBRARY_SEARCH_PATHS = (
@@ -1539,13 +1589,13 @@
 			buildSettings = {
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution";
 				COMPRESS_PNG_FILES = NO;
-				FRAMEWORK_SEARCH_PATHS = (
-					"$(inherited)",
-					"\"$(SRCROOT)/../../FacebookSDK\"",
-				);
+				FRAMEWORK_SEARCH_PATHS = "$(inherited)";
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "Spread/Spread-Prefix.pch";
-				HEADER_SEARCH_PATHS = "\"$(SOURCE_ROOT)/SDWebImage\"";
+				HEADER_SEARCH_PATHS = (
+					"\"$(SOURCE_ROOT)/SDWebImage\"",
+					"\"$(SOURCE_ROOT)/facebook-ios-sdk/src\"",
+				);
 				INFOPLIST_FILE = "Spread/Spread-Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 5.0;
 				LIBRARY_SEARCH_PATHS = (

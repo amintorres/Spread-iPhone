@@ -10,7 +10,7 @@
 #import "TestFlight.h"
 #import "FlurryAnalytics.h"
 #import "MenuViewController.h"
-#import <FacebookSDK/FacebookSDK.h>
+#import "FacebookSDK.h"
 
 
 
