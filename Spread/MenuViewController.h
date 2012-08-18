@@ -10,4 +10,6 @@
 
 @interface MenuViewController : UIViewController
 
+- (IBAction)logout:(id)sender;
+
 @end

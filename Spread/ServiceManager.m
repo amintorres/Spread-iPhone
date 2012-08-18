@@ -10,6 +10,7 @@
 #import "NSDictionary+Utilities.h"
 #import "User+Spread.h"
 #import "Photo+Spread.h"
+#import "FacebookSDK.h"
 
 NSString * const SpreadDidLoginNotification = @"SpreadDidLoginNotification";
 NSString * const SpreadDidLoadUserInfoNotification = @"SpreadDidLoadUserInfoNotification";
@@ -80,8 +81,8 @@ static NSString* const userPhotoPath = @"api/v1/requests/%@/request_photos.json"
     NSMutableURLRequest *request = [NSMutableURLRequest requestWithURL:URL];
     request.HTTPMethod = @"POST";
     NSString *param = [[NSDictionary dictionaryWithObjectsAndKeys:
-                        email, @"email",
-                        password, @"password",
+                        email, @"session[email]",
+                        password, @"session[password]",
                         nil] paramString];
     request.HTTPBody = [param dataUsingEncoding:NSUTF8StringEncoding];
 
@@ -133,6 +134,12 @@ static NSString* const userPhotoPath = @"api/v1/requests/%@/request_photos.json"
             completion(nil, NO, error);
         }
     }];
+}
+
+- (void)logout
+{
+    self.oauthToken = nil;
+    [[FBSession activeSession] closeAndClearTokenInformation];
 }
 
 

@@ -7,7 +7,7 @@
 //
 
 #import "MenuViewController.h"
-
+#import "ServiceManager.h"
 
 
 @interface MenuViewController ()
@@ -25,6 +25,11 @@
 
 }
 
+- (IBAction)logout:(id)sender
+{
+    [[ServiceManager sharedManager] logout];
+    [self.navigationController popViewControllerAnimated:YES];
+}
 
 
 @end

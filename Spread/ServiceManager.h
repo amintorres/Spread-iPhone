@@ -40,6 +40,7 @@ typedef void (^ServiceManagerHandler)(id response, BOOL success, NSError *error)
 - (BOOL)isSessionValid;
 - (void)loginWithEmail:(NSString*)email password:(NSString*)password completion:(ServiceManagerHandler)completion;
 - (void)loginWithFacebookToken:(NSString*)token completion:(ServiceManagerHandler)completion;
+- (void)logout;
 
 - (void)loadRecentPhotosWithHandler:(ServiceManagerHandler)completion;
 - (void)loadPopularPhotosWithHandler:(ServiceManagerHandler)completion;
