@@ -10,6 +10,8 @@
 
 @interface MenuViewController : UIViewController
 
+@property (strong, nonatomic) IBOutlet UIButton *profileButton;
+
 - (IBAction)logout:(id)sender;
 
 @end

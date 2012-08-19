@@ -10,6 +10,7 @@
 		7C25A5D115D7091A0014465B /* PopularViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7C25A5D015D7091A0014465B /* PopularViewController.m */; };
 		7C25A5D415D7100C0014465B /* UserViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7C25A5D315D7100C0014465B /* UserViewController.m */; };
 		7C2CFFB014D4677600D617D8 /* WelcomeViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 7C2CFFAE14D4677600D617D8 /* WelcomeViewController.xib */; };
+		7C45353915E19B0000833FA9 /* User+Spread.m in Sources */ = {isa = PBXBuildFile; fileRef = 7C81998C14C1187B0019AB8E /* User+Spread.m */; };
 		7C46C14914CF5B7900682737 /* CameraViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 7C46C14714CF5B7900682737 /* CameraViewController.xib */; };
 		7C46C14E14CF5C3D00682737 /* UploadProgressView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 7C46C14D14CF5C3D00682737 /* UploadProgressView.xib */; };
 		7C4991D21531BEC0007A4663 /* libTestFlight.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 7C4991CE1531BEC0007A4663 /* libTestFlight.a */; };
@@ -1385,6 +1386,7 @@
 				7CF587A115D4BF3300769AA7 /* Photo.m in Sources */,
 				7C25A5D115D7091A0014465B /* PopularViewController.m in Sources */,
 				7C25A5D415D7100C0014465B /* UserViewController.m in Sources */,
+				7C45353915E19B0000833FA9 /* User+Spread.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

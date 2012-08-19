@@ -8,6 +8,8 @@
 
 #import "MenuViewController.h"
 #import "ServiceManager.h"
+#import "User+Spread.h"
+
 
 
 @interface MenuViewController ()
@@ -17,12 +19,15 @@
 
 
 @implementation MenuViewController
+@synthesize profileButton;
 
 
 - (void)viewDidLoad
 {
     [super viewDidLoad];
 
+    NSString* name = [[User currentUser].name uppercaseString];
+    [self.profileButton setTitle:name forState:UIControlStateNormal];
 }
 
 - (IBAction)logout:(id)sender
@@ -30,6 +35,7 @@
     [[ServiceManager sharedManager] logout];
     [self.navigationController popViewControllerAnimated:YES];
 }
+
 
 
 @end

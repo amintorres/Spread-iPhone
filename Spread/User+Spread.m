@@ -6,9 +6,8 @@
 //  Copyright (c) 2012 Joseph Lin. All rights reserved.
 //
 
-#import <RestKit/RestKit.h>
 #import "User+Spread.h"
-#import "SpreadAPIDefinition.h"
+#import "ServiceManager.h"
 
 
 static User* currentUser = nil;
@@ -19,62 +18,22 @@ static User* currentUser = nil;
 
 + (User*)currentUser
 {
-    if ( !currentUser )
+    if (!currentUser)
     {
-        //// There will always be only one user /////
+        id currentUserID = [[ServiceManager sharedManager] currentUserID];
+        currentUser = (User*)[User objectWithID:currentUserID inContext:[User mainMOC]];
         
-        NSArray* allObjects = [User allObjects];        
-        NSInteger index = 0;
-        
-        for ( User* user in allObjects )
+        if (!currentUser)
         {
-            if ( index == 0 )
-            {
-                currentUser = user;
-            }
-            else
-            {
-                //// Delete redundant users ////
-                NSLog(@"Warning! more than one user found!");
-                [[User managedObjectContext] deleteObject:user];
-            }
-            
-            index++;
-        }
-        
-        if ( !currentUser )
-        {
-            currentUser = [User object];
+            currentUser = (User*)[User objectInContext:[User mainMOC]];
+            currentUser.userID = currentUserID;
         }
     }
-    
     return currentUser;
 }
 
-+ (void)clearUser
-{
-    currentUser = nil;
-    
-    NSArray* allObjects = [User allObjects];
-    
-    for ( User* user in allObjects )
-    {
-        [[User managedObjectContext] deleteObject:user];
-    }
-    
-    [[User managedObjectContext] save:nil];
-}
 
-+ (NSString*)oauthToken
-{
-    return [[User currentUser] singleAccessToken];
-}
-
-- (NSURL*)avatarURL
-{
-    NSURL* avatarURL = [NSURL URLWithString:self.avatarPath];
-    return avatarURL;
-}
+#pragma mark - 
 
 + (NSString *)modelIDKey
 {

@@ -24,8 +24,9 @@ NSString * const SpreadDidFailNotification = @"SpreadDidFailNotification";
 
 
 static NSString* const baseURL = @"http://dev.spread.cm";
-static NSString* const loginPath = @"api/v1/user/sign_in";
+static NSString* const loginPath = @"api/v1/users/login.json";
 static NSString* const facebookLoginPath = @"api/v1/fb_authenticate";
+static NSString* const entityInfoPath = @"api/v1/entities/%@";
 static NSString* const recentPhotoPath = @"api/v1/news_photos/recent.json";
 static NSString* const popularPhotoPath = @"api/v1/news_photos/popular.json";
 static NSString* const userPhotoPath = @"api/v1/requests/%@/request_photos.json";
@@ -59,19 +60,32 @@ static NSString* const userPhotoPath = @"api/v1/requests/%@/request_photos.json"
 
 #pragma mark - Login/Logout
 
-- (NSString*)oauthToken
-{
-    return [[NSUserDefaults standardUserDefaults] objectForKey:@"oauthToken"];
-}
-
-- (void)setOauthToken:(NSString*)token
-{
-    [[NSUserDefaults standardUserDefaults] setObject:token forKey:@"oauthToken"];
-}
-
 - (BOOL)isSessionValid
 {
     return ( self.oauthToken != nil );
+}
+
+- (void)sendLoginRequest:(NSURLRequest*)request completion:(ServiceManagerHandler)completion
+{
+    [NSURLConnection sendAsynchronousRequest:request queue:[NSOperationQueue mainQueue] completionHandler:^(NSURLResponse *response, NSData *data, NSError *error) {
+        
+        if (data)
+        {
+            NSError* JSONError = nil;
+            id result = [NSJSONSerialization JSONObjectWithData:data options:0 error:&JSONError];
+            NSLog(@"result: %@", result);
+            
+            self.oauthToken = [result objectForKey:@"authentication_token"];
+            self.currentUserID = [result objectForKey:@"person_id"];
+            
+            [self loadEntityWithID:self.currentUserID completion:completion];
+        }
+        else
+        {
+            NSLog(@"error: %@", error);
+            completion(nil, NO, error);
+        }
+    }];
 }
 
 - (void)loginWithEmail:(NSString*)email password:(NSString*)password completion:(ServiceManagerHandler)completion
@@ -86,23 +100,7 @@ static NSString* const userPhotoPath = @"api/v1/requests/%@/request_photos.json"
                         nil] paramString];
     request.HTTPBody = [param dataUsingEncoding:NSUTF8StringEncoding];
 
-    
-    [NSURLConnection sendAsynchronousRequest:request queue:[NSOperationQueue mainQueue] completionHandler:^(NSURLResponse *response, NSData *data, NSError *error) {
-      
-        if (data)
-        {
-            NSError* JSONError = nil;
-            id result = [NSJSONSerialization JSONObjectWithData:data options:0 error:&JSONError];
-            NSLog(@"result: %@", result);
-            
-            completion(result, YES, nil);
-        }
-        else
-        {
-            NSLog(@"error: %@", error);
-            completion(nil, NO, error);
-        }
-    }];
+    [self sendLoginRequest:request completion:completion];
 }
 
 - (void)loginWithFacebookToken:(NSString*)token completion:(ServiceManagerHandler)completion
@@ -116,24 +114,7 @@ static NSString* const userPhotoPath = @"api/v1/requests/%@/request_photos.json"
                         nil] paramString];
     request.HTTPBody = [param dataUsingEncoding:NSUTF8StringEncoding];
     
-    
-    [NSURLConnection sendAsynchronousRequest:request queue:[NSOperationQueue mainQueue] completionHandler:^(NSURLResponse *response, NSData *data, NSError *error) {
-        
-        if (data)
-        {
-            NSError* JSONError = nil;
-            id result = [NSJSONSerialization JSONObjectWithData:data options:0 error:&JSONError];
-            NSLog(@"result: %@", result);
-            
-            self.oauthToken = [result objectForKey:@"authentication_token"];
-            completion(result, YES, nil);
-        }
-        else
-        {
-            NSLog(@"error: %@", error);
-            completion(nil, NO, error);
-        }
-    }];
+    [self sendLoginRequest:request completion:completion];
 }
 
 - (void)logout
@@ -143,7 +124,7 @@ static NSString* const userPhotoPath = @"api/v1/requests/%@/request_photos.json"
 }
 
 
-#pragma mark - Recent Photo
+#pragma mark - Generic
 
 - (void)loadFromEndPoint:(NSString*)endPoint completion:(ServiceManagerHandler)completion
 {
@@ -186,6 +167,35 @@ static NSString* const userPhotoPath = @"api/v1/requests/%@/request_photos.json"
         }
     }];
 }
+
+
+#pragma mark - Entity
+
+- (void)loadEntityWithID:(NSString*)entityID completion:(ServiceManagerHandler)completion
+{
+    NSString* fullEntityInfoPath = [NSString stringWithFormat:entityInfoPath, self.currentUserID];
+
+    [self loadFromEndPoint:fullEntityInfoPath completion:^(id response, BOOL success, NSError *error) {
+        
+        if (success)
+        {
+            User* currentUser = [User currentUser];
+            currentUser.name = [response objectForKey:@"name"];
+            currentUser.nickname = [response objectForKey:@"nickname"];
+            currentUser.imageURLString = [response objectForKey:@"image_thumb_url"];
+            currentUser.userID = [response objectForKey:@"id"];
+            [currentUser save];
+            completion(currentUser, YES, nil);
+        }
+        else
+        {
+            completion(nil, NO, error);
+        }
+    }];
+}
+
+
+#pragma mark - Recent Photo
 
 - (void)loadRecentPhotosWithHandler:(ServiceManagerHandler)completion
 {
@@ -241,6 +251,26 @@ static NSString* const userPhotoPath = @"api/v1/requests/%@/request_photos.json"
 }
 
 
+#pragma mark - User Defaults
 
+- (NSString*)oauthToken
+{
+    return [[NSUserDefaults standardUserDefaults] objectForKey:@"oauthToken"];
+}
+
+- (void)setOauthToken:(NSString*)token
+{
+    [[NSUserDefaults standardUserDefaults] setObject:token forKey:@"oauthToken"];
+}
+
+- (NSString*)currentUserID
+{
+    return [[NSUserDefaults standardUserDefaults] objectForKey:@"currentUserID"];
+}
+
+- (void)setCurrentUserID:(NSString*)theID
+{
+    [[NSUserDefaults standardUserDefaults] setObject:theID forKey:@"currentUserID"];
+}
 
 @end

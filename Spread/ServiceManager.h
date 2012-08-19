@@ -34,6 +34,7 @@ typedef void (^ServiceManagerHandler)(id response, BOOL success, NSError *error)
 @interface ServiceManager : NSObject
 
 @property (strong, nonatomic) NSString* oauthToken;
+@property (strong, nonatomic) NSString* currentUserID;
 
 + (ServiceManager*)sharedManager;
 
@@ -41,6 +42,7 @@ typedef void (^ServiceManagerHandler)(id response, BOOL success, NSError *error)
 - (void)loginWithEmail:(NSString*)email password:(NSString*)password completion:(ServiceManagerHandler)completion;
 - (void)loginWithFacebookToken:(NSString*)token completion:(ServiceManagerHandler)completion;
 - (void)logout;
+- (void)loadEntityWithID:(NSString*)entityID completion:(ServiceManagerHandler)completion;
 
 - (void)loadRecentPhotosWithHandler:(ServiceManagerHandler)completion;
 - (void)loadPopularPhotosWithHandler:(ServiceManagerHandler)completion;

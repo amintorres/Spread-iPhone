@@ -13,8 +13,5 @@
 @interface User (Spread)
 
 + (User*)currentUser;
-+ (void)clearUser;
-+ (NSString*)oauthToken;
-- (NSURL*)avatarURL;
 
 @end

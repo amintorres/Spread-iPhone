@@ -126,36 +126,41 @@ typedef enum{
     self.currentState = IntroViewStateIdle;
 }
 
+- (ServiceManagerHandler)loginCompletionHandler
+{
+    return ^(id response, BOOL success, NSError *error) {
+        
+        if (success)
+        {
+            [self performSegueWithIdentifier:@"MenuSegue" sender:self];
+        }
+        else
+        {
+            NSString* message = nil;
+            
+            if ([response isKindOfClass:[NSDictionary class]])
+            {
+                message = [response objectForKey:@"message"];
+            }
+            
+            if (!message)
+            {
+                message = error.localizedDescription;
+            }
+            
+            UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:@"Error" message:message delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil];
+            [alertView show];
+        }
+    };
+}
+
 - (IBAction)facebookLoginButtonTapped:(id)sender
 {
     [FBSession sessionOpenWithPermissions:nil completionHandler:^(FBSession *session, FBSessionState state, NSError *error) {
 
         if ( session.isOpen )
         {
-            [[ServiceManager sharedManager] loginWithFacebookToken:session.accessToken completion:^(id response, BOOL success, NSError *error) {
-
-                if (success)
-                {
-                    [self performSegueWithIdentifier:@"MenuSegue" sender:self];
-                }
-                else
-                {
-                    NSString* message = nil;
-                    
-                    if ([response isKindOfClass:[NSDictionary class]])
-                    {
-                        message = [response objectForKey:@"message"];
-                    }
-                    
-                    if (!message)
-                    {
-                        message = error.localizedDescription;
-                    }
-
-                    UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:@"Error" message:message delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil];
-                    [alertView show];
-                }
-            }];
+            [[ServiceManager sharedManager] loginWithFacebookToken:session.accessToken completion:[self loginCompletionHandler]];
         }
         
         if (error)
@@ -179,18 +184,7 @@ typedef enum{
         
         NSString* email = self.emailTextField.text;
         NSString* password = self.passwordTextField.text;
-        [[ServiceManager sharedManager] loginWithEmail:email password:password completion:^(id response, BOOL success, NSError *error) {
-            
-        }];
-//        [ServiceManager loginWithUsername:email password:password];
-//
-//        RKObjectLoader* loader = [ServiceManager loginWithUsername:username password:password];
-//        
-//        [[NSNotificationCenter defaultCenter] addObserverForName:SpreadDidFailNotification object:loader queue:nil usingBlock:^(NSNotification* notification){
-//            
-//            [[NSNotificationCenter defaultCenter] removeObserver:self name:SpreadDidFailNotification object:notification.object];
-//            [UIAlertView showAlertWithError:[notification.userInfo objectForKey:@"error"]];
-//        }];
+        [[ServiceManager sharedManager] loginWithEmail:email password:password completion:[self loginCompletionHandler]];
     }
 }
 
