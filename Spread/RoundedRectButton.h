@@ -7,8 +7,9 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "AppFontButton.h"
 
 
-@interface RoundedRectButton : UIButton
+@interface RoundedRectButton : AppFontButton
 
 @end
