@@ -12,24 +12,13 @@
 #import "Photo+Spread.h"
 #import "FacebookSDK.h"
 
-NSString * const SpreadDidLoginNotification = @"SpreadDidLoginNotification";
-NSString * const SpreadDidLoadUserInfoNotification = @"SpreadDidLoadUserInfoNotification";
-NSString * const SpreadDidLoadPhotosNotification = @"SpreadDidLoadPhotosNotification";
-NSString * const SpreadDidRequestInviteNotification = @"SpreadDidRequestInviteNotification";
-NSString * const SpreadDidStartSendingPhotoNotification = @"SpreadDidStartSendingPhotoNotification";
-NSString * const SpreadDidSendPhotoBodyDataNotification = @"SpreadDidSendPhotoBodyDataNotification";
-NSString * const SpreadDidFinishSendingPhotoNotification = @"SpreadDidFinishSendingPhotoNotification";
-NSString * const SpreadDidFailSendingPhotoNotification = @"SpreadDidFailSendingPhotoNotification";
-NSString * const SpreadDidFailNotification = @"SpreadDidFailNotification";
-
-
-static NSString* const baseURL = @"http://dev.spread.cm";
-static NSString* const loginPath = @"api/v1/users/login.json";
-static NSString* const facebookLoginPath = @"api/v1/fb_authenticate";
-static NSString* const entityInfoPath = @"api/v1/entities/%@";
-static NSString* const recentPhotoPath = @"api/v1/news_photos/recent.json";
-static NSString* const popularPhotoPath = @"api/v1/news_photos/popular.json";
-static NSString* const userPhotoPath = @"api/v1/requests/%@/request_photos.json";
+static NSString* const baseURL =            @"http://dev.spread.cm";
+static NSString* const loginPath =          @"api/v1/users/login.json";
+static NSString* const facebookLoginPath =  @"api/v1/fb_authenticate";
+static NSString* const entityInfoPath =     @"api/v1/entities/%@";
+static NSString* const recentPhotoPath =    @"api/v1/news_photos/recent.json";
+static NSString* const popularPhotoPath =   @"api/v1/news_photos/popular.json";
+static NSString* const userPhotoPath =      @"api/v1/entities/%@/news_photos.json";
 
 
 @interface ServiceManager ()
@@ -135,8 +124,11 @@ static NSString* const userPhotoPath = @"api/v1/requests/%@/request_photos.json"
     NSURL *URL = [NSURL URLWithString:URLString];
     NSURLRequest *request = [NSURLRequest requestWithURL:URL];
     
+    [UIApplication sharedApplication].networkActivityIndicatorVisible = YES;
     [NSURLConnection sendAsynchronousRequest:request queue:[NSOperationQueue mainQueue] completionHandler:^(NSURLResponse *response, NSData *data, NSError *error) {
         
+        [UIApplication sharedApplication].networkActivityIndicatorVisible = NO;
+
         NSInteger statusCode = [(NSHTTPURLResponse*)response statusCode];
         
         if (statusCode == 200 && data)
@@ -233,7 +225,7 @@ static NSString* const userPhotoPath = @"api/v1/requests/%@/request_photos.json"
 
 - (void)loadUserPhotosWithHandler:(ServiceManagerHandler)completion
 {
-    NSString* fullUserPhotoPath = [NSString stringWithFormat:userPhotoPath, @"1"];
+    NSString* fullUserPhotoPath = [NSString stringWithFormat:userPhotoPath, [[User currentUser].userID stringValue]];
 
     [self loadFromEndPoint:fullUserPhotoPath completion:^(id response, BOOL success, NSError *error) {
         

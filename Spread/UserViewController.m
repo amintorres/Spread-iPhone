@@ -9,6 +9,7 @@
 #import "UserViewController.h"
 #import "FourImagesCell.h"
 #import "ServiceManager.h"
+#import "User+Spread.h"
 
 
 
@@ -21,13 +22,14 @@
 
 
 @implementation UserViewController
-@synthesize totalPhotosLabel, tableView;
+@synthesize nameLabel, totalPhotosLabel, tableView;
 
 
 - (void)viewDidLoad
 {
     [super viewDidLoad];
     
+    self.nameLabel.text = [User currentUser].name;
     self.totalPhotosLabel.text = [NSString stringWithFormat:@"Photos:\n(%d)", [self.photos count]];
 }
 
@@ -44,6 +46,15 @@
                 self.totalPhotosLabel.text = [NSString stringWithFormat:@"Photos:\n(%d)", [self.photos count]];
                 [self.tableView reloadData];
             });
+        }
+        else
+        {
+            NSString* errorMessage = error.localizedDescription;
+            if (!errorMessage) {
+                errorMessage = @"An unknown error has occured.";
+            }
+            
+            [[[UIAlertView alloc] initWithTitle:@"Error" message:errorMessage delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil] show];
         }
     }];
 }
@@ -63,5 +74,7 @@
     
     return cell;
 }
+
+
 
 @end

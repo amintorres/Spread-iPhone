@@ -10,16 +10,6 @@
 #import "Photo.h"
 #import "User.h"
 
-extern NSString * const SpreadDidLoginNotification;
-extern NSString * const SpreadDidLoadUserInfoNotification;
-extern NSString * const SpreadDidLoadPhotosNotification;
-extern NSString * const SpreadDidRequestInviteNotification;
-extern NSString * const SpreadDidStartSendingPhotoNotification;
-extern NSString * const SpreadDidSendPhotoBodyDataNotification;
-extern NSString * const SpreadDidFinishSendingPhotoNotification;
-extern NSString * const SpreadDidFailSendingPhotoNotification;
-extern NSString * const SpreadDidFailNotification;
-
 
 typedef enum {
     PhotoTypeUsers = 0,

@@ -192,8 +192,6 @@ typedef enum{
 {
     if ( [segue.identifier isEqualToString:@"MenuSegue"] )
     {
-//        [ServiceManager loadUserPhotos];
-//        [ServiceManager loadUserInfoFromServer];
     }
 }
 

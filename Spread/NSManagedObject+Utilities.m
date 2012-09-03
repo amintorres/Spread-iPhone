@@ -81,7 +81,7 @@
     NSString* modelIDKey = [self modelIDKey];
     if (modelIDKey && requestedID)
     {
-        NSPredicate* predicate = [NSPredicate predicateWithFormat:@"%@ == %@", modelIDKey, requestedID];
+        NSPredicate* predicate = [NSPredicate predicateWithFormat:@"%K == %@", modelIDKey, requestedID];
         NSArray* result = [self objectsWithPredicate:predicate sortDescriptors:nil inContext:context];
         if ([result count])
         {
