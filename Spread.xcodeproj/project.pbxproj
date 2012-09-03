@@ -24,6 +24,7 @@
 		7C4991D41531BEC0007A4663 /* release_notes.txt in Resources */ = {isa = PBXBuildFile; fileRef = 7C4991D01531BEC0007A4663 /* release_notes.txt */; };
 		7C4991D61531BF58007A4663 /* libz.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 7C4991D51531BF58007A4663 /* libz.dylib */; };
 		7C4991D81531BF75007A4663 /* MapKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7C4991D71531BF75007A4663 /* MapKit.framework */; };
+		7C519FBB15F556F30075E6C8 /* Tag+Spread.m in Sources */ = {isa = PBXBuildFile; fileRef = 7CFAFA2514C3A1FA00597A6D /* Tag+Spread.m */; };
 		7C57F26D14BFA5A300906DE8 /* Entitlements.plist in Resources */ = {isa = PBXBuildFile; fileRef = 7C57F26C14BFA5A300906DE8 /* Entitlements.plist */; };
 		7C5EB00F15D0CFD500328368 /* Photo+Spread.m in Sources */ = {isa = PBXBuildFile; fileRef = 7CFAFA0F14C3890300597A6D /* Photo+Spread.m */; };
 		7C62EA1F14CCB5400003FFF4 /* About.html in Resources */ = {isa = PBXBuildFile; fileRef = 7C62EA1C14CCB5400003FFF4 /* About.html */; };
@@ -1425,6 +1426,7 @@
 				7C45354315E19FB200833FA9 /* UIFont+Spread.m in Sources */,
 				7C45354615E1A09E00833FA9 /* AppFontLabel.m in Sources */,
 				7C45354915E1A51400833FA9 /* AppFontButton.m in Sources */,
+				7C519FBB15F556F30075E6C8 /* Tag+Spread.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

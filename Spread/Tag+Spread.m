@@ -6,7 +6,6 @@
 //  Copyright (c) 2012 Joseph Lin. All rights reserved.
 //
 
-#import <RestKit/RestKit.h>
 #import "Tag+Spread.h"
 
 
@@ -14,31 +13,11 @@
 
 + (NSManagedObject *)objectWithDict:(NSDictionary*)dict inContext:(NSManagedObjectContext*)context
 {
+    Tag* tag = (Tag*)[super objectWithDict:dict inContext:context];
+    tag.tagID = [dict objectForKey:[self jsonIDKey]];
+    tag.name = [dict objectForKey:@"name"];
     
-}
-
-
-+ (NSSet*)tagsFromCSV:(NSString*)csvString
-{
-    NSArray* strings = [csvString componentsSeparatedByString:@","];
-    NSMutableSet* tags = [NSMutableSet setWithCapacity:[strings count]];
-    
-    for ( NSString* string in strings )
-    {
-        NSString* trimmedString = [string stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceCharacterSet]];
-        NSPredicate* predicate = [NSPredicate predicateWithFormat:@"name = %@", trimmedString];
-        
-        Tag* tag = [Tag objectWithPredicate:predicate];
-        if ( !tag )
-        {
-            tag = [Tag object];
-            tag.name = trimmedString;
-        }
-        
-        [tags addObject:tag];
-    }
-    
-    return tags;
+	return tag;
 }
 
 + (NSString *)modelIDKey

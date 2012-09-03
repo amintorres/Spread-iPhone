@@ -29,8 +29,6 @@ static NSString* const userPhotoPath =      @"api/v1/entities/%@/news_photos.jso
 
 @implementation ServiceManager
 
-//@synthesize userPhotos, popularPhotos, recentPhotos;
-
 
 #pragma mark - Singleton
 

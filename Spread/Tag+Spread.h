@@ -12,6 +12,4 @@
 
 @interface Tag (Spread)
 
-+ (NSSet*)tagsFromCSV:(NSString*)csvString;
-
 @end
