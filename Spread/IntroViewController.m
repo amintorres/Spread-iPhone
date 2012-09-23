@@ -45,7 +45,8 @@ typedef enum{
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(keyboardWillHide:) name:UIKeyboardWillHideNotification object:nil];
     
     
-    if ( [[ServiceManager sharedManager] isSessionValid] )
+    // Check for self.navigationController to make sure it's not a dummy instance.
+    if ( [[ServiceManager sharedManager] isSessionValid] && self.navigationController )
     {
         [self performSegueWithIdentifier:@"MenuSegue" sender:self];
     }
@@ -160,6 +161,7 @@ typedef enum{
 
         if ( session.isOpen )
         {
+            NSLog(@"Facebook login successed!");
             [[ServiceManager sharedManager] loginWithFacebookToken:session.accessToken completion:[self loginCompletionHandler]];
         }
         
