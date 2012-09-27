@@ -32,6 +32,16 @@
     return YES;
 }
 
+- (void)applicationDidBecomeActive:(UIApplication *)application
+{
+    [FBSession.activeSession handleDidBecomeActive];
+}
+
+- (void)applicationWillTerminate:(UIApplication *)application
+{
+    [FBSession.activeSession close];
+}
+
 - (BOOL)application:(UIApplication *)application openURL:(NSURL *)url sourceApplication:(NSString *)sourceApplication annotation:(id)annotation
 {
     return [FBSession.activeSession handleOpenURL:url];
