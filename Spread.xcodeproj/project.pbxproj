@@ -9,6 +9,9 @@
 /* Begin PBXBuildFile section */
 		7C25A5D115D7091A0014465B /* PopularViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7C25A5D015D7091A0014465B /* PopularViewController.m */; };
 		7C25A5D415D7100C0014465B /* UserViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7C25A5D315D7100C0014465B /* UserViewController.m */; };
+		7C2824C316151199004532A3 /* Social.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7C2824C216151199004532A3 /* Social.framework */; };
+		7C2824C5161511B1004532A3 /* Accounts.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7C2824C4161511B1004532A3 /* Accounts.framework */; };
+		7C2824C7161511CE004532A3 /* AdSupport.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7C2824C6161511CE004532A3 /* AdSupport.framework */; };
 		7C2CFFB014D4677600D617D8 /* WelcomeViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 7C2CFFAE14D4677600D617D8 /* WelcomeViewController.xib */; };
 		7C45353915E19B0000833FA9 /* User+Spread.m in Sources */ = {isa = PBXBuildFile; fileRef = 7C81998C14C1187B0019AB8E /* User+Spread.m */; };
 		7C45353E15E19F3400833FA9 /* OpenSans-Bold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 7C45353B15E19F3400833FA9 /* OpenSans-Bold.ttf */; };
@@ -251,6 +254,9 @@
 		7C25A5D015D7091A0014465B /* PopularViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PopularViewController.m; sourceTree = "<group>"; };
 		7C25A5D215D7100C0014465B /* UserViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UserViewController.h; sourceTree = "<group>"; };
 		7C25A5D315D7100C0014465B /* UserViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UserViewController.m; sourceTree = "<group>"; };
+		7C2824C216151199004532A3 /* Social.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Social.framework; path = System/Library/Frameworks/Social.framework; sourceTree = SDKROOT; };
+		7C2824C4161511B1004532A3 /* Accounts.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Accounts.framework; path = System/Library/Frameworks/Accounts.framework; sourceTree = SDKROOT; };
+		7C2824C6161511CE004532A3 /* AdSupport.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AdSupport.framework; path = System/Library/Frameworks/AdSupport.framework; sourceTree = SDKROOT; };
 		7C2C001014D4946B00D617D8 /* icon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = icon.png; path = ../../icon.png; sourceTree = "<group>"; };
 		7C2C001214D4946F00D617D8 /* icon@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "icon@2x.png"; path = "../../icon@2x.png"; sourceTree = "<group>"; };
 		7C2CB64614BF2D3B006727FD /* UserDefaultHelper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UserDefaultHelper.h; sourceTree = "<group>"; };
@@ -517,8 +523,11 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				7CAC9E8015D8587500E30562 /* libfacebook_ios_sdk.a in Frameworks */,
+				7C2824C7161511CE004532A3 /* AdSupport.framework in Frameworks */,
+				7C2824C5161511B1004532A3 /* Accounts.framework in Frameworks */,
 				7C7F387B15CDF65B00EE18DF /* ImageIO.framework in Frameworks */,
+				7C2824C316151199004532A3 /* Social.framework in Frameworks */,
+				7CAC9E8015D8587500E30562 /* libfacebook_ios_sdk.a in Frameworks */,
 				7C7F387815CDF5F500EE18DF /* libSDWebImageARC.a in Frameworks */,
 				7C4991D81531BF75007A4663 /* MapKit.framework in Frameworks */,
 				7C4991D61531BF58007A4663 /* libz.dylib in Frameworks */,
@@ -897,6 +906,9 @@
 		7C9F93B2149960C300126908 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				7C2824C6161511CE004532A3 /* AdSupport.framework */,
+				7C2824C4161511B1004532A3 /* Accounts.framework */,
+				7C2824C216151199004532A3 /* Social.framework */,
 				7C4991D71531BF75007A4663 /* MapKit.framework */,
 				7C4991D51531BF58007A4663 /* libz.dylib */,
 				7C62EA2714CCB77B0003FFF4 /* MessageUI.framework */,

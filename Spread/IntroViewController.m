@@ -157,20 +157,22 @@ typedef enum{
 
 - (IBAction)facebookLoginButtonTapped:(id)sender
 {
-    [FBSession sessionOpenWithPermissions:nil completionHandler:^(FBSession *session, FBSessionState state, NSError *error) {
-
-        if ( session.isOpen )
-        {
-            NSLog(@"Facebook login successed!");
-            [[ServiceManager sharedManager] loginWithFacebookToken:session.accessToken completion:[self loginCompletionHandler]];
-        }
-        
-        if (error)
-        {
-            UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:@"Error" message:error.localizedDescription delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil];
-            [alertView show];
-        }
-    }];
+    [FBSession openActiveSessionWithReadPermissions:nil
+                                       allowLoginUI:YES
+                                  completionHandler:^(FBSession *session, FBSessionState status, NSError *error) {
+                                      
+                                      if ( session.isOpen )
+                                      {
+                                          NSLog(@"Facebook login successed!");
+                                          [[ServiceManager sharedManager] loginWithFacebookToken:session.accessToken completion:[self loginCompletionHandler]];
+                                      }
+                                      
+                                      if (error)
+                                      {
+                                          UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:@"Error" message:error.localizedDescription delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil];
+                                          [alertView show];
+                                      }
+                                  }];
 }
 
 - (IBAction)loginButtonTapped:(id)sender
