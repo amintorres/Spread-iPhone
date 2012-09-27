@@ -14,8 +14,8 @@
 + (NSManagedObject *)objectWithDict:(NSDictionary*)dict inContext:(NSManagedObjectContext*)context
 {
     Tag* tag = (Tag*)[super objectWithDict:dict inContext:context];
-    tag.tagID = [dict objectForKey:[self jsonIDKey]];
-    tag.name = [dict objectForKey:@"name"];
+    tag.tagID = dict[[self jsonIDKey]];
+    tag.name = dict[@"name"];
     
 	return tag;
 }

@@ -86,7 +86,7 @@
         if ([result count])
         {
             // Return object with the requested ID.
-            return [result objectAtIndex:0];
+            return result[0];
         }
     }
     
@@ -96,7 +96,7 @@
 
 + (NSManagedObject *)objectWithDict:(NSDictionary*)dict inContext:(NSManagedObjectContext*)context
 {
-    id requestedID = [dict objectForKey:[self jsonIDKey]];
+    id requestedID = dict[[self jsonIDKey]];
     NSManagedObject* object = [self objectWithID:requestedID inContext:context];
 
     if (!object)

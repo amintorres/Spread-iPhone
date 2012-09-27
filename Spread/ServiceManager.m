@@ -62,8 +62,8 @@ static NSString* const userPhotoPath =      @"api/v1/entities/%@/news_photos.jso
             id result = [NSJSONSerialization JSONObjectWithData:data options:0 error:&JSONError];
             NSLog(@"result: %@", result);
             
-            self.oauthToken = [result objectForKey:@"authentication_token"];
-            self.currentUserID = [result objectForKey:@"person_id"];
+            self.oauthToken = result[@"authentication_token"];
+            self.currentUserID = result[@"person_id"];
             
             [self loadEntityWithID:self.currentUserID completion:completion];
         }
@@ -81,10 +81,8 @@ static NSString* const userPhotoPath =      @"api/v1/entities/%@/news_photos.jso
 
     NSMutableURLRequest *request = [NSMutableURLRequest requestWithURL:URL];
     request.HTTPMethod = @"POST";
-    NSString *param = [[NSDictionary dictionaryWithObjectsAndKeys:
-                        email, @"session[email]",
-                        password, @"session[password]",
-                        nil] paramString];
+    NSString *param = [@{@"session[email]": email,
+                        @"session[password]": password} paramString];
     request.HTTPBody = [param dataUsingEncoding:NSUTF8StringEncoding];
 
     [self sendLoginRequest:request completion:completion];
@@ -96,9 +94,7 @@ static NSString* const userPhotoPath =      @"api/v1/entities/%@/news_photos.jso
     
     NSMutableURLRequest *request = [NSMutableURLRequest requestWithURL:URL];
     request.HTTPMethod = @"POST";
-    NSString *param = [[NSDictionary dictionaryWithObjectsAndKeys:
-                        token, @"fb_access_token",
-                        nil] paramString];
+    NSString *param = [@{@"fb_access_token": token} paramString];
     request.HTTPBody = [param dataUsingEncoding:NSUTF8StringEncoding];
     
     [self sendLoginRequest:request completion:completion];
@@ -115,9 +111,7 @@ static NSString* const userPhotoPath =      @"api/v1/entities/%@/news_photos.jso
 
 - (void)loadFromEndPoint:(NSString*)endPoint completion:(ServiceManagerHandler)completion
 {
-    NSString *param = [[NSDictionary dictionaryWithObjectsAndKeys:
-                        self.oauthToken, @"authentication_token",
-                        nil] paramString];
+    NSString *param = [@{@"authentication_token": self.oauthToken} paramString];
     NSString* URLString = [NSString stringWithFormat:@"%@/%@?%@", baseURL, endPoint, param];
     NSURL *URL = [NSURL URLWithString:URLString];
     NSURLRequest *request = [NSURLRequest requestWithURL:URL];
@@ -170,10 +164,10 @@ static NSString* const userPhotoPath =      @"api/v1/entities/%@/news_photos.jso
         if (success)
         {
             User* currentUser = [User currentUser];
-            currentUser.name = [response objectForKey:@"name"];
-            currentUser.nickname = [response objectForKey:@"nickname"];
-            currentUser.imageURLString = [response objectForKey:@"image_thumb_url"];
-            currentUser.userID = [response objectForKey:@"id"];
+            currentUser.name = response[@"name"];
+            currentUser.nickname = response[@"nickname"];
+            currentUser.imageURLString = response[@"image_thumb_url"];
+            currentUser.userID = response[@"id"];
             [currentUser save];
             completion(currentUser, YES, nil);
         }

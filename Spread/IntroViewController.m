@@ -141,7 +141,7 @@ typedef enum{
             
             if ([response isKindOfClass:[NSDictionary class]])
             {
-                message = [response objectForKey:@"message"];
+                message = response[@"message"];
             }
             
             if (!message)
