@@ -26,13 +26,6 @@ typedef enum{
 
 
 @implementation IntroViewController
-@synthesize headerImageView, logoButton, captionLabel;
-@synthesize facebookLoginButton, loginButton;
-@synthesize textFieldContainerView, emailTextField, passwordTextField;
-@synthesize registerLabel, registerButton;
-@synthesize currentState;
-@synthesize isAnimating;
-
 
 
 #pragma mark - View lifecycle
@@ -66,9 +59,9 @@ typedef enum{
     if (self.isAnimating)
         return;
     
-    currentState = theState;
+    _currentState = theState;
     
-    switch (currentState)
+    switch (_currentState)
     {
         case IntroViewStateLogin:
             [self showStateWithReference:[IntroViewController loginState]];

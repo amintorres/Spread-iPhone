@@ -21,7 +21,6 @@
 
 
 @implementation PopularViewController
-@synthesize totalPhotosLabel, tableView;
 
 
 - (void)viewDidLoad

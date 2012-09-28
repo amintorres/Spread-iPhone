@@ -11,22 +11,20 @@
 
 
 @implementation FourImagesCell
-@synthesize button0, button1, button2, button3;
-@synthesize photos;
 
 
 - (void)setPhotos:(NSArray *)thePhotos
 {
-    photos = thePhotos;
+    _photos = thePhotos;
     NSArray* buttons = @[self.button0, self.button1, self.button2, self.button3];
     
     for (int i = 0; i < 4; i++ )
     {
         UIButton* button = buttons[i];
         
-        if ( i < [photos count] )
+        if ( i < [_photos count] )
         {
-            Photo* photo = photos[i];
+            Photo* photo = _photos[i];
             
             NSURL* URL = [NSURL URLWithString:photo.gridImageURLString];
             NSURLRequest *request = [NSURLRequest requestWithURL:URL cachePolicy:NSURLRequestReturnCacheDataElseLoad timeoutInterval:10.0];

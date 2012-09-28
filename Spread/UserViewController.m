@@ -22,7 +22,6 @@
 
 
 @implementation UserViewController
-@synthesize nameLabel, totalPhotosLabel, tableView;
 
 
 - (void)viewDidLoad

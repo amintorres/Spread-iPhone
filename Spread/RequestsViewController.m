@@ -20,10 +20,6 @@
 
 
 @implementation RequestsViewController
-@synthesize totalRequestsLabel;
-@synthesize totalPriceLabel;
-@synthesize tableView;
-@synthesize requests;
 
 
 - (void)viewDidLoad

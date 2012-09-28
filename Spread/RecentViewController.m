@@ -21,7 +21,6 @@
 
 
 @implementation RecentViewController
-@synthesize totalPhotosLabel, tableView;
 
 
 - (void)viewDidLoad

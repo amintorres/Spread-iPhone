@@ -10,11 +10,6 @@
 
 
 @implementation RequestCell
-@synthesize titleLabel;
-@synthesize byLabel;
-@synthesize quantityLabel;
-@synthesize dueDateLabel;
-@synthesize priceLabel;
 
 
 - (id)initWithStyle:(UITableViewCellStyle)style reuseIdentifier:(NSString *)reuseIdentifier

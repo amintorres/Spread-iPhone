@@ -14,13 +14,16 @@
 
 
 
-@implementation AppDelegate
+@interface AppDelegate ()
 
-@synthesize window;
-@synthesize navigationController;
-@synthesize managedObjectContext;
-@synthesize managedObjectModel;
-@synthesize persistentStoreCoordinator;
+@property (nonatomic, strong) NSManagedObjectModel *managedObjectModel;
+@property (nonatomic, strong) NSPersistentStoreCoordinator *persistentStoreCoordinator;
+
+@end
+
+
+
+@implementation AppDelegate
 
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
@@ -52,23 +55,23 @@
 
 - (NSManagedObjectModel *)managedObjectModel
 {
-    if (!managedObjectModel)
+    if (!_managedObjectModel)
     {
         NSURL *modelURL = [[NSBundle mainBundle] URLForResource:@"Spread" withExtension:@"momd"];
-        managedObjectModel = [[NSManagedObjectModel alloc] initWithContentsOfURL:modelURL];
+        _managedObjectModel = [[NSManagedObjectModel alloc] initWithContentsOfURL:modelURL];
     }
-    return managedObjectModel;
+    return _managedObjectModel;
 }
 
 - (NSPersistentStoreCoordinator *)persistentStoreCoordinator
 {
-    if (!persistentStoreCoordinator)
+    if (!_persistentStoreCoordinator)
     {
         NSURL *storeURL = [[self applicationDocumentsDirectory] URLByAppendingPathComponent:@"Spread.sqlite"];
         
         NSError *error = nil;
-        persistentStoreCoordinator = [[NSPersistentStoreCoordinator alloc] initWithManagedObjectModel:self.managedObjectModel];
-        if (![persistentStoreCoordinator addPersistentStoreWithType:NSSQLiteStoreType configuration:nil URL:storeURL options:nil error:&error])
+        _persistentStoreCoordinator = [[NSPersistentStoreCoordinator alloc] initWithManagedObjectModel:self.managedObjectModel];
+        if (![_persistentStoreCoordinator addPersistentStoreWithType:NSSQLiteStoreType configuration:nil URL:storeURL options:nil error:&error])
         {
             /*
              Replace this implementation with code to handle the error appropriately.
@@ -97,7 +100,7 @@
             abort();
         }
     }
-    return persistentStoreCoordinator;
+    return _persistentStoreCoordinator;
 }
 
 

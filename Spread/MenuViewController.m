@@ -19,7 +19,6 @@
 
 
 @implementation MenuViewController
-@synthesize profileButton;
 
 
 - (void)viewDidLoad
