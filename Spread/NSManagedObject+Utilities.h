@@ -14,6 +14,8 @@
 + (NSManagedObjectContext *)mainMOC;
 + (NSManagedObjectContext *)privateMOC;
 
++ (NSEntityDescription *)entityInContext:(NSManagedObjectContext*)context;
+
 - (BOOL)save;
 - (void)deleteObject;
 
@@ -21,6 +23,8 @@
 + (NSManagedObject *)objectWithID:(NSString*)requestedID inContext:(NSManagedObjectContext*)context;
 + (NSManagedObject *)objectWithDict:(NSDictionary*)dict inContext:(NSManagedObjectContext*)context;
 + (void)objectsWithArray:(NSArray*)array completion:(void(^)(NSArray* photos))completion;
+
++ (NSArray *)objectsWithPredicate:(NSPredicate*)predicate sortDescriptors:(NSArray*)sortDescriptors inContext:(NSManagedObjectContext*)context;
 + (NSUInteger)objectsCountWithPredicate:(NSPredicate*)predicate sortDescriptors:(NSArray*)sortDescriptors inContext:(NSManagedObjectContext*)context;
 + (NSArray *)allObjectsInContext:(NSManagedObjectContext*)context;
 + (NSUInteger)allObjectsCountInContext:(NSManagedObjectContext*)context;
