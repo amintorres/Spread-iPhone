@@ -107,7 +107,7 @@
 	return object;
 }
 
-+ (void)objectsWithArray:(NSArray*)array completion:(void(^)(NSArray* photos))completion
++ (void)objectsWithArray:(NSArray*)array completion:(void(^)(NSArray* objects))completion
 {
     [[self privateMOC] performBlock:^{
         
@@ -147,6 +147,30 @@
         result = [context executeFetchRequest:request error:&error];
     }];
 	return result;
+}
+
++ (NSUInteger)objectsCountWithPredicate:(NSPredicate*)predicate sortDescriptors:(NSArray*)sortDescriptors inContext:(NSManagedObjectContext*)context
+{
+    __block NSUInteger count = 0;
+    [context performBlockAndWait:^{
+        NSFetchRequest* request = [NSFetchRequest new];
+        request.entity = [self entityInContext:context];
+        request.predicate = predicate;
+        request.sortDescriptors = sortDescriptors;
+        NSError* error = nil;
+        count = [context countForFetchRequest:request error:&error];
+    }];
+	return count;
+}
+
++ (NSArray *)allObjectsInContext:(NSManagedObjectContext*)context
+{
+    return [self objectsWithPredicate:nil sortDescriptors:nil inContext:context];
+}
+
++ (NSUInteger)allObjectsCountInContext:(NSManagedObjectContext*)context
+{
+    return [self objectsCountWithPredicate:nil sortDescriptors:nil inContext:context];
 }
 
 

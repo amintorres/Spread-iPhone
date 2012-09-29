@@ -12,5 +12,6 @@
 @interface NSDate (Spread)
 
 + (NSDate *)dateFromServerString:(NSString *)string;
+- (NSString *)dateString;
 
 @end

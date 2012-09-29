@@ -32,6 +32,18 @@ static User* currentUser = nil;
     return currentUser;
 }
 
++ (NSManagedObject *)objectWithDict:(NSDictionary*)dict inContext:(NSManagedObjectContext*)context
+{
+    User* user = (User*)[super objectWithDict:dict inContext:context];
+    
+    user.userID = dict[[self jsonIDKey]];
+    user.name = dict[@"name"];
+    user.nickname = dict[@"nickname"];
+    user.imageURLString = dict[@"image_thumb_url"];
+    
+    return user;
+}
+
 
 #pragma mark - 
 

@@ -38,4 +38,6 @@ typedef void (^ServiceManagerHandler)(id response, BOOL success, NSError *error)
 - (void)loadPopularPhotosWithHandler:(ServiceManagerHandler)completion;
 - (void)loadUserPhotosWithHandler:(ServiceManagerHandler)completion;
 
+- (void)loadRequestsWithHandler:(ServiceManagerHandler)completion;
+
 @end

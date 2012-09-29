@@ -21,5 +21,8 @@
 + (NSManagedObject *)objectWithID:(NSString*)requestedID inContext:(NSManagedObjectContext*)context;
 + (NSManagedObject *)objectWithDict:(NSDictionary*)dict inContext:(NSManagedObjectContext*)context;
 + (void)objectsWithArray:(NSArray*)array completion:(void(^)(NSArray* photos))completion;
++ (NSUInteger)objectsCountWithPredicate:(NSPredicate*)predicate sortDescriptors:(NSArray*)sortDescriptors inContext:(NSManagedObjectContext*)context;
++ (NSArray *)allObjectsInContext:(NSManagedObjectContext*)context;
++ (NSUInteger)allObjectsCountInContext:(NSManagedObjectContext*)context;
 
 @end

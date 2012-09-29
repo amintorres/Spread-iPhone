@@ -7,9 +7,7 @@
 //
 
 #import "Photo+Spread.h"
-#import "UserDefaultHelper.h"
 #import "Tag+Spread.h"
-#import "NSError+Spread.h"
 #import "NSDate+Spread.h"
 
 

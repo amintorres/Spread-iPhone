@@ -7,6 +7,7 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "Request+Spread.h"
 
 
 @interface RequestCell : UITableViewCell
@@ -16,5 +17,6 @@
 @property (nonatomic, strong) IBOutlet UILabel *quantityLabel;
 @property (nonatomic, strong) IBOutlet UILabel *dueDateLabel;
 @property (nonatomic, strong) IBOutlet UILabel *priceLabel;
+@property (nonatomic, strong) Request* request;
 
 @end

@@ -8,6 +8,9 @@
 
 #import "RequestsViewController.h"
 #import "RequestCell.h"
+#import "ServiceManager.h"
+#import "Request+Spread.h"
+#import "NSNumber+Spread.h"
 
 
 
@@ -27,15 +30,35 @@
     [super viewDidLoad];
 }
 
+- (void)viewDidAppear:(BOOL)animated
+{
+    [super viewDidAppear:animated];
+    
+    [[ServiceManager sharedManager] loadRequestsWithHandler:^(id response, BOOL success, NSError *error) {
+        
+        if (success)
+        {
+            dispatch_async(dispatch_get_main_queue(), ^{
+                self.requests = response;
+                self.totalRequestsLabel.text = [NSString stringWithFormat:@"%d Requests", [self.requests count]];
+                
+                NSString* amountString = [[Request totalAmount] currencyString];
+                self.totalPriceLabel.text = [NSString stringWithFormat:@"%@ up for grabs", amountString];
+                [self.tableView reloadData];
+            });
+        }
+    }];
+}
+
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-    return 3;
     return [self.requests count];
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     RequestCell *cell = [self.tableView dequeueReusableCellWithIdentifier:@"RequestCell"];
+    cell.request = self.requests[indexPath.row];
     return cell;
 }
 

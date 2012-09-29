@@ -10,6 +10,7 @@
 #import "NSDictionary+Utilities.h"
 #import "User+Spread.h"
 #import "Photo+Spread.h"
+#import "Request+Spread.h"
 #import "FacebookSDK.h"
 
 static NSString* const baseURL =            @"http://dev.spread.cm";
@@ -19,6 +20,7 @@ static NSString* const entityInfoPath =     @"api/v1/entities/%@";
 static NSString* const recentPhotoPath =    @"api/v1/news_photos/recent.json";
 static NSString* const popularPhotoPath =   @"api/v1/news_photos/popular.json";
 static NSString* const userPhotoPath =      @"api/v1/entities/%@/news_photos.json";
+static NSString* const requestsPath =   @"api/v1/requests.json";
 
 
 @interface ServiceManager ()
@@ -163,13 +165,9 @@ static NSString* const userPhotoPath =      @"api/v1/entities/%@/news_photos.jso
         
         if (success)
         {
-            User* currentUser = [User currentUser];
-            currentUser.name = response[@"name"];
-            currentUser.nickname = response[@"nickname"];
-            currentUser.imageURLString = response[@"image_thumb_url"];
-            currentUser.userID = response[@"id"];
-            [currentUser save];
-            completion(currentUser, YES, nil);
+            User* user = (User*)[User objectWithDict:response inContext:[User mainMOC]];
+            [user save];
+            completion(user, YES, nil);
         }
         else
         {
@@ -225,6 +223,26 @@ static NSString* const userPhotoPath =      @"api/v1/entities/%@/news_photos.jso
         {
             [Photo objectsWithArray:response completion:^(NSArray *photos) {
                 completion(photos, YES, nil);
+            }];
+        }
+        else
+        {
+            completion(nil, NO, error);
+        }
+    }];
+}
+
+
+#pragma mark - Requests
+
+- (void)loadRequestsWithHandler:(ServiceManagerHandler)completion
+{
+    [self loadFromEndPoint:requestsPath completion:^(id response, BOOL success, NSError *error) {
+        
+        if (success)
+        {
+            [Request objectsWithArray:response completion:^(NSArray *requests) {
+                completion(requests, YES, nil);                
             }];
         }
         else

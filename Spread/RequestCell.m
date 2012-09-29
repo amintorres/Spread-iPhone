@@ -7,25 +7,23 @@
 //
 
 #import "RequestCell.h"
+#import "User+Spread.h"
+#import "NSDate+Spread.h"
+#import "NSNumber+Spread.h"
 
 
 @implementation RequestCell
 
 
-- (id)initWithStyle:(UITableViewCellStyle)style reuseIdentifier:(NSString *)reuseIdentifier
+- (void)setRequest:(Request *)request
 {
-    self = [super initWithStyle:style reuseIdentifier:reuseIdentifier];
-    if (self) {
-        // Initialization code
-    }
-    return self;
-}
-
-- (void)setSelected:(BOOL)selected animated:(BOOL)animated
-{
-    [super setSelected:selected animated:animated];
-
-    // Configure the view for the selected state
+    _request = request;
+    
+    self.titleLabel.text = request.name;
+    self.byLabel.text = [NSString stringWithFormat:@"By: %@", request.requester.name];
+    self.quantityLabel.text = [NSString stringWithFormat:@"%d image(s) needed", [request.quantity integerValue]];
+    self.dueDateLabel.text = [NSString stringWithFormat:@"Due on: %@", [request.endDate dateString]];
+    self.priceLabel.text = [NSString stringWithFormat:@"%d", [request.amount integerValue]];
 }
 
 @end
