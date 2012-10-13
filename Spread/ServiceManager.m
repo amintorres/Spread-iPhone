@@ -11,16 +11,21 @@
 #import "User+Spread.h"
 #import "Photo+Spread.h"
 #import "Request+Spread.h"
+#import "NSError+Spread.h"
 #import "FacebookSDK.h"
 
-static NSString* const baseURL =            @"http://dev.spread.cm";
-static NSString* const loginPath =          @"api/v1/users/login.json";
-static NSString* const facebookLoginPath =  @"api/v1/fb_authenticate";
-static NSString* const entityInfoPath =     @"api/v1/entities/%@";
-static NSString* const recentPhotoPath =    @"api/v1/news_photos/recent.json";
-static NSString* const popularPhotoPath =   @"api/v1/news_photos/popular.json";
-static NSString* const userPhotoPath =      @"api/v1/entities/%@/news_photos.json";
-static NSString* const requestsPath =   @"api/v1/requests.json";
+static NSString* const baseURL =            @"http://dev.spread.cm/api/v1";
+static NSString* const loginPath =          @"users/login.json";
+static NSString* const facebookLoginPath =  @"fb_authenticate";
+static NSString* const entityInfoPath =     @"entities/%@";
+static NSString* const recentPhotoPath =    @"news_photos/recent.json";
+static NSString* const popularPhotoPath =   @"news_photos/popular.json";
+static NSString* const userPhotoPath =      @"entities/%@/news_photos.json";
+static NSString* const requestsPath =       @"requests.json";
+static NSString* const postPhotoPath =      @"news_photos";
+
+static NSString* boundary = nil;
+
 
 
 @interface ServiceManager ()
@@ -41,6 +46,7 @@ static NSString* const requestsPath =   @"api/v1/requests.json";
     static dispatch_once_t onceToken;
     dispatch_once(&onceToken, ^{
         _sharedManager = [[ServiceManager alloc] init];
+        boundary = [NSString stringWithFormat:@"----------SpReAd--BoUnDaRy--%d----------", arc4random()];
     });
     
     return _sharedManager;
@@ -247,6 +253,84 @@ static NSString* const requestsPath =   @"api/v1/requests.json";
         }
         else
         {
+            completion(nil, NO, error);
+        }
+    }];
+}
+
+
+#pragma mark - Post Photo
+
+- (void)postPhoto:(NSData *)imageData name:(NSString*)name description:(NSString*)description completionHandler:(ServiceManagerHandler)completion
+{
+    if ( name.length < 4 || description.length < 4 )
+    {
+        NSError *error = [NSError invalidPhotoTitleError];
+        completion(nil, NO, error);
+        return;
+    }
+    
+    if (!imageData)
+    {
+        NSError *error = [NSError invalidImageError];
+        completion(nil, NO, error);
+        return;
+    }
+    
+    NSString *param = [@{@"authentication_token": self.oauthToken} paramString];
+    NSString* URLString = [NSString stringWithFormat:@"%@/%@?%@", baseURL, postPhotoPath, param];
+    NSURL *URL = [NSURL URLWithString:URLString];
+    
+    NSMutableURLRequest *request = [NSMutableURLRequest requestWithURL:URL];
+    request.HTTPMethod = @"POST";
+
+    
+    NSString *boundary = [NSString stringWithFormat:@"----------SpReAd--BoUnDaRy--%d----------", arc4random()];
+	NSString *contentType = [NSString stringWithFormat:@"multipart/form-data; boundary=%@",boundary];
+	[request addValue:contentType forHTTPHeaderField: @"Content-Type"];
+	    
+    
+    NSMutableData *postBody = [NSMutableData data];
+
+    // Name
+    [postBody appendData:[[NSString stringWithFormat:@"--%@\r\n", boundary] dataUsingEncoding:NSUTF8StringEncoding]];
+    [postBody appendData:[@"Content-Disposition: form-data; name=\"name\"\r\n\r\n" dataUsingEncoding:NSUTF8StringEncoding]];
+    [postBody appendData:[name dataUsingEncoding:NSUTF8StringEncoding]];
+    [postBody appendData:[@"\r\n" dataUsingEncoding:NSUTF8StringEncoding]];
+    
+    // Description
+    [postBody appendData:[[NSString stringWithFormat:@"--%@\r\n", boundary] dataUsingEncoding:NSUTF8StringEncoding]];
+    [postBody appendData:[@"Content-Disposition: form-data; name=\"description\"\r\n\r\n" dataUsingEncoding:NSUTF8StringEncoding]];
+    [postBody appendData:[description dataUsingEncoding:NSUTF8StringEncoding]];
+    [postBody appendData:[@"\r\n" dataUsingEncoding:NSUTF8StringEncoding]];
+    
+    // Image
+    [postBody appendData:[[NSString stringWithFormat:@"--%@\r\n", boundary] dataUsingEncoding:NSUTF8StringEncoding]];
+    [postBody appendData:[@"Content-Disposition: form-data; name=\"image\"; filename=\"image.jpg\"\r\n" dataUsingEncoding:NSUTF8StringEncoding]];
+    [postBody appendData:[@"Content-Type: image/jpeg\r\n" dataUsingEncoding:NSUTF8StringEncoding]];
+    [postBody appendData:[@"Content-Transfer-Encoding: binary\r\n\r\n" dataUsingEncoding:NSUTF8StringEncoding]];    
+    [postBody appendData:imageData];
+    [postBody appendData:[@"\r\n" dataUsingEncoding:NSUTF8StringEncoding]];
+
+    // Final boundary
+    [postBody appendData:[[NSString stringWithFormat:@"--%@--\r\n", boundary] dataUsingEncoding:NSUTF8StringEncoding]];
+    
+
+    request.HTTPBody = postBody;
+    
+    
+    [NSURLConnection sendAsynchronousRequest:request queue:[NSOperationQueue mainQueue] completionHandler:^(NSURLResponse *response, NSData *data, NSError *error) {
+        
+        if (data)
+        {
+            NSError* JSONError = nil;
+            id result = [NSJSONSerialization JSONObjectWithData:data options:0 error:&JSONError];
+            NSLog(@"result: %@", result);
+            completion(nil, YES, nil);
+        }
+        else
+        {
+            NSLog(@"error: %@", error);
             completion(nil, NO, error);
         }
     }];

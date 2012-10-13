@@ -12,11 +12,13 @@ extern NSString * const SpreadErrorDomain;
 
 typedef enum{
     SpreadErrorCodeInvalidPhotoTitle = 101,
+    SpreadErrorCodeInvalidImage = 102,
 }SpreadErrorCode;
 
 
 @interface NSError (Spread)
 
 + (NSError*)invalidPhotoTitleError;
++ (NSError*)invalidImageError;
 
 @end

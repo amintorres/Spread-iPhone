@@ -43,7 +43,7 @@
 
 - (IBAction)useButtonTapped:(id)sender
 {
-    EditViewController* editViewController = [[EditViewController alloc] init];
+    EditViewController* editViewController = [[UIStoryboard storyboardWithName:@"MainStoryboard" bundle:nil] instantiateViewControllerWithIdentifier:@"EditViewController"];
     editViewController.mediaInfo = mediaInfo;
     editViewController.editMode = EditModeCreate;
     

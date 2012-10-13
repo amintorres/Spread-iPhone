@@ -17,19 +17,14 @@ typedef enum{
 }EditMode;
 
 
-@interface EditViewController : UIViewController <UIAlertViewDelegate>
+@interface EditViewController : UITableViewController
 
-@property (strong, nonatomic) IBOutlet UITableView *tableView;
-@property (strong, nonatomic) IBOutlet UIView *titleView;
-@property (strong, nonatomic) IBOutlet UIView *tagsView;
-@property (strong, nonatomic) IBOutlet UIView *descriptionView;
 @property (strong, nonatomic) IBOutlet UITextField *titleTextField;
 @property (strong, nonatomic) IBOutlet UITextField *tagsTextField;
 @property (strong, nonatomic) IBOutlet PlaceholderTextView *descriptionTextView;
-@property (strong, nonatomic) IBOutlet UIView *sectionFooterView;
 @property (strong, nonatomic) IBOutlet UISwitch *rememberDetailSwitch;
-@property (strong, nonatomic) IBOutlet UINavigationBar *navigationBar;
-@property (strong, nonatomic) IBOutlet UIBarButtonItem *saveButton;
+@property (strong, nonatomic) IBOutlet UIButton *saveButton;
+@property (strong, nonatomic) IBOutlet UIButton *cancelButton;
 @property (strong, nonatomic) IBOutlet UIButton *deleteButton;
 @property (strong, nonatomic) NSDictionary* mediaInfo;
 @property (strong, nonatomic) Photo *photo;

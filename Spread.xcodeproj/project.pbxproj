@@ -16,6 +16,10 @@
 		7C2824C5161511B1004532A3 /* Accounts.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7C2824C4161511B1004532A3 /* Accounts.framework */; };
 		7C2824C7161511CE004532A3 /* AdSupport.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7C2824C6161511CE004532A3 /* AdSupport.framework */; };
 		7C2CFFB014D4677600D617D8 /* WelcomeViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 7C2CFFAE14D4677600D617D8 /* WelcomeViewController.xib */; };
+		7C3AC960162A1D6A0046CE81 /* NSError+Spread.m in Sources */ = {isa = PBXBuildFile; fileRef = 7C76DF2014D1D01E007A03B5 /* NSError+Spread.m */; };
+		7C3AC964162A2E4F0046CE81 /* EditViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7C7F7AB214AB74AE00652401 /* EditViewController.m */; };
+		7C3AC965162A321D0046CE81 /* ReviewViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7CFAFA1214C38DA500597A6D /* ReviewViewController.m */; };
+		7C3AC966162A327A0046CE81 /* PlaceholderTextView.m in Sources */ = {isa = PBXBuildFile; fileRef = 7C8E2A2514C351AF00E6E714 /* PlaceholderTextView.m */; };
 		7C45353915E19B0000833FA9 /* User+Spread.m in Sources */ = {isa = PBXBuildFile; fileRef = 7C81998C14C1187B0019AB8E /* User+Spread.m */; };
 		7C45353E15E19F3400833FA9 /* OpenSans-Bold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 7C45353B15E19F3400833FA9 /* OpenSans-Bold.ttf */; };
 		7C45353F15E19F3400833FA9 /* OpenSans-Italic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 7C45353C15E19F3400833FA9 /* OpenSans-Italic.ttf */; };
@@ -571,6 +575,18 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		7C3AC963162A2E380046CE81 /* Post Photo */ = {
+			isa = PBXGroup;
+			children = (
+				7C7F7AB114AB74AE00652401 /* EditViewController.h */,
+				7C7F7AB214AB74AE00652401 /* EditViewController.m */,
+				7CFAFA1114C38DA500597A6D /* ReviewViewController.h */,
+				7CFAFA1214C38DA500597A6D /* ReviewViewController.m */,
+				7CFAFA1314C38DA500597A6D /* ReviewViewController.xib */,
+			);
+			name = "Post Photo";
+			sourceTree = "<group>";
+		};
 		7C45353A15E19F3400833FA9 /* fonts */ = {
 			isa = PBXGroup;
 			children = (
@@ -625,8 +641,6 @@
 				7CFAFA4514C3CC7C00597A6D /* ImageScrollView.m */,
 				7C2CFFB314D47ED600D617D8 /* RoundedBorderButton.h */,
 				7C2CFFB414D47ED600D617D8 /* RoundedBorderButton.m */,
-				7C8E2A2414C351AF00E6E714 /* PlaceholderTextView.h */,
-				7C8E2A2514C351AF00E6E714 /* PlaceholderTextView.m */,
 				7C46C14A14CF5C2C00682737 /* UploadProgressView.h */,
 				7C46C14B14CF5C2C00682737 /* UploadProgressView.m */,
 				7C46C14D14CF5C3D00682737 /* UploadProgressView.xib */,
@@ -648,6 +662,7 @@
 				7C7F38BD15CDFE3300EE18DF /* Menu */,
 				7C7F38E615CE03E700EE18DF /* Requests */,
 				7C886F4E15D0BB890024603C /* Recent/Popular/User Photo */,
+				7C3AC963162A2E380046CE81 /* Post Photo */,
 			);
 			name = "View Controller";
 			sourceTree = "<group>";
@@ -775,6 +790,8 @@
 				7C45354515E1A09E00833FA9 /* AppFontLabel.m */,
 				7C45354715E1A51400833FA9 /* AppFontButton.h */,
 				7C45354815E1A51400833FA9 /* AppFontButton.m */,
+				7C8E2A2414C351AF00E6E714 /* PlaceholderTextView.h */,
+				7C8E2A2514C351AF00E6E714 /* PlaceholderTextView.m */,
 			);
 			name = "UI Elements";
 			sourceTree = "<group>";
@@ -825,6 +842,8 @@
 				7C1DC38F16177031007EBB48 /* NSNumber+Spread.m */,
 				7C45354115E19FB200833FA9 /* UIFont+Spread.h */,
 				7C45354215E19FB200833FA9 /* UIFont+Spread.m */,
+				7C76DF1F14D1D01E007A03B5 /* NSError+Spread.h */,
+				7C76DF2014D1D01E007A03B5 /* NSError+Spread.m */,
 			);
 			name = Categories;
 			sourceTree = "<group>";
@@ -832,11 +851,6 @@
 		7C7F7AB014AB747200652401 /* Edit View */ = {
 			isa = PBXGroup;
 			children = (
-				7CFAFA1114C38DA500597A6D /* ReviewViewController.h */,
-				7CFAFA1214C38DA500597A6D /* ReviewViewController.m */,
-				7CFAFA1314C38DA500597A6D /* ReviewViewController.xib */,
-				7C7F7AB114AB74AE00652401 /* EditViewController.h */,
-				7C7F7AB214AB74AE00652401 /* EditViewController.m */,
 				7C7F7AB314AB74AE00652401 /* EditViewController.xib */,
 			);
 			name = "Edit View";
@@ -868,8 +882,6 @@
 				7C6CFBFD14BD46B80048644C /* UITextField+Crossfade.m */,
 				7C6CFBFF14BD48760048644C /* UIView+Shortcut.h */,
 				7C6CFC0014BD48760048644C /* UIView+Shortcut.m */,
-				7C76DF1F14D1D01E007A03B5 /* NSError+Spread.h */,
-				7C76DF2014D1D01E007A03B5 /* NSError+Spread.m */,
 				7CF7A7B214D2599F0043EBA9 /* UIAlertView+Utilities.h */,
 				7CF7A7B314D2599F0043EBA9 /* UIAlertView+Utilities.m */,
 			);
@@ -1457,6 +1469,10 @@
 				7C1DC37C1617569A007EBB48 /* Request+Spread.m in Sources */,
 				7C1DC38D161768E2007EBB48 /* Request.m in Sources */,
 				7C1DC39016177031007EBB48 /* NSNumber+Spread.m in Sources */,
+				7C3AC960162A1D6A0046CE81 /* NSError+Spread.m in Sources */,
+				7C3AC964162A2E4F0046CE81 /* EditViewController.m in Sources */,
+				7C3AC965162A321D0046CE81 /* ReviewViewController.m in Sources */,
+				7C3AC966162A327A0046CE81 /* PlaceholderTextView.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1541,7 +1557,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				CODE_SIGN_ENTITLEMENTS = Entitlements.plist;
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution: AMIN TORRES";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution";
 				COMPRESS_PNG_FILES = NO;
 				FRAMEWORK_SEARCH_PATHS = "$(inherited)";
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
@@ -1562,7 +1578,7 @@
 					"-lsqlite3.0",
 				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "7EFE9C68-9D66-4F67-88EC-396C3A818202";
+				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "";
 				WRAPPER_EXTENSION = app;
 			};
 			name = "Ad Hoc";

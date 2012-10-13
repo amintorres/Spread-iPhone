@@ -21,5 +21,11 @@ NSString * const SpreadErrorDomain = @"SpreadErrorDomain";
     return [self errorWithDomain:SpreadErrorDomain code:SpreadErrorCodeInvalidPhotoTitle userInfo:userInfo];    
 }
 
++ (NSError*)invalidImageError
+{
+    NSDictionary* userInfo = [NSDictionary dictionaryWithObjectsAndKeys:@"Invalid image.", NSLocalizedDescriptionKey, nil];
+    return [self errorWithDomain:SpreadErrorDomain code:SpreadErrorCodeInvalidImage userInfo:userInfo];
+}
+
 
 @end
