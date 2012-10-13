@@ -30,8 +30,6 @@
 		7C46C14914CF5B7900682737 /* CameraViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 7C46C14714CF5B7900682737 /* CameraViewController.xib */; };
 		7C46C14E14CF5C3D00682737 /* UploadProgressView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 7C46C14D14CF5C3D00682737 /* UploadProgressView.xib */; };
 		7C4991D21531BEC0007A4663 /* libTestFlight.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 7C4991CE1531BEC0007A4663 /* libTestFlight.a */; };
-		7C4991D31531BEC0007A4663 /* README.txt in Resources */ = {isa = PBXBuildFile; fileRef = 7C4991CF1531BEC0007A4663 /* README.txt */; };
-		7C4991D41531BEC0007A4663 /* release_notes.txt in Resources */ = {isa = PBXBuildFile; fileRef = 7C4991D01531BEC0007A4663 /* release_notes.txt */; };
 		7C4991D61531BF58007A4663 /* libz.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 7C4991D51531BF58007A4663 /* libz.dylib */; };
 		7C4991D81531BF75007A4663 /* MapKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7C4991D71531BF75007A4663 /* MapKit.framework */; };
 		7C519FBB15F556F30075E6C8 /* Tag+Spread.m in Sources */ = {isa = PBXBuildFile; fileRef = 7CFAFA2514C3A1FA00597A6D /* Tag+Spread.m */; };
@@ -299,8 +297,6 @@
 		7C46C14B14CF5C2C00682737 /* UploadProgressView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UploadProgressView.m; sourceTree = "<group>"; };
 		7C46C14D14CF5C3D00682737 /* UploadProgressView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = UploadProgressView.xib; sourceTree = "<group>"; };
 		7C4991CE1531BEC0007A4663 /* libTestFlight.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libTestFlight.a; sourceTree = "<group>"; };
-		7C4991CF1531BEC0007A4663 /* README.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = README.txt; sourceTree = "<group>"; };
-		7C4991D01531BEC0007A4663 /* release_notes.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = release_notes.txt; sourceTree = "<group>"; };
 		7C4991D11531BEC0007A4663 /* TestFlight.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TestFlight.h; sourceTree = "<group>"; };
 		7C4991D51531BF58007A4663 /* libz.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libz.dylib; path = usr/lib/libz.dylib; sourceTree = SDKROOT; };
 		7C4991D71531BF75007A4663 /* MapKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MapKit.framework; path = System/Library/Frameworks/MapKit.framework; sourceTree = SDKROOT; };
@@ -601,8 +597,6 @@
 			isa = PBXGroup;
 			children = (
 				7C4991CE1531BEC0007A4663 /* libTestFlight.a */,
-				7C4991CF1531BEC0007A4663 /* README.txt */,
-				7C4991D01531BEC0007A4663 /* release_notes.txt */,
 				7C4991D11531BEC0007A4663 /* TestFlight.h */,
 			);
 			path = TestFlightSDK;
@@ -1288,8 +1282,6 @@
 				7C2CFFB014D4677600D617D8 /* WelcomeViewController.xib in Resources */,
 				7C85D1D114E7826C0048813E /* icon.png in Resources */,
 				7C85D1D214E782700048813E /* icon@2x.png in Resources */,
-				7C4991D31531BEC0007A4663 /* README.txt in Resources */,
-				7C4991D41531BEC0007A4663 /* release_notes.txt in Resources */,
 				7C7F388115CDFD7200EE18DF /* MainStoryboard.storyboard in Resources */,
 				7C7F38CE15CE00A600EE18DF /* icon-more.png in Resources */,
 				7C7F38CF15CE00A600EE18DF /* icon-more@2x.png in Resources */,
@@ -1557,7 +1549,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				CODE_SIGN_ENTITLEMENTS = Entitlements.plist;
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: AMIN TORRES (WAW4G89K6Y)";
 				COMPRESS_PNG_FILES = NO;
 				FRAMEWORK_SEARCH_PATHS = "$(inherited)";
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
@@ -1578,7 +1570,7 @@
 					"-lsqlite3.0",
 				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "";
+				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "BB46B330-FF73-45BA-BC9D-C5E452D121CD";
 				WRAPPER_EXTENSION = app;
 			};
 			name = "Ad Hoc";
