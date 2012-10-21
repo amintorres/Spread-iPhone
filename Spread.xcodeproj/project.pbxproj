@@ -7,6 +7,10 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		7C0B725D16345C87002469D3 /* Default-568h@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 7C0B725C16345C87002469D3 /* Default-568h@2x.png */; };
+		7C0B7260163464AB002469D3 /* IntroTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7C0B725F163464AB002469D3 /* IntroTableViewController.m */; };
+		7C0B726316346E96002469D3 /* ButtonCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 7C0B726216346E96002469D3 /* ButtonCell.m */; };
+		7C0B726616346EC0002469D3 /* TextFieldCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 7C0B726516346EC0002469D3 /* TextFieldCell.m */; };
 		7C1DC37C1617569A007EBB48 /* Request+Spread.m in Sources */ = {isa = PBXBuildFile; fileRef = 7C1DC37B1617569A007EBB48 /* Request+Spread.m */; };
 		7C1DC38D161768E2007EBB48 /* Request.m in Sources */ = {isa = PBXBuildFile; fileRef = 7C1DC38C161768E2007EBB48 /* Request.m */; };
 		7C1DC39016177031007EBB48 /* NSNumber+Spread.m in Sources */ = {isa = PBXBuildFile; fileRef = 7C1DC38F16177031007EBB48 /* NSNumber+Spread.m */; };
@@ -255,6 +259,13 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		7C0B725C16345C87002469D3 /* Default-568h@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "Default-568h@2x.png"; path = "../../Default-568h@2x.png"; sourceTree = "<group>"; };
+		7C0B725E163464AB002469D3 /* IntroTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IntroTableViewController.h; sourceTree = "<group>"; };
+		7C0B725F163464AB002469D3 /* IntroTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = IntroTableViewController.m; sourceTree = "<group>"; };
+		7C0B726116346E96002469D3 /* ButtonCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ButtonCell.h; sourceTree = "<group>"; };
+		7C0B726216346E96002469D3 /* ButtonCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ButtonCell.m; sourceTree = "<group>"; };
+		7C0B726416346EC0002469D3 /* TextFieldCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TextFieldCell.h; sourceTree = "<group>"; };
+		7C0B726516346EC0002469D3 /* TextFieldCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TextFieldCell.m; sourceTree = "<group>"; };
 		7C1DC37A1617569A007EBB48 /* Request+Spread.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "Request+Spread.h"; sourceTree = "<group>"; };
 		7C1DC37B1617569A007EBB48 /* Request+Spread.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "Request+Spread.m"; sourceTree = "<group>"; };
 		7C1DC38B161768E2007EBB48 /* Request.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Request.h; sourceTree = "<group>"; };
@@ -1034,6 +1045,7 @@
 		7CE85AEC14A223EB002874EA /* Images */ = {
 			isa = PBXGroup;
 			children = (
+				7C0B725C16345C87002469D3 /* Default-568h@2x.png */,
 				7C2C001014D4946B00D617D8 /* icon.png */,
 				7C2C001214D4946F00D617D8 /* icon@2x.png */,
 				7C7F38E715CE059800EE18DF /* icon-back.png */,
@@ -1089,6 +1101,12 @@
 			children = (
 				7CF8A606149BFA12009FF755 /* IntroViewController.h */,
 				7CF8A607149BFA12009FF755 /* IntroViewController.m */,
+				7C0B725E163464AB002469D3 /* IntroTableViewController.h */,
+				7C0B725F163464AB002469D3 /* IntroTableViewController.m */,
+				7C0B726116346E96002469D3 /* ButtonCell.h */,
+				7C0B726216346E96002469D3 /* ButtonCell.m */,
+				7C0B726416346EC0002469D3 /* TextFieldCell.h */,
+				7C0B726516346EC0002469D3 /* TextFieldCell.m */,
 			);
 			name = Intro;
 			sourceTree = "<group>";
@@ -1385,6 +1403,7 @@
 				7C45353E15E19F3400833FA9 /* OpenSans-Bold.ttf in Resources */,
 				7C45353F15E19F3400833FA9 /* OpenSans-Italic.ttf in Resources */,
 				7C45354015E19F3400833FA9 /* OpenSans-Regular.ttf in Resources */,
+				7C0B725D16345C87002469D3 /* Default-568h@2x.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1465,6 +1484,9 @@
 				7C3AC964162A2E4F0046CE81 /* EditViewController.m in Sources */,
 				7C3AC965162A321D0046CE81 /* ReviewViewController.m in Sources */,
 				7C3AC966162A327A0046CE81 /* PlaceholderTextView.m in Sources */,
+				7C0B7260163464AB002469D3 /* IntroTableViewController.m in Sources */,
+				7C0B726316346E96002469D3 /* ButtonCell.m in Sources */,
+				7C0B726616346EC0002469D3 /* TextFieldCell.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

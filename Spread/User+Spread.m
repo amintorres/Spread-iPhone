@@ -38,7 +38,7 @@ static User* currentUser = nil;
     
     user.userID = dict[[self jsonIDKey]];
     user.name = dict[@"name"];
-    user.nickname = dict[@"nickname"];
+    user.nickname = (![dict[@"nickname"] isEqual:[NSNull null]]) ? dict[@"nickname"] : nil;
     user.imageURLString = dict[@"image_thumb_url"];
     
     return user;
