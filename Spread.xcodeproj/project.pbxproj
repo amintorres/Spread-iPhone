@@ -46,7 +46,7 @@
 		7C62EA2814CCB77B0003FFF4 /* MessageUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7C62EA2714CCB77B0003FFF4 /* MessageUI.framework */; };
 		7C66003214AA1C4C00C285B1 /* ListTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 7C66003114AA1C4C00C285B1 /* ListTableViewCell.xib */; };
 		7C7E58CA14C6172000A03F22 /* GridTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 7C7E58C914C6172000A03F22 /* GridTableViewCell.xib */; };
-		7C7F387815CDF5F500EE18DF /* libSDWebImageARC.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 7C7F387315CDF55900EE18DF /* libSDWebImageARC.a */; };
+		7C7F387815CDF5F500EE18DF /* libSDWebImage.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 7C7F387315CDF55900EE18DF /* libSDWebImage.a */; };
 		7C7F387B15CDF65B00EE18DF /* ImageIO.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7C5AC38614AC083D00856DC9 /* ImageIO.framework */; };
 		7C7F388115CDFD7200EE18DF /* MainStoryboard.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 7C7F388015CDFD7200EE18DF /* MainStoryboard.storyboard */; };
 		7C7F38BC15CDFE3000EE18DF /* MenuViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7C7F38BB15CDFE3000EE18DF /* MenuViewController.m */; };
@@ -548,7 +548,7 @@
 				7C7F387B15CDF65B00EE18DF /* ImageIO.framework in Frameworks */,
 				7C2824C316151199004532A3 /* Social.framework in Frameworks */,
 				7CAC9E8015D8587500E30562 /* libfacebook_ios_sdk.a in Frameworks */,
-				7C7F387815CDF5F500EE18DF /* libSDWebImageARC.a in Frameworks */,
+				7C7F387815CDF5F500EE18DF /* libSDWebImage.a in Frameworks */,
 				7C4991D81531BF75007A4663 /* MapKit.framework in Frameworks */,
 				7C4991D61531BF58007A4663 /* libz.dylib in Frameworks */,
 				7C62EA2814CCB77B0003FFF4 /* MessageUI.framework in Frameworks */,
@@ -1036,7 +1036,7 @@
 			isa = PBXGroup;
 			children = (
 				7CE85AE814A221A6002874EA /* libSDWebImage.a */,
-				7C7F387315CDF55900EE18DF /* libSDWebImageARC.a */,
+				7C7F387315CDF55900EE18DF /* libSDWebImage.a */,
 				7C7F387515CDF55900EE18DF /* libSDWebImageARC+MKAnnotation.a */,
 			);
 			name = Products;
@@ -1236,10 +1236,10 @@
 /* End PBXProject section */
 
 /* Begin PBXReferenceProxy section */
-		7C7F387315CDF55900EE18DF /* libSDWebImageARC.a */ = {
+		7C7F387315CDF55900EE18DF /* libSDWebImage.a */ = {
 			isa = PBXReferenceProxy;
 			fileType = archive.ar;
-			path = libSDWebImageARC.a;
+			path = libSDWebImage.a;
 			remoteRef = 7C7F387215CDF55900EE18DF /* PBXContainerItemProxy */;
 			sourceTree = BUILT_PRODUCTS_DIR;
 		};

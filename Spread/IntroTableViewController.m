@@ -15,7 +15,7 @@
 typedef enum{
     IntroViewStateIdle = 0,
     IntroViewStateLogin,
-    IntroViewStateLoginWithKeyboard,
+    IntroViewStateRegister,
 } IntroViewState;
 
 
@@ -25,8 +25,14 @@ typedef enum{
 @property (nonatomic, strong) ButtonCell *facebookLoginCell;
 @property (nonatomic, strong) ButtonCell *loginCell;
 @property (nonatomic, strong) ButtonCell *registerCell;
+
+@property (nonatomic, strong) TextFieldCell *firstNameCell;
+@property (nonatomic, strong) TextFieldCell *lastNameCell;
+@property (nonatomic, strong) TextFieldCell *nickNameCell;
 @property (nonatomic, strong) TextFieldCell *emailCell;
 @property (nonatomic, strong) TextFieldCell *passwordCell;
+@property (nonatomic, strong) TextFieldCell *confirmPasswordCell;
+
 @property (nonatomic) IntroViewState currentState;
 @property (nonatomic) BOOL isAnimating;
 @end
@@ -53,9 +59,14 @@ typedef enum{
     
     self.facebookLoginCell = [self blueButtonCellWithTitle:@"Login with Facebook" action:@selector(facebookLoginButtonTapped:)];
     self.loginCell = [self blueButtonCellWithTitle:@"Login with us" action:@selector(loginButtonTapped:)];
-    self.registerCell = [self grayButtonCellWithTitle:@"Register" action:nil];
+    self.registerCell = [self grayButtonCellWithTitle:@"Register" action:@selector(registerButtonTapped:)];
+
+    self.firstNameCell = [self textFieldCellWithText:nil placeholder:@"First name"];
+    self.lastNameCell = [self textFieldCellWithText:nil placeholder:@"Last name"];
+    self.nickNameCell = [self textFieldCellWithText:nil placeholder:@"Nick name"];
     self.emailCell = [self textFieldCellWithText:nil placeholder:@"Email Address"];
     self.passwordCell = [self textFieldCellWithText:nil placeholder:@"Password"];
+    self.confirmPasswordCell = [self textFieldCellWithText:nil placeholder:@"Confirm Passowrd"];
     
     
     self.dataSource = [@[
@@ -82,7 +93,7 @@ typedef enum{
         [self.dataSource[0] insertObject:self.emailCell atIndex:0];
         [self.dataSource[0] insertObject:self.passwordCell atIndex:1];
         
-        [self.dataSource addObject:@[self.registerCell]];
+        [self.dataSource addObject:[@[self.registerCell] mutableCopy]];
         
         [self.tableView beginUpdates];
         [self.tableView deleteRowsAtIndexPaths:@[[NSIndexPath indexPathForRow:0 inSection:0]] withRowAnimation:UITableViewRowAnimationFade];
@@ -107,59 +118,32 @@ typedef enum{
         [self.tableView endUpdates];
     }
     
-    _currentState = state;
-}
-//
-//- (void)reloadTableViewWithDataSource:(NSArray *)newDataSource
-//{
-//    int s = 0;
-//    for (NSArray *section in self.dataSource)
-//    {
-//        NSArray *newSection = newDataSource[s];
-//        int r = 0;
-//        for (id row in section)
-//        {
-//            if (![newSection containsObject:row])
-//            {
-//                [self.tableView deleteRowsAtIndexPaths:@[[NSIndexPath indexPathForRow:r inSection:s]] withRowAnimation:UITableViewRowAnimationTop];
-//            }
-//            else
-//            {
-//                
-//            }
-//        }
-//    }
-//}
-
-- (NSArray *)dataSourceForState:(IntroViewState)state
-{
-    switch (state) {
-
-        case IntroViewStateIdle:
-            
-            return @[
-            @[
-            [self blueButtonCellWithTitle:@"Login with Facebook" action:@selector(facebookLoginButtonTapped:)],
-            [self blueButtonCellWithTitle:@"Login with us" action:@selector(loginButtonTapped:)],
-            ]
-            ];
-    
-
-        case IntroViewStateLogin:
-        default:
-
-            return @[
-            @[
-            [self textFieldCellWithText:nil placeholder:@"Email Address"],
-            [self textFieldCellWithText:nil placeholder:@"Password"],
-            [self blueButtonCellWithTitle:@"Login" action:@selector(loginButtonTapped:)],
-            ],
-            
-            @[
-            [self grayButtonCellWithTitle:@"Register" action:nil],
-            ],
-            ];
+    else if (_currentState == IntroViewStateLogin && state == IntroViewStateRegister)
+    {
+        [self.dataSource removeObjectAtIndex:0];
+        [self.dataSource[0] insertObject:self.firstNameCell atIndex:0];
+        [self.dataSource[0] insertObject:self.lastNameCell atIndex:1];
+        [self.dataSource[0] insertObject:self.nickNameCell atIndex:2];
+        [self.dataSource[0] insertObject:self.emailCell atIndex:3];
+        [self.dataSource[0] insertObject:self.passwordCell atIndex:4];
+        [self.dataSource[0] insertObject:self.confirmPasswordCell atIndex:5];
+        
+        
+        [self.tableView beginUpdates];
+        [self.tableView deleteSections:[NSIndexSet indexSetWithIndex:0] withRowAnimation:UITableViewRowAnimationFade];
+        [self.tableView insertRowsAtIndexPaths:@[
+         [NSIndexPath indexPathForRow:0 inSection:0],
+         [NSIndexPath indexPathForRow:1 inSection:0],
+         [NSIndexPath indexPathForRow:2 inSection:0],
+         [NSIndexPath indexPathForRow:3 inSection:0],
+         [NSIndexPath indexPathForRow:4 inSection:0],
+         [NSIndexPath indexPathForRow:5 inSection:0]] withRowAnimation:UITableViewRowAnimationFade];
+        [self.tableView endUpdates];
+        
+        [self.tableView scrollToRowAtIndexPath:[NSIndexPath indexPathForRow:6 inSection:0] atScrollPosition:UITableViewScrollPositionTop animated:YES];
     }
+    
+    _currentState = state;
 }
 
 - (ButtonCell *)blueButtonCellWithTitle:(NSString *)title action:(SEL)action
@@ -188,12 +172,20 @@ typedef enum{
 
 #pragma mark - IBAction
 
-- (IBAction)logoButtonTapped:(id)sender
+- (IBAction)goBack:(id)sender
 {
-//    [self.emailTextField resignFirstResponder];
-//    [self.passwordTextField resignFirstResponder];
-    
-    self.currentState = IntroViewStateIdle;
+    if (self.currentState == IntroViewStateLogin)
+    {
+        [self.emailCell.textField resignFirstResponder];
+        [self.passwordCell.textField resignFirstResponder];
+        self.currentState = IntroViewStateIdle;
+    }
+    else if (self.currentState == IntroViewStateRegister)
+    {
+        [self.emailCell.textField resignFirstResponder];
+        [self.passwordCell.textField resignFirstResponder];
+        self.currentState = IntroViewStateLogin;
+    }
 }
 
 - (ServiceManagerHandler)loginCompletionHandler
@@ -257,6 +249,18 @@ typedef enum{
         [[ServiceManager sharedManager] loginWithEmail:email password:password completion:[self loginCompletionHandler]];
     }
 }
+
+- (IBAction)registerButtonTapped:(id)sender
+{
+    if ( self.currentState == IntroViewStateLogin )
+    {
+        self.currentState = IntroViewStateRegister;
+    }
+    else
+    {
+    }
+}
+
 
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
 {

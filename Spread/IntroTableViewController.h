@@ -15,7 +15,7 @@
 @property (strong, nonatomic) IBOutlet UIButton *logoButton;
 @property (strong, nonatomic) IBOutlet UILabel *captionLabel;
 
-- (IBAction)logoButtonTapped:(id)sender;
+- (IBAction)goBack:(id)sender;
 - (IBAction)facebookLoginButtonTapped:(id)sender;
 - (IBAction)loginButtonTapped:(id)sender;
 
