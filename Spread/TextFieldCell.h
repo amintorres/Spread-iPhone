@@ -18,6 +18,6 @@ typedef NS_ENUM(NSUInteger, RoundedType) {
 @interface TextFieldCell : UITableViewCell
 
 @property (nonatomic, strong) IBOutlet UITextField *textField;
-@property (nonatomic) RoundedType RoundedType;
+@property (nonatomic) RoundedType roundedType;
 
 @end

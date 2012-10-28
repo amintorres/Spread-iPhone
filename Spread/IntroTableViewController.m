@@ -12,26 +12,27 @@
 #import "ButtonCell.h"
 #import "TextFieldCell.h"
 
-typedef enum{
+typedef NS_ENUM(NSUInteger, IntroViewState) {
     IntroViewStateIdle = 0,
     IntroViewStateLogin,
     IntroViewStateRegister,
-} IntroViewState;
+};
 
+typedef NS_ENUM(NSUInteger, KeyboardType) {
+    KeyboardTypeText = 0,
+    KeyboardTypeEmail,
+    KeyboardTypePassword,
+};
 
 
 @interface IntroTableViewController ()
 @property (nonatomic, strong) NSMutableArray *dataSource;
-@property (nonatomic, strong) ButtonCell *facebookLoginCell;
-@property (nonatomic, strong) ButtonCell *loginCell;
-@property (nonatomic, strong) ButtonCell *registerCell;
 
-@property (nonatomic, strong) TextFieldCell *firstNameCell;
-@property (nonatomic, strong) TextFieldCell *lastNameCell;
-@property (nonatomic, strong) TextFieldCell *nickNameCell;
-@property (nonatomic, strong) TextFieldCell *emailCell;
-@property (nonatomic, strong) TextFieldCell *passwordCell;
-@property (nonatomic, strong) TextFieldCell *confirmPasswordCell;
+@property (nonatomic, strong) NSArray *facebookButtonSection;
+@property (nonatomic, strong) NSArray *loginButtonSection;
+@property (nonatomic, strong) NSArray *registerButtonSection;
+@property (nonatomic, strong) NSArray *loginFormSecion;
+@property (nonatomic, strong) NSArray *registerFormSecion;
 
 @property (nonatomic) IntroViewState currentState;
 @property (nonatomic) BOOL isAnimating;
@@ -47,30 +48,15 @@ typedef enum{
 {
     [super viewDidLoad];
     
-//    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(keyboardWillShow:) name:UIKeyboardWillShowNotification object:nil];
-//    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(keyboardWillHide:) name:UIKeyboardWillHideNotification object:nil];
-//    
-    
     // Check for self.navigationController to make sure it's not a dummy instance.
     if ( [[ServiceManager sharedManager] isSessionValid] && self.navigationController )
     {
         [self performSegueWithIdentifier:@"MenuSegue" sender:self];
     }
     
-    self.facebookLoginCell = [self blueButtonCellWithTitle:@"Login with Facebook" action:@selector(facebookLoginButtonTapped:)];
-    self.loginCell = [self blueButtonCellWithTitle:@"Login with us" action:@selector(loginButtonTapped:)];
-    self.registerCell = [self grayButtonCellWithTitle:@"Register" action:@selector(registerButtonTapped:)];
-
-    self.firstNameCell = [self textFieldCellWithText:nil placeholder:@"First name"];
-    self.lastNameCell = [self textFieldCellWithText:nil placeholder:@"Last name"];
-    self.nickNameCell = [self textFieldCellWithText:nil placeholder:@"Nick name"];
-    self.emailCell = [self textFieldCellWithText:nil placeholder:@"Email Address"];
-    self.passwordCell = [self textFieldCellWithText:nil placeholder:@"Password"];
-    self.confirmPasswordCell = [self textFieldCellWithText:nil placeholder:@"Confirm Passowrd"];
-    
-    
     self.dataSource = [@[
-                       [@[self.facebookLoginCell, self.loginCell] mutableCopy],
+                       self.facebookButtonSection,
+                       self.loginButtonSection
                        ] mutableCopy ];
     
     self.currentState = IntroViewStateIdle;
@@ -82,6 +68,9 @@ typedef enum{
     [super viewDidDisappear:animated];
 }
 
+
+#pragma mark - View States
+
 - (void)setCurrentState:(IntroViewState)state
 {
     if (self.isAnimating)
@@ -89,86 +78,73 @@ typedef enum{
     
     if (_currentState == IntroViewStateIdle && state == IntroViewStateLogin)
     {
-        [self.dataSource[0] removeObject:self.facebookLoginCell];
-        [self.dataSource[0] insertObject:self.emailCell atIndex:0];
-        [self.dataSource[0] insertObject:self.passwordCell atIndex:1];
-        
-        [self.dataSource addObject:[@[self.registerCell] mutableCopy]];
+        [self.dataSource removeObject:self.facebookButtonSection];
+        [self.dataSource insertObject:self.loginFormSecion atIndex:0];
+        [self.dataSource insertObject:self.registerButtonSection atIndex:2];
         
         [self.tableView beginUpdates];
-        [self.tableView deleteRowsAtIndexPaths:@[[NSIndexPath indexPathForRow:0 inSection:0]] withRowAnimation:UITableViewRowAnimationFade];
-        [self.tableView insertRowsAtIndexPaths:@[[NSIndexPath indexPathForRow:0 inSection:0], [NSIndexPath indexPathForRow:1 inSection:0]] withRowAnimation:UITableViewRowAnimationFade];
-        [self.tableView insertSections:[NSIndexSet indexSetWithIndex:1] withRowAnimation:UITableViewRowAnimationFade];
+        [self.tableView deleteSections:[NSIndexSet indexSetWithIndex:0] withRowAnimation:UITableViewRowAnimationFade];
+        [self.tableView insertSections:[NSIndexSet indexSetWithIndex:0] withRowAnimation:UITableViewRowAnimationFade];
+        [self.tableView insertSections:[NSIndexSet indexSetWithIndex:2] withRowAnimation:UITableViewRowAnimationFade];
         [self.tableView endUpdates];
 
-        [self.tableView scrollToRowAtIndexPath:[NSIndexPath indexPathForRow:0 inSection:1] atScrollPosition:UITableViewScrollPositionTop animated:YES];
+        [self scrollToBottom];
     }
     else if (_currentState == IntroViewStateLogin && state == IntroViewStateIdle)
     {
-        [self.dataSource[0] removeObject:self.emailCell];
-        [self.dataSource[0] removeObject:self.passwordCell];
-        [self.dataSource[0] insertObject:self.facebookLoginCell atIndex:0];
-        
-        [self.dataSource removeObjectAtIndex:1];
+        [self.dataSource removeObject:self.loginFormSecion];
+        [self.dataSource removeObject:self.registerButtonSection];
+        [self.dataSource insertObject:self.facebookButtonSection atIndex:0];
         
         [self.tableView beginUpdates];
-        [self.tableView deleteRowsAtIndexPaths:@[[NSIndexPath indexPathForRow:0 inSection:0], [NSIndexPath indexPathForRow:1 inSection:0]] withRowAnimation:UITableViewRowAnimationFade];
-        [self.tableView insertRowsAtIndexPaths:@[[NSIndexPath indexPathForRow:0 inSection:0]] withRowAnimation:UITableViewRowAnimationFade];
-        [self.tableView deleteSections:[NSIndexSet indexSetWithIndex:1] withRowAnimation:UITableViewRowAnimationFade];
+        [self.tableView deleteSections:[NSIndexSet indexSetWithIndex:0] withRowAnimation:UITableViewRowAnimationFade];
+        [self.tableView deleteSections:[NSIndexSet indexSetWithIndex:2] withRowAnimation:UITableViewRowAnimationFade];
+        [self.tableView insertSections:[NSIndexSet indexSetWithIndex:0] withRowAnimation:UITableViewRowAnimationFade];
         [self.tableView endUpdates];
+        
+        [self scrollToBottom];
     }
     
     else if (_currentState == IntroViewStateLogin && state == IntroViewStateRegister)
     {
-        [self.dataSource removeObjectAtIndex:0];
-        [self.dataSource[0] insertObject:self.firstNameCell atIndex:0];
-        [self.dataSource[0] insertObject:self.lastNameCell atIndex:1];
-        [self.dataSource[0] insertObject:self.nickNameCell atIndex:2];
-        [self.dataSource[0] insertObject:self.emailCell atIndex:3];
-        [self.dataSource[0] insertObject:self.passwordCell atIndex:4];
-        [self.dataSource[0] insertObject:self.confirmPasswordCell atIndex:5];
-        
+        [self.dataSource removeObject:self.loginFormSecion];
+        [self.dataSource removeObject:self.loginButtonSection];
+        [self.dataSource insertObject:self.registerFormSecion atIndex:0];
         
         [self.tableView beginUpdates];
         [self.tableView deleteSections:[NSIndexSet indexSetWithIndex:0] withRowAnimation:UITableViewRowAnimationFade];
-        [self.tableView insertRowsAtIndexPaths:@[
-         [NSIndexPath indexPathForRow:0 inSection:0],
-         [NSIndexPath indexPathForRow:1 inSection:0],
-         [NSIndexPath indexPathForRow:2 inSection:0],
-         [NSIndexPath indexPathForRow:3 inSection:0],
-         [NSIndexPath indexPathForRow:4 inSection:0],
-         [NSIndexPath indexPathForRow:5 inSection:0]] withRowAnimation:UITableViewRowAnimationFade];
+        [self.tableView deleteSections:[NSIndexSet indexSetWithIndex:1] withRowAnimation:UITableViewRowAnimationFade];
+        [self.tableView insertSections:[NSIndexSet indexSetWithIndex:0] withRowAnimation:UITableViewRowAnimationFade];
         [self.tableView endUpdates];
         
-        [self.tableView scrollToRowAtIndexPath:[NSIndexPath indexPathForRow:6 inSection:0] atScrollPosition:UITableViewScrollPositionTop animated:YES];
+        [self scrollToBottom];
+    }
+    
+    else if (_currentState == IntroViewStateRegister && state == IntroViewStateLogin)
+    {
+        [self.dataSource removeObject:self.registerFormSecion];
+        [self.dataSource insertObject:self.loginFormSecion atIndex:0];
+        [self.dataSource insertObject:self.loginButtonSection atIndex:1];
+        
+        [self.tableView beginUpdates];
+        [self.tableView deleteSections:[NSIndexSet indexSetWithIndex:0] withRowAnimation:UITableViewRowAnimationFade];
+        [self.tableView insertSections:[NSIndexSet indexSetWithIndex:0] withRowAnimation:UITableViewRowAnimationFade];
+        [self.tableView insertSections:[NSIndexSet indexSetWithIndex:1] withRowAnimation:UITableViewRowAnimationFade];
+        [self.tableView endUpdates];
+        
+        [self scrollToBottom];
     }
     
     _currentState = state;
 }
 
-- (ButtonCell *)blueButtonCellWithTitle:(NSString *)title action:(SEL)action
+- (void)scrollToBottom
 {
-    ButtonCell *cell = [self.tableView dequeueReusableCellWithIdentifier:@"BlueButtonCell"];
-    [cell.button setTitle:title forState:UIControlStateNormal];
-    [cell.button addTarget:self action:action forControlEvents:UIControlEventTouchUpInside];
-    return cell;
+    NSIndexPath *indexPath = [NSIndexPath indexPathForRow:[[self.dataSource lastObject] count] - 1 inSection:[self.dataSource count] - 1];
+    [self.tableView scrollToRowAtIndexPath:indexPath atScrollPosition:UITableViewScrollPositionBottom animated:YES];
+
 }
 
-- (ButtonCell *)grayButtonCellWithTitle:(NSString *)title action:(SEL)action
-{
-    ButtonCell *cell = [self.tableView dequeueReusableCellWithIdentifier:@"GrayButtonCell"];
-    [cell.button setTitle:title forState:UIControlStateNormal];
-    [cell.button addTarget:self action:action forControlEvents:UIControlEventTouchUpInside];
-    return cell;
-}
-
-- (TextFieldCell *)textFieldCellWithText:(NSString *)text placeholder:(NSString *)placeholder
-{
-    TextFieldCell *cell = [self.tableView dequeueReusableCellWithIdentifier:@"TextFieldCell"];
-    cell.textField.text = text;
-    cell.textField.placeholder = placeholder;
-    return cell;
-}
 
 #pragma mark - IBAction
 
@@ -176,14 +152,10 @@ typedef enum{
 {
     if (self.currentState == IntroViewStateLogin)
     {
-        [self.emailCell.textField resignFirstResponder];
-        [self.passwordCell.textField resignFirstResponder];
         self.currentState = IntroViewStateIdle;
     }
     else if (self.currentState == IntroViewStateRegister)
     {
-        [self.emailCell.textField resignFirstResponder];
-        [self.passwordCell.textField resignFirstResponder];
         self.currentState = IntroViewStateLogin;
     }
 }
@@ -244,9 +216,17 @@ typedef enum{
     }
     else
     {
-        NSString* email = self.emailCell.textField.text;
-        NSString* password = self.passwordCell.textField.text;
-        [[ServiceManager sharedManager] loginWithEmail:email password:password completion:[self loginCompletionHandler]];
+        NSString* email    = ((TextFieldCell*)self.loginFormSecion[0]).textField.text;
+        NSString* password = ((TextFieldCell*)self.loginFormSecion[1]).textField.text;
+        
+        if ([email length] && [password length])
+        {
+            [[ServiceManager sharedManager] loginWithEmail:email password:password completion:[self loginCompletionHandler]];
+        }
+        else
+        {
+            [[[UIAlertView alloc] initWithTitle:nil message:@"Please enter valid email/passowrd." delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil] show];
+        }
     }
 }
 
@@ -258,9 +238,23 @@ typedef enum{
     }
     else
     {
+        NSString* firsName        = ((TextFieldCell*)self.registerFormSecion[0]).textField.text;
+        NSString* lastName        = ((TextFieldCell*)self.registerFormSecion[1]).textField.text;
+        NSString* nickname        = ((TextFieldCell*)self.registerFormSecion[2]).textField.text;
+        NSString* email           = ((TextFieldCell*)self.registerFormSecion[3]).textField.text;
+        NSString* password        = ((TextFieldCell*)self.registerFormSecion[4]).textField.text;
+        NSString* confirmPassword = ((TextFieldCell*)self.registerFormSecion[5]).textField.text;
+        
+        if ([firsName length] && [lastName length] && [nickname length] && [email length] && [password length] && [confirmPassword length])
+        {
+            [[ServiceManager sharedManager] loginWithEmail:email password:password completion:[self loginCompletionHandler]];
+        }
+        else
+        {
+            [[[UIAlertView alloc] initWithTitle:nil message:@"All fields are required." delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil] show];
+        }
     }
 }
-
 
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
 {
@@ -270,7 +264,16 @@ typedef enum{
 }
 
 
-#pragma mark - Table view data source
+#pragma mark - Table View
+
+- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    UITableViewCell *cell = self.dataSource[indexPath.section][indexPath.row];
+    if ([cell isKindOfClass:[TextFieldCell class]])
+        return 50;
+    else
+        return 60;
+}
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
 {
@@ -284,21 +287,135 @@ typedef enum{
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    return self.dataSource[indexPath.section][indexPath.row];
+    UITableViewCell *cell = self.dataSource[indexPath.section][indexPath.row];
+    
+    if ([cell isKindOfClass:[TextFieldCell class]])
+    {
+        if (indexPath.row == 0)
+            ((TextFieldCell*)cell).roundedType = RoundedTypeTop;
+        else if (indexPath.row == [self.dataSource[indexPath.section] count] - 1)
+            ((TextFieldCell*)cell).roundedType = RoundedTypeBottom;
+        else
+            ((TextFieldCell*)cell).roundedType = RoundedTypeNone;
+    }
+    
+    return cell;
 }
 
 
-#pragma mark - Table view delegate
+#pragma mark - Data Source
 
-- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
+- (NSArray *)facebookButtonSection
 {
-    // Navigation logic may go here. Create and push another view controller.
-    /*
-     <#DetailViewController#> *detailViewController = [[<#DetailViewController#> alloc] initWithNibName:@"<#Nib name#>" bundle:nil];
-     // ...
-     // Pass the selected object to the new view controller.
-     [self.navigationController pushViewController:detailViewController animated:YES];
-     */
+    if (!_facebookButtonSection)
+    {
+        _facebookButtonSection = @[
+        [self blueButtonCellWithTitle:@"Login with Facebook" action:@selector(facebookLoginButtonTapped:)],
+        ];
+    }
+    return _facebookButtonSection;
+}
+
+- (NSArray *)loginButtonSection
+{
+    if (!_loginButtonSection)
+    {
+        _loginButtonSection = @[
+        [self blueButtonCellWithTitle:@"Login with us" action:@selector(loginButtonTapped:)],
+        ];
+    }
+    return _loginButtonSection;
+}
+
+- (NSArray *)registerButtonSection
+{
+    if (!_registerButtonSection)
+    {
+        _registerButtonSection = @[
+        [self grayButtonCellWithTitle:@"Register" action:@selector(registerButtonTapped:)],
+        ];
+    }
+    return _registerButtonSection;
+}
+
+- (NSArray *)loginFormSecion
+{
+    if (!_loginFormSecion)
+    {
+        _loginFormSecion = @[
+        [self textFieldCellWithText:nil placeholder:@"Email Address" keyboard:KeyboardTypeEmail],
+        [self textFieldCellWithText:nil placeholder:@"Password" keyboard:KeyboardTypePassword],
+        ];
+    }
+    return _loginFormSecion;
+}
+
+- (NSArray *)registerFormSecion
+{
+    if (!_registerFormSecion)
+    {
+        _registerFormSecion = @[
+        [self textFieldCellWithText:nil placeholder:@"First name" keyboard:KeyboardTypeText],
+        [self textFieldCellWithText:nil placeholder:@"Last name" keyboard:KeyboardTypeText],
+        [self textFieldCellWithText:nil placeholder:@"Nick name" keyboard:KeyboardTypeText],
+        [self textFieldCellWithText:nil placeholder:@"Email Address" keyboard:KeyboardTypeEmail],
+        [self textFieldCellWithText:nil placeholder:@"Password" keyboard:KeyboardTypePassword],
+        [self textFieldCellWithText:nil placeholder:@"Confirm Password" keyboard:KeyboardTypePassword],
+        ];
+    }
+    return _registerFormSecion;
+}
+
+
+#pragma mark - Cell Shortcuts
+
+- (ButtonCell *)blueButtonCellWithTitle:(NSString *)title action:(SEL)action
+{
+    ButtonCell *cell = [self.tableView dequeueReusableCellWithIdentifier:@"BlueButtonCell"];
+    [cell.button setTitle:title forState:UIControlStateNormal];
+    [cell.button addTarget:self action:action forControlEvents:UIControlEventTouchUpInside];
+    return cell;
+}
+
+- (ButtonCell *)grayButtonCellWithTitle:(NSString *)title action:(SEL)action
+{
+    ButtonCell *cell = [self.tableView dequeueReusableCellWithIdentifier:@"GrayButtonCell"];
+    [cell.button setTitle:title forState:UIControlStateNormal];
+    [cell.button addTarget:self action:action forControlEvents:UIControlEventTouchUpInside];
+    return cell;
+}
+
+- (TextFieldCell *)textFieldCellWithText:(NSString *)text placeholder:(NSString *)placeholder keyboard:(KeyboardType)keyboard
+{
+    TextFieldCell *cell = [self.tableView dequeueReusableCellWithIdentifier:@"TextFieldCell"];
+    cell.textField.text = text;
+    cell.textField.placeholder = placeholder;
+    
+    switch (keyboard) {
+        case KeyboardTypeEmail:
+            cell.textField.autocapitalizationType = UITextAutocapitalizationTypeNone;
+            cell.textField.autocorrectionType = NO;
+            cell.textField.keyboardType = UIKeyboardTypeEmailAddress;
+            cell.textField.secureTextEntry = NO;
+            break;
+            
+        case KeyboardTypePassword:
+            cell.textField.autocapitalizationType = UITextAutocapitalizationTypeNone;
+            cell.textField.autocorrectionType = NO;
+            cell.textField.keyboardType = UIKeyboardTypeASCIICapable;
+            cell.textField.secureTextEntry = YES;
+            break;
+            
+        case KeyboardTypeText:
+        default:
+            cell.textField.autocapitalizationType = UITextAutocapitalizationTypeWords;
+            cell.textField.autocorrectionType = YES;
+            cell.textField.keyboardType = UIKeyboardTypeASCIICapable;
+            cell.textField.secureTextEntry = NO;
+            break;
+    }
+    
+    return cell;
 }
 
 @end
