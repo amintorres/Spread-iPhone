@@ -70,10 +70,22 @@ static NSString* boundary = nil;
             id result = [NSJSONSerialization JSONObjectWithData:data options:0 error:&JSONError];
             NSLog(@"result: %@", result);
             
-            self.oauthToken = result[@"authentication_token"];
-            self.currentUserID = result[@"person_id"];
-            
-            [self loadEntityWithID:self.currentUserID completion:completion];
+            if ([result[@"success"] boolValue])
+            {
+                self.oauthToken = result[@"authentication_token"];
+                self.currentUserID = result[@"person_id"];
+                
+                [self loadEntityWithID:self.currentUserID completion:completion];
+            }
+            else
+            {
+                NSDictionary* userInfo = [NSDictionary dictionaryWithObjectsAndKeys:result[@"message"], NSLocalizedDescriptionKey, nil];
+                NSError *spreadError = [NSError errorWithDomain:SpreadErrorDomain code:SpreadErrorCodeInvalidPhotoTitle userInfo:userInfo];
+                
+                NSLog(@"error: %@", spreadError);
+                completion(nil, NO, spreadError);
+                
+            }
         }
         else
         {
@@ -119,6 +131,12 @@ static NSString* boundary = nil;
 
 - (void)loadFromEndPoint:(NSString*)endPoint completion:(ServiceManagerHandler)completion
 {
+    if (!self.oauthToken)
+    {
+        NSLog(@"Error! No oauth token!");
+        return;
+    }
+    
     NSString *param = [@{@"authentication_token": self.oauthToken} paramString];
     NSString* URLString = [NSString stringWithFormat:@"%@/%@?%@", baseURL, endPoint, param];
     NSURL *URL = [NSURL URLWithString:URLString];

@@ -11,6 +11,7 @@
 #import "FacebookSDK.h"
 #import "ButtonCell.h"
 #import "TextFieldCell.h"
+#import "MBProgressHUD.h"
 
 typedef NS_ENUM(NSUInteger, IntroViewState) {
     IntroViewStateIdle = 0,
@@ -164,6 +165,8 @@ typedef NS_ENUM(NSUInteger, KeyboardType) {
 {
     return ^(id response, BOOL success, NSError *error) {
         
+        [MBProgressHUD hideHUDForView:self.view animated:YES];
+
         if (success)
         {
             [self performSegueWithIdentifier:@"MenuSegue" sender:self];
@@ -190,6 +193,8 @@ typedef NS_ENUM(NSUInteger, KeyboardType) {
 
 - (IBAction)facebookLoginButtonTapped:(id)sender
 {
+    [MBProgressHUD showHUDAddedTo:self.view animated:YES];
+
     [FBSession openActiveSessionWithReadPermissions:nil
                                        allowLoginUI:YES
                                   completionHandler:^(FBSession *session, FBSessionState status, NSError *error) {
@@ -202,6 +207,8 @@ typedef NS_ENUM(NSUInteger, KeyboardType) {
                                       
                                       if (error)
                                       {
+                                          [MBProgressHUD hideHUDForView:self.view animated:YES];
+
                                           UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:@"Error" message:error.localizedDescription delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil];
                                           [alertView show];
                                       }
@@ -221,6 +228,7 @@ typedef NS_ENUM(NSUInteger, KeyboardType) {
         
         if ([email length] && [password length])
         {
+            [MBProgressHUD showHUDAddedTo:self.view animated:YES];
             [[ServiceManager sharedManager] loginWithEmail:email password:password completion:[self loginCompletionHandler]];
         }
         else
@@ -247,7 +255,7 @@ typedef NS_ENUM(NSUInteger, KeyboardType) {
         
         if ([firsName length] && [lastName length] && [nickname length] && [email length] && [password length] && [confirmPassword length])
         {
-            [[ServiceManager sharedManager] loginWithEmail:email password:password completion:[self loginCompletionHandler]];
+            [[[UIAlertView alloc] initWithTitle:nil message:@"Registeration not avaliable yet." delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil] show];
         }
         else
         {
