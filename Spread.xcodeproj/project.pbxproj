@@ -181,6 +181,13 @@
 		7C9F93E8149960C400126908 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 7C9F93E6149960C400126908 /* InfoPlist.strings */; };
 		7C9F93EB149960C400126908 /* SpreadTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 7C9F93EA149960C400126908 /* SpreadTests.m */; };
 		7CAC9E8015D8587500E30562 /* libfacebook_ios_sdk.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 7CAC9E7D15D8586100E30562 /* libfacebook_ios_sdk.a */; };
+		7CC36851164575A800F9409D /* RequestDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7CC36850164575A800F9409D /* RequestDetailViewController.m */; };
+		7CC3685316457D8800F9409D /* CoreText.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7CC3685216457D8800F9409D /* CoreText.framework */; };
+		7CC36856164582EC00F9409D /* CurrencyLabel.m in Sources */ = {isa = PBXBuildFile; fileRef = 7CC36855164582EC00F9409D /* CurrencyLabel.m */; };
+		7CC3686C1645878600F9409D /* icon-gray-brief.png in Resources */ = {isa = PBXBuildFile; fileRef = 7CC368681645878600F9409D /* icon-gray-brief.png */; };
+		7CC3686D1645878600F9409D /* icon-gray-brief@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 7CC368691645878600F9409D /* icon-gray-brief@2x.png */; };
+		7CC3686E1645878600F9409D /* icon-gray-link.png in Resources */ = {isa = PBXBuildFile; fileRef = 7CC3686A1645878600F9409D /* icon-gray-link.png */; };
+		7CC3686F1645878600F9409D /* icon-gray-link@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 7CC3686B1645878600F9409D /* icon-gray-link@2x.png */; };
 		7CDEB40F14C8BC6B00518E98 /* PullRefreshHeaderView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 7CDEB40E14C8BC6B00518E98 /* PullRefreshHeaderView.xib */; };
 		7CF04758163CE5AE00A905C1 /* MBProgressHUD.m in Sources */ = {isa = PBXBuildFile; fileRef = 7CF04757163CE5AE00A905C1 /* MBProgressHUD.m */; };
 		7CF5879815D4B6F200769AA7 /* NSDate+Spread.m in Sources */ = {isa = PBXBuildFile; fileRef = 7CF5879715D4B6F200769AA7 /* NSDate+Spread.m */; };
@@ -491,6 +498,15 @@
 		7C9F93E9149960C400126908 /* SpreadTests.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SpreadTests.h; sourceTree = "<group>"; };
 		7C9F93EA149960C400126908 /* SpreadTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SpreadTests.m; sourceTree = "<group>"; };
 		7CAC9E7415D8586100E30562 /* facebook-ios-sdk.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = "facebook-ios-sdk.xcodeproj"; path = "facebook-ios-sdk/src/facebook-ios-sdk.xcodeproj"; sourceTree = "<group>"; };
+		7CC3684F164575A800F9409D /* RequestDetailViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RequestDetailViewController.h; sourceTree = "<group>"; };
+		7CC36850164575A800F9409D /* RequestDetailViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RequestDetailViewController.m; sourceTree = "<group>"; };
+		7CC3685216457D8800F9409D /* CoreText.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreText.framework; path = System/Library/Frameworks/CoreText.framework; sourceTree = SDKROOT; };
+		7CC36854164582EC00F9409D /* CurrencyLabel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CurrencyLabel.h; sourceTree = "<group>"; };
+		7CC36855164582EC00F9409D /* CurrencyLabel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CurrencyLabel.m; sourceTree = "<group>"; };
+		7CC368681645878600F9409D /* icon-gray-brief.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "icon-gray-brief.png"; sourceTree = "<group>"; };
+		7CC368691645878600F9409D /* icon-gray-brief@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "icon-gray-brief@2x.png"; sourceTree = "<group>"; };
+		7CC3686A1645878600F9409D /* icon-gray-link.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "icon-gray-link.png"; sourceTree = "<group>"; };
+		7CC3686B1645878600F9409D /* icon-gray-link@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "icon-gray-link@2x.png"; sourceTree = "<group>"; };
 		7CDEB40014C8B8EA00518E98 /* PullRefreshTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PullRefreshTableViewController.h; sourceTree = "<group>"; };
 		7CDEB40114C8B8EA00518E98 /* PullRefreshTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PullRefreshTableViewController.m; sourceTree = "<group>"; };
 		7CDEB40B14C8BC5800518E98 /* PullRefreshHeaderView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PullRefreshHeaderView.h; sourceTree = "<group>"; };
@@ -546,6 +562,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				7CC3685316457D8800F9409D /* CoreText.framework in Frameworks */,
 				7C2824C7161511CE004532A3 /* AdSupport.framework in Frameworks */,
 				7C2824C5161511B1004532A3 /* Accounts.framework in Frameworks */,
 				7C7F387B15CDF65B00EE18DF /* ImageIO.framework in Frameworks */,
@@ -692,6 +709,8 @@
 				7C7F38E315CE03DF00EE18DF /* RequestsViewController.m */,
 				7C7F38F215CE0B9800EE18DF /* RequestCell.h */,
 				7C7F38F315CE0B9800EE18DF /* RequestCell.m */,
+				7CC3684F164575A800F9409D /* RequestDetailViewController.h */,
+				7CC36850164575A800F9409D /* RequestDetailViewController.m */,
 			);
 			name = Requests;
 			sourceTree = "<group>";
@@ -797,6 +816,8 @@
 				7C6CFBF014BD2BE70048644C /* RoundedRectButton.m */,
 				7C45354415E1A09E00833FA9 /* AppFontLabel.h */,
 				7C45354515E1A09E00833FA9 /* AppFontLabel.m */,
+				7CC36854164582EC00F9409D /* CurrencyLabel.h */,
+				7CC36855164582EC00F9409D /* CurrencyLabel.m */,
 				7C45354715E1A51400833FA9 /* AppFontButton.h */,
 				7C45354815E1A51400833FA9 /* AppFontButton.m */,
 				7C8E2A2414C351AF00E6E714 /* PlaceholderTextView.h */,
@@ -942,6 +963,7 @@
 		7C9F93B2149960C300126908 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				7CC3685216457D8800F9409D /* CoreText.framework */,
 				7C2824C6161511CE004532A3 /* AdSupport.framework */,
 				7C2824C4161511B1004532A3 /* Accounts.framework */,
 				7C2824C216151199004532A3 /* Social.framework */,
@@ -1062,6 +1084,10 @@
 				7C7F38DF15CE02B400EE18DF /* icon-spread@2x.png */,
 				7C886F5215D0BCA00024603C /* icon-gray-photo.png */,
 				7C886F5315D0BCA00024603C /* icon-gray-photo@2x.png */,
+				7CC368681645878600F9409D /* icon-gray-brief.png */,
+				7CC368691645878600F9409D /* icon-gray-brief@2x.png */,
+				7CC3686A1645878600F9409D /* icon-gray-link.png */,
+				7CC3686B1645878600F9409D /* icon-gray-link@2x.png */,
 				7C7F38BE15CE00A500EE18DF /* icon-more.png */,
 				7C7F38BF15CE00A500EE18DF /* icon-more@2x.png */,
 				7C7F38C015CE00A500EE18DF /* icon-photo.png */,
@@ -1417,6 +1443,10 @@
 				7C45353F15E19F3400833FA9 /* OpenSans-Italic.ttf in Resources */,
 				7C45354015E19F3400833FA9 /* OpenSans-Regular.ttf in Resources */,
 				7C0B725D16345C87002469D3 /* Default-568h@2x.png in Resources */,
+				7CC3686C1645878600F9409D /* icon-gray-brief.png in Resources */,
+				7CC3686D1645878600F9409D /* icon-gray-brief@2x.png in Resources */,
+				7CC3686E1645878600F9409D /* icon-gray-link.png in Resources */,
+				7CC3686F1645878600F9409D /* icon-gray-link@2x.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1501,6 +1531,8 @@
 				7C0B726316346E96002469D3 /* ButtonCell.m in Sources */,
 				7C0B726616346EC0002469D3 /* TextFieldCell.m in Sources */,
 				7CF04758163CE5AE00A905C1 /* MBProgressHUD.m in Sources */,
+				7CC36851164575A800F9409D /* RequestDetailViewController.m in Sources */,
+				7CC36856164582EC00F9409D /* CurrencyLabel.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1591,7 +1623,7 @@
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "Spread/Spread-Prefix.pch";
 				HEADER_SEARCH_PATHS = (
-					"\"$(SOURCE_ROOT)/SDWebImage\"",
+					"\"$(SOURCE_ROOT)/SDWebImage\"/**",
 					"\"$(SOURCE_ROOT)/facebook-ios-sdk/src\"",
 				);
 				INFOPLIST_FILE = "Spread/Spread-Info.plist";
@@ -1681,7 +1713,7 @@
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "Spread/Spread-Prefix.pch";
 				HEADER_SEARCH_PATHS = (
-					"\"$(SOURCE_ROOT)/SDWebImage\"",
+					"\"$(SOURCE_ROOT)/SDWebImage\"/**",
 					"\"$(SOURCE_ROOT)/facebook-ios-sdk/src\"",
 				);
 				INFOPLIST_FILE = "Spread/Spread-Info.plist";
@@ -1709,7 +1741,7 @@
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "Spread/Spread-Prefix.pch";
 				HEADER_SEARCH_PATHS = (
-					"\"$(SOURCE_ROOT)/SDWebImage\"",
+					"\"$(SOURCE_ROOT)/SDWebImage\"/**",
 					"\"$(SOURCE_ROOT)/facebook-ios-sdk/src\"",
 				);
 				INFOPLIST_FILE = "Spread/Spread-Info.plist";

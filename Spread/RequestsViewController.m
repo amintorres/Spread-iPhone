@@ -11,6 +11,7 @@
 #import "ServiceManager.h"
 #import "Request+Spread.h"
 #import "NSNumber+Spread.h"
+#import "RequestDetailViewController.h"
 
 
 
@@ -52,6 +53,16 @@
     self.totalPriceLabel.text = [NSString stringWithFormat:@"%@ up for grabs", amountString];
 }
 
+- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
+{
+    if ([segue.identifier isEqualToString:@"RequestSegue"])
+    {
+        NSIndexPath *indexPath = [self.tableView indexPathForSelectedRow];
+        Request *request = [self.fetchedResultsController objectAtIndexPath:indexPath];
+        ((RequestDetailViewController*)segue.destinationViewController).request = request;
+    }
+}
+
 
 #pragma mark - UITableView Delegate/DataSource
 
@@ -71,6 +82,11 @@
     RequestCell *cell = [self.tableView dequeueReusableCellWithIdentifier:@"RequestCell"];
     cell.request = [self.fetchedResultsController objectAtIndexPath:indexPath];
     return cell;
+}
+
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    [self.tableView deselectRowAtIndexPath:indexPath animated:YES];
 }
 
 

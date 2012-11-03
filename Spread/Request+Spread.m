@@ -57,6 +57,16 @@
     return sum;
 }
 
+- (NSUInteger)daysLeft
+{
+    NSDate *startDate = [NSDate date];
+    NSDate *endDate = self.endDate;
+    NSUInteger unitFlags = NSDayCalendarUnit;
+    NSDateComponents *comps = [[NSCalendar currentCalendar] components:unitFlags fromDate:startDate toDate:endDate options:0];
+    
+    return comps.day;
+}
+
 
 
 @end

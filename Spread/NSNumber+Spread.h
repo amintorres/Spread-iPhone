@@ -10,6 +10,8 @@
 
 @interface NSNumber (Spread)
 
++ (NSNumberFormatter *)currencyFormatter;
 - (NSString *)currencyString;
+- (NSAttributedString *)attributedCurrencyStringWithBaseFont:(UIFont *)font;
 
 @end

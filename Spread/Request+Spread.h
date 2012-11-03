@@ -13,5 +13,6 @@
 @interface Request (Spread)
 
 + (NSNumber *)totalAmount;
+- (NSUInteger)daysLeft;
 
 @end
