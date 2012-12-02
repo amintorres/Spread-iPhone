@@ -312,19 +312,19 @@ static NSString* boundary = nil;
 
     // Name
     [postBody appendData:[[NSString stringWithFormat:@"--%@\r\n", boundary] dataUsingEncoding:NSUTF8StringEncoding]];
-    [postBody appendData:[@"Content-Disposition: form-data; name=\"name\"\r\n\r\n" dataUsingEncoding:NSUTF8StringEncoding]];
+    [postBody appendData:[@"Content-Disposition: form-data; name=\"news_photo[name]\"\r\n\r\n" dataUsingEncoding:NSUTF8StringEncoding]];
     [postBody appendData:[name dataUsingEncoding:NSUTF8StringEncoding]];
     [postBody appendData:[@"\r\n" dataUsingEncoding:NSUTF8StringEncoding]];
     
     // Description
     [postBody appendData:[[NSString stringWithFormat:@"--%@\r\n", boundary] dataUsingEncoding:NSUTF8StringEncoding]];
-    [postBody appendData:[@"Content-Disposition: form-data; name=\"description\"\r\n\r\n" dataUsingEncoding:NSUTF8StringEncoding]];
+    [postBody appendData:[@"Content-Disposition: form-data; name=\"news_photo[description]\"\r\n\r\n" dataUsingEncoding:NSUTF8StringEncoding]];
     [postBody appendData:[description dataUsingEncoding:NSUTF8StringEncoding]];
     [postBody appendData:[@"\r\n" dataUsingEncoding:NSUTF8StringEncoding]];
     
     // Image
     [postBody appendData:[[NSString stringWithFormat:@"--%@\r\n", boundary] dataUsingEncoding:NSUTF8StringEncoding]];
-    [postBody appendData:[@"Content-Disposition: form-data; name=\"image\"; filename=\"image.jpg\"\r\n" dataUsingEncoding:NSUTF8StringEncoding]];
+    [postBody appendData:[@"Content-Disposition: form-data; name=\"news_photo[image]\"; filename=\"image.jpg\"\r\n" dataUsingEncoding:NSUTF8StringEncoding]];
     [postBody appendData:[@"Content-Type: image/jpeg\r\n" dataUsingEncoding:NSUTF8StringEncoding]];
     [postBody appendData:[@"Content-Transfer-Encoding: binary\r\n\r\n" dataUsingEncoding:NSUTF8StringEncoding]];    
     [postBody appendData:imageData];
