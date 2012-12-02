@@ -14,6 +14,8 @@
 		7C1DC37C1617569A007EBB48 /* Request+Spread.m in Sources */ = {isa = PBXBuildFile; fileRef = 7C1DC37B1617569A007EBB48 /* Request+Spread.m */; };
 		7C1DC38D161768E2007EBB48 /* Request.m in Sources */ = {isa = PBXBuildFile; fileRef = 7C1DC38C161768E2007EBB48 /* Request.m */; };
 		7C1DC39016177031007EBB48 /* NSNumber+Spread.m in Sources */ = {isa = PBXBuildFile; fileRef = 7C1DC38F16177031007EBB48 /* NSNumber+Spread.m */; };
+		7C231510166BA9200044DC85 /* Default.png in Resources */ = {isa = PBXBuildFile; fileRef = 7C23150F166BA9200044DC85 /* Default.png */; };
+		7C231512166BA9220044DC85 /* Default@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 7C231511166BA9220044DC85 /* Default@2x.png */; };
 		7C25A5D115D7091A0014465B /* PopularViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7C25A5D015D7091A0014465B /* PopularViewController.m */; };
 		7C25A5D415D7100C0014465B /* UserViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7C25A5D315D7100C0014465B /* UserViewController.m */; };
 		7C2824C316151199004532A3 /* Social.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7C2824C216151199004532A3 /* Social.framework */; };
@@ -280,6 +282,8 @@
 		7C1DC38C161768E2007EBB48 /* Request.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Request.m; sourceTree = "<group>"; };
 		7C1DC38E16177031007EBB48 /* NSNumber+Spread.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSNumber+Spread.h"; sourceTree = "<group>"; };
 		7C1DC38F16177031007EBB48 /* NSNumber+Spread.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSNumber+Spread.m"; sourceTree = "<group>"; };
+		7C23150F166BA9200044DC85 /* Default.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = Default.png; path = ../../Default.png; sourceTree = "<group>"; };
+		7C231511166BA9220044DC85 /* Default@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "Default@2x.png"; path = "../../Default@2x.png"; sourceTree = "<group>"; };
 		7C25A5CF15D7091A0014465B /* PopularViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PopularViewController.h; sourceTree = "<group>"; };
 		7C25A5D015D7091A0014465B /* PopularViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PopularViewController.m; sourceTree = "<group>"; };
 		7C25A5D215D7100C0014465B /* UserViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UserViewController.h; sourceTree = "<group>"; };
@@ -1071,6 +1075,8 @@
 		7CE85AEC14A223EB002874EA /* Images */ = {
 			isa = PBXGroup;
 			children = (
+				7C23150F166BA9200044DC85 /* Default.png */,
+				7C231511166BA9220044DC85 /* Default@2x.png */,
 				7C0B725C16345C87002469D3 /* Default-568h@2x.png */,
 				7C2C001014D4946B00D617D8 /* icon.png */,
 				7C2C001214D4946F00D617D8 /* icon@2x.png */,
@@ -1447,6 +1453,8 @@
 				7CC3686D1645878600F9409D /* icon-gray-brief@2x.png in Resources */,
 				7CC3686E1645878600F9409D /* icon-gray-link.png in Resources */,
 				7CC3686F1645878600F9409D /* icon-gray-link@2x.png in Resources */,
+				7C231510166BA9200044DC85 /* Default.png in Resources */,
+				7C231512166BA9220044DC85 /* Default@2x.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
