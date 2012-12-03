@@ -152,7 +152,6 @@
 		7C7F398815CE0FC700EE18DF /* texture_red.png in Resources */ = {isa = PBXBuildFile; fileRef = 7C7F393F15CE0FC700EE18DF /* texture_red.png */; };
 		7C7F398B15CE104C00EE18DF /* icon-spread-large.png in Resources */ = {isa = PBXBuildFile; fileRef = 7C7F398915CE104C00EE18DF /* icon-spread-large.png */; };
 		7C7F398C15CE104C00EE18DF /* icon-spread-large@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 7C7F398A15CE104C00EE18DF /* icon-spread-large@2x.png */; };
-		7C7F398E15CE15F300EE18DF /* IntroViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7CF8A607149BFA12009FF755 /* IntroViewController.m */; };
 		7C7F399115CE248A00EE18DF /* RoundedRectButton.m in Sources */ = {isa = PBXBuildFile; fileRef = 7C6CFBF014BD2BE70048644C /* RoundedRectButton.m */; };
 		7C7F399415CE2CED00EE18DF /* Spread.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 7C7F399215CE2CED00EE18DF /* Spread.xcdatamodeld */; };
 		7C7F399715CE2E7000EE18DF /* ServiceManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 7C8D9BC314A2994500D1D5DC /* ServiceManager.m */; };
@@ -722,6 +721,8 @@
 		7C7F38F515CE0DFF00EE18DF /* OLD */ = {
 			isa = PBXGroup;
 			children = (
+				7CF8A606149BFA12009FF755 /* IntroViewController.h */,
+				7CF8A607149BFA12009FF755 /* IntroViewController.m */,
 				7CF8A604149BF974009FF755 /* View Controller */,
 				7C6CFBF214BD2BF00048644C /* UI Elements */,
 				7C86FF8B14AF8692001B907A /* Categories */,
@@ -1144,8 +1145,6 @@
 		7CF8A615149BFA69009FF755 /* Intro */ = {
 			isa = PBXGroup;
 			children = (
-				7CF8A606149BFA12009FF755 /* IntroViewController.h */,
-				7CF8A607149BFA12009FF755 /* IntroViewController.m */,
 				7C0B725E163464AB002469D3 /* IntroTableViewController.h */,
 				7C0B725F163464AB002469D3 /* IntroTableViewController.m */,
 				7C0B726116346E96002469D3 /* ButtonCell.h */,
@@ -1508,7 +1507,6 @@
 				7C7F38E415CE03DF00EE18DF /* RequestsViewController.m in Sources */,
 				7C7F38F115CE07B900EE18DF /* BaseViewController.m in Sources */,
 				7C7F38F415CE0B9800EE18DF /* RequestCell.m in Sources */,
-				7C7F398E15CE15F300EE18DF /* IntroViewController.m in Sources */,
 				7C7F399115CE248A00EE18DF /* RoundedRectButton.m in Sources */,
 				7C7F399415CE2CED00EE18DF /* Spread.xcdatamodeld in Sources */,
 				7C7F399715CE2E7000EE18DF /* ServiceManager.m in Sources */,

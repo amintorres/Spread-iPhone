@@ -63,9 +63,19 @@ typedef NS_ENUM(NSUInteger, KeyboardType) {
     self.currentState = IntroViewStateIdle;
 }
 
+- (void)viewWillAppear:(BOOL)animated
+{
+    [super viewWillAppear:animated];
+    
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(keyboardWillShow:) name:UIKeyboardWillShowNotification object:nil];
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(keyboardWillHide:) name:UIKeyboardWillHideNotification object:nil];
+}
+
 - (void)viewDidDisappear:(BOOL)animated
 {
+    [[NSNotificationCenter defaultCenter] removeObserver:self];
     self.currentState = IntroViewStateIdle;
+    
     [super viewDidDisappear:animated];
 }
 
@@ -424,6 +434,28 @@ typedef NS_ENUM(NSUInteger, KeyboardType) {
     }
     
     return cell;
+}
+
+- (void)keyboardWillShow:(NSNotification *)notification
+{
+    if (self.currentState == IntroViewStateLogin)
+    {
+        NSInteger row = self.loginFormSecion.count - 1;
+        NSInteger section = [self.dataSource indexOfObject:self.loginFormSecion];
+        NSIndexPath *indexPath = [NSIndexPath indexPathForRow:row inSection:section];
+        [self.tableView scrollToRowAtIndexPath:indexPath atScrollPosition:UITableViewScrollPositionBottom animated:YES];
+    }
+    else if (self.currentState == IntroViewStateRegister)
+    {
+        NSInteger row = self.registerFormSecion.count - 1;
+        NSInteger section = [self.dataSource indexOfObject:self.registerFormSecion];
+        NSIndexPath *indexPath = [NSIndexPath indexPathForRow:row inSection:section];
+        [self.tableView scrollToRowAtIndexPath:indexPath atScrollPosition:UITableViewScrollPositionBottom animated:YES];
+    }
+}
+
+- (void) keyboardWillHide:(NSNotification *)notification
+{
 }
 
 @end
