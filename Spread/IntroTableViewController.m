@@ -26,14 +26,16 @@ typedef NS_ENUM(NSUInteger, KeyboardType) {
 };
 
 
-@interface IntroTableViewController ()
-@property (nonatomic, strong) NSMutableArray *dataSource;
+@interface IntroTableViewController () <UITextFieldDelegate>
 
+@property (nonatomic, strong) NSMutableArray *dataSource;
 @property (nonatomic, strong) NSArray *facebookButtonSection;
 @property (nonatomic, strong) NSArray *loginButtonSection;
 @property (nonatomic, strong) NSArray *registerButtonSection;
 @property (nonatomic, strong) NSArray *loginFormSecion;
 @property (nonatomic, strong) NSArray *registerFormSecion;
+
+@property (nonatomic, strong) NSIndexPath *activeIndexPath;
 
 @property (nonatomic) IntroViewState currentState;
 @property (nonatomic) BOOL isAnimating;
@@ -68,7 +70,7 @@ typedef NS_ENUM(NSUInteger, KeyboardType) {
     [super viewWillAppear:animated];
     
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(keyboardWillShow:) name:UIKeyboardWillShowNotification object:nil];
-    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(keyboardWillHide:) name:UIKeyboardWillHideNotification object:nil];
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(keyboardDidHide:) name:UIKeyboardDidHideNotification object:nil];
 }
 
 - (void)viewDidDisappear:(BOOL)animated
@@ -153,7 +155,15 @@ typedef NS_ENUM(NSUInteger, KeyboardType) {
 {
     NSIndexPath *indexPath = [NSIndexPath indexPathForRow:[[self.dataSource lastObject] count] - 1 inSection:[self.dataSource count] - 1];
     [self.tableView scrollToRowAtIndexPath:indexPath atScrollPosition:UITableViewScrollPositionBottom animated:YES];
+}
 
+- (void)scrollCellBelowIndexPathToVisible:(NSIndexPath *)indexPath
+{
+    if (indexPath.row < [self.dataSource[indexPath.section] count]  - 1)
+    {
+        NSIndexPath *indexPathBelow = [NSIndexPath indexPathForRow:indexPath.row + 1 inSection:indexPath.section];
+        [self.tableView scrollToRowAtIndexPath:indexPathBelow atScrollPosition:UITableViewScrollPositionBottom animated:YES];
+    }
 }
 
 
@@ -408,6 +418,7 @@ typedef NS_ENUM(NSUInteger, KeyboardType) {
     TextFieldCell *cell = [self.tableView dequeueReusableCellWithIdentifier:@"TextFieldCell"];
     cell.textField.text = text;
     cell.textField.placeholder = placeholder;
+    cell.textField.delegate = self;
     
     switch (keyboard) {
         case KeyboardTypeEmail:
@@ -436,26 +447,44 @@ typedef NS_ENUM(NSUInteger, KeyboardType) {
     return cell;
 }
 
-- (void)keyboardWillShow:(NSNotification *)notification
+- (BOOL)textFieldShouldBeginEditing:(UITextField *)textField
 {
-    if (self.currentState == IntroViewStateLogin)
+    UITableViewCell *cell = (UITableViewCell*)textField.superview.superview;
+    
+    if ([cell isKindOfClass:[UITableViewCell class]])
     {
-        NSInteger row = self.loginFormSecion.count - 1;
-        NSInteger section = [self.dataSource indexOfObject:self.loginFormSecion];
-        NSIndexPath *indexPath = [NSIndexPath indexPathForRow:row inSection:section];
-        [self.tableView scrollToRowAtIndexPath:indexPath atScrollPosition:UITableViewScrollPositionBottom animated:YES];
+        // If keyboard is not shown, do the scrolling in [keyboardWillShow:]; othwise, scroll here.
+        BOOL shouldScroll = (!self.activeIndexPath);
+        
+        self.activeIndexPath = [self.tableView indexPathForCell:cell];
+
+        // Scroll a row below to visible, so the user can continue to input.
+        if (shouldScroll)
+        {
+            [self scrollCellBelowIndexPathToVisible:self.activeIndexPath];
+        }
     }
-    else if (self.currentState == IntroViewStateRegister)
-    {
-        NSInteger row = self.registerFormSecion.count - 1;
-        NSInteger section = [self.dataSource indexOfObject:self.registerFormSecion];
-        NSIndexPath *indexPath = [NSIndexPath indexPathForRow:row inSection:section];
-        [self.tableView scrollToRowAtIndexPath:indexPath atScrollPosition:UITableViewScrollPositionBottom animated:YES];
-    }
+    
+    return YES;
 }
 
-- (void) keyboardWillHide:(NSNotification *)notification
+- (BOOL)textFieldShouldReturn:(UITextField *)textField
 {
+    [textField resignFirstResponder];
+    return NO;
 }
+
+- (void)keyboardWillShow:(NSNotification *)notification
+{
+    self.swipeGestureRecognizer.enabled = NO;
+    [self scrollCellBelowIndexPathToVisible:self.activeIndexPath];
+}
+
+- (void)keyboardDidHide:(NSNotification *)notification
+{    
+    self.swipeGestureRecognizer.enabled = YES;
+    [self scrollToBottom];
+}
+
 
 @end

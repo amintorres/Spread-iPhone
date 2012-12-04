@@ -346,6 +346,7 @@
                         <outlet property="captionLabel" destination="0SE-so-KEQ" id="jZj-US-aRU"/>
                         <outlet property="headerImageView" destination="ZVS-1r-Wxf" id="PCn-5T-iKn"/>
                         <outlet property="logoButton" destination="Ifa-aQ-Pkr" id="CUr-nD-yUD"/>
+                        <outlet property="swipeGestureRecognizer" destination="UAj-b6-HmY" id="4Fs-y3-lCX"/>
                         <segue destination="GyX-lL-DyD" kind="push" identifier="MenuSegue" id="3f9-Qv-XS7"/>
                     </connections>
                 </tableViewController>

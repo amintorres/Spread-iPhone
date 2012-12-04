@@ -14,6 +14,7 @@
 @property (strong, nonatomic) IBOutlet UIImageView *headerImageView;
 @property (strong, nonatomic) IBOutlet UIButton *logoButton;
 @property (strong, nonatomic) IBOutlet UILabel *captionLabel;
+@property (strong, nonatomic) IBOutlet UISwipeGestureRecognizer *swipeGestureRecognizer;
 
 - (IBAction)goBack:(id)sender;
 - (IBAction)facebookLoginButtonTapped:(id)sender;
