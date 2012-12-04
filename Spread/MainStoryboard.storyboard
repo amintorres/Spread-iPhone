@@ -1569,8 +1569,8 @@ name
                                     <constraint firstAttribute="trailing" secondItem="WWj-YA-BcP" secondAttribute="trailing" constant="10" type="user" id="4Ib-jx-Chk"/>
                                     <constraint firstItem="WWj-YA-BcP" firstAttribute="leading" secondItem="5TV-HC-waF" secondAttribute="leading" constant="10" type="user" id="Qvu-vB-D36"/>
                                     <constraint firstAttribute="width" constant="106" type="user" id="gZF-Ku-3OS"/>
-                                    <constraint firstAttribute="bottom" secondItem="WWj-YA-BcP" secondAttribute="bottom" constant="10" type="user" id="lSO-IK-RDL"/>
-                                    <constraint firstItem="WWj-YA-BcP" firstAttribute="top" secondItem="5TV-HC-waF" secondAttribute="top" constant="10" type="user" id="sbP-IP-vCk"/>
+                                    <constraint firstAttribute="bottom" secondItem="WWj-YA-BcP" secondAttribute="bottom" constant="5" type="user" id="lSO-IK-RDL"/>
+                                    <constraint firstItem="WWj-YA-BcP" firstAttribute="top" secondItem="5TV-HC-waF" secondAttribute="top" constant="5" type="user" id="sbP-IP-vCk"/>
                                 </constraints>
                             </view>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="eaV-cz-Jcj">
@@ -1797,6 +1797,140 @@ needed</string>
         <image name="texture_blue.png" width="40" height="40"/>
         <image name="texture_gray.png" width="40" height="40"/>
     </resources>
+    <classes>
+        <class className="AppFontButton" superclassName="UIButton">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/AppFontButton.h"/>
+        </class>
+        <class className="AppFontLabel" superclassName="UILabel">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/AppFontLabel.h"/>
+        </class>
+        <class className="BaseViewController" superclassName="UIViewController">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/BaseViewController.h"/>
+            <relationships>
+                <relationship kind="action" name="backButtonTapped:"/>
+            </relationships>
+        </class>
+        <class className="ButtonCell" superclassName="UITableViewCell">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/ButtonCell.h"/>
+            <relationships>
+                <relationship kind="outlet" name="button" candidateClass="UIButton"/>
+            </relationships>
+        </class>
+        <class className="CurrencyLabel" superclassName="AppFontLabel">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/CurrencyLabel.h"/>
+        </class>
+        <class className="EditViewController" superclassName="UITableViewController">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/EditViewController.h"/>
+            <relationships>
+                <relationship kind="action" name="cancelButtonTapped:"/>
+                <relationship kind="action" name="deleteButtonTapped:"/>
+                <relationship kind="action" name="rememberDetailsSwitchValueChanged:" candidateClass="UISwitch"/>
+                <relationship kind="action" name="saveButtonTapped:"/>
+                <relationship kind="outlet" name="cancelButton" candidateClass="UIButton"/>
+                <relationship kind="outlet" name="deleteButton" candidateClass="UIButton"/>
+                <relationship kind="outlet" name="descriptionTextView" candidateClass="PlaceholderTextView"/>
+                <relationship kind="outlet" name="rememberDetailSwitch" candidateClass="UISwitch"/>
+                <relationship kind="outlet" name="saveButton" candidateClass="UIButton"/>
+                <relationship kind="outlet" name="tagsTextField" candidateClass="UITextField"/>
+                <relationship kind="outlet" name="titleTextField" candidateClass="UITextField"/>
+            </relationships>
+        </class>
+        <class className="FourImagesCell" superclassName="UITableViewCell">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/FourImagesCell.h"/>
+            <relationships>
+                <relationship kind="outlet" name="button0" candidateClass="UIButton"/>
+                <relationship kind="outlet" name="button1" candidateClass="UIButton"/>
+                <relationship kind="outlet" name="button2" candidateClass="UIButton"/>
+                <relationship kind="outlet" name="button3" candidateClass="UIButton"/>
+            </relationships>
+        </class>
+        <class className="IntroTableViewController" superclassName="UITableViewController">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/IntroTableViewController.h"/>
+            <relationships>
+                <relationship kind="action" name="facebookLoginButtonTapped:"/>
+                <relationship kind="action" name="goBack:"/>
+                <relationship kind="action" name="loginButtonTapped:"/>
+                <relationship kind="outlet" name="captionLabel" candidateClass="UILabel"/>
+                <relationship kind="outlet" name="headerImageView" candidateClass="UIImageView"/>
+                <relationship kind="outlet" name="logoButton" candidateClass="UIButton"/>
+                <relationship kind="outlet" name="swipeGestureRecognizer" candidateClass="UISwipeGestureRecognizer"/>
+            </relationships>
+        </class>
+        <class className="MenuViewController" superclassName="UIViewController">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/MenuViewController.h"/>
+            <relationships>
+                <relationship kind="action" name="logout:"/>
+                <relationship kind="outlet" name="profileButton" candidateClass="UIButton"/>
+            </relationships>
+        </class>
+        <class className="NSLayoutConstraint" superclassName="NSObject">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/NSLayoutConstraint.h"/>
+        </class>
+        <class className="PlaceholderTextView" superclassName="UITextView">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/PlaceholderTextView.h"/>
+        </class>
+        <class className="PopularViewController" superclassName="BaseViewController">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/PopularViewController.h"/>
+            <relationships>
+                <relationship kind="outlet" name="tableView" candidateClass="UITableView"/>
+                <relationship kind="outlet" name="totalPhotosLabel" candidateClass="UILabel"/>
+            </relationships>
+        </class>
+        <class className="RecentViewController" superclassName="BaseViewController">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/RecentViewController.h"/>
+            <relationships>
+                <relationship kind="outlet" name="tableView" candidateClass="UITableView"/>
+                <relationship kind="outlet" name="totalPhotosLabel" candidateClass="UILabel"/>
+            </relationships>
+        </class>
+        <class className="RequestCell" superclassName="UITableViewCell">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/RequestCell.h"/>
+            <relationships>
+                <relationship kind="outlet" name="byLabel" candidateClass="UILabel"/>
+                <relationship kind="outlet" name="dueDateLabel" candidateClass="UILabel"/>
+                <relationship kind="outlet" name="priceLabel" candidateClass="UILabel"/>
+                <relationship kind="outlet" name="quantityLabel" candidateClass="UILabel"/>
+                <relationship kind="outlet" name="titleLabel" candidateClass="UILabel"/>
+            </relationships>
+        </class>
+        <class className="RequestDetailViewController" superclassName="BaseViewController">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/RequestDetailViewController.h"/>
+            <relationships>
+                <relationship kind="outlet" name="daysLeftLabel" candidateClass="UILabel"/>
+                <relationship kind="outlet" name="descriptionLabel" candidateClass="UILabel"/>
+                <relationship kind="outlet" name="photosLabel" candidateClass="UILabel"/>
+                <relationship kind="outlet" name="priceLabel" candidateClass="UILabel"/>
+                <relationship kind="outlet" name="quantityLabel" candidateClass="UILabel"/>
+                <relationship kind="outlet" name="requesterImageView" candidateClass="UIImageView"/>
+                <relationship kind="outlet" name="requesterLabel" candidateClass="UILabel"/>
+            </relationships>
+        </class>
+        <class className="RequestsViewController" superclassName="BaseViewController">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/RequestsViewController.h"/>
+            <relationships>
+                <relationship kind="outlet" name="tableView" candidateClass="UITableView"/>
+                <relationship kind="outlet" name="totalPriceLabel" candidateClass="UILabel"/>
+                <relationship kind="outlet" name="totalRequestsLabel" candidateClass="UILabel"/>
+            </relationships>
+        </class>
+        <class className="RoundedRectButton" superclassName="AppFontButton">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/RoundedRectButton.h"/>
+        </class>
+        <class className="TextFieldCell" superclassName="UITableViewCell">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/TextFieldCell.h"/>
+            <relationships>
+                <relationship kind="outlet" name="textField" candidateClass="UITextField"/>
+            </relationships>
+        </class>
+        <class className="UserViewController" superclassName="BaseViewController">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/UserViewController.h"/>
+            <relationships>
+                <relationship kind="outlet" name="nameLabel" candidateClass="UILabel"/>
+                <relationship kind="outlet" name="tableView" candidateClass="UITableView"/>
+                <relationship kind="outlet" name="totalPhotosLabel" candidateClass="UILabel"/>
+            </relationships>
+        </class>
+    </classes>
     <simulatedMetricsContainer key="defaultSimulatedMetrics">
         <simulatedStatusBarMetrics key="statusBar"/>
         <simulatedOrientationMetrics key="orientation"/>
