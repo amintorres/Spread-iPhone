@@ -6,13 +6,9 @@
 //  Copyright (c) 2012 R/GA. All rights reserved.
 //
 
-#import "BaseViewController.h"
+#import "PhotosViewController.h"
 
 
-@interface UserViewController : BaseViewController
-
-@property (strong, nonatomic) IBOutlet UILabel *nameLabel;
-@property (strong, nonatomic) IBOutlet UILabel *totalPhotosLabel;
-@property (strong, nonatomic) IBOutlet UITableView *tableView;
+@interface UserViewController : PhotosViewController
 
 @end

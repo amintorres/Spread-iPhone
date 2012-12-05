@@ -14,9 +14,6 @@
 
 
 @interface UserViewController ()
-
-@property (nonatomic, strong) NSArray* photos;
-
 @end
 
 
@@ -24,12 +21,15 @@
 @implementation UserViewController
 
 
+
+
+
 - (void)viewDidLoad
 {
     [super viewDidLoad];
     
-    self.nameLabel.text = [User currentUser].name;
-    self.totalPhotosLabel.text = [NSString stringWithFormat:@"Photos:\n(%d)", [self.photos count]];
+    self.iconImageView.image = [UIImage imageNamed:@"icon-profile"];
+    self.titleLabel.text = [User currentUser].name;
 }
 
 - (void)viewDidAppear:(BOOL)animated
@@ -42,8 +42,6 @@
         {
             dispatch_async(dispatch_get_main_queue(), ^{
                 self.photos = response;
-                self.totalPhotosLabel.text = [NSString stringWithFormat:@"Photos:\n(%d)", [self.photos count]];
-                [self.tableView reloadData];
             });
         }
         else
@@ -56,22 +54,6 @@
             [[[UIAlertView alloc] initWithTitle:@"Error" message:errorMessage delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil] show];
         }
     }];
-}
-
-- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
-{
-    return ceil( (float)[self.photos count] / 4 );
-}
-
-- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
-{
-    FourImagesCell *cell = [self.tableView dequeueReusableCellWithIdentifier:@"FourImagesCell"];
-    
-    NSUInteger start = indexPath.row * 4;
-    NSUInteger end = MIN(start + 4, [self.photos count]);
-    cell.photos = [self.photos subarrayWithRange:NSMakeRange(start, end - start)];
-    
-    return cell;
 }
 
 
