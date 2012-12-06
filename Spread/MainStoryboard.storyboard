@@ -1078,6 +1078,9 @@ Photos</string>
                                         <state key="highlighted">
                                             <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                         </state>
+                                        <connections>
+                                            <action selector="displayModeButtonTapped:" destination="zZh-Ow-sfD" eventType="touchUpInside" id="xzX-BR-Zl6"/>
+                                        </connections>
                                     </button>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="lv1-4A-Sh7" customClass="RoundedRectButton">
                                         <constraints>
@@ -1154,7 +1157,7 @@ Photos</string>
                             <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
                         </collectionViewFlowLayout>
                         <cells>
-                            <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="ThumbCell" id="75v-GC-IXl">
+                            <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="ThumbCell" id="75v-GC-IXl" customClass="ThumbCell">
                                 <rect key="frame" x="0.0" y="0.0" width="70" height="70"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
@@ -1181,6 +1184,9 @@ Photos</string>
                                     <constraint firstItem="z7u-Y5-QTa" firstAttribute="top" secondItem="75v-GC-IXl" secondAttribute="top" type="default" id="mnY-bE-eWF"/>
                                     <constraint firstItem="z7u-Y5-QTa" firstAttribute="trailing" secondItem="75v-GC-IXl" secondAttribute="trailing" type="default" id="xzf-zx-qSJ"/>
                                 </constraints>
+                                <connections>
+                                    <outlet property="thumbButton" destination="z7u-Y5-QTa" id="YXo-oJ-hz9"/>
+                                </connections>
                             </collectionViewCell>
                         </cells>
                         <connections>
@@ -1202,14 +1208,14 @@ Photos</string>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <prototypes>
-                            <tableViewCell contentMode="scaleToFill" selectionStyle="none" indentationWidth="10" reuseIdentifier="PhotoCell" rowHeight="380" id="0Ok-yA-HfO" customClass="PhotoCell">
+                            <tableViewCell contentMode="scaleToFill" selectionStyle="none" indentationWidth="10" reuseIdentifier="PhotoCell" rowHeight="380" id="0Ok-yA-HfO" customClass="FeedCell">
                                 <rect key="frame" x="0.0" y="22" width="320" height="380"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
                                     <rect key="frame" x="0.0" y="0.0" width="320" height="379"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
-                                        <imageView userInteractionEnabled="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="1Cl-mT-gxx">
+                                        <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" translatesAutoresizingMaskIntoConstraints="NO" id="1Cl-mT-gxx">
                                             <constraints>
                                                 <constraint firstAttribute="width" constant="310" type="user" id="PoU-o1-TpY"/>
                                                 <constraint firstAttribute="height" constant="310" type="user" id="otx-h8-few"/>
@@ -1251,7 +1257,7 @@ Photos</string>
                                 </constraints>
                                 <connections>
                                     <outlet property="descriptionLabel" destination="77H-Pc-nWM" id="OYJ-b0-m11"/>
-                                    <outlet property="imageView" destination="1Cl-mT-gxx" id="j8a-tz-ZtP"/>
+                                    <outlet property="largeImageView" destination="1Cl-mT-gxx" id="50g-PC-jWI"/>
                                 </connections>
                             </tableViewCell>
                         </prototypes>
@@ -1889,6 +1895,13 @@ needed</string>
                 <relationship kind="outlet" name="titleTextField" candidateClass="UITextField"/>
             </relationships>
         </class>
+        <class className="FeedCell" superclassName="UITableViewCell">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/FeedCell.h"/>
+            <relationships>
+                <relationship kind="outlet" name="descriptionLabel" candidateClass="UILabel"/>
+                <relationship kind="outlet" name="largeImageView" candidateClass="UIImageView"/>
+            </relationships>
+        </class>
         <class className="FourImagesCell" superclassName="UITableViewCell">
             <source key="sourceIdentifier" type="project" relativePath="./Classes/FourImagesCell.h"/>
             <relationships>
@@ -1914,19 +1927,11 @@ needed</string>
             <source key="sourceIdentifier" type="project" relativePath="./Classes/MenuViewController.h"/>
             <relationships>
                 <relationship kind="action" name="logout:"/>
-                <relationship kind="action" name="takePhotoButtonTapped:"/>
                 <relationship kind="outlet" name="profileButton" candidateClass="UIButton"/>
             </relationships>
         </class>
         <class className="NSLayoutConstraint" superclassName="NSObject">
             <source key="sourceIdentifier" type="project" relativePath="./Classes/NSLayoutConstraint.h"/>
-        </class>
-        <class className="PhotoCell" superclassName="UITableViewCell">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/PhotoCell.h"/>
-            <relationships>
-                <relationship kind="outlet" name="descriptionLabel" candidateClass="UILabel"/>
-                <relationship kind="outlet" name="imageView" candidateClass="UIImageView"/>
-            </relationships>
         </class>
         <class className="PhotosCollectionViewController" superclassName="UICollectionViewController">
             <source key="sourceIdentifier" type="project" relativePath="./Classes/PhotosCollectionViewController.h"/>
@@ -1937,7 +1942,6 @@ needed</string>
         <class className="PhotosViewController" superclassName="BaseViewController">
             <source key="sourceIdentifier" type="project" relativePath="./Classes/PhotosViewController.h"/>
             <relationships>
-                <relationship kind="action" name="displayModeButtonTapped:"/>
                 <relationship kind="outlet" name="contentView" candidateClass="UIView"/>
                 <relationship kind="outlet" name="displayModeButton" candidateClass="UIButton"/>
                 <relationship kind="outlet" name="iconImageView" candidateClass="UIImageView"/>
@@ -2001,6 +2005,12 @@ needed</string>
                 <relationship kind="outlet" name="textField" candidateClass="UITextField"/>
             </relationships>
         </class>
+        <class className="ThumbCell" superclassName="UICollectionViewCell">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/ThumbCell.h"/>
+            <relationships>
+                <relationship kind="outlet" name="thumbButton" candidateClass="UIButton"/>
+            </relationships>
+        </class>
         <class className="UICollectionReusableView" superclassName="UIView">
             <source key="sourceIdentifier" type="project" relativePath="./Classes/UICollectionReusableView.h"/>
         </class>
@@ -2012,9 +2022,6 @@ needed</string>
         </class>
         <class className="UICollectionViewFlowLayout" superclassName="UICollectionViewLayout">
             <source key="sourceIdentifier" type="project" relativePath="./Classes/UICollectionViewFlowLayout.h"/>
-        </class>
-        <class className="UICollectionViewLayout" superclassName="NSObject">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/UICollectionViewLayout.h"/>
         </class>
         <class className="UserViewController" superclassName="PhotosViewController">
             <source key="sourceIdentifier" type="project" relativePath="./Classes/UserViewController.h"/>

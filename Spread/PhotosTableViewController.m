@@ -7,7 +7,7 @@
 //
 
 #import "PhotosTableViewController.h"
-#import "PhotoCell.h"
+#import "FeedCell.h"
 #import "Photo.h"
 
 
@@ -46,7 +46,7 @@
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    PhotoCell *cell = [tableView dequeueReusableCellWithIdentifier:@"PhotoCell" forIndexPath:indexPath];
+    FeedCell *cell = [tableView dequeueReusableCellWithIdentifier:@"PhotoCell" forIndexPath:indexPath];
     cell.photo = self.photos[indexPath.row];
     return cell;
 }

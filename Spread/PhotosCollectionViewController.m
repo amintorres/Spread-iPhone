@@ -7,10 +7,13 @@
 //
 
 #import "PhotosCollectionViewController.h"
+#import "ThumbCell.h"
+
 
 @interface PhotosCollectionViewController ()
 
 @end
+
 
 @implementation PhotosCollectionViewController
 
@@ -35,10 +38,20 @@
     [self.collectionView reloadData];
 }
 
-- (void)didReceiveMemoryWarning
+
+#pragma mark - UICollectionViewDataSource
+
+- (NSInteger)collectionView:(UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section
 {
-    [super didReceiveMemoryWarning];
-    // Dispose of any resources that can be recreated.
+    return self.photos.count;
 }
+
+- (UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath
+{
+    ThumbCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:@"ThumbCell" forIndexPath:indexPath];
+    cell.photo = self.photos[indexPath.row];
+    return cell;
+}
+
 
 @end

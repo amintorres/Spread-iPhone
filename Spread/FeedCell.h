@@ -10,9 +10,9 @@
 #import "Photo.h"
 
 
-@interface PhotoCell : UITableViewCell
+@interface FeedCell : UITableViewCell
 
-@property (nonatomic, strong) IBOutlet UIImageView *imageView;
+@property (nonatomic, strong) IBOutlet UIImageView *largeImageView;
 @property (nonatomic, strong) IBOutlet UILabel *descriptionLabel;
 @property (nonatomic, strong) Photo *photo;
 

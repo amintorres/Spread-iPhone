@@ -21,6 +21,8 @@
 		7C2824C316151199004532A3 /* Social.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7C2824C216151199004532A3 /* Social.framework */; };
 		7C2824C5161511B1004532A3 /* Accounts.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7C2824C4161511B1004532A3 /* Accounts.framework */; };
 		7C2824C7161511CE004532A3 /* AdSupport.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7C2824C6161511CE004532A3 /* AdSupport.framework */; };
+		7C2A3F281670D5C0008D6DD2 /* UIImage+Utilities.m in Sources */ = {isa = PBXBuildFile; fileRef = 7C2A3F271670D5C0008D6DD2 /* UIImage+Utilities.m */; };
+		7C2A3F2E1670DA99008D6DD2 /* ThumbCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 7C2A3F2D1670DA99008D6DD2 /* ThumbCell.m */; };
 		7C2CFFB014D4677600D617D8 /* WelcomeViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 7C2CFFAE14D4677600D617D8 /* WelcomeViewController.xib */; };
 		7C3AC960162A1D6A0046CE81 /* NSError+Spread.m in Sources */ = {isa = PBXBuildFile; fileRef = 7C76DF2014D1D01E007A03B5 /* NSError+Spread.m */; };
 		7C3AC964162A2E4F0046CE81 /* EditViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7C7F7AB214AB74AE00652401 /* EditViewController.m */; };
@@ -48,7 +50,6 @@
 		7C62EA2814CCB77B0003FFF4 /* MessageUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7C62EA2714CCB77B0003FFF4 /* MessageUI.framework */; };
 		7C66003214AA1C4C00C285B1 /* ListTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 7C66003114AA1C4C00C285B1 /* ListTableViewCell.xib */; };
 		7C7E58CA14C6172000A03F22 /* GridTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 7C7E58C914C6172000A03F22 /* GridTableViewCell.xib */; };
-		7C7F387815CDF5F500EE18DF /* libSDWebImage.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 7C7F387315CDF55900EE18DF /* libSDWebImage.a */; };
 		7C7F387B15CDF65B00EE18DF /* ImageIO.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7C5AC38614AC083D00856DC9 /* ImageIO.framework */; };
 		7C7F388115CDFD7200EE18DF /* MainStoryboard.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 7C7F388015CDFD7200EE18DF /* MainStoryboard.storyboard */; };
 		7C7F38BC15CDFE3000EE18DF /* MenuViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7C7F38BB15CDFE3000EE18DF /* MenuViewController.m */; };
@@ -198,7 +199,8 @@
 		7CC4346C166F8A6200E7D840 /* PhotosViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7CC4346B166F8A6200E7D840 /* PhotosViewController.m */; };
 		7CC4346F166F8C9900E7D840 /* PhotosTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7CC4346E166F8C9900E7D840 /* PhotosTableViewController.m */; };
 		7CC43472166F8CAC00E7D840 /* PhotosCollectionViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7CC43471166F8CAC00E7D840 /* PhotosCollectionViewController.m */; };
-		7CC43475166F8E0000E7D840 /* PhotoCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 7CC43474166F8E0000E7D840 /* PhotoCell.m */; };
+		7CC43475166F8E0000E7D840 /* FeedCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 7CC43474166F8E0000E7D840 /* FeedCell.m */; };
+		7CCBE0701670E0430030C952 /* libSDWebImage.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 7CE85AE814A221A6002874EA /* libSDWebImage.a */; };
 		7CDEB40F14C8BC6B00518E98 /* PullRefreshHeaderView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 7CDEB40E14C8BC6B00518E98 /* PullRefreshHeaderView.xib */; };
 		7CF04758163CE5AE00A905C1 /* MBProgressHUD.m in Sources */ = {isa = PBXBuildFile; fileRef = 7CF04757163CE5AE00A905C1 /* MBProgressHUD.m */; };
 		7CF5879815D4B6F200769AA7 /* NSDate+Spread.m in Sources */ = {isa = PBXBuildFile; fileRef = 7CF5879715D4B6F200769AA7 /* NSDate+Spread.m */; };
@@ -219,13 +221,6 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
-		7C7F387215CDF55900EE18DF /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 7CE85AE014A221A6002874EA /* SDWebImage.xcodeproj */;
-			proxyType = 2;
-			remoteGlobalIDString = 53761325155AD0D5005750A4;
-			remoteInfo = "SDWebImage ARC";
-		};
 		7C7F387415CDF55900EE18DF /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = 7CE85AE014A221A6002874EA /* SDWebImage.xcodeproj */;
@@ -300,6 +295,10 @@
 		7C2824C216151199004532A3 /* Social.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Social.framework; path = System/Library/Frameworks/Social.framework; sourceTree = SDKROOT; };
 		7C2824C4161511B1004532A3 /* Accounts.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Accounts.framework; path = System/Library/Frameworks/Accounts.framework; sourceTree = SDKROOT; };
 		7C2824C6161511CE004532A3 /* AdSupport.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AdSupport.framework; path = System/Library/Frameworks/AdSupport.framework; sourceTree = SDKROOT; };
+		7C2A3F261670D5C0008D6DD2 /* UIImage+Utilities.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIImage+Utilities.h"; sourceTree = "<group>"; };
+		7C2A3F271670D5C0008D6DD2 /* UIImage+Utilities.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIImage+Utilities.m"; sourceTree = "<group>"; };
+		7C2A3F2C1670DA99008D6DD2 /* ThumbCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ThumbCell.h; sourceTree = "<group>"; };
+		7C2A3F2D1670DA99008D6DD2 /* ThumbCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ThumbCell.m; sourceTree = "<group>"; };
 		7C2C001014D4946B00D617D8 /* icon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = icon.png; path = ../../icon.png; sourceTree = "<group>"; };
 		7C2C001214D4946F00D617D8 /* icon@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "icon@2x.png"; path = "../../icon@2x.png"; sourceTree = "<group>"; };
 		7C2CB64614BF2D3B006727FD /* UserDefaultHelper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UserDefaultHelper.h; sourceTree = "<group>"; };
@@ -532,8 +531,8 @@
 		7CC4346E166F8C9900E7D840 /* PhotosTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PhotosTableViewController.m; sourceTree = "<group>"; };
 		7CC43470166F8CAC00E7D840 /* PhotosCollectionViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PhotosCollectionViewController.h; sourceTree = "<group>"; };
 		7CC43471166F8CAC00E7D840 /* PhotosCollectionViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PhotosCollectionViewController.m; sourceTree = "<group>"; };
-		7CC43473166F8E0000E7D840 /* PhotoCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PhotoCell.h; sourceTree = "<group>"; };
-		7CC43474166F8E0000E7D840 /* PhotoCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PhotoCell.m; sourceTree = "<group>"; };
+		7CC43473166F8E0000E7D840 /* FeedCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FeedCell.h; sourceTree = "<group>"; };
+		7CC43474166F8E0000E7D840 /* FeedCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FeedCell.m; sourceTree = "<group>"; };
 		7CDEB40014C8B8EA00518E98 /* PullRefreshTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PullRefreshTableViewController.h; sourceTree = "<group>"; };
 		7CDEB40114C8B8EA00518E98 /* PullRefreshTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PullRefreshTableViewController.m; sourceTree = "<group>"; };
 		7CDEB40B14C8BC5800518E98 /* PullRefreshHeaderView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PullRefreshHeaderView.h; sourceTree = "<group>"; };
@@ -589,13 +588,13 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				7CCBE0701670E0430030C952 /* libSDWebImage.a in Frameworks */,
 				7CC3685316457D8800F9409D /* CoreText.framework in Frameworks */,
 				7C2824C7161511CE004532A3 /* AdSupport.framework in Frameworks */,
 				7C2824C5161511B1004532A3 /* Accounts.framework in Frameworks */,
 				7C7F387B15CDF65B00EE18DF /* ImageIO.framework in Frameworks */,
 				7C2824C316151199004532A3 /* Social.framework in Frameworks */,
 				7CAC9E8015D8587500E30562 /* libfacebook_ios_sdk.a in Frameworks */,
-				7C7F387815CDF5F500EE18DF /* libSDWebImage.a in Frameworks */,
 				7C4991D81531BF75007A4663 /* MapKit.framework in Frameworks */,
 				7C4991D61531BF58007A4663 /* libz.dylib in Frameworks */,
 				7C62EA2814CCB77B0003FFF4 /* MessageUI.framework in Frameworks */,
@@ -903,6 +902,8 @@
 				7C45354215E19FB200833FA9 /* UIFont+Spread.m */,
 				7C76DF1F14D1D01E007A03B5 /* NSError+Spread.h */,
 				7C76DF2014D1D01E007A03B5 /* NSError+Spread.m */,
+				7C2A3F261670D5C0008D6DD2 /* UIImage+Utilities.h */,
+				7C2A3F271670D5C0008D6DD2 /* UIImage+Utilities.m */,
 			);
 			name = Categories;
 			sourceTree = "<group>";
@@ -954,10 +955,12 @@
 				7CC4346B166F8A6200E7D840 /* PhotosViewController.m */,
 				7CC4346D166F8C9900E7D840 /* PhotosTableViewController.h */,
 				7CC4346E166F8C9900E7D840 /* PhotosTableViewController.m */,
-				7CC43473166F8E0000E7D840 /* PhotoCell.h */,
-				7CC43474166F8E0000E7D840 /* PhotoCell.m */,
+				7CC43473166F8E0000E7D840 /* FeedCell.h */,
+				7CC43474166F8E0000E7D840 /* FeedCell.m */,
 				7CC43470166F8CAC00E7D840 /* PhotosCollectionViewController.h */,
 				7CC43471166F8CAC00E7D840 /* PhotosCollectionViewController.m */,
+				7C2A3F2C1670DA99008D6DD2 /* ThumbCell.h */,
+				7C2A3F2D1670DA99008D6DD2 /* ThumbCell.m */,
 				7C886F4F15D0BBA10024603C /* RecentViewController.h */,
 				7C886F5015D0BBA10024603C /* RecentViewController.m */,
 				7C25A5CF15D7091A0014465B /* PopularViewController.h */,
@@ -1099,8 +1102,7 @@
 			isa = PBXGroup;
 			children = (
 				7CE85AE814A221A6002874EA /* libSDWebImage.a */,
-				7C7F387315CDF55900EE18DF /* libSDWebImage.a */,
-				7C7F387515CDF55900EE18DF /* libSDWebImageARC+MKAnnotation.a */,
+				7C7F387515CDF55900EE18DF /* libSDWebImage+MKAnnotation.a */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -1318,17 +1320,10 @@
 /* End PBXProject section */
 
 /* Begin PBXReferenceProxy section */
-		7C7F387315CDF55900EE18DF /* libSDWebImage.a */ = {
+		7C7F387515CDF55900EE18DF /* libSDWebImage+MKAnnotation.a */ = {
 			isa = PBXReferenceProxy;
 			fileType = archive.ar;
-			path = libSDWebImage.a;
-			remoteRef = 7C7F387215CDF55900EE18DF /* PBXContainerItemProxy */;
-			sourceTree = BUILT_PRODUCTS_DIR;
-		};
-		7C7F387515CDF55900EE18DF /* libSDWebImageARC+MKAnnotation.a */ = {
-			isa = PBXReferenceProxy;
-			fileType = archive.ar;
-			path = "libSDWebImageARC+MKAnnotation.a";
+			path = "libSDWebImage+MKAnnotation.a";
 			remoteRef = 7C7F387415CDF55900EE18DF /* PBXContainerItemProxy */;
 			sourceTree = BUILT_PRODUCTS_DIR;
 		};
@@ -1586,7 +1581,9 @@
 				7CC4346C166F8A6200E7D840 /* PhotosViewController.m in Sources */,
 				7CC4346F166F8C9900E7D840 /* PhotosTableViewController.m in Sources */,
 				7CC43472166F8CAC00E7D840 /* PhotosCollectionViewController.m in Sources */,
-				7CC43475166F8E0000E7D840 /* PhotoCell.m in Sources */,
+				7CC43475166F8E0000E7D840 /* FeedCell.m in Sources */,
+				7C2A3F281670D5C0008D6DD2 /* UIImage+Utilities.m in Sources */,
+				7C2A3F2E1670DA99008D6DD2 /* ThumbCell.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

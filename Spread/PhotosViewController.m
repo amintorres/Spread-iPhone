@@ -17,8 +17,8 @@
 @property (nonatomic, strong) IBOutlet UIView *contentView;
 @property (nonatomic, strong) PhotosCollectionViewController *collectionViewController;
 @property (nonatomic, strong) PhotosTableViewController *tableViewController;
-@property (nonatomic, strong, readonly) UICollectionView *collectionView;
-@property (nonatomic, strong, readonly) UITableView *tableView;
+@property (nonatomic, strong) UICollectionView *collectionView;
+@property (nonatomic, strong) UITableView *tableView;
 
 @end
 
@@ -40,17 +40,25 @@
     [self displayTableView];
 }
 
+
+#pragma mark - IBAction
+
 - (IBAction)displayModeButtonTapped:(id)sender
 {
     if (self.tableView.superview)
     {
+        [self.displayModeButton setImage:[UIImage imageNamed:@"icon-blue-list"] forState:UIControlStateNormal];
         [self displayCollectionView];
     }
     else
     {
+        [self.displayModeButton setImage:[UIImage imageNamed:@"icon-blue-grid"] forState:UIControlStateNormal];
         [self displayTableView];
     }
 }
+
+
+#pragma mark - Photos
 
 - (void)setPhotos:(NSArray *)photos
 {
@@ -64,6 +72,9 @@
 {
     self.numberOfPhotosLabel.text = [NSString stringWithFormat:@"Photos:\n(%d)", [self.photos count]];
 }
+
+
+#pragma mark - CollectionView / TableView
 
 - (void)displayCollectionView
 {
@@ -83,9 +94,11 @@
     [self.contentView addSubview:self.tableView];
 }
 
+
+#pragma mark -
+
 - (PhotosCollectionViewController *)collectionViewController
 {
-    return nil;
     if (!_collectionViewController)
     {
         UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"MainStoryboard" bundle:nil];
@@ -106,12 +119,20 @@
 
 - (UICollectionView *)collectionView
 {
-    return self.collectionViewController.collectionView;
+    if (!_collectionView)
+    {
+        _collectionView = self.collectionViewController.collectionView;
+    }
+    return _collectionView;
 }
 
 - (UITableView *)tableView
 {
-    return self.tableViewController.tableView;
+    if (!_tableView)
+    {
+        _tableView = self.tableViewController.tableView;
+    }
+    return _tableView;
 }
 
 

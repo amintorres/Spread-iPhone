@@ -6,11 +6,11 @@
 //  Copyright (c) 2012 R/GA. All rights reserved.
 //
 
-#import "PhotoCell.h"
+#import "FeedCell.h"
 #import "UIImageView+WebCache.h"
 
 
-@implementation PhotoCell
+@implementation FeedCell
 
 
 - (void)setPhoto:(Photo *)photo
@@ -18,7 +18,7 @@
     _photo = photo;
     
     NSURL *URL = [NSURL URLWithString:photo.feedImageURLString];
-    [self.imageView setImageWithURL:URL placeholderImage:nil];
+    [self.largeImageView setImageWithURL:URL];
     
     self.descriptionLabel.text = photo.photoDescription;
 }
