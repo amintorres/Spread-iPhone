@@ -201,6 +201,7 @@
 		7CC43472166F8CAC00E7D840 /* PhotosCollectionViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7CC43471166F8CAC00E7D840 /* PhotosCollectionViewController.m */; };
 		7CC43475166F8E0000E7D840 /* FeedCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 7CC43474166F8E0000E7D840 /* FeedCell.m */; };
 		7CCBE0701670E0430030C952 /* libSDWebImage.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 7CE85AE814A221A6002874EA /* libSDWebImage.a */; };
+		7CCBE0781670E6440030C952 /* PhotosViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 7CCBE0771670E6440030C952 /* PhotosViewController.xib */; };
 		7CDEB40F14C8BC6B00518E98 /* PullRefreshHeaderView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 7CDEB40E14C8BC6B00518E98 /* PullRefreshHeaderView.xib */; };
 		7CF04758163CE5AE00A905C1 /* MBProgressHUD.m in Sources */ = {isa = PBXBuildFile; fileRef = 7CF04757163CE5AE00A905C1 /* MBProgressHUD.m */; };
 		7CF5879815D4B6F200769AA7 /* NSDate+Spread.m in Sources */ = {isa = PBXBuildFile; fileRef = 7CF5879715D4B6F200769AA7 /* NSDate+Spread.m */; };
@@ -533,6 +534,7 @@
 		7CC43471166F8CAC00E7D840 /* PhotosCollectionViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PhotosCollectionViewController.m; sourceTree = "<group>"; };
 		7CC43473166F8E0000E7D840 /* FeedCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FeedCell.h; sourceTree = "<group>"; };
 		7CC43474166F8E0000E7D840 /* FeedCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FeedCell.m; sourceTree = "<group>"; };
+		7CCBE0771670E6440030C952 /* PhotosViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = PhotosViewController.xib; sourceTree = "<group>"; };
 		7CDEB40014C8B8EA00518E98 /* PullRefreshTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PullRefreshTableViewController.h; sourceTree = "<group>"; };
 		7CDEB40114C8B8EA00518E98 /* PullRefreshTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PullRefreshTableViewController.m; sourceTree = "<group>"; };
 		7CDEB40B14C8BC5800518E98 /* PullRefreshHeaderView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PullRefreshHeaderView.h; sourceTree = "<group>"; };
@@ -953,6 +955,7 @@
 			children = (
 				7CC4346A166F8A6200E7D840 /* PhotosViewController.h */,
 				7CC4346B166F8A6200E7D840 /* PhotosViewController.m */,
+				7CCBE0771670E6440030C952 /* PhotosViewController.xib */,
 				7CC4346D166F8C9900E7D840 /* PhotosTableViewController.h */,
 				7CC4346E166F8C9900E7D840 /* PhotosTableViewController.m */,
 				7CC43473166F8E0000E7D840 /* FeedCell.h */,
@@ -1493,6 +1496,7 @@
 				7CC43465166F83BF00E7D840 /* icon-blue-list@2x.png in Resources */,
 				7CC43468166F861200E7D840 /* icon-green-edit.png in Resources */,
 				7CC43469166F861200E7D840 /* icon-green-edit@2x.png in Resources */,
+				7CCBE0781670E6440030C952 /* PhotosViewController.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

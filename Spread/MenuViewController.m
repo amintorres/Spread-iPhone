@@ -11,10 +11,13 @@
 #import "User+Spread.h"
 #import "EditViewController.h"
 #import "ReviewViewController.h"
+#import "RecentViewController.h"
+#import "PopularViewController.h"
+#import "UserViewController.h"
+
 
 
 @interface MenuViewController () <UIActionSheetDelegate, UIImagePickerControllerDelegate, UINavigationControllerDelegate>
-
 @end
 
 
@@ -48,6 +51,24 @@
         UIActionSheet* action  = [[UIActionSheet alloc] initWithTitle:nil delegate:self cancelButtonTitle:@"Cancel" destructiveButtonTitle:nil otherButtonTitles:@"Choose From Library", nil];
         [action showInView:self.view];
     }
+}
+
+- (IBAction)recentButtonTapped:(id)sender
+{
+    RecentViewController *controller = [RecentViewController new];
+    [self.navigationController pushViewController:controller animated:YES];
+}
+
+- (IBAction)popularButtonTapped:(id)sender
+{
+    PopularViewController *controller = [PopularViewController new];
+    [self.navigationController pushViewController:controller animated:YES];
+}
+
+- (IBAction)profileButtonTapped:(id)sender
+{
+    UserViewController *controller = [UserViewController new];
+    [self.navigationController pushViewController:controller animated:YES];
 }
 
 

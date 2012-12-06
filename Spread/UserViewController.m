@@ -7,10 +7,7 @@
 //
 
 #import "UserViewController.h"
-#import "FourImagesCell.h"
-#import "ServiceManager.h"
 #import "User+Spread.h"
-
 
 
 @interface UserViewController ()
@@ -19,9 +16,6 @@
 
 
 @implementation UserViewController
-
-
-
 
 
 - (void)viewDidLoad
@@ -55,7 +49,6 @@
         }
     }];
 }
-
 
 
 @end

@@ -7,6 +7,7 @@
 //
 
 #import "BaseViewController.h"
+#import "ServiceManager.h"
 
 
 @interface PhotosViewController : BaseViewController

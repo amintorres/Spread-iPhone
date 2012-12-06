@@ -27,6 +27,12 @@
 @implementation PhotosViewController
 
 
+- (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
+{
+    self = [super initWithNibName:@"PhotosViewController" bundle:nil];
+    return self;
+}
+
 - (void)viewDidLoad
 {
     [super viewDidLoad];
@@ -37,7 +43,7 @@
 - (void)viewWillAppear:(BOOL)animated
 {
     [super viewWillAppear:animated];
-    [self displayTableView];
+    [self displayCollectionView];
 }
 
 
