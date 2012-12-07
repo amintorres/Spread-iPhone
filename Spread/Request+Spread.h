@@ -12,6 +12,9 @@
 
 @interface Request (Spread)
 
+// Override: Clears requests deleted on the server.
++ (void)objectsWithArray:(NSArray*)array inContext:(NSManagedObjectContext*)context completion:(void(^)(NSArray* objects))completion;
+
 + (NSNumber *)totalAmount;
 - (NSUInteger)daysLeft;
 

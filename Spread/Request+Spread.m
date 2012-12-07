@@ -15,6 +15,21 @@
 @implementation Request (Spread)
 
 
++ (void)objectsWithArray:(NSArray*)array inContext:(NSManagedObjectContext*)context completion:(void(^)(NSArray* objects))completion;
+{
+    __block NSMutableArray *oldObjects = [[self allObjectsInContext:context] mutableCopy];
+    [super objectsWithArray:array inContext:context completion:^(NSArray* objects){
+        
+        [oldObjects removeObjectsInArray:objects];
+        for (NSManagedObject *oldObject in oldObjects) {
+            [oldObject deleteObject];
+        }
+        [context save:nil];
+        
+        completion(objects);
+    }];
+}
+
 + (NSManagedObject *)objectWithDict:(NSDictionary*)dict inContext:(NSManagedObjectContext*)context
 {
     Request* request = (Request*)[super objectWithDict:dict inContext:context];

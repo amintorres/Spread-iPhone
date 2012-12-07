@@ -209,7 +209,7 @@ static NSString* boundary = nil;
         
         if (success)
         {
-            [Photo objectsWithArray:response completion:^(NSArray *photos) {
+            [Photo objectsWithArray:response inContext:[Photo mainMOC] completion:^(NSArray *photos) {
                 completion(photos, YES, nil);
             }];
         }
@@ -226,7 +226,7 @@ static NSString* boundary = nil;
         
         if (success)
         {
-            [Photo objectsWithArray:response completion:^(NSArray *photos) {
+            [Photo objectsWithArray:response inContext:[Photo mainMOC] completion:^(NSArray *photos) {
                 completion(photos, YES, nil);
             }];
         }
@@ -245,7 +245,7 @@ static NSString* boundary = nil;
         
         if (success)
         {
-            [Photo objectsWithArray:response completion:^(NSArray *photos) {
+            [Photo objectsWithArray:response inContext:[Photo mainMOC] completion:^(NSArray *photos) {
                 completion(photos, YES, nil);
             }];
         }
@@ -265,7 +265,7 @@ static NSString* boundary = nil;
         
         if (success)
         {
-            [Request objectsWithArray:response completion:^(NSArray *requests) {
+            [Request objectsWithArray:response inContext:[Photo mainMOC] completion:^(NSArray *requests) {
                 completion(requests, YES, nil);                
             }];
         }

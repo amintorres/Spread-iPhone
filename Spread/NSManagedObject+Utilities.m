@@ -30,18 +30,6 @@
     return _mainMOC;
 }
 
-+ (NSManagedObjectContext *)privateMOC
-{
-    static NSManagedObjectContext* _privateMOC = nil;
-    static dispatch_once_t onceToken;
-    dispatch_once(&onceToken, ^{
-        _privateMOC = [[NSManagedObjectContext alloc] initWithConcurrencyType:NSPrivateQueueConcurrencyType];
-        _privateMOC.parentContext = [self mainMOC];
-    });
-    return _privateMOC;
-}
-
-
 
 #pragma mark -
 
@@ -107,28 +95,31 @@
 	return object;
 }
 
-+ (void)objectsWithArray:(NSArray*)array completion:(void(^)(NSArray* objects))completion
++ (void)objectsWithArray:(NSArray*)array inContext:(NSManagedObjectContext*)context completion:(void(^)(NSArray* objects))completion
 {
-    [[self privateMOC] performBlock:^{
+    NSManagedObjectContext *privateContext = [[NSManagedObjectContext alloc] initWithConcurrencyType:NSPrivateQueueConcurrencyType];
+    privateContext.parentContext = context;
+    
+    [privateContext performBlock:^{
         
         __block NSMutableArray *moids = [NSMutableArray arrayWithCapacity:[array count]];
         for (NSDictionary* dict in array)
         {
-            id privateMO = [self objectWithDict:dict inContext:[self privateMOC]];
-            NSManagedObjectID *moid = [privateMO objectID];
+            id objectInPrivateContext = [self objectWithDict:dict inContext:privateContext];
+            NSManagedObjectID *moid = [objectInPrivateContext objectID];
             [moids addObject:moid];
         }
-        [[self privateMOC] save:nil];
+        [privateContext save:nil];
         
-        [[self mainMOC] performBlock:^{
+        [context performBlock:^{
 
-            [[self mainMOC] save:nil];
+            [context save:nil];
 
             __block NSMutableArray *photos = [NSMutableArray arrayWithCapacity:[array count]];
             for (id moid in moids)
             {
-                id mainMO = [[self mainMOC] objectWithID:moid];
-                [photos addObject:mainMO];
+                id object = [context objectWithID:moid];
+                [photos addObject:object];
             }
             completion(photos);
         }];

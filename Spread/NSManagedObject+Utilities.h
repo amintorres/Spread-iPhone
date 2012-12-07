@@ -12,7 +12,6 @@
 @interface NSManagedObject (Utilities)
 
 + (NSManagedObjectContext *)mainMOC;
-+ (NSManagedObjectContext *)privateMOC;
 
 + (NSEntityDescription *)entityInContext:(NSManagedObjectContext*)context;
 
@@ -22,7 +21,7 @@
 + (NSManagedObject *)objectInContext:(NSManagedObjectContext*)context;
 + (NSManagedObject *)objectWithID:(NSString*)requestedID inContext:(NSManagedObjectContext*)context;
 + (NSManagedObject *)objectWithDict:(NSDictionary*)dict inContext:(NSManagedObjectContext*)context;
-+ (void)objectsWithArray:(NSArray*)array completion:(void(^)(NSArray* photos))completion;
++ (void)objectsWithArray:(NSArray*)array inContext:(NSManagedObjectContext*)context completion:(void(^)(NSArray* objects))completion;
 
 + (NSArray *)objectsWithPredicate:(NSPredicate*)predicate sortDescriptors:(NSArray*)sortDescriptors inContext:(NSManagedObjectContext*)context;
 + (NSUInteger)objectsCountWithPredicate:(NSPredicate*)predicate sortDescriptors:(NSArray*)sortDescriptors inContext:(NSManagedObjectContext*)context;
