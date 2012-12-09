@@ -41,6 +41,9 @@
 
 - (IBAction)takePhotoButtonTapped:(id)sender
 {
+    return; // temporarily disabled.
+    
+    
     if ( [UIImagePickerController isSourceTypeAvailable:UIImagePickerControllerSourceTypeCamera] )
     {
         UIActionSheet* action  = [[UIActionSheet alloc] initWithTitle:nil delegate:self cancelButtonTitle:@"Cancel" destructiveButtonTitle:nil otherButtonTitles:@"Take Photo", @"Choose From Library", nil];

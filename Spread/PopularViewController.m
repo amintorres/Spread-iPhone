@@ -26,10 +26,8 @@
     self.titleLabel.text = @"Popular\nPhotos";
 }
 
-- (void)viewDidAppear:(BOOL)animated
+- (void)reloadData
 {
-    [super viewDidAppear:animated];
-    
     [[ServiceManager sharedManager] loadPopularPhotosWithHandler:^(id response, BOOL success, NSError *error) {
         
         if (success)

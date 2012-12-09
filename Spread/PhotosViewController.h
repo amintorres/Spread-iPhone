@@ -17,4 +17,6 @@
 @property (nonatomic, strong) IBOutlet UILabel *numberOfPhotosLabel;
 @property (nonatomic, strong) NSArray *photos;
 
+- (void)reloadData;
+
 @end

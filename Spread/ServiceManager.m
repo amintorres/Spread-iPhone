@@ -14,6 +14,9 @@
 #import "NSError+Spread.h"
 #import "FacebookSDK.h"
 
+NSString * const SpreadNotificationUploadProgressChanged  = @"SpreadNotificationUploadProgressChanged";
+NSString * const SpreadNotificationUploadFinished = @"SpreadNotificationUploadFinished";
+
 static NSString* const baseURL =            @"http://dev.spread.cm/api/v1";
 static NSString* const loginPath =          @"users/login.json";
 static NSString* const facebookLoginPath =  @"fb_authenticate";
@@ -29,7 +32,6 @@ static NSString* boundary = nil;
 
 
 @interface ServiceManager ()
-
 @end
 
 
@@ -337,21 +339,58 @@ static NSString* boundary = nil;
     request.HTTPBody = postBody;
     
     
-    [NSURLConnection sendAsynchronousRequest:request queue:[NSOperationQueue mainQueue] completionHandler:^(NSURLResponse *response, NSData *data, NSError *error) {
-        
-        if (data)
-        {
-            NSError* JSONError = nil;
-            id result = [NSJSONSerialization JSONObjectWithData:data options:0 error:&JSONError];
-            NSLog(@"result: %@", result);
-            completion(nil, YES, nil);
-        }
-        else
-        {
-            NSLog(@"error: %@", error);
-            completion(nil, NO, error);
-        }
-    }];
+    [self sendPostRequest:request completionHandler:completion];
+}
+
+- (void)sendPostRequest:(NSURLRequest *)request completionHandler:(ServiceManagerHandler)completion
+{
+    [UIApplication sharedApplication].networkActivityIndicatorVisible = YES;
+    
+    __block ConnectionHelper *helper =
+    [ConnectionHelper sendAsynchronousRequest:request
+                           didReceiveResponse:^(NSURLResponse *response) {
+                               
+                               NSLog(@"NSURLResponse %@", response);
+                               
+                           } didSendData:^(float progress) {
+                               
+                               NSLog(@"Upload progress: %f", progress);
+                               [[NSNotificationCenter defaultCenter] postNotificationName:SpreadNotificationUploadProgressChanged object:self];
+                               
+                           } didWriteData:^(float progress) {
+                               
+                               NSLog(@"Download progress: %f", progress);
+                               
+                           } completion:^(id data, BOOL success, NSError *error) {
+                               
+                               if (data)
+                               {
+                                   NSError* JSONError = nil;
+                                   id result = [NSJSONSerialization JSONObjectWithData:data options:0 error:&JSONError];
+                                   NSLog(@"result: %@", result);
+                                   completion(nil, YES, nil);
+                                   [self.uploadQueue removeObject:helper];
+                               }
+                               else
+                               {
+                                   NSLog(@"error: %@", error);
+                                   completion(nil, NO, error);
+                               }
+                               
+                               [UIApplication sharedApplication].networkActivityIndicatorVisible = self.uploadQueue.count;
+                               [[NSNotificationCenter defaultCenter] postNotificationName:SpreadNotificationUploadFinished object:self];
+                           }];
+    
+    [self.uploadQueue addObject:helper];
+}
+
+- (NSMutableArray *)uploadQueue
+{
+    if (!_uploadQueue)
+    {
+        _uploadQueue = [NSMutableArray array];
+    }
+    return _uploadQueue;
 }
 
 

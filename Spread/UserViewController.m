@@ -26,10 +26,8 @@
     self.titleLabel.text = [User currentUser].name;
 }
 
-- (void)viewDidAppear:(BOOL)animated
+- (void)reloadData
 {
-    [super viewDidAppear:animated];
-    
     [[ServiceManager sharedManager] loadUserPhotosWithHandler:^(id response, BOOL success, NSError *error) {
         
         if (success)
@@ -49,6 +47,5 @@
         }
     }];
 }
-
 
 @end

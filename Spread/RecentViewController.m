@@ -26,10 +26,8 @@
     self.titleLabel.text = @"Recent\nPhotos";
 }
 
-- (void)viewDidAppear:(BOOL)animated
+- (void)reloadData
 {
-    [super viewDidAppear:animated];
-    
     [[ServiceManager sharedManager] loadRecentPhotosWithHandler:^(id response, BOOL success, NSError *error) {
         
         if (success)

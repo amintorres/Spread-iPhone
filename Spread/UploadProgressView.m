@@ -14,10 +14,6 @@
 
 @implementation UploadProgressView
 
-@synthesize progressView, textLabel, retryButton;
-@synthesize activityIndicator;
-@synthesize object;
-
 
 - (void)layoutSubviews
 {

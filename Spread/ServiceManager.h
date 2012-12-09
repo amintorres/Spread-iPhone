@@ -9,13 +9,10 @@
 #import <Foundation/Foundation.h>
 #import "Photo.h"
 #import "User.h"
+#import "ConnectionHelper.h"
 
-
-typedef enum {
-    PhotoTypeUsers = 0,
-    PhotoTypePopular,
-    PhotoTypeRecent,
-}PhotoType;
+extern NSString * const SpreadNotificationUploadProgressChanged;
+extern NSString * const SpreadNotificationUploadFinished;
 
 typedef void (^ServiceManagerHandler)(id response, BOOL success, NSError *error);
 
@@ -23,8 +20,9 @@ typedef void (^ServiceManagerHandler)(id response, BOOL success, NSError *error)
 
 @interface ServiceManager : NSObject
 
-@property (strong, nonatomic) NSString* oauthToken;
-@property (strong, nonatomic) NSString* currentUserID;
+@property (nonatomic, strong) NSString* oauthToken;
+@property (nonatomic, strong) NSString* currentUserID;
+@property (nonatomic, strong) NSMutableArray *uploadQueue;
 
 + (ServiceManager*)sharedManager;
 
@@ -41,5 +39,6 @@ typedef void (^ServiceManagerHandler)(id response, BOOL success, NSError *error)
 - (void)loadRequestsWithHandler:(ServiceManagerHandler)completion;
 
 - (void)postPhoto:(NSData *)imageData name:(NSString*)name description:(NSString*)description completionHandler:(ServiceManagerHandler)completion;
+- (void)sendPostRequest:(NSURLRequest *)request completionHandler:(ServiceManagerHandler)completion;
 
 @end
