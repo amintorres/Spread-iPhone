@@ -199,7 +199,7 @@
                             <rect key="frame" x="0.0" y="0.0" width="320" height="320"/>
                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             <subviews>
-                                <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" image="intro_background.png" translatesAutoresizingMaskIntoConstraints="NO" id="ZVS-1r-Wxf">
+                                <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" image="intro-background.png" translatesAutoresizingMaskIntoConstraints="NO" id="ZVS-1r-Wxf">
                                     <constraints>
                                         <constraint firstAttribute="height" constant="220" id="dzw-la-QW0"/>
                                     </constraints>
@@ -252,7 +252,7 @@
                                             </constraints>
                                             <fontDescription key="fontDescription" type="boldSystem" pointSize="16"/>
                                             <size key="titleShadowOffset" width="0.0" height="-1"/>
-                                            <state key="normal" title="Login with us" backgroundImage="texture_blue.png">
+                                            <state key="normal" title="Login with us" backgroundImage="texture-blue.png">
                                                 <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                                 <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                             </state>
@@ -284,7 +284,7 @@
                                                 <constraint firstAttribute="height" constant="50" id="cBp-tx-oU3"/>
                                             </constraints>
                                             <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
-                                            <state key="normal" title="Register" backgroundImage="texture_gray.png">
+                                            <state key="normal" title="Register" backgroundImage="texture-gray.png">
                                                 <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                                 <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                             </state>
@@ -1264,9 +1264,9 @@ needed</string>
         <image name="icon-spread-large.png" width="100" height="30"/>
         <image name="icon-spread.png" width="125" height="60"/>
         <image name="icon-upload.png" width="60" height="60"/>
-        <image name="intro_background.png" width="320" height="250"/>
-        <image name="texture_blue.png" width="40" height="40"/>
-        <image name="texture_gray.png" width="40" height="40"/>
+        <image name="intro-background.png" width="320" height="250"/>
+        <image name="texture-blue.png" width="40" height="40"/>
+        <image name="texture-gray.png" width="40" height="40"/>
     </resources>
     <classes>
         <class className="AppFontButton" superclassName="UIButton">
