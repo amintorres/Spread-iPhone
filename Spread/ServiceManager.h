@@ -40,5 +40,7 @@ typedef void (^ServiceManagerHandler)(id response, BOOL success, NSError *error)
 
 - (void)postPhoto:(NSData *)imageData name:(NSString*)name description:(NSString*)description completionHandler:(ServiceManagerHandler)completion;
 - (void)sendPostRequest:(NSURLRequest *)request completionHandler:(ServiceManagerHandler)completion;
+- (void)updatePhoto:(Photo *)photo;
+- (void)deletePhoto:(Photo *)photo;
 
 @end

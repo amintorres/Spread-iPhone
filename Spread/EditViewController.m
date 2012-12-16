@@ -9,14 +9,19 @@
 #import <AssetsLibrary/AssetsLibrary.h>
 #import <QuartzCore/QuartzCore.h>
 #import "EditViewController.h"
+#import "PlaceholderTextView.h"
 #import "ServiceManager.h"
-#import "UserDefaultHelper.h"
-
+#import "NSUserDefaults+Spread.h"
 
 
 
 @interface EditViewController () <UIAlertViewDelegate>
-
+@property (strong, nonatomic) IBOutlet UITextField *titleTextField;
+@property (strong, nonatomic) IBOutlet UITextField *tagsTextField;
+@property (strong, nonatomic) IBOutlet PlaceholderTextView *descriptionTextView;
+@property (strong, nonatomic) IBOutlet UISwitch *rememberDetailsSwitch;
+@property (strong, nonatomic) IBOutlet UILabel *rememberDetailsLabel;
+@property (strong, nonatomic) IBOutlet UIButton *deleteButton;
 @end
 
 
@@ -30,69 +35,56 @@
 {
     [super viewDidLoad];
     
-//    [self registerForKeyboardNotifications];
-    
     [[UIApplication sharedApplication] setStatusBarHidden:NO withAnimation:UIStatusBarAnimationSlide];
 
-    
     self.descriptionTextView.placeholder = @"Add as much detail as possible";
     
-//    if ( self.editMode == EditModeCreate )
-//    {
-//        saveButton.title = @"Save";
-//        tableView.tableFooterView = nil;
-//        
-//        self.photo = [Photo object];
-//        
-//        if ( [UserDefaultHelper shouldStoreDetails] )
-//        {
-//            [photo loadDetailsFromUserDefault];
-//            rememberDetailSwitch.on = YES;
-//        }
-//    }
-//    else
-//    {
-//        saveButton.title = @"Update";
-//        deleteButton.layer.masksToBounds = YES;
-//        deleteButton.layer.cornerRadius = 5.0;
-//        deleteButton.layer.borderWidth = 2.0;
-//        deleteButton.layer.borderColor = [[UIColor darkGrayColor] CGColor];
-//    }
-    
-//    titleTextField.text = photo.title;
-//    tagsTextField.text = photo.csvTags;
-//    descriptionTextView.text = photo.photoDescription;
+    if ( self.editMode == EditModeCreate )
+    {
+        self.deleteButton.hidden = YES;
+        self.rememberDetailsSwitch.hidden = NO;
+        self.rememberDetailsLabel.hidden = NO;
+
+        if ([NSUserDefaults standardUserDefaults].shouldStoreDetails)
+        {
+            self.rememberDetailsSwitch.on = YES;
+            
+            self.titleTextField.text = [NSUserDefaults standardUserDefaults].storedTitle;
+            self.tagsTextField.text = [NSUserDefaults standardUserDefaults].storedTags;
+            self.descriptionTextView.text = [NSUserDefaults standardUserDefaults].storedDescription;
+        }
+        else
+        {
+            self.rememberDetailsSwitch.on = NO;
+
+            self.titleTextField.text = nil;
+            self.tagsTextField.text = nil;
+            self.descriptionTextView.text = nil;
+        }
+    }
+    else
+    {
+        self.deleteButton.hidden = NO;
+        self.rememberDetailsSwitch.hidden = YES;
+        self.rememberDetailsLabel.hidden = YES;
+
+        self.titleTextField.text = self.photo.name;
+        self.tagsTextField.text = self.photo.csvTagsString;
+        self.descriptionTextView.text = self.photo.photoDescription;
+    }
 }
 
 - (void)viewWillDisappear:(BOOL)animated
 {
-//    if ( [UserDefaultHelper shouldStoreDetails] )
-//    {
-//        [photo storeDetailsToUserDefault];
-//    }
+    if ([NSUserDefaults standardUserDefaults].shouldStoreDetails)
+    {
+        [NSUserDefaults standardUserDefaults].storedTitle = self.titleTextField.text;
+        [NSUserDefaults standardUserDefaults].storedTags = self.tagsTextField.text;
+        [NSUserDefaults standardUserDefaults].storedDescription = self.descriptionTextView.text;
+        [[NSUserDefaults standardUserDefaults] synchronize];
+    }
 
     [super viewWillDisappear:animated];
-}
-
-- (void)postPhotoAtURL:(NSURL*)assetURL
-{
-    ALAssetsLibrary *assetsLibrary = [[ALAssetsLibrary alloc] init];
-
-    [assetsLibrary assetForURL:assetURL resultBlock:^(ALAsset *asset) {
-        
-        ALAssetRepresentation *imageRepresentation = [asset defaultRepresentation];
-        Byte *buffer = (Byte*)malloc(imageRepresentation.size);
-        NSUInteger buffered = [imageRepresentation getBytes:buffer fromOffset:0.0 length:imageRepresentation.size error:nil];
-        NSData *data = [NSData dataWithBytesNoCopy:buffer length:buffered freeWhenDone:YES];
-        [[ServiceManager sharedManager] postPhoto:data name:self.titleTextField.text description:self.descriptionTextView.text completionHandler:^(id response, BOOL success, NSError *error) {
-         
-            [self dismissModalViewControllerAnimated:YES];
-        }];
-        
-    } failureBlock:^(NSError *error) {
-        
-        NSLog(@"Error loading image: %@", error);
-    }]; 
 }
 
 
@@ -105,19 +97,6 @@
 
 - (IBAction)saveButtonTapped:(id)sender
 {
-//    photo.capturedDate = [NSDate date];
-//    photo.title = titleTextField.text;
-//    photo.csvTags = tagsTextField.text;
-//    photo.photoDescription = descriptionTextView.text;
-//    
-//    NSError* error = nil;
-//    if ( ![photo validate:&error] )
-//    {
-//        UIAlertView* alert = [[UIAlertView alloc] initWithTitle:nil message:[error localizedDescription] delegate:nil cancelButtonTitle:@"Dismiss" otherButtonTitles:nil];
-//        [alert show];
-//        return;
-//    }
-
     if ( self.editMode == EditModeCreate )
     {
         UIImage* image = [self.mediaInfo objectForKey:UIImagePickerControllerOriginalImage];
@@ -139,35 +118,70 @@
             [self postPhotoAtURL:assetURL];
         }
     }
-//    else
-//    {
-//        [ServiceManager updatePhoto:photo];
-//    }
+    else
+    {
+        [[ServiceManager sharedManager] updatePhoto:self.photo];
+    }
     
     [self dismissModalViewControllerAnimated:YES];
 }
 
 - (IBAction)deleteButtonTapped:(id)sender
 {
-//    UIAlertView* alert = [[UIAlertView alloc] initWithTitle:@"Deleting this photo" message:@"Are you sure you want to delete this photo?" delegate:self cancelButtonTitle:@"Cancel" otherButtonTitles:@"Yes, Delete", nil];
-//    
-//    [alert show];
+    [[[UIAlertView alloc] initWithTitle:@"Deleting this photo"
+                                message:@"Are you sure you want to delete this photo?"
+                               delegate:self
+                      cancelButtonTitle:@"Cancel"
+                      otherButtonTitles:@"Yes, Delete", nil] show];
 }
-//
-//- (void)alertView:(UIAlertView *)alertView didDismissWithButtonIndex:(NSInteger)buttonIndex
-//{
-//    if ( buttonIndex != alertView.cancelButtonIndex )
-//    {
-//        [ServiceManager deletePhoto:photo];
-//    }
-//    
-//    [self dismissModalViewControllerAnimated:YES];
-//}
 
-//- (IBAction)rememberDetailsSwitchValueChanged:(UISwitch*)sender
-//{
-//    [UserDefaultHelper setShouldStoreDetails:sender.isOn];
-//}
+- (IBAction)rememberDetailsSwitchValueChanged:(UISwitch*)sender
+{
+    [NSUserDefaults standardUserDefaults].shouldStoreDetails = sender.isOn;
+}
+
+
+#pragma mark - Post/Delete
+
+- (void)postPhotoAtURL:(NSURL*)assetURL
+{
+    ALAssetsLibrary *assetsLibrary = [[ALAssetsLibrary alloc] init];
+    
+    [assetsLibrary assetForURL:assetURL resultBlock:^(ALAsset *asset) {
+        
+        ALAssetRepresentation *imageRepresentation = [asset defaultRepresentation];
+        Byte *buffer = (Byte*)malloc(imageRepresentation.size);
+        NSUInteger buffered = [imageRepresentation getBytes:buffer fromOffset:0.0 length:imageRepresentation.size error:nil];
+        NSData *data = [NSData dataWithBytesNoCopy:buffer length:buffered freeWhenDone:YES];
+        
+        [[ServiceManager sharedManager] postPhoto:data name:self.titleTextField.text description:self.descriptionTextView.text completionHandler:^(id response, BOOL success, NSError *error) {
+            
+            [self dismissModalViewControllerAnimated:YES];
+        }];
+        
+    } failureBlock:^(NSError *error) {
+        
+        NSLog(@"Error loading image: %@", error);
+    }];
+}
+
+- (void)updatePhoto:(Photo *)photo
+{
+    //TODO:
+}
+
+
+#pragma mark - UIAlertView
+
+- (void)alertView:(UIAlertView *)alertView didDismissWithButtonIndex:(NSInteger)buttonIndex
+{
+    if ( buttonIndex != alertView.cancelButtonIndex )
+    {
+        [[ServiceManager sharedManager] deletePhoto:self.photo];
+    }
+    
+    [self dismissModalViewControllerAnimated:YES];
+}
 
 
 #pragma mark - TableView
@@ -177,124 +191,8 @@
     return @"Details";
 }
 
-//- (CGFloat)tableView:(UITableView *)tableView heightForFooterInSection:(NSInteger)section
-//{
-//    if ( editMode == EditModeCreate )
-//    {
-//        return sectionFooterView.bounds.size.height;    
-//    }
-//    else
-//    {
-//        return 5.0;
-//    }
-//}
 
-//- (UIView *)tableView:(UITableView *)tableView viewForFooterInSection:(NSInteger)section
-//{
-//    if ( editMode == EditModeCreate )
-//    {
-//        return sectionFooterView;       
-//    }
-//    else
-//    {
-//        return nil;
-//    }
-//}
-//
-//- (NSInteger)tableView:(UITableView *)table numberOfRowsInSection:(NSInteger)section
-//{
-//    return EditTableViewRowCount;
-//}
-//
-//- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
-//{
-//    switch (indexPath.row)
-//    {
-//        case EditTableViewRowTitle:
-//        case EditTableViewRowTags:
-//            return 44;
-//            
-//        case EditTableViewRowDescription:
-//        default:
-//            return descriptionTextView.contentSize.height + 45;
-//    }
-//}
-//
-//- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
-//{
-//	static NSString* reuseIdentifier = @"EditTableViewCell";
-//	UITableViewCell* cell = [self.tableView dequeueReusableCellWithIdentifier:reuseIdentifier];
-//	if (!cell)
-//    {
-//        cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:reuseIdentifier];
-//        cell.selectionStyle = UITableViewCellSelectionStyleNone;
-//        cell.backgroundColor = [UIColor whiteColor];
-//	}
-//    
-//
-//    CGRect rect = CGRectInset(cell.contentView.bounds, 10, 5);
-//
-//    switch (indexPath.row)
-//    {
-//        case EditTableViewRowTitle:
-//            titleView.frame = rect;
-//            [cell.contentView addSubview:titleView];
-//            break;
-//            
-//        case EditTableViewRowTags:
-//            tagsView.frame = rect;
-//            [cell.contentView addSubview:tagsView];
-//            break;
-//            
-//        case EditTableViewRowDescription:
-//        default:
-//            descriptionView.frame = rect;
-//            [cell.contentView addSubview:descriptionView];
-//            break;
-//    }
-//
-//	return cell;
-//}
-
-
-//
-//#pragma mark -
-//#pragma mark Keyboard
-//
-//- (void)registerForKeyboardNotifications
-//{
-//    [[NSNotificationCenter defaultCenter] addObserverForName:UIKeyboardDidShowNotification object:nil queue:nil usingBlock:^(NSNotification* notification){
-//        
-//        CGSize keyboardSize = [[[notification userInfo] objectForKey:UIKeyboardFrameBeginUserInfoKey] CGRectValue].size;
-//        UIEdgeInsets contentInsets = UIEdgeInsetsMake(0, 0, keyboardSize.height, 0);
-//        tableView.contentInset = contentInsets;
-//        tableView.scrollIndicatorInsets = contentInsets;        
-//    }];
-//    
-//    [[NSNotificationCenter defaultCenter] addObserverForName:UIKeyboardWillHideNotification object:nil queue:nil usingBlock:^(NSNotification* notification){
-//        
-//        UIEdgeInsets contentInsets = UIEdgeInsetsZero;
-//        tableView.contentInset = contentInsets;
-//        tableView.scrollIndicatorInsets = contentInsets;
-//    }];
-//}
-//
-//
-//#pragma mark -
-//#pragma mark TextField Delegate
-//
-//- (void)textFieldDidBeginEditing:(UITextField *)textField
-//{
-//    self.activeResponder = textField;
-//    
-//    NSIndexPath* indexPath = [tableView indexPathForCell:(UITableViewCell*)textField.superview.superview];
-//    [tableView scrollToRowAtIndexPath:indexPath atScrollPosition:UITableViewScrollPositionTop animated:YES];
-//}
-//
-//- (void)textFieldDidEndEditing:(UITextField *)textField
-//{
-//    self.activeResponder = nil;
-//}
+#pragma mark - TextField Delegate
 
 - (BOOL)textFieldShouldReturn:(UITextField *)textField
 {
@@ -302,22 +200,8 @@
     return YES;
 }
 
-//
-//#pragma mark -
-//#pragma mark TextView Delegate
-//
-//- (void)textViewDidBeginEditing:(UITextView *)textView
-//{
-//    self.activeResponder = textView;
-//    
-//    NSIndexPath* indexPath = [tableView indexPathForCell:(UITableViewCell*)textView.superview.superview];
-//    [tableView scrollToRowAtIndexPath:indexPath atScrollPosition:UITableViewScrollPositionTop animated:YES];
-//}
-//
-//- (void)textViewDidEndEditing:(UITextView *)textView
-//{
-//    self.activeResponder = nil;
-//}
+
+#pragma mark - TextView Delegate
 
 - (BOOL)textView:(UITextView *)textView shouldChangeTextInRange:(NSRange)range replacementText:(NSString *)text
 {

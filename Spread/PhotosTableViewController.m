@@ -9,9 +9,10 @@
 #import "PhotosTableViewController.h"
 #import "FeedCell.h"
 #import "Photo.h"
+#import "EditViewController.h"
 
 
-@interface PhotosTableViewController ()
+@interface PhotosTableViewController () <FeedCellDelegate>
 
 @end
 
@@ -48,6 +49,7 @@
 {
     FeedCell *cell = [tableView dequeueReusableCellWithIdentifier:@"PhotoCell" forIndexPath:indexPath];
     cell.photo = self.photos[indexPath.row];
+    cell.delegate = self;
     return cell;
 }
 
@@ -101,6 +103,16 @@
      // Pass the selected object to the new view controller.
      [self.navigationController pushViewController:detailViewController animated:YES];
      */
+}
+
+
+- (void)editPhoto:(Photo *)photo atFeedCell:(FeedCell *)cell
+{
+    EditViewController* controller = [[UIStoryboard storyboardWithName:@"MainStoryboard" bundle:nil] instantiateViewControllerWithIdentifier:@"EditViewController"];
+    controller.photo = photo;
+    controller.editMode = EditModeUpdate;
+    
+    [self presentViewController:controller animated:YES completion:NULL];
 }
 
 @end

@@ -10,11 +10,10 @@
 #import "PhotosCollectionViewController.h"
 #import "PhotosTableViewController.h"
 #import "UploadViewController.h"
-#import "EditViewController.h"
-#import "ReviewViewController.h"
+#import "CameraManager.h"
 
 
-@interface PhotosViewController () <UploadViewControllerDelegate, UIActionSheetDelegate, UIImagePickerControllerDelegate, UINavigationControllerDelegate>
+@interface PhotosViewController () <UploadViewControllerDelegate>
 @property (nonatomic, strong) IBOutlet UIButton *displayModeButton;
 @property (nonatomic, strong) IBOutlet UIView *headerView;
 @property (nonatomic, strong) IBOutlet UIView *contentView;
@@ -45,12 +44,13 @@
     
     self.uploadViewController = [UploadViewController new];
     self.uploadViewController.delegate = self;
+
+    [self displayCollectionView];
 }
 
 - (void)viewWillAppear:(BOOL)animated
 {
     [super viewWillAppear:animated];
-    [self displayCollectionView];
     
     [self.uploadViewController update];
 }
@@ -106,67 +106,7 @@
 
 - (IBAction)sumbitButtonTapped:(id)sender
 {
-    if ( [UIImagePickerController isSourceTypeAvailable:UIImagePickerControllerSourceTypeCamera] )
-    {
-        UIActionSheet* action  = [[UIActionSheet alloc] initWithTitle:nil delegate:self cancelButtonTitle:@"Cancel" destructiveButtonTitle:nil otherButtonTitles:@"Take Photo", @"Choose From Library", nil];
-        [action showInView:self.view];
-    }
-    else
-    {
-        UIActionSheet* action  = [[UIActionSheet alloc] initWithTitle:nil delegate:self cancelButtonTitle:@"Cancel" destructiveButtonTitle:nil otherButtonTitles:@"Choose From Library", nil];
-        [action showInView:self.view];
-    }
-}
-
-#pragma mark - UIActionSheet Delegate
-
-- (void)actionSheet:(UIActionSheet *)actionSheet didDismissWithButtonIndex:(NSInteger)buttonIndex
-{
-    if ( buttonIndex == actionSheet.cancelButtonIndex )
-    {
-        return;
-    }
-    
-    
-    UIImagePickerController* imagePicker = [[UIImagePickerController alloc] init];
-    
-    if ( [UIImagePickerController isSourceTypeAvailable:UIImagePickerControllerSourceTypeCamera] && buttonIndex == actionSheet.firstOtherButtonIndex )
-    {
-        imagePicker.sourceType = UIImagePickerControllerSourceTypeCamera;
-    }
-    else
-    {
-        imagePicker.sourceType = UIImagePickerControllerSourceTypePhotoLibrary;
-    }
-    
-    imagePicker.delegate = self;
-    imagePicker.allowsEditing = NO;
-    [self presentModalViewController:imagePicker animated:YES];
-}
-
-
-#pragma mark - UIImagePickerController Delegate
-
-- (void)imagePickerController:(UIImagePickerController *)picker didFinishPickingMediaWithInfo:(NSDictionary *)info
-{
-    if ( picker.sourceType == UIImagePickerControllerSourceTypeCamera )
-    {
-        EditViewController* editViewController = [[UIStoryboard storyboardWithName:@"MainStoryboard" bundle:nil] instantiateViewControllerWithIdentifier:@"EditViewController"];
-        editViewController.mediaInfo = info;
-        editViewController.editMode = EditModeCreate;
-        [picker pushViewController:editViewController animated:YES];
-    }
-    else
-    {
-        ReviewViewController* reviewViewController = [[ReviewViewController alloc] init];
-        reviewViewController.mediaInfo = info;
-        [picker pushViewController:reviewViewController animated:YES];
-    }
-}
-
-- (void)imagePickerControllerDidCancel:(UIImagePickerController *)picker
-{
-    [self dismissModalViewControllerAnimated:YES];
+    [[CameraManager sharedManager] launchImagePickerInView:self];
 }
 
 
@@ -194,6 +134,7 @@
     
     self.collectionViewController.photos = self.photos;
     self.collectionView.frame = self.contentView.bounds;
+    [self addChildViewController:self.collectionViewController];
     [self.contentView addSubview:self.collectionView];
 }
 
@@ -203,6 +144,7 @@
     
     self.tableViewController.photos = self.photos;
     self.tableView.frame = self.contentView.bounds;
+    [self addChildViewController:self.tableViewController];
     [self.contentView addSubview:self.tableView];
 }
 

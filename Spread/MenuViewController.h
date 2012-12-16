@@ -8,10 +8,11 @@
 
 #import <UIKit/UIKit.h>
 
+
 @interface MenuViewController : UIViewController
 
 @property (strong, nonatomic) IBOutlet UIButton *profileButton;
 
-- (IBAction)logout:(id)sender;
+- (void)showProfileView;
 
 @end

@@ -10,10 +10,19 @@
 #import "Photo.h"
 
 
+
+@protocol FeedCellDelegate;
+
 @interface FeedCell : UITableViewCell
 
 @property (nonatomic, strong) IBOutlet UIImageView *largeImageView;
 @property (nonatomic, strong) IBOutlet UILabel *descriptionLabel;
 @property (nonatomic, strong) Photo *photo;
+@property (nonatomic, weak) id <FeedCellDelegate> delegate;
 
+@end
+
+
+@protocol FeedCellDelegate <NSObject>
+- (void)editPhoto:(Photo *)photo atFeedCell:(FeedCell *)cell;
 @end

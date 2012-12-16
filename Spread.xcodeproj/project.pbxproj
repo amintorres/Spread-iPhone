@@ -95,7 +95,6 @@
 		7C7F399415CE2CED00EE18DF /* Spread.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 7C7F399215CE2CED00EE18DF /* Spread.xcdatamodeld */; };
 		7C7F399715CE2E7000EE18DF /* ServiceManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 7C8D9BC314A2994500D1D5DC /* ServiceManager.m */; };
 		7C7F399B15CE321B00EE18DF /* NSDictionary+Utilities.m in Sources */ = {isa = PBXBuildFile; fileRef = 7C7F399A15CE321B00EE18DF /* NSDictionary+Utilities.m */; };
-		7C7F7AB514AB74AE00652401 /* EditViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 7C7F7AB314AB74AE00652401 /* EditViewController.xib */; };
 		7C7F7AB714ABAEB000652401 /* AssetsLibrary.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7C7F7AB614ABAEB000652401 /* AssetsLibrary.framework */; };
 		7C85D1D114E7826C0048813E /* icon.png in Resources */ = {isa = PBXBuildFile; fileRef = 7C2C001014D4946B00D617D8 /* icon.png */; };
 		7C85D1D214E782700048813E /* icon@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 7C2C001214D4946F00D617D8 /* icon@2x.png */; };
@@ -119,6 +118,8 @@
 		7C9F93E0149960C400126908 /* CoreData.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7C9F93B9149960C300126908 /* CoreData.framework */; };
 		7C9F93E8149960C400126908 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 7C9F93E6149960C400126908 /* InfoPlist.strings */; };
 		7C9F93EB149960C400126908 /* SpreadTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 7C9F93EA149960C400126908 /* SpreadTests.m */; };
+		7CA359D1167E3D1100117423 /* CameraManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 7CA359D0167E3D1100117423 /* CameraManager.m */; };
+		7CA359D4167E525E00117423 /* NSUserDefaults+Spread.m in Sources */ = {isa = PBXBuildFile; fileRef = 7CA359D3167E525E00117423 /* NSUserDefaults+Spread.m */; };
 		7CAC9E8015D8587500E30562 /* libfacebook_ios_sdk.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 7CAC9E7D15D8586100E30562 /* libfacebook_ios_sdk.a */; };
 		7CC36851164575A800F9409D /* RequestDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7CC36850164575A800F9409D /* RequestDetailViewController.m */; };
 		7CC3685316457D8800F9409D /* CoreText.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7CC3685216457D8800F9409D /* CoreText.framework */; };
@@ -237,8 +238,6 @@
 		7C2A3F2D1670DA99008D6DD2 /* ThumbCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ThumbCell.m; sourceTree = "<group>"; };
 		7C2C001014D4946B00D617D8 /* icon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = icon.png; path = ../../icon.png; sourceTree = "<group>"; };
 		7C2C001214D4946F00D617D8 /* icon@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "icon@2x.png"; path = "../../icon@2x.png"; sourceTree = "<group>"; };
-		7C2CB64614BF2D3B006727FD /* UserDefaultHelper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UserDefaultHelper.h; sourceTree = "<group>"; };
-		7C2CB64714BF2D3B006727FD /* UserDefaultHelper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UserDefaultHelper.m; sourceTree = "<group>"; };
 		7C2CFFAC14D4677600D617D8 /* WelcomeViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WelcomeViewController.h; sourceTree = "<group>"; };
 		7C2CFFAD14D4677600D617D8 /* WelcomeViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WelcomeViewController.m; sourceTree = "<group>"; };
 		7C2CFFAE14D4677600D617D8 /* WelcomeViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = WelcomeViewController.xib; sourceTree = "<group>"; };
@@ -339,7 +338,6 @@
 		7C7F399A15CE321B00EE18DF /* NSDictionary+Utilities.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSDictionary+Utilities.m"; sourceTree = "<group>"; };
 		7C7F7AB114AB74AE00652401 /* EditViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EditViewController.h; sourceTree = "<group>"; };
 		7C7F7AB214AB74AE00652401 /* EditViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EditViewController.m; sourceTree = "<group>"; };
-		7C7F7AB314AB74AE00652401 /* EditViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = EditViewController.xib; sourceTree = "<group>"; };
 		7C7F7AB614ABAEB000652401 /* AssetsLibrary.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AssetsLibrary.framework; path = System/Library/Frameworks/AssetsLibrary.framework; sourceTree = SDKROOT; };
 		7C81998B14C1187B0019AB8E /* User+Spread.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "User+Spread.h"; sourceTree = "<group>"; };
 		7C81998C14C1187B0019AB8E /* User+Spread.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "User+Spread.m"; sourceTree = "<group>"; };
@@ -379,6 +377,10 @@
 		7C9F93E7149960C400126908 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		7C9F93E9149960C400126908 /* SpreadTests.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SpreadTests.h; sourceTree = "<group>"; };
 		7C9F93EA149960C400126908 /* SpreadTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SpreadTests.m; sourceTree = "<group>"; };
+		7CA359CF167E3D1100117423 /* CameraManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CameraManager.h; sourceTree = "<group>"; };
+		7CA359D0167E3D1100117423 /* CameraManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CameraManager.m; sourceTree = "<group>"; };
+		7CA359D2167E525E00117423 /* NSUserDefaults+Spread.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSUserDefaults+Spread.h"; sourceTree = "<group>"; };
+		7CA359D3167E525E00117423 /* NSUserDefaults+Spread.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSUserDefaults+Spread.m"; sourceTree = "<group>"; };
 		7CAC9E7415D8586100E30562 /* facebook-ios-sdk.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = "facebook-ios-sdk.xcodeproj"; path = "facebook-ios-sdk/src/facebook-ios-sdk.xcodeproj"; sourceTree = "<group>"; };
 		7CC3684F164575A800F9409D /* RequestDetailViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RequestDetailViewController.h; sourceTree = "<group>"; };
 		7CC36850164575A800F9409D /* RequestDetailViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RequestDetailViewController.m; sourceTree = "<group>"; };
@@ -501,7 +503,6 @@
 				7CFAFA1314C38DA500597A6D /* ReviewViewController.xib */,
 				7C7F7AB114AB74AE00652401 /* EditViewController.h */,
 				7C7F7AB214AB74AE00652401 /* EditViewController.m */,
-				7C7F7AB314AB74AE00652401 /* EditViewController.xib */,
 				7C5DA10F1674E2C3002D340C /* UploadViewController.h */,
 				7C5DA1101674E2C3002D340C /* UploadViewController.m */,
 				7C5DA1111674E2C3002D340C /* UploadViewController.xib */,
@@ -619,7 +620,6 @@
 				7C6CFBF214BD2BF00048644C /* UI Elements */,
 				7C86FF8B14AF8692001B907A /* Categories */,
 				7CE85ADC14A217BA002874EA /* Utilities */,
-				7C9890A314A041A8009E22F1 /* Data Model */,
 				7C62EA1B14CCB5400003FFF4 /* HTML */,
 			);
 			name = OLD;
@@ -649,6 +649,10 @@
 				7C8D9BC314A2994500D1D5DC /* ServiceManager.m */,
 				7C5DA11F1674EFF9002D340C /* ConnectionHelper.h */,
 				7C5DA1201674EFF9002D340C /* ConnectionHelper.m */,
+				7CA359CF167E3D1100117423 /* CameraManager.h */,
+				7CA359D0167E3D1100117423 /* CameraManager.m */,
+				7CA359D2167E525E00117423 /* NSUserDefaults+Spread.h */,
+				7CA359D3167E525E00117423 /* NSUserDefaults+Spread.m */,
 			);
 			name = Utilities;
 			sourceTree = "<group>";
@@ -835,13 +839,6 @@
 			name = "Recent/Popular/User Photo";
 			sourceTree = "<group>";
 		};
-		7C9890A314A041A8009E22F1 /* Data Model */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			name = "Data Model";
-			sourceTree = "<group>";
-		};
 		7C9F93A4149960C300126908 = {
 			isa = PBXGroup;
 			children = (
@@ -954,8 +951,6 @@
 			children = (
 				7CE85ADD14A21804002874EA /* SpreadAPIDefinition.h */,
 				7CE85ADE14A21804002874EA /* SpreadAPIDefinition.m */,
-				7C2CB64614BF2D3B006727FD /* UserDefaultHelper.h */,
-				7C2CB64714BF2D3B006727FD /* UserDefaultHelper.m */,
 			);
 			name = Utilities;
 			sourceTree = "<group>";
@@ -1159,7 +1154,6 @@
 			files = (
 				7C9F93C0149960C300126908 /* InfoPlist.strings in Resources */,
 				7C9F93D2149960C300126908 /* MasterViewController.xib in Resources */,
-				7C7F7AB514AB74AE00652401 /* EditViewController.xib in Resources */,
 				7C86FF8614AF6FF5001B907A /* AboutViewController.xib in Resources */,
 				7C57F26D14BFA5A300906DE8 /* Entitlements.plist in Resources */,
 				7CFAFA1514C38DA500597A6D /* ReviewViewController.xib in Resources */,
@@ -1322,6 +1316,8 @@
 				7C2A3F2E1670DA99008D6DD2 /* ThumbCell.m in Sources */,
 				7C5DA1121674E2C3002D340C /* UploadViewController.m in Sources */,
 				7C5DA1211674EFF9002D340C /* ConnectionHelper.m in Sources */,
+				7CA359D1167E3D1100117423 /* CameraManager.m in Sources */,
+				7CA359D4167E525E00117423 /* NSUserDefaults+Spread.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

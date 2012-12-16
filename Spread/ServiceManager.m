@@ -384,6 +384,16 @@ static NSString* boundary = nil;
     [self.uploadQueue addObject:helper];
 }
 
+- (void)updatePhoto:(Photo *)photo
+{
+    //TODO:
+}
+
+- (void)deletePhoto:(Photo *)photo
+{
+    //TODO:
+}
+
 - (NSMutableArray *)uploadQueue
 {
     if (!_uploadQueue)

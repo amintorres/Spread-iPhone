@@ -52,4 +52,12 @@
     return @"id";
 }
 
+- (NSString *)csvTagsString
+{
+    NSSortDescriptor *sortDescriptor = [NSSortDescriptor sortDescriptorWithKey:@"name" ascending:YES];
+    NSArray *sortedTags = [self.tags sortedArrayUsingDescriptors:@[sortDescriptor]];
+    NSString * csvTagsString = [sortedTags componentsJoinedByString:@", "];
+    return csvTagsString;
+}
+
 @end

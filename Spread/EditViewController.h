@@ -8,31 +8,17 @@
 
 #import <UIKit/UIKit.h>
 #import "Photo+Spread.h"
-#import "PlaceholderTextView.h"
 
-
-typedef enum{
+typedef NS_ENUM(NSUInteger, EditMode){
     EditModeCreate = 0,
-    EditModeUpdate
-}EditMode;
+    EditModeUpdate,
+};
 
 
 @interface EditViewController : UITableViewController
 
-@property (strong, nonatomic) IBOutlet UITextField *titleTextField;
-@property (strong, nonatomic) IBOutlet UITextField *tagsTextField;
-@property (strong, nonatomic) IBOutlet PlaceholderTextView *descriptionTextView;
-@property (strong, nonatomic) IBOutlet UISwitch *rememberDetailSwitch;
-@property (strong, nonatomic) IBOutlet UIButton *saveButton;
-@property (strong, nonatomic) IBOutlet UIButton *cancelButton;
-@property (strong, nonatomic) IBOutlet UIButton *deleteButton;
 @property (strong, nonatomic) NSDictionary* mediaInfo;
 @property (strong, nonatomic) Photo *photo;
 @property (nonatomic) EditMode editMode;
-
-- (IBAction)cancelButtonTapped:(id)sender;
-- (IBAction)saveButtonTapped:(id)sender;
-- (IBAction)deleteButtonTapped:(id)sender;
-- (IBAction)rememberDetailsSwitchValueChanged:(UISwitch*)sender;
 
 @end

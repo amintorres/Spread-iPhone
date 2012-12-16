@@ -8,6 +8,7 @@
 
 #import "FeedCell.h"
 #import "UIImageView+WebCache.h"
+#import "EditViewController.h"
 
 
 @implementation FeedCell
@@ -30,6 +31,11 @@
 
     CGFloat height = CGRectGetMinY(self.descriptionLabel.frame) + textSize.height + 15.0;
     return height;
+}
+
+- (IBAction)editButtonTapped:(id)sender
+{
+    [self.delegate editPhoto:self.photo atFeedCell:self];
 }
 
 

@@ -12,4 +12,6 @@
 
 @interface Photo (Spread)
 
+@property (nonatomic, strong, readonly) NSString *csvTagsString;
+
 @end

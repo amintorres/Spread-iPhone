@@ -401,13 +401,17 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="0.94999999999999996" alpha="1" colorSpace="calibratedWhite"/>
                         <view key="tableHeaderView" contentMode="scaleToFill" id="a7p-bD-CPZ">
-                            <rect key="frame" x="0.0" y="0.0" width="320" height="60"/>
+                            <rect key="frame" x="0.0" y="0.0" width="320" height="70"/>
                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             <subviews>
                                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="F4d-Uq-U7z">
+                                    <constraints>
+                                        <constraint firstAttribute="width" constant="80" id="cbX-lI-LXa"/>
+                                        <constraint firstAttribute="height" constant="44" id="syf-s4-fEd"/>
+                                    </constraints>
                                     <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
-                                    <state key="normal" title="Cancel">
-                                        <color key="titleColor" red="0.19607843459999999" green="0.30980393290000002" blue="0.52156865600000002" alpha="1" colorSpace="calibratedRGB"/>
+                                    <state key="normal" title="Cancel" backgroundImage="texture-gray.png">
+                                        <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                         <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                     </state>
                                     <state key="highlighted">
@@ -418,9 +422,12 @@
                                     </connections>
                                 </button>
                                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Nfz-hS-Q4V">
+                                    <constraints>
+                                        <constraint firstAttribute="width" constant="80" id="aJS-9j-K3Y"/>
+                                    </constraints>
                                     <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
-                                    <state key="normal" title="Save">
-                                        <color key="titleColor" red="0.19607843459999999" green="0.30980393290000002" blue="0.52156865600000002" alpha="1" colorSpace="calibratedRGB"/>
+                                    <state key="normal" title="Save" backgroundImage="texture-blue.png">
+                                        <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                         <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                     </state>
                                     <state key="highlighted">
@@ -433,16 +440,34 @@
                             </subviews>
                             <color key="backgroundColor" white="0.94999999999999996" alpha="1" colorSpace="calibratedWhite"/>
                             <constraints>
-                                <constraint firstItem="Nfz-hS-Q4V" firstAttribute="baseline" secondItem="F4d-Uq-U7z" secondAttribute="baseline" type="default" id="31r-Uc-bQs"/>
-                                <constraint firstAttribute="trailing" secondItem="Nfz-hS-Q4V" secondAttribute="trailing" constant="26" id="gP3-Jy-hGl"/>
-                                <constraint firstItem="F4d-Uq-U7z" firstAttribute="leading" secondItem="a7p-bD-CPZ" secondAttribute="leading" constant="129" id="gQC-C6-Wfw"/>
-                                <constraint firstItem="F4d-Uq-U7z" firstAttribute="top" secondItem="a7p-bD-CPZ" secondAttribute="top" constant="8" id="rQ4-0L-WZ5"/>
+                                <constraint firstItem="Nfz-hS-Q4V" firstAttribute="leading" secondItem="F4d-Uq-U7z" secondAttribute="trailing" constant="8" symbolic="YES" type="default" id="Byp-f9-kEM"/>
+                                <constraint firstItem="F4d-Uq-U7z" firstAttribute="leading" secondItem="a7p-bD-CPZ" secondAttribute="leading" constant="142" id="O9J-B4-efZ"/>
+                                <constraint firstItem="Nfz-hS-Q4V" firstAttribute="bottom" secondItem="F4d-Uq-U7z" secondAttribute="bottom" type="default" id="T5x-a5-gvI"/>
+                                <constraint firstItem="F4d-Uq-U7z" firstAttribute="centerY" secondItem="a7p-bD-CPZ" secondAttribute="centerY" type="default" id="WWC-e0-kEJ"/>
+                                <constraint firstItem="Nfz-hS-Q4V" firstAttribute="top" secondItem="F4d-Uq-U7z" secondAttribute="top" type="default" id="kA8-Gz-471"/>
                             </constraints>
                         </view>
                         <view key="tableFooterView" contentMode="scaleToFill" id="fSA-sT-G5h">
-                            <rect key="frame" x="0.0" y="370" width="320" height="44"/>
+                            <rect key="frame" x="0.0" y="380" width="320" height="50"/>
                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             <subviews>
+                                <button hidden="YES" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="npR-ac-a2y" customClass="RoundedRectButton">
+                                    <constraints>
+                                        <constraint firstAttribute="width" constant="300" id="0Z5-uG-0Gg"/>
+                                        <constraint firstAttribute="height" constant="44" id="d09-U7-vKl"/>
+                                    </constraints>
+                                    <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
+                                    <state key="normal" title="Delete this photo" backgroundImage="texture-red.png">
+                                        <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                        <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                    </state>
+                                    <state key="highlighted">
+                                        <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                    </state>
+                                    <connections>
+                                        <action selector="deleteButtonTapped:" destination="QTt-Be-NhP" eventType="touchUpInside" id="tZ7-au-gox"/>
+                                    </connections>
+                                </button>
                                 <switch opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" on="YES" translatesAutoresizingMaskIntoConstraints="NO" id="aBj-MD-9zS">
                                     <connections>
                                         <action selector="rememberDetailsSwitchValueChanged:" destination="QTt-Be-NhP" eventType="valueChanged" id="gJk-Ah-9bC"/>
@@ -456,17 +481,19 @@
                             </subviews>
                             <color key="backgroundColor" white="0.94999999999999996" alpha="1" colorSpace="calibratedWhite"/>
                             <constraints>
-                                <constraint firstItem="aBj-MD-9zS" firstAttribute="top" secondItem="fSA-sT-G5h" secondAttribute="top" constant="8" id="8HN-UH-tky"/>
-                                <constraint firstItem="P1Y-ti-kWR" firstAttribute="centerY" secondItem="aBj-MD-9zS" secondAttribute="centerY" type="default" id="JHw-8v-l3p"/>
-                                <constraint firstItem="P1Y-ti-kWR" firstAttribute="leading" secondItem="aBj-MD-9zS" secondAttribute="trailing" constant="8" symbolic="YES" type="default" id="NmV-cA-xal"/>
-                                <constraint firstItem="aBj-MD-9zS" firstAttribute="leading" secondItem="fSA-sT-G5h" secondAttribute="leading" constant="20" symbolic="YES" type="default" id="YoD-4O-Qcc"/>
+                                <constraint firstAttribute="centerY" secondItem="P1Y-ti-kWR" secondAttribute="centerY" type="user" id="9Ix-LM-nJ4"/>
+                                <constraint firstItem="npR-ac-a2y" firstAttribute="centerX" secondItem="fSA-sT-G5h" secondAttribute="centerX" type="default" id="JTm-6G-Cs2"/>
+                                <constraint firstAttribute="centerY" secondItem="npR-ac-a2y" secondAttribute="centerY" type="user" id="Mbr-Fj-cNt"/>
+                                <constraint firstItem="P1Y-ti-kWR" firstAttribute="leading" secondItem="fSA-sT-G5h" secondAttribute="leading" constant="96" id="eUg-Dp-hQu"/>
+                                <constraint firstItem="aBj-MD-9zS" firstAttribute="leading" secondItem="npR-ac-a2y" secondAttribute="leading" type="default" id="raj-fp-wgt"/>
+                                <constraint firstAttribute="centerY" secondItem="aBj-MD-9zS" secondAttribute="centerY" type="user" id="rcj-be-g7f"/>
                             </constraints>
                         </view>
                         <sections>
                             <tableViewSection id="tKG-Zu-BBE">
                                 <cells>
                                     <tableViewCell contentMode="scaleToFill" selectionStyle="blue" indentationWidth="10" id="jws-Vo-zP5">
-                                        <rect key="frame" x="0.0" y="70" width="320" height="45"/>
+                                        <rect key="frame" x="0.0" y="80" width="320" height="45"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
                                             <rect key="frame" x="10" y="1" width="300" height="43"/>
@@ -499,7 +526,7 @@
                                         </constraints>
                                     </tableViewCell>
                                     <tableViewCell contentMode="scaleToFill" selectionStyle="blue" indentationWidth="10" id="PeU-eh-obH">
-                                        <rect key="frame" x="0.0" y="115" width="320" height="44"/>
+                                        <rect key="frame" x="0.0" y="125" width="320" height="44"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
                                             <rect key="frame" x="10" y="0.0" width="300" height="43"/>
@@ -532,7 +559,7 @@
                                         </constraints>
                                     </tableViewCell>
                                     <tableViewCell contentMode="scaleToFill" selectionStyle="blue" indentationWidth="10" rowHeight="200" id="ZyW-FO-4Y4">
-                                        <rect key="frame" x="0.0" y="159" width="320" height="201"/>
+                                        <rect key="frame" x="0.0" y="169" width="320" height="201"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
                                             <rect key="frame" x="10" y="0.0" width="300" height="199"/>
@@ -575,10 +602,10 @@
                         </connections>
                     </tableView>
                     <connections>
-                        <outlet property="cancelButton" destination="F4d-Uq-U7z" id="d6S-mJ-BD5"/>
+                        <outlet property="deleteButton" destination="npR-ac-a2y" id="jYx-hc-Qfo"/>
                         <outlet property="descriptionTextView" destination="xyR-wH-w6T" id="h5B-gR-g6P"/>
-                        <outlet property="rememberDetailSwitch" destination="aBj-MD-9zS" id="O7i-B5-Rrk"/>
-                        <outlet property="saveButton" destination="Nfz-hS-Q4V" id="3ra-H5-um4"/>
+                        <outlet property="rememberDetailsLabel" destination="P1Y-ti-kWR" id="my4-Wr-uEC"/>
+                        <outlet property="rememberDetailsSwitch" destination="aBj-MD-9zS" id="thM-dW-ajJ"/>
                         <outlet property="tagsTextField" destination="EWj-48-utj" id="lGb-f7-poC"/>
                         <outlet property="titleTextField" destination="9XR-XO-02P" id="acr-qV-g32"/>
                     </connections>
@@ -678,6 +705,9 @@
                                             <state key="highlighted">
                                                 <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                             </state>
+                                            <connections>
+                                                <action selector="editButtonTapped:" destination="0Ok-yA-HfO" eventType="touchUpInside" id="8Xe-P4-hVG"/>
+                                            </connections>
                                         </button>
                                         <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" preferredMaxLayoutWidth="270" translatesAutoresizingMaskIntoConstraints="NO" id="77H-Pc-nWM">
                                             <constraints>
@@ -1299,6 +1329,7 @@ needed</string>
         <image name="intro-background.png" width="320" height="250"/>
         <image name="texture-blue.png" width="40" height="40"/>
         <image name="texture-gray.png" width="40" height="40"/>
+        <image name="texture-red.png" width="40" height="40"/>
     </resources>
     <classes>
         <class className="AppFontButton" superclassName="UIButton">
@@ -1325,15 +1356,10 @@ needed</string>
         <class className="EditViewController" superclassName="UITableViewController">
             <source key="sourceIdentifier" type="project" relativePath="./Classes/EditViewController.h"/>
             <relationships>
-                <relationship kind="action" name="cancelButtonTapped:"/>
-                <relationship kind="action" name="deleteButtonTapped:"/>
-                <relationship kind="action" name="rememberDetailsSwitchValueChanged:" candidateClass="UISwitch"/>
-                <relationship kind="action" name="saveButtonTapped:"/>
-                <relationship kind="outlet" name="cancelButton" candidateClass="UIButton"/>
                 <relationship kind="outlet" name="deleteButton" candidateClass="UIButton"/>
                 <relationship kind="outlet" name="descriptionTextView" candidateClass="PlaceholderTextView"/>
-                <relationship kind="outlet" name="rememberDetailSwitch" candidateClass="UISwitch"/>
-                <relationship kind="outlet" name="saveButton" candidateClass="UIButton"/>
+                <relationship kind="outlet" name="rememberDetailsLabel" candidateClass="UILabel"/>
+                <relationship kind="outlet" name="rememberDetailsSwitch" candidateClass="UISwitch"/>
                 <relationship kind="outlet" name="tagsTextField" candidateClass="UITextField"/>
                 <relationship kind="outlet" name="titleTextField" candidateClass="UITextField"/>
             </relationships>
@@ -1360,7 +1386,6 @@ needed</string>
         <class className="MenuViewController" superclassName="UIViewController">
             <source key="sourceIdentifier" type="project" relativePath="./Classes/MenuViewController.h"/>
             <relationships>
-                <relationship kind="action" name="logout:"/>
                 <relationship kind="outlet" name="profileButton" candidateClass="UIButton"/>
             </relationships>
         </class>
