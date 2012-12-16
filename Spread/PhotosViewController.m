@@ -13,7 +13,7 @@
 #import "CameraManager.h"
 
 
-@interface PhotosViewController () <UploadViewControllerDelegate>
+@interface PhotosViewController () <UploadViewControllerDelegate, UICollectionViewDelegate, UITableViewDelegate>
 @property (nonatomic, strong) IBOutlet UIButton *displayModeButton;
 @property (nonatomic, strong) IBOutlet UIView *headerView;
 @property (nonatomic, strong) IBOutlet UIView *contentView;
@@ -176,6 +176,7 @@
     if (!_collectionView)
     {
         _collectionView = self.collectionViewController.collectionView;
+        _collectionView.delegate = self;
     }
     return _collectionView;
 }
@@ -185,9 +186,22 @@
     if (!_tableView)
     {
         _tableView = self.tableViewController.tableView;
+        _tableView.delegate = self;
     }
     return _tableView;
 }
 
+- (void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath;
+{
+    [collectionView deselectItemAtIndexPath:indexPath animated:YES];
+    
+    [self displayTableView];
+    [self.tableView scrollToRowAtIndexPath:indexPath atScrollPosition:UITableViewScrollPositionTop animated:NO];
+}
+
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    [tableView deselectRowAtIndexPath:indexPath animated:YES];
+}
 
 @end

@@ -7,7 +7,7 @@
 //
 
 #import "ThumbCell.h"
-#import "UIButton+WebCache.h"
+#import "UIImageView+WebCache.h"
 
 
 @implementation ThumbCell
@@ -26,7 +26,7 @@
     _photo = photo;
     
     NSURL *URL = [NSURL URLWithString:photo.gridImageURLString];
-    [self.thumbButton setImageWithURL:URL forState:UIControlStateNormal placeholderImage:nil];
+    [self.thumbImageView setImageWithURL:URL placeholderImage:nil];
 }
 
 @end

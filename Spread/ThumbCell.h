@@ -12,7 +12,7 @@
 
 @interface ThumbCell : UICollectionViewCell
 
-@property (nonatomic, strong) IBOutlet UIButton *thumbButton;
+@property (nonatomic, strong) IBOutlet UIImageView *thumbImageView;
 @property (nonatomic, strong) Photo *photo;
 
 @end
