@@ -655,8 +655,6 @@
 				7C5DA1201674EFF9002D340C /* ConnectionHelper.m */,
 				7CA359CF167E3D1100117423 /* CameraManager.h */,
 				7CA359D0167E3D1100117423 /* CameraManager.m */,
-				7CA359D2167E525E00117423 /* NSUserDefaults+Spread.h */,
-				7CA359D3167E525E00117423 /* NSUserDefaults+Spread.m */,
 			);
 			name = Utilities;
 			sourceTree = "<group>";
@@ -688,6 +686,8 @@
 		7C7F399815CE31FA00EE18DF /* Categories */ = {
 			isa = PBXGroup;
 			children = (
+				7CA359D2167E525E00117423 /* NSUserDefaults+Spread.h */,
+				7CA359D3167E525E00117423 /* NSUserDefaults+Spread.m */,
 				7C7F399915CE321B00EE18DF /* NSDictionary+Utilities.h */,
 				7C7F399A15CE321B00EE18DF /* NSDictionary+Utilities.m */,
 				7C886F6215D0C73F0024603C /* NSManagedObject+Utilities.h */,

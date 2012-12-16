@@ -12,7 +12,8 @@
 #import "PlaceholderTextView.h"
 #import "ServiceManager.h"
 #import "NSUserDefaults+Spread.h"
-
+#import "MenuViewController.h"
+#import "CameraManager.h"
 
 
 @interface EditViewController () <UIAlertViewDelegate>
@@ -36,6 +37,7 @@
     [super viewDidLoad];
     
     [[UIApplication sharedApplication] setStatusBarHidden:NO withAnimation:UIStatusBarAnimationSlide];
+    [self.navigationController setNavigationBarHidden:YES animated:YES];
 
     self.descriptionTextView.placeholder = @"Add as much detail as possible";
     
@@ -122,8 +124,6 @@
     {
         [[ServiceManager sharedManager] updatePhoto:self.photo];
     }
-    
-    [self dismissModalViewControllerAnimated:YES];
 }
 
 - (IBAction)deleteButtonTapped:(id)sender
@@ -154,10 +154,19 @@
         NSUInteger buffered = [imageRepresentation getBytes:buffer fromOffset:0.0 length:imageRepresentation.size error:nil];
         NSData *data = [NSData dataWithBytesNoCopy:buffer length:buffered freeWhenDone:YES];
         
+
         [[ServiceManager sharedManager] postPhoto:data name:self.titleTextField.text description:self.descriptionTextView.text completionHandler:^(id response, BOOL success, NSError *error) {
-            
-            [self dismissModalViewControllerAnimated:YES];
+
+            if (success)
+            {
+                [self dismiss];
+            }
+            else
+            {
+                [[[UIAlertView alloc] initWithTitle:@"Error" message:error.localizedDescription delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil] show];
+            }
         }];
+        
         
     } failureBlock:^(NSError *error) {
         
@@ -168,6 +177,15 @@
 - (void)updatePhoto:(Photo *)photo
 {
     //TODO:
+}
+
+- (void)dismiss
+{
+    if ([[CameraManager sharedManager].presentingViewController isKindOfClass:[MenuViewController class]])
+    {
+        [(MenuViewController*)[CameraManager sharedManager].presentingViewController showProfileViewAnimated:NO];
+    }
+    [self dismissViewControllerAnimated:YES completion:NULL];
 }
 
 

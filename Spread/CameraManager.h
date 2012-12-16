@@ -11,6 +11,8 @@
 
 @interface CameraManager : NSObject
 
+@property (nonatomic, strong) UIViewController *presentingViewController;
+
 - (void)launchImagePickerInView:(UIViewController *)controller;
 + (CameraManager *)sharedManager;
 

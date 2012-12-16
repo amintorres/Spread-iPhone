@@ -50,13 +50,13 @@
 
 - (IBAction)profileButtonTapped:(id)sender
 {
-    [self showProfileView];
+    [self showProfileViewAnimated:YES];
 }
 
-- (void)showProfileView
+- (void)showProfileViewAnimated:(BOOL)animated
 {
     UserViewController *controller = [UserViewController new];
-    [self.navigationController pushViewController:controller animated:YES];
+    [self.navigationController pushViewController:controller animated:animated];
 }
 
 

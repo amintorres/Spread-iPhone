@@ -13,6 +13,6 @@
 
 @property (strong, nonatomic) IBOutlet UIButton *profileButton;
 
-- (void)showProfileView;
+- (void)showProfileViewAnimated:(BOOL)animated;
 
 @end

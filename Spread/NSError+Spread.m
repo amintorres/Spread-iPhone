@@ -21,6 +21,12 @@ NSString * const SpreadErrorDomain = @"SpreadErrorDomain";
     return [self errorWithDomain:SpreadErrorDomain code:SpreadErrorCodeInvalidPhotoTitle userInfo:userInfo];    
 }
 
++ (NSError*)invalidPhotoDescriptionError
+{
+    NSDictionary* userInfo = [NSDictionary dictionaryWithObjectsAndKeys:@"Description must be at least 4 characters long.", NSLocalizedDescriptionKey, nil];
+    return [self errorWithDomain:SpreadErrorDomain code:SpreadErrorCodeInvalidPhotoDescription userInfo:userInfo];
+}
+
 + (NSError*)invalidImageError
 {
     NSDictionary* userInfo = [NSDictionary dictionaryWithObjectsAndKeys:@"Invalid image.", NSLocalizedDescriptionKey, nil];

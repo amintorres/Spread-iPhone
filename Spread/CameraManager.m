@@ -9,10 +9,10 @@
 #import "CameraManager.h"
 #import "EditViewController.h"
 #import "ReviewViewController.h"
+#import "PhotosViewController.h"
 
 
 @interface CameraManager () <UIActionSheetDelegate, UIImagePickerControllerDelegate, UINavigationControllerDelegate>
-@property (nonatomic, strong) UIViewController *presentingViewController;
 @end
 
 
@@ -70,7 +70,7 @@
     
     imagePicker.delegate = self;
     imagePicker.allowsEditing = NO;
-    [self.presentingViewController presentModalViewController:imagePicker animated:YES];
+    [self.presentingViewController presentViewController:imagePicker animated:YES completion:NULL];
 }
 
 

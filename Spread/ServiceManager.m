@@ -283,17 +283,24 @@ static NSString* boundary = nil;
 
 - (void)postPhoto:(NSData *)imageData name:(NSString*)name description:(NSString*)description completionHandler:(ServiceManagerHandler)completion
 {
-    if ( name.length < 4 || description.length < 4 )
+    if (name.length < 4)
     {
         NSError *error = [NSError invalidPhotoTitleError];
-        completion(nil, NO, error);
+        if (completion) completion(nil, NO, error);
+        return;
+    }
+    
+    if (description.length < 4)
+    {
+        NSError *error = [NSError invalidPhotoDescriptionError];
+        if (completion) completion(nil, NO, error);
         return;
     }
     
     if (!imageData)
     {
         NSError *error = [NSError invalidImageError];
-        completion(nil, NO, error);
+        if (completion) completion(nil, NO, error);
         return;
     }
     
@@ -338,8 +345,9 @@ static NSString* boundary = nil;
 
     request.HTTPBody = postBody;
     
-    
-    [self sendPostRequest:request completionHandler:completion];
+    // 'Complete' means prepare complete and ready to upload.
+    if (completion) completion(nil, YES, nil);
+    [self sendPostRequest:request completionHandler:NULL];
 }
 
 - (void)sendPostRequest:(NSURLRequest *)request completionHandler:(ServiceManagerHandler)completion
@@ -368,13 +376,13 @@ static NSString* boundary = nil;
                                    NSError* JSONError = nil;
                                    id result = [NSJSONSerialization JSONObjectWithData:data options:0 error:&JSONError];
                                    NSLog(@"result: %@", result);
-                                   completion(nil, YES, nil);
+                                   if (completion) completion(nil, YES, nil);
                                    [self.uploadQueue removeObject:helper];
                                }
                                else
                                {
                                    NSLog(@"error: %@", error);
-                                   completion(nil, NO, error);
+                                   if (completion) completion(nil, NO, error);
                                }
                                
                                [UIApplication sharedApplication].networkActivityIndicatorVisible = self.uploadQueue.count;
