@@ -7,7 +7,6 @@
 //
 
 #import "MenuViewController.h"
-#import "ServiceManager.h"
 #import "User+Spread.h"
 #import "RecentViewController.h"
 #import "PopularViewController.h"
@@ -30,12 +29,6 @@
 
     NSString* name = [[User currentUser].name uppercaseString];
     [self.profileButton setTitle:name forState:UIControlStateNormal];
-}
-
-- (IBAction)logout:(id)sender
-{
-    [[ServiceManager sharedManager] logout];
-    [self.navigationController popViewControllerAnimated:YES];
 }
 
 - (IBAction)takePhotoButtonTapped:(id)sender

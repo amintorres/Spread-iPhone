@@ -120,6 +120,7 @@
 		7C9F93EB149960C400126908 /* SpreadTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 7C9F93EA149960C400126908 /* SpreadTests.m */; };
 		7CA359D1167E3D1100117423 /* CameraManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 7CA359D0167E3D1100117423 /* CameraManager.m */; };
 		7CA359D4167E525E00117423 /* NSUserDefaults+Spread.m in Sources */ = {isa = PBXBuildFile; fileRef = 7CA359D3167E525E00117423 /* NSUserDefaults+Spread.m */; };
+		7CA359D7167E624600117423 /* SettingsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7CA359D6167E624500117423 /* SettingsViewController.m */; };
 		7CAC9E8015D8587500E30562 /* libfacebook_ios_sdk.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 7CAC9E7D15D8586100E30562 /* libfacebook_ios_sdk.a */; };
 		7CC36851164575A800F9409D /* RequestDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7CC36850164575A800F9409D /* RequestDetailViewController.m */; };
 		7CC3685316457D8800F9409D /* CoreText.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7CC3685216457D8800F9409D /* CoreText.framework */; };
@@ -381,6 +382,8 @@
 		7CA359D0167E3D1100117423 /* CameraManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CameraManager.m; sourceTree = "<group>"; };
 		7CA359D2167E525E00117423 /* NSUserDefaults+Spread.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSUserDefaults+Spread.h"; sourceTree = "<group>"; };
 		7CA359D3167E525E00117423 /* NSUserDefaults+Spread.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSUserDefaults+Spread.m"; sourceTree = "<group>"; };
+		7CA359D5167E624500117423 /* SettingsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SettingsViewController.h; sourceTree = "<group>"; };
+		7CA359D6167E624500117423 /* SettingsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SettingsViewController.m; sourceTree = "<group>"; };
 		7CAC9E7415D8586100E30562 /* facebook-ios-sdk.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = "facebook-ios-sdk.xcodeproj"; path = "facebook-ios-sdk/src/facebook-ios-sdk.xcodeproj"; sourceTree = "<group>"; };
 		7CC3684F164575A800F9409D /* RequestDetailViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RequestDetailViewController.h; sourceTree = "<group>"; };
 		7CC36850164575A800F9409D /* RequestDetailViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RequestDetailViewController.m; sourceTree = "<group>"; };
@@ -585,6 +588,7 @@
 				7C7F38E615CE03E700EE18DF /* Requests */,
 				7C886F4E15D0BB890024603C /* Recent/Popular/User Photo */,
 				7C3AC963162A2E380046CE81 /* Post Photo */,
+				7CA359D8167E639D00117423 /* Everything Else */,
 			);
 			name = "View Controller";
 			sourceTree = "<group>";
@@ -935,6 +939,15 @@
 				7C9F93E6149960C400126908 /* InfoPlist.strings */,
 			);
 			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		7CA359D8167E639D00117423 /* Everything Else */ = {
+			isa = PBXGroup;
+			children = (
+				7CA359D5167E624500117423 /* SettingsViewController.h */,
+				7CA359D6167E624500117423 /* SettingsViewController.m */,
+			);
+			name = "Everything Else";
 			sourceTree = "<group>";
 		};
 		7CAC9E7515D8586100E30562 /* Products */ = {
@@ -1318,6 +1331,7 @@
 				7C5DA1211674EFF9002D340C /* ConnectionHelper.m in Sources */,
 				7CA359D1167E3D1100117423 /* CameraManager.m in Sources */,
 				7CA359D4167E525E00117423 /* NSUserDefaults+Spread.m in Sources */,
+				7CA359D7167E624600117423 /* SettingsViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
