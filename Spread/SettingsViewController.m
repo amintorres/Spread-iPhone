@@ -17,6 +17,11 @@
 
 @implementation SettingsViewController
 
+- (IBAction)backButtonTapped:(id)sender
+{
+    [self.navigationController popViewControllerAnimated:YES];
+}
+
 
 #pragma mark - Table view delegate
 

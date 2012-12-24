@@ -699,6 +699,7 @@
                                         <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                     </state>
                                     <connections>
+                                        <action selector="backButtonTapped:" destination="2Lu-wI-fbp" eventType="touchUpInside" id="1V0-el-Cuq"/>
                                         <action selector="backButtonTapped:" destination="yiB-aC-NVW" eventType="touchUpInside" id="Nwc-zh-XqQ"/>
                                     </connections>
                                 </button>
@@ -1595,6 +1596,7 @@ needed</string>
         <class className="SettingsViewController" superclassName="UITableViewController">
             <source key="sourceIdentifier" type="project" relativePath="./Classes/SettingsViewController.h"/>
             <relationships>
+                <relationship kind="action" name="backButtonTapped:"/>
                 <relationship kind="outlet" name="logoutCell" candidateClass="UITableViewCell"/>
             </relationships>
         </class>
