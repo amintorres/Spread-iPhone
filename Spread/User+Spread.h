@@ -13,5 +13,6 @@
 @interface User (Spread)
 
 + (User*)currentUser;
++ (void)clearCurrentUser;
 
 @end

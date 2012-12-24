@@ -32,6 +32,11 @@ static User* currentUser = nil;
     return currentUser;
 }
 
++ (void)clearCurrentUser
+{
+    currentUser = nil;
+}
+
 + (NSManagedObject *)objectWithDict:(NSDictionary*)dict inContext:(NSManagedObjectContext*)context
 {
     User* user = (User*)[super objectWithDict:dict inContext:context];

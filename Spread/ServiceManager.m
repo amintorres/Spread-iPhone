@@ -125,6 +125,7 @@ static NSString* boundary = nil;
 - (void)logout
 {
     self.oauthToken = nil;
+    self.currentUserID = nil;
     [[FBSession activeSession] closeAndClearTokenInformation];
 }
 
@@ -431,6 +432,7 @@ static NSString* boundary = nil;
 
 - (void)setCurrentUserID:(NSString*)theID
 {
+    [User clearCurrentUser];
     [[NSUserDefaults standardUserDefaults] setObject:theID forKey:@"currentUserID"];
 }
 
