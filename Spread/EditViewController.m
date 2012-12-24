@@ -155,7 +155,7 @@
         NSData *data = [NSData dataWithBytesNoCopy:buffer length:buffered freeWhenDone:YES];
         
 
-        [[ServiceManager sharedManager] postPhoto:data name:self.titleTextField.text description:self.descriptionTextView.text completionHandler:^(id response, BOOL success, NSError *error) {
+        [[ServiceManager sharedManager] postPhoto:data name:self.titleTextField.text csvTags:self.tagsTextField.text description:self.descriptionTextView.text completionHandler:^(id response, BOOL success, NSError *error) {
 
             if (success)
             {

@@ -282,7 +282,7 @@ static NSString* boundary = nil;
 
 #pragma mark - Post Photo
 
-- (void)postPhoto:(NSData *)imageData name:(NSString*)name description:(NSString*)description completionHandler:(ServiceManagerHandler)completion
+- (void)postPhoto:(NSData *)imageData name:(NSString*)name csvTags:(NSString*)csvTags description:(NSString*)description completionHandler:(ServiceManagerHandler)completion
 {
     if (name.length < 4)
     {
@@ -324,6 +324,12 @@ static NSString* boundary = nil;
     [postBody appendData:[[NSString stringWithFormat:@"--%@\r\n", boundary] dataUsingEncoding:NSUTF8StringEncoding]];
     [postBody appendData:[@"Content-Disposition: form-data; name=\"news_photo[name]\"\r\n\r\n" dataUsingEncoding:NSUTF8StringEncoding]];
     [postBody appendData:[name dataUsingEncoding:NSUTF8StringEncoding]];
+    [postBody appendData:[@"\r\n" dataUsingEncoding:NSUTF8StringEncoding]];
+    
+    // CSV Tags
+    [postBody appendData:[[NSString stringWithFormat:@"--%@\r\n", boundary] dataUsingEncoding:NSUTF8StringEncoding]];
+    [postBody appendData:[@"Content-Disposition: form-data; name=\"news_photo[tags_csv]\"\r\n\r\n" dataUsingEncoding:NSUTF8StringEncoding]];
+    [postBody appendData:[csvTags dataUsingEncoding:NSUTF8StringEncoding]];
     [postBody appendData:[@"\r\n" dataUsingEncoding:NSUTF8StringEncoding]];
     
     // Description
