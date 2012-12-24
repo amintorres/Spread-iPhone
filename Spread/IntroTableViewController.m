@@ -77,7 +77,8 @@ typedef NS_ENUM(NSUInteger, KeyboardType) {
 {
     [[NSNotificationCenter defaultCenter] removeObserver:self];
     self.currentState = IntroViewStateIdle;
-    
+    [self clearForms];
+
     [super viewDidDisappear:animated];
 }
 
@@ -392,6 +393,12 @@ typedef NS_ENUM(NSUInteger, KeyboardType) {
         ];
     }
     return _registerFormSecion;
+}
+
+- (void)clearForms
+{
+    self.loginFormSecion = nil;
+    self.registerFormSecion = nil;
 }
 
 

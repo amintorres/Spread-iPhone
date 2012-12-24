@@ -10,6 +10,11 @@
 #import <QuartzCore/QuartzCore.h>
 
 
+@interface TextFieldCell ()
+@property (nonatomic, strong) CAShapeLayer *roundedRectLayer;
+@end
+
+
 @implementation TextFieldCell
 
 
@@ -41,13 +46,15 @@
         }
     }
     
-   
-    CAShapeLayer *shapeLayer = [CAShapeLayer layer];
-    shapeLayer.frame = self.textField.bounds;
-    shapeLayer.path = path.CGPath;
-    shapeLayer.fillColor = [UIColor colorWithWhite:0.95 alpha:1.0].CGColor;
-    shapeLayer.strokeColor = [UIColor colorWithWhite:0.8 alpha:1.0].CGColor;
-    [self.layer insertSublayer:shapeLayer atIndex:0];
+    if (!self.roundedRectLayer)
+    {
+        self.roundedRectLayer = [CAShapeLayer layer];
+        self.roundedRectLayer.frame = self.textField.bounds;
+        self.roundedRectLayer.fillColor = [UIColor colorWithWhite:0.95 alpha:1.0].CGColor;
+        self.roundedRectLayer.strokeColor = [UIColor colorWithWhite:0.8 alpha:1.0].CGColor;
+        [self.layer insertSublayer:self.roundedRectLayer atIndex:0];
+    }
+    self.roundedRectLayer.path = path.CGPath;
 }
 
 - (BOOL)textFieldShouldReturn:(UITextField *)textField
