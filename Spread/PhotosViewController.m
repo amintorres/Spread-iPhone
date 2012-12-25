@@ -84,7 +84,7 @@
         }];
     }
     
-    [self reloadData];
+//    [self reloadData];
 }
 
 
