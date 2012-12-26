@@ -9,29 +9,23 @@
 #import "WebViewController.h"
 
 
+@interface WebViewController ()
+@property (strong, nonatomic) IBOutlet UILabel *titleLabel;
+@property (strong, nonatomic) IBOutlet UIWebView *webView;
+@end
+
 
 @implementation WebViewController
-
-@synthesize webView;
-@synthesize URL;
-
-
-#pragma mark -
-#pragma mark View lifecycle
 
 
 - (void)viewDidLoad
 {
     [super viewDidLoad];
     
-    NSURLRequest* request = [NSURLRequest requestWithURL:URL];
+    self.titleLabel.text = self.title;
+    
+    NSURLRequest* request = [NSURLRequest requestWithURL:self.URL];
     [self.webView loadRequest:request];
-}
-
-- (void)viewDidUnload
-{
-    self.webView = nil;
-    [super viewDidUnload];
 }
 
 

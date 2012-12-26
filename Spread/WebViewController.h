@@ -6,12 +6,9 @@
 //  Copyright (c) 2012 Joseph Lin. All rights reserved.
 //
 
-#import <UIKit/UIKit.h>
+#import "BaseViewController.h"
 
 
-@interface WebViewController : UIViewController
-
-@property (strong, nonatomic) IBOutlet UIWebView *webView;
-@property (strong, nonatomic) NSURL* URL;
-
+@interface WebViewController : BaseViewController
+@property (strong, nonatomic) NSURL *URL;
 @end

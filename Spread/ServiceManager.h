@@ -43,4 +43,6 @@ typedef void (^ServiceManagerHandler)(id response, BOOL success, NSError *error)
 - (void)updatePhoto:(Photo *)photo;
 - (void)deletePhoto:(Photo *)photo;
 
+- (NSString*)supportEmail;
+
 @end
