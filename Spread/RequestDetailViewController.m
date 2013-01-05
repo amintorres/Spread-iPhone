@@ -11,6 +11,7 @@
 #import "UIImageView+WebCache.h"
 #import "NSNumber+Spread.h"
 #import "RequestBriefViewController.h"
+#import "CameraManager.h"
 
 
 
@@ -51,5 +52,12 @@
         ((RequestBriefViewController *)segue.destinationViewController).request = self.request;
     }
 }
+
+- (IBAction)submitButtonTapped:(id)sender
+{
+    [CameraManager sharedManager].request = self.request;
+    [[CameraManager sharedManager] presentImagePickerInViewController:self];
+}
+
 
 @end

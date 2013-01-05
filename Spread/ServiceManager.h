@@ -10,6 +10,7 @@
 #import "Photo.h"
 #import "User.h"
 #import "ConnectionHelper.h"
+#import "Request+Spread.h"
 
 extern NSString * const SpreadNotificationUploadProgressChanged;
 extern NSString * const SpreadNotificationUploadFinished;
@@ -38,7 +39,8 @@ typedef void (^ServiceManagerHandler)(id response, BOOL success, NSError *error)
 
 - (void)loadRequestsWithHandler:(ServiceManagerHandler)completion;
 
-- (void)postPhoto:(NSData *)imageData name:(NSString*)name csvTags:(NSString*)csvTags description:(NSString*)description completionHandler:(ServiceManagerHandler)completion;
+- (void)postUserPhoto:(NSData *)imageData name:(NSString*)name csvTags:(NSString*)csvTags description:(NSString*)description completionHandler:(ServiceManagerHandler)completion;
+- (void)postPhoto:(NSData *)imageData toRequest:(Request *)photoRequest completionHandler:(ServiceManagerHandler)completion;
 - (void)sendPostRequest:(NSURLRequest *)request completionHandler:(ServiceManagerHandler)completion;
 - (void)updatePhoto:(Photo *)photo;
 - (void)deletePhoto:(Photo *)photo;

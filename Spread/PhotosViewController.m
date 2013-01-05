@@ -106,7 +106,7 @@
 
 - (IBAction)sumbitButtonTapped:(id)sender
 {
-    [[CameraManager sharedManager] launchImagePickerInView:self];
+    [[CameraManager sharedManager] presentImagePickerInViewController:self];
 }
 
 

@@ -33,7 +33,7 @@
 
 - (IBAction)takePhotoButtonTapped:(id)sender
 {
-    [[CameraManager sharedManager] launchImagePickerInView:self];
+    [[CameraManager sharedManager] presentImagePickerInViewController:self];
 }
 
 - (IBAction)recentButtonTapped:(id)sender

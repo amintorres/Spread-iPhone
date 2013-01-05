@@ -30,7 +30,7 @@
     return _sharedManager;
 }
 
-- (void)launchImagePickerInView:(UIViewController *)controller
+- (void)presentImagePickerInViewController:(UIViewController *)controller
 {
     self.presentingViewController = controller;
     

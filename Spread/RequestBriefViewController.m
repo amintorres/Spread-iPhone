@@ -8,6 +8,7 @@
 
 #import "RequestBriefViewController.h"
 #import "UIFont+Spread.h"
+#import "CameraManager.h"
 
 
 @interface RequestBriefViewController ()
@@ -28,6 +29,8 @@
 
 - (IBAction)submitButtonTapped:(id)sender
 {
+    [CameraManager sharedManager].request = self.request;
+    [[CameraManager sharedManager] presentImagePickerInViewController:self];
 }
 
 @end

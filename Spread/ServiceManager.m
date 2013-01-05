@@ -17,15 +17,16 @@
 NSString * const SpreadNotificationUploadProgressChanged  = @"SpreadNotificationUploadProgressChanged";
 NSString * const SpreadNotificationUploadFinished = @"SpreadNotificationUploadFinished";
 
-static NSString* const baseURL =            @"http://dev.spread.cm/api/v1";
-static NSString* const loginPath =          @"users/login.json";
-static NSString* const facebookLoginPath =  @"fb_authenticate";
-static NSString* const entityInfoPath =     @"entities/%@";
-static NSString* const recentPhotoPath =    @"news_photos/recent.json";
-static NSString* const popularPhotoPath =   @"news_photos/popular.json";
-static NSString* const userPhotoPath =      @"entities/%@/news_photos.json";
-static NSString* const requestsPath =       @"requests.json";
-static NSString* const postPhotoPath =      @"news_photos";
+static NSString* const baseURL =                @"http://dev.spread.cm/api/v1";
+static NSString* const loginPath =              @"users/login.json";
+static NSString* const facebookLoginPath =      @"fb_authenticate";
+static NSString* const entityInfoPath =         @"entities/%@";
+static NSString* const recentPhotoPath =        @"news_photos/recent.json";
+static NSString* const popularPhotoPath =       @"news_photos/popular.json";
+static NSString* const userPhotoPath =          @"entities/%@/news_photos.json";
+static NSString* const requestsPath =           @"requests.json";
+static NSString* const postUserPhotoPath =      @"news_photos";
+static NSString* const postRequestPhotoPath =   @"requests/%@/request_photos";
 
 static NSString* boundary = nil;
 
@@ -282,7 +283,7 @@ static NSString* boundary = nil;
 
 #pragma mark - Post Photo
 
-- (void)postPhoto:(NSData *)imageData name:(NSString*)name csvTags:(NSString*)csvTags description:(NSString*)description completionHandler:(ServiceManagerHandler)completion
+- (void)postUserPhoto:(NSData *)imageData name:(NSString*)name csvTags:(NSString*)csvTags description:(NSString*)description completionHandler:(ServiceManagerHandler)completion
 {
     if (name.length < 4)
     {
@@ -306,7 +307,7 @@ static NSString* boundary = nil;
     }
     
     NSString *param = [@{@"authentication_token": self.oauthToken} paramString];
-    NSString* URLString = [NSString stringWithFormat:@"%@/%@?%@", baseURL, postPhotoPath, param];
+    NSString* URLString = [NSString stringWithFormat:@"%@/%@?%@", baseURL, postUserPhotoPath, param];
     NSURL *URL = [NSURL URLWithString:URLString];
     
     NSMutableURLRequest *request = [NSMutableURLRequest requestWithURL:URL];
@@ -350,6 +351,50 @@ static NSString* boundary = nil;
     [postBody appendData:[[NSString stringWithFormat:@"--%@--\r\n", boundary] dataUsingEncoding:NSUTF8StringEncoding]];
     
 
+    request.HTTPBody = postBody;
+    
+    // 'Complete' means prepare complete and ready to upload.
+    if (completion) completion(nil, YES, nil);
+    [self sendPostRequest:request completionHandler:NULL];
+}
+
+- (void)postPhoto:(NSData *)imageData toRequest:(Request *)photoRequest completionHandler:(ServiceManagerHandler)completion
+{
+    if (!imageData)
+    {
+        NSError *error = [NSError invalidImageError];
+        if (completion) completion(nil, NO, error);
+        return;
+    }
+    
+    NSString *param = [@{@"authentication_token": self.oauthToken} paramString];
+    NSString *pathForRequest = [NSString stringWithFormat:postRequestPhotoPath, photoRequest.requestID];
+    NSString* URLString = [NSString stringWithFormat:@"%@/%@?%@", baseURL, pathForRequest, param];
+    NSURL *URL = [NSURL URLWithString:URLString];
+    
+    NSMutableURLRequest *request = [NSMutableURLRequest requestWithURL:URL];
+    request.HTTPMethod = @"POST";
+    
+    
+    NSString *boundary = [NSString stringWithFormat:@"----------SpReAd--BoUnDaRy--%d----------", arc4random()];
+	NSString *contentType = [NSString stringWithFormat:@"multipart/form-data; boundary=%@",boundary];
+	[request addValue:contentType forHTTPHeaderField: @"Content-Type"];
+    
+    
+    NSMutableData *postBody = [NSMutableData data];
+    
+    // Image
+    [postBody appendData:[[NSString stringWithFormat:@"--%@\r\n", boundary] dataUsingEncoding:NSUTF8StringEncoding]];
+    [postBody appendData:[@"Content-Disposition: form-data; name=\"request_photo[image]\"; filename=\"image.jpg\"\r\n" dataUsingEncoding:NSUTF8StringEncoding]];
+    [postBody appendData:[@"Content-Type: image/jpeg\r\n" dataUsingEncoding:NSUTF8StringEncoding]];
+    [postBody appendData:[@"Content-Transfer-Encoding: binary\r\n\r\n" dataUsingEncoding:NSUTF8StringEncoding]];
+    [postBody appendData:imageData];
+    [postBody appendData:[@"\r\n" dataUsingEncoding:NSUTF8StringEncoding]];
+    
+    // Final boundary
+    [postBody appendData:[[NSString stringWithFormat:@"--%@--\r\n", boundary] dataUsingEncoding:NSUTF8StringEncoding]];
+    
+    
     request.HTTPBody = postBody;
     
     // 'Complete' means prepare complete and ready to upload.

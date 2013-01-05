@@ -85,6 +85,8 @@
         [NSUserDefaults standardUserDefaults].storedDescription = self.descriptionTextView.text;
         [[NSUserDefaults standardUserDefaults] synchronize];
     }
+    
+    [CameraManager sharedManager].request = nil; // Don't forget to clear the request payload.
 
     [super viewWillDisappear:animated];
 }
@@ -141,7 +143,7 @@
 }
 
 
-#pragma mark - Post/Delete
+#pragma mark - Post
 
 - (void)postPhotoAtURL:(NSURL*)assetURL
 {
@@ -154,19 +156,34 @@
         NSUInteger buffered = [imageRepresentation getBytes:buffer fromOffset:0.0 length:imageRepresentation.size error:nil];
         NSData *data = [NSData dataWithBytesNoCopy:buffer length:buffered freeWhenDone:YES];
         
-
-        [[ServiceManager sharedManager] postPhoto:data name:self.titleTextField.text csvTags:self.tagsTextField.text description:self.descriptionTextView.text completionHandler:^(id response, BOOL success, NSError *error) {
-
-            if (success)
-            {
-                [self dismiss];
-            }
-            else
-            {
-                [[[UIAlertView alloc] initWithTitle:@"Error" message:error.localizedDescription delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil] show];
-            }
-        }];
-        
+        if ([CameraManager sharedManager].request)
+        {
+            [[ServiceManager sharedManager] postPhoto:data toRequest:[CameraManager sharedManager].request completionHandler:^(id response, BOOL success, NSError *error) {
+                
+                if (success)
+                {
+                    [self dismiss];
+                }
+                else
+                {
+                    [[[UIAlertView alloc] initWithTitle:@"Error" message:error.localizedDescription delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil] show];
+                }
+            }];
+        }
+        else
+        {
+            [[ServiceManager sharedManager] postUserPhoto:data name:self.titleTextField.text csvTags:self.tagsTextField.text description:self.descriptionTextView.text completionHandler:^(id response, BOOL success, NSError *error) {
+                
+                if (success)
+                {
+                    [self dismiss];
+                }
+                else
+                {
+                    [[[UIAlertView alloc] initWithTitle:@"Error" message:error.localizedDescription delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil] show];
+                }
+            }];
+        }
         
     } failureBlock:^(NSError *error) {
         
