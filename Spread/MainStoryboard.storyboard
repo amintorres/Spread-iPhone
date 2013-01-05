@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="2.0" toolsVersion="2844" systemVersion="12C60" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" initialViewController="zC0-jL-gdq">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="2.0" toolsVersion="2844" systemVersion="12C2037" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" initialViewController="zC0-jL-gdq">
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="1930"/>
     </dependencies>
@@ -1285,6 +1285,7 @@ needed and lorem ipsum dolor...</string>
                                     <constraint firstItem="TmR-Cs-FLY" firstAttribute="centerY" secondItem="0jq-6L-Owg" secondAttribute="centerY" type="default" id="3Q1-Ma-eGj"/>
                                     <constraint firstItem="isP-Fo-aZi" firstAttribute="centerY" secondItem="TmR-Cs-FLY" secondAttribute="centerY" type="default" id="KFH-2y-us7"/>
                                     <constraint firstItem="isP-Fo-aZi" firstAttribute="leading" secondItem="0jq-6L-Owg" secondAttribute="leading" constant="10" id="mcH-Gf-OhE"/>
+                                    <constraint firstAttribute="height" priority="998" constant="56" type="user" id="t3j-OE-yhS"/>
                                     <constraint firstItem="TmR-Cs-FLY" firstAttribute="leading" secondItem="isP-Fo-aZi" secondAttribute="trailing" constant="8" symbolic="YES" type="default" id="ts1-Dd-hUo"/>
                                 </constraints>
                             </view>
@@ -1312,7 +1313,7 @@ name
                                     <constraint firstItem="REH-wX-7o7" firstAttribute="top" secondItem="8uV-LQ-SIT" secondAttribute="top" constant="10" type="user" id="3Zn-7a-2aN"/>
                                     <constraint firstItem="REH-wX-7o7" firstAttribute="leading" secondItem="8uV-LQ-SIT" secondAttribute="leading" constant="10" type="user" id="EKx-Ib-cwH"/>
                                     <constraint firstItem="REH-wX-7o7" firstAttribute="centerY" secondItem="8uV-LQ-SIT" secondAttribute="centerY" type="user" id="b3i-iS-7Vs"/>
-                                    <constraint firstAttribute="height" priority="999" constant="100" type="user" id="d2o-0v-ASt"/>
+                                    <constraint firstAttribute="height" constant="100" type="user" id="d2o-0v-ASt"/>
                                     <constraint firstAttribute="bottom" secondItem="REH-wX-7o7" secondAttribute="bottom" constant="10" type="user" id="ghf-hZ-BL5"/>
                                     <constraint firstAttribute="trailing" secondItem="T8N-73-fMD" secondAttribute="trailing" constant="20" symbolic="YES" type="user" id="lDh-nH-xCE"/>
                                     <constraint firstItem="T8N-73-fMD" firstAttribute="bottom" secondItem="REH-wX-7o7" secondAttribute="bottom" type="user" id="lw4-1a-oGn"/>
@@ -1465,8 +1466,8 @@ needed</string>
                                 <subviews>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ZWE-I8-sId" customClass="RoundedRectButton">
                                         <constraints>
-                                            <constraint firstAttribute="height" constant="40" id="MOu-hh-Ij8"/>
                                             <constraint firstAttribute="width" constant="260" type="user" id="UBI-UY-KxP"/>
+                                            <constraint firstAttribute="height" constant="40" type="user" id="ViH-9b-KIf"/>
                                         </constraints>
                                         <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
                                         <state key="normal" title="Submit photos to this request" backgroundImage="texture-blue.png">
@@ -1482,7 +1483,7 @@ needed</string>
                                 <constraints>
                                     <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="50" type="user" id="Zs2-JK-WAp"/>
                                     <constraint firstItem="ZWE-I8-sId" firstAttribute="centerX" secondItem="DDI-YU-jIQ" secondAttribute="centerX" type="user" id="doR-UJ-dYA"/>
-                                    <constraint firstItem="ZWE-I8-sId" firstAttribute="centerY" secondItem="DDI-YU-jIQ" secondAttribute="centerY" type="default" id="rEo-14-004"/>
+                                    <constraint firstItem="ZWE-I8-sId" firstAttribute="centerY" secondItem="DDI-YU-jIQ" secondAttribute="centerY" type="user" id="rEo-14-004"/>
                                 </constraints>
                             </view>
                         </subviews>
@@ -1521,7 +1522,7 @@ needed</string>
                             <constraint firstItem="7vw-3Y-kZA" firstAttribute="leading" secondItem="Xqd-Ay-IBH" secondAttribute="leading" type="user" id="n34-ro-4qa"/>
                             <constraint firstItem="9Af-23-yCu" firstAttribute="top" secondItem="5TV-HC-waF" secondAttribute="bottom" constant="1" type="user" id="ptt-3X-Tac"/>
                             <constraint firstItem="ITb-nh-9zc" firstAttribute="trailing" secondItem="Xqd-Ay-IBH" secondAttribute="trailing" type="user" id="qxc-zf-K65"/>
-                            <constraint firstAttribute="bottom" secondItem="DDI-YU-jIQ" secondAttribute="bottom" constant="-7" id="w0x-ko-fbZ"/>
+                            <constraint firstAttribute="bottom" secondItem="DDI-YU-jIQ" secondAttribute="bottom" type="user" id="w0x-ko-fbZ"/>
                             <constraint firstItem="ITb-nh-9zc" firstAttribute="top" secondItem="9Af-23-yCu" secondAttribute="bottom" constant="1" type="user" id="xRl-8O-Y7m"/>
                         </constraints>
                     </view>
@@ -1585,6 +1586,10 @@ needed</string>
         <class className="EditViewController" superclassName="UITableViewController">
             <source key="sourceIdentifier" type="project" relativePath="./Classes/EditViewController.h"/>
             <relationships>
+                <relationship kind="action" name="cancelButtonTapped:"/>
+                <relationship kind="action" name="deleteButtonTapped:"/>
+                <relationship kind="action" name="rememberDetailsSwitchValueChanged:" candidateClass="UISwitch"/>
+                <relationship kind="action" name="saveButtonTapped:"/>
                 <relationship kind="outlet" name="deleteButton" candidateClass="UIButton"/>
                 <relationship kind="outlet" name="descriptionTextView" candidateClass="PlaceholderTextView"/>
                 <relationship kind="outlet" name="rememberDetailsLabel" candidateClass="UILabel"/>
@@ -1596,6 +1601,7 @@ needed</string>
         <class className="FeedCell" superclassName="UITableViewCell">
             <source key="sourceIdentifier" type="project" relativePath="./Classes/FeedCell.h"/>
             <relationships>
+                <relationship kind="action" name="editButtonTapped:"/>
                 <relationship kind="outlet" name="descriptionLabel" candidateClass="UILabel"/>
                 <relationship kind="outlet" name="largeImageView" candidateClass="UIImageView"/>
             </relationships>
@@ -1606,6 +1612,7 @@ needed</string>
                 <relationship kind="action" name="facebookLoginButtonTapped:"/>
                 <relationship kind="action" name="goBack:"/>
                 <relationship kind="action" name="loginButtonTapped:"/>
+                <relationship kind="action" name="registerButtonTapped:"/>
                 <relationship kind="outlet" name="captionLabel" candidateClass="UILabel"/>
                 <relationship kind="outlet" name="headerImageView" candidateClass="UIImageView"/>
                 <relationship kind="outlet" name="logoButton" candidateClass="UIButton"/>
@@ -1615,6 +1622,10 @@ needed</string>
         <class className="MenuViewController" superclassName="UIViewController">
             <source key="sourceIdentifier" type="project" relativePath="./Classes/MenuViewController.h"/>
             <relationships>
+                <relationship kind="action" name="popularButtonTapped:"/>
+                <relationship kind="action" name="profileButtonTapped:"/>
+                <relationship kind="action" name="recentButtonTapped:"/>
+                <relationship kind="action" name="takePhotoButtonTapped:"/>
                 <relationship kind="outlet" name="profileButton" candidateClass="UIButton"/>
             </relationships>
         </class>
@@ -1666,6 +1677,7 @@ needed</string>
         <class className="SettingsViewController" superclassName="UITableViewController">
             <source key="sourceIdentifier" type="project" relativePath="./Classes/SettingsViewController.h"/>
             <relationships>
+                <relationship kind="action" name="backButtonTapped:"/>
                 <relationship kind="outlet" name="emailCell" candidateClass="UITableViewCell"/>
                 <relationship kind="outlet" name="logoutCell" candidateClass="UITableViewCell"/>
             </relationships>
