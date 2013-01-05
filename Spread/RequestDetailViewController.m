@@ -10,6 +10,7 @@
 #import "User+Spread.h"
 #import "UIImageView+WebCache.h"
 #import "NSNumber+Spread.h"
+#import "RequestBriefViewController.h"
 
 
 
@@ -43,6 +44,12 @@
     self.photosLabel.text = [NSString stringWithFormat:@"Photos (%d)", [self.request.quantity integerValue] - [self.request.remaining integerValue]];
 }
 
-
+- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
+{
+    if ([segue.identifier isEqualToString:@"BriefSegue"])
+    {
+        ((RequestBriefViewController *)segue.destinationViewController).request = self.request;
+    }
+}
 
 @end
