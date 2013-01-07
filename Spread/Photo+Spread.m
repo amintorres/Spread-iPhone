@@ -28,9 +28,10 @@
     photo.updatedDate = [NSDate dateFromServerString:dict[@"updated_at"]];
 
     NSDictionary* images = dict[@"images"];
-    photo.gridImageURLString = images[@"thumb"][@"url"];
-    photo.feedImageURLString = images[@"square"][@"url"];
-    photo.largeImageURLString = images[@"web_preview"][@"url"];
+    
+    photo.gridImageURLString = (images[@"mobile_grid"]) ? images[@"mobile_grid"][@"url"] : images[@"thumb"][@"url"];
+    photo.feedImageURLString = (images[@"mobile_feed"]) ? images[@"mobile_feed"][@"url"] : images[@"square"][@"url"];
+    photo.largeImageURLString = (images[@"mobile"]) ? images[@"mobile"][@"url"] : images[@"web_preview"][@"url"];
     
     NSArray* tags = dict[@"tags"];
     for (NSDictionary* dict in tags)
