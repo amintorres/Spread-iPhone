@@ -12,6 +12,7 @@
 #import "NSNumber+Spread.h"
 #import "RequestBriefViewController.h"
 #import "CameraManager.h"
+#import "RequestPhotosViewController.h"
 
 
 
@@ -59,5 +60,11 @@
     [[CameraManager sharedManager] presentImagePickerInViewController:self];
 }
 
+- (IBAction)photosButtonTapped:(id)sender
+{
+    RequestPhotosViewController *controller = [RequestPhotosViewController new];
+    controller.request = self.request;
+    [self.navigationController pushViewController:controller animated:YES];
+}
 
 @end

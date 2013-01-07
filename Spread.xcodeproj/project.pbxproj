@@ -15,6 +15,7 @@
 		7C17739D169A7BC80054CBDD /* Tag.m in Sources */ = {isa = PBXBuildFile; fileRef = 7C17739C169A7BC80054CBDD /* Tag.m */; };
 		7C1773A3169A7BC80054CBDD /* User.m in Sources */ = {isa = PBXBuildFile; fileRef = 7C1773A2169A7BC80054CBDD /* User.m */; };
 		7C1773A6169A89290054CBDD /* Request.m in Sources */ = {isa = PBXBuildFile; fileRef = 7C1773A5169A89290054CBDD /* Request.m */; };
+		7C1773A9169A8F010054CBDD /* RequestPhotosViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7C1773A8169A8F010054CBDD /* RequestPhotosViewController.m */; };
 		7C1DC37C1617569A007EBB48 /* Request+Spread.m in Sources */ = {isa = PBXBuildFile; fileRef = 7C1DC37B1617569A007EBB48 /* Request+Spread.m */; };
 		7C1DC39016177031007EBB48 /* NSNumber+Spread.m in Sources */ = {isa = PBXBuildFile; fileRef = 7C1DC38F16177031007EBB48 /* NSNumber+Spread.m */; };
 		7C231510166BA9200044DC85 /* Default.png in Resources */ = {isa = PBXBuildFile; fileRef = 7C23150F166BA9200044DC85 /* Default.png */; };
@@ -226,6 +227,8 @@
 		7C1773A2169A7BC80054CBDD /* User.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = User.m; sourceTree = "<group>"; };
 		7C1773A4169A89290054CBDD /* Request.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Request.h; sourceTree = "<group>"; };
 		7C1773A5169A89290054CBDD /* Request.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Request.m; sourceTree = "<group>"; };
+		7C1773A7169A8F000054CBDD /* RequestPhotosViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RequestPhotosViewController.h; sourceTree = "<group>"; };
+		7C1773A8169A8F010054CBDD /* RequestPhotosViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RequestPhotosViewController.m; sourceTree = "<group>"; };
 		7C1DC37A1617569A007EBB48 /* Request+Spread.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "Request+Spread.h"; sourceTree = "<group>"; };
 		7C1DC37B1617569A007EBB48 /* Request+Spread.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "Request+Spread.m"; sourceTree = "<group>"; };
 		7C1DC38E16177031007EBB48 /* NSNumber+Spread.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSNumber+Spread.h"; sourceTree = "<group>"; };
@@ -817,6 +820,8 @@
 				7C25A5D015D7091A0014465B /* PopularViewController.m */,
 				7C25A5D215D7100C0014465B /* UserViewController.h */,
 				7C25A5D315D7100C0014465B /* UserViewController.m */,
+				7C1773A7169A8F000054CBDD /* RequestPhotosViewController.h */,
+				7C1773A8169A8F010054CBDD /* RequestPhotosViewController.m */,
 			);
 			name = "Recent/Popular/User Photo";
 			sourceTree = "<group>";
@@ -1312,6 +1317,7 @@
 				7C17739D169A7BC80054CBDD /* Tag.m in Sources */,
 				7C1773A3169A7BC80054CBDD /* User.m in Sources */,
 				7C1773A6169A89290054CBDD /* Request.m in Sources */,
+				7C1773A9169A8F010054CBDD /* RequestPhotosViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
