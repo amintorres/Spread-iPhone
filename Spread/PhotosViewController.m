@@ -12,6 +12,9 @@
 #import "UploadViewController.h"
 #import "CameraManager.h"
 
+#define kAnimationDuration 0.2
+
+
 
 @interface PhotosViewController () <UploadViewControllerDelegate, UICollectionViewDelegate, UITableViewDelegate>
 @property (nonatomic, strong) IBOutlet UIButton *displayModeButton;
@@ -130,22 +133,34 @@
 
 - (void)displayCollectionView
 {
-    [self.tableView removeFromSuperview];
-    
     self.collectionViewController.photos = self.photos;
     self.collectionView.frame = self.contentView.bounds;
     [self addChildViewController:self.collectionViewController];
     [self.contentView addSubview:self.collectionView];
+
+    self.collectionView.alpha = 0.0;
+    [UIView animateWithDuration:kAnimationDuration animations:^{
+        self.collectionView.alpha = 1.0;
+        self.tableView.alpha = 0.0;
+    } completion:^(BOOL finished) {
+        [self.tableView removeFromSuperview];
+    }];
 }
 
 - (void)displayTableView
 {
-    [self.collectionView removeFromSuperview];
-    
     self.tableViewController.photos = self.photos;
     self.tableView.frame = self.contentView.bounds;
     [self addChildViewController:self.tableViewController];
     [self.contentView addSubview:self.tableView];
+    
+    self.tableView.alpha = 0.0;
+    [UIView animateWithDuration:kAnimationDuration animations:^{
+        self.tableView.alpha = 1.0;
+        self.collectionView.alpha = 0.0;
+    } completion:^(BOOL finished) {
+        [self.collectionView removeFromSuperview];
+    }];
 }
 
 

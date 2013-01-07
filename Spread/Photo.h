@@ -2,14 +2,14 @@
 //  Photo.h
 //  Spread
 //
-//  Created by Joseph Lin on 8/10/12.
-//  Copyright (c) 2012 R/GA. All rights reserved.
+//  Created by Joseph Lin on 1/6/13.
+//  Copyright (c) 2013 R/GA. All rights reserved.
 //
 
 #import <Foundation/Foundation.h>
 #import <CoreData/CoreData.h>
 
-@class Tag, User;
+@class Request, Tag, User;
 
 @interface Photo : NSManagedObject
 
@@ -26,6 +26,7 @@
 @property (nonatomic, retain) NSDate * updatedDate;
 @property (nonatomic, retain) NSSet *tags;
 @property (nonatomic, retain) User *user;
+@property (nonatomic, retain) Request *request;
 @end
 
 @interface Photo (CoreDataGeneratedAccessors)

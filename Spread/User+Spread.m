@@ -22,12 +22,6 @@ static User* currentUser = nil;
     {
         id currentUserID = [[ServiceManager sharedManager] currentUserID];
         currentUser = (User*)[User objectWithID:currentUserID inContext:[User mainMOC]];
-        
-        if (!currentUser)
-        {
-            currentUser = (User*)[User objectInContext:[User mainMOC]];
-            currentUser.userID = currentUserID;
-        }
     }
     return currentUser;
 }

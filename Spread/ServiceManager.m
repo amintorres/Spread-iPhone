@@ -60,7 +60,16 @@ static NSString* boundary = nil;
 
 - (BOOL)isSessionValid
 {
-    return ( self.oauthToken != nil );
+    if ([User currentUser])
+    {
+        return ( self.oauthToken != nil );
+    }
+    else
+    {
+        self.oauthToken = nil;
+        self.currentUserID = nil;
+        return NO;
+    }
 }
 
 - (void)sendLoginRequest:(NSURLRequest*)request completion:(ServiceManagerHandler)completion

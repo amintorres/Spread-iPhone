@@ -2,11 +2,12 @@
 //  Photo.m
 //  Spread
 //
-//  Created by Joseph Lin on 8/10/12.
-//  Copyright (c) 2012 R/GA. All rights reserved.
+//  Created by Joseph Lin on 1/6/13.
+//  Copyright (c) 2013 R/GA. All rights reserved.
 //
 
 #import "Photo.h"
+#import "Request.h"
 #import "Tag.h"
 #import "User.h"
 
@@ -26,5 +27,6 @@
 @dynamic updatedDate;
 @dynamic tags;
 @dynamic user;
+@dynamic request;
 
 @end

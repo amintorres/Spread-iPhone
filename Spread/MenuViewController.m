@@ -28,6 +28,7 @@
     [super viewDidLoad];
 
     NSString* name = [[User currentUser].name uppercaseString];
+    if (!name) name = @"USER";
     [self.profileButton setTitle:name forState:UIControlStateNormal];
 }
 

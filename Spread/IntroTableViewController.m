@@ -51,8 +51,12 @@ typedef NS_ENUM(NSUInteger, KeyboardType) {
 {
     [super viewDidLoad];
     
-    // Check for self.navigationController to make sure it's not a dummy instance.
-    if ( [[ServiceManager sharedManager] isSessionValid] && self.navigationController )
+    CGFloat width = CGRectGetWidth(self.view.frame);
+    CGFloat height = CGRectGetHeight(self.view.frame) - self.tableView.rowHeight * 2.5; // 2 rows, plus some extra white space.
+    self.tableView.tableHeaderView.frame = CGRectMake(0, 0, width, height);
+    
+    
+    if ([[ServiceManager sharedManager] isSessionValid])
     {
         [self performSegueWithIdentifier:@"MenuSegue" sender:self];
     }
