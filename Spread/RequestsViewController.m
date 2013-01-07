@@ -15,10 +15,8 @@
 
 
 
-@interface RequestsViewController ()
-
+@interface RequestsViewController () <NSFetchedResultsControllerDelegate>
 @property (nonatomic, strong) NSFetchedResultsController* fetchedResultsController;
-
 @end
 
 
@@ -106,6 +104,7 @@
         request.sortDescriptors = @[sortDescriptor];
         
         _fetchedResultsController = [[NSFetchedResultsController alloc] initWithFetchRequest:request managedObjectContext:context sectionNameKeyPath:nil cacheName:nil];
+        _fetchedResultsController.delegate = self;
         
         [_fetchedResultsController performFetch:nil];
         [self updateTableViewHeader];
