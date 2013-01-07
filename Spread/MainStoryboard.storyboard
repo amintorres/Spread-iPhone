@@ -1535,6 +1535,7 @@ needed</string>
                     <connections>
                         <outlet property="daysLeftLabel" destination="Jz2-V0-w5G" id="4iq-wI-HJo"/>
                         <outlet property="descriptionLabel" destination="TmR-Cs-FLY" id="RIS-Ub-rvI"/>
+                        <outlet property="photosButton" destination="LHH-Ac-Q7U" id="UeP-ex-STA"/>
                         <outlet property="priceLabel" destination="WWj-YA-BcP" id="ucx-1O-VQC"/>
                         <outlet property="quantityLabel" destination="yci-iH-gLy" id="rEG-Ly-P1h"/>
                         <outlet property="requesterImageView" destination="REH-wX-7o7" id="Q2Z-Dy-Dwi"/>
@@ -1804,7 +1805,7 @@ Brief</string>
                 <relationship kind="action" name="submitButtonTapped:"/>
                 <relationship kind="outlet" name="daysLeftLabel" candidateClass="UILabel"/>
                 <relationship kind="outlet" name="descriptionLabel" candidateClass="UILabel"/>
-                <relationship kind="outlet" name="photosLabel" candidateClass="UILabel"/>
+                <relationship kind="outlet" name="photosButton" candidateClass="UIButton"/>
                 <relationship kind="outlet" name="priceLabel" candidateClass="UILabel"/>
                 <relationship kind="outlet" name="quantityLabel" candidateClass="UILabel"/>
                 <relationship kind="outlet" name="requesterImageView" candidateClass="UIImageView"/>

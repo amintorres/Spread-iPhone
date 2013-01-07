@@ -26,6 +26,14 @@
 @property (nonatomic, retain) NSDate * startDate;
 @property (nonatomic, retain) NSDate * updatedDate;
 @property (nonatomic, retain) User *requester;
-@property (nonatomic, retain) Photo *photos;
+@property (nonatomic, retain) NSSet *photos;
+@end
+
+@interface Request (CoreDataGeneratedAccessors)
+
+- (void)addPhotosObject:(Photo *)value;
+- (void)removePhotosObject:(Photo *)value;
+- (void)addPhotos:(NSSet *)values;
+- (void)removePhotos:(NSSet *)values;
 
 @end

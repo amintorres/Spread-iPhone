@@ -22,7 +22,7 @@
 @property (strong, nonatomic) IBOutlet UILabel *priceLabel;
 @property (strong, nonatomic) IBOutlet UILabel *quantityLabel;
 @property (strong, nonatomic) IBOutlet UILabel *daysLeftLabel;
-@property (strong, nonatomic) IBOutlet UILabel *photosLabel;
+@property (strong, nonatomic) IBOutlet UIButton *photosButton;
 @end
 
 
@@ -42,7 +42,7 @@
     self.quantityLabel.text = [NSString stringWithFormat:@"%02d", [self.request.quantity integerValue]];
     self.daysLeftLabel.text = [NSString stringWithFormat:@"%02d", self.request.daysLeft];
     
-    self.photosLabel.text = [NSString stringWithFormat:@"Photos (%d)", [self.request.quantity integerValue] - [self.request.remaining integerValue]];
+    [self.photosButton setTitle:[NSString stringWithFormat:@"Photos (%d)", [self.request.photos count]] forState:UIControlStateNormal];
 }
 
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender

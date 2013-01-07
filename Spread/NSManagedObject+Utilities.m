@@ -109,19 +109,20 @@
             NSManagedObjectID *moid = [objectInPrivateContext objectID];
             [moids addObject:moid];
         }
-        [privateContext save:nil];
+        NSError *error = nil;
+        [privateContext save:&error];
         
         [context performBlock:^{
 
             [context save:nil];
 
-            __block NSMutableArray *photos = [NSMutableArray arrayWithCapacity:[array count]];
+            __block NSMutableArray *objects = [NSMutableArray arrayWithCapacity:[array count]];
             for (id moid in moids)
             {
                 id object = [context objectWithID:moid];
-                [photos addObject:object];
+                [objects addObject:object];
             }
-            completion(photos);
+            completion(objects);
         }];
     }];
 }

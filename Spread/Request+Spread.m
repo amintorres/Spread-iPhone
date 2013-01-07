@@ -8,6 +8,7 @@
 
 #import "Request+Spread.h"
 #import "User+Spread.h"
+#import "Photo+Spread.h"
 #import "NSDate+Spread.h"
 
 
@@ -32,7 +33,7 @@
 
 + (NSManagedObject *)objectWithDict:(NSDictionary*)dict inContext:(NSManagedObjectContext*)context
 {
-    Request* request = (Request*)[super objectWithDict:dict inContext:context];
+    __block Request* request = (Request*)[super objectWithDict:dict inContext:context];
     request.requestID = dict[[self jsonIDKey]];
     request.createdDate = [NSDate dateFromServerString:dict[@"created_at"]];
     request.updatedDate = [NSDate dateFromServerString:dict[@"updated_at"]];
@@ -46,8 +47,15 @@
     request.quantity = @([dict[@"quantity"] integerValue]);
     request.remaining = @([dict[@"remaining"] integerValue]);
     
-    NSDictionary* entity = dict[@"entity"];
+    NSDictionary *entity = dict[@"entity"];
     request.requester = (User*)[User objectWithDict:entity inContext:context];
+    
+    NSArray *requestPhotos = dict[@"request_photos"];
+    for (id dict in requestPhotos)
+    {
+        id photo = [Photo objectWithDict:dict inContext:context];
+        [request addPhotosObject:photo];
+    }
     
 	return request;
 }
