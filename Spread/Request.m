@@ -2,12 +2,13 @@
 //  Request.m
 //  Spread
 //
-//  Created by Joseph Lin on 1/6/13.
+//  Created by Joseph Lin on 1/19/13.
 //  Copyright (c) 2013 R/GA. All rights reserved.
 //
 
 #import "Request.h"
 #import "Photo.h"
+#import "Reference.h"
 #import "User.h"
 
 
@@ -25,7 +26,8 @@
 @dynamic requestID;
 @dynamic startDate;
 @dynamic updatedDate;
-@dynamic requester;
 @dynamic photos;
+@dynamic requester;
+@dynamic references;
 
 @end

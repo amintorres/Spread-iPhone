@@ -9,6 +9,7 @@
 #import "Request+Spread.h"
 #import "User+Spread.h"
 #import "Photo+Spread.h"
+#import "Reference+Spread.h"
 #import "NSDate+Spread.h"
 
 
@@ -57,6 +58,14 @@
         [request addPhotosObject:photo];
     }
     
+    NSArray *references = dict[@"request_references"];
+    for (id dict in references)
+    {
+        id reference = [Reference objectWithDict:dict inContext:context];
+        [request addReferencesObject:reference];
+    }
+    
+    
 	return request;
 }
 
@@ -90,6 +99,12 @@
     return comps.day;
 }
 
+- (NSArray *)sortedReferences
+{
+    NSSortDescriptor *sortDescriptor = [NSSortDescriptor sortDescriptorWithKey:@"referenceID" ascending:YES];
+    NSArray *sortedReferences = [self.references sortedArrayUsingDescriptors:@[sortDescriptor]];
+    return sortedReferences;
+}
 
 
 @end

@@ -2,14 +2,14 @@
 //  Request.h
 //  Spread
 //
-//  Created by Joseph Lin on 1/6/13.
+//  Created by Joseph Lin on 1/19/13.
 //  Copyright (c) 2013 R/GA. All rights reserved.
 //
 
 #import <Foundation/Foundation.h>
 #import <CoreData/CoreData.h>
 
-@class Photo, User;
+@class Photo, Reference, User;
 
 @interface Request : NSManagedObject
 
@@ -25,8 +25,9 @@
 @property (nonatomic, retain) NSNumber * requestID;
 @property (nonatomic, retain) NSDate * startDate;
 @property (nonatomic, retain) NSDate * updatedDate;
-@property (nonatomic, retain) User *requester;
 @property (nonatomic, retain) NSSet *photos;
+@property (nonatomic, retain) User *requester;
+@property (nonatomic, retain) NSSet *references;
 @end
 
 @interface Request (CoreDataGeneratedAccessors)
@@ -35,5 +36,10 @@
 - (void)removePhotosObject:(Photo *)value;
 - (void)addPhotos:(NSSet *)values;
 - (void)removePhotos:(NSSet *)values;
+
+- (void)addReferencesObject:(Reference *)value;
+- (void)removeReferencesObject:(Reference *)value;
+- (void)addReferences:(NSSet *)values;
+- (void)removeReferences:(NSSet *)values;
 
 @end

@@ -16,6 +16,11 @@
         <relationship name="tags" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Tag" inverseName="photos" inverseEntity="Tag" syncable="YES"/>
         <relationship name="user" optional="YES" minCount="1" maxCount="1" deletionRule="Nullify" destinationEntity="User" inverseName="photos" inverseEntity="User" syncable="YES"/>
     </entity>
+    <entity name="Reference" representedClassName="Reference" syncable="YES">
+        <attribute name="referenceID" optional="YES" attributeType="Integer 64" defaultValueString="0" syncable="YES"/>
+        <attribute name="referenceURL" optional="YES" attributeType="String" syncable="YES"/>
+        <relationship name="request" optional="YES" minCount="1" maxCount="1" deletionRule="Nullify" destinationEntity="Request" inverseName="references" inverseEntity="Request" syncable="YES"/>
+    </entity>
     <entity name="Request" representedClassName="Request" syncable="YES">
         <attribute name="amount" optional="YES" attributeType="Decimal" defaultValueString="0.0" syncable="YES"/>
         <attribute name="createdDate" optional="YES" attributeType="Date" syncable="YES"/>
@@ -30,6 +35,7 @@
         <attribute name="startDate" optional="YES" attributeType="Date" syncable="YES"/>
         <attribute name="updatedDate" optional="YES" attributeType="Date" syncable="YES"/>
         <relationship name="photos" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Photo" inverseName="request" inverseEntity="Photo" syncable="YES"/>
+        <relationship name="references" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Reference" inverseName="request" inverseEntity="Reference" syncable="YES"/>
         <relationship name="requester" optional="YES" minCount="1" maxCount="1" deletionRule="Nullify" destinationEntity="User" inverseName="requests" inverseEntity="User" syncable="YES"/>
     </entity>
     <entity name="Tag" representedClassName="Tag" syncable="YES">
@@ -47,8 +53,9 @@
     </entity>
     <elements>
         <element name="Photo" positionX="-18" positionY="35" width="128" height="253"/>
-        <element name="Request" positionX="-236" positionY="351" width="128" height="253"/>
+        <element name="Request" positionX="-236" positionY="351" width="128" height="268"/>
         <element name="Tag" positionX="306" positionY="144" width="128" height="90"/>
         <element name="User" positionX="-513" positionY="117" width="128" height="133"/>
+        <element name="Reference" positionX="117" positionY="450" width="128" height="88"/>
     </elements>
 </model>

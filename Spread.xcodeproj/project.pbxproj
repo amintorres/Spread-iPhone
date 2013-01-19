@@ -14,10 +14,13 @@
 		7C165A9516AB11CE00E0BF28 /* ThumbCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 7C165A9416AB11CE00E0BF28 /* ThumbCell.xib */; };
 		7C165A9716AB14DD00E0BF28 /* FeedCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 7C165A9616AB14DD00E0BF28 /* FeedCell.xib */; };
 		7C165A9816AB1C9B00E0BF28 /* UIView+Shortcut.m in Sources */ = {isa = PBXBuildFile; fileRef = 7C6CFC0014BD48760048644C /* UIView+Shortcut.m */; };
+		7C165AA116AB38B500E0BF28 /* Request.m in Sources */ = {isa = PBXBuildFile; fileRef = 7C165AA016AB38B500E0BF28 /* Request.m */; };
+		7C165AA716AB38F300E0BF28 /* Reference+Spread.m in Sources */ = {isa = PBXBuildFile; fileRef = 7C165AA616AB38F300E0BF28 /* Reference+Spread.m */; };
+		7C165AAA16AB395E00E0BF28 /* Reference.m in Sources */ = {isa = PBXBuildFile; fileRef = 7C165AA916AB395D00E0BF28 /* Reference.m */; };
+		7C165AAD16AB3AC700E0BF28 /* RequestReferenceViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7C165AAC16AB3AC700E0BF28 /* RequestReferenceViewController.m */; };
 		7C17739A169A7BC70054CBDD /* Photo.m in Sources */ = {isa = PBXBuildFile; fileRef = 7C177399169A7BC70054CBDD /* Photo.m */; };
 		7C17739D169A7BC80054CBDD /* Tag.m in Sources */ = {isa = PBXBuildFile; fileRef = 7C17739C169A7BC80054CBDD /* Tag.m */; };
 		7C1773A3169A7BC80054CBDD /* User.m in Sources */ = {isa = PBXBuildFile; fileRef = 7C1773A2169A7BC80054CBDD /* User.m */; };
-		7C1773A6169A89290054CBDD /* Request.m in Sources */ = {isa = PBXBuildFile; fileRef = 7C1773A5169A89290054CBDD /* Request.m */; };
 		7C1773A9169A8F010054CBDD /* RequestPhotosViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7C1773A8169A8F010054CBDD /* RequestPhotosViewController.m */; };
 		7C1DC37C1617569A007EBB48 /* Request+Spread.m in Sources */ = {isa = PBXBuildFile; fileRef = 7C1DC37B1617569A007EBB48 /* Request+Spread.m */; };
 		7C1DC39016177031007EBB48 /* NSNumber+Spread.m in Sources */ = {isa = PBXBuildFile; fileRef = 7C1DC38F16177031007EBB48 /* NSNumber+Spread.m */; };
@@ -222,14 +225,20 @@
 		7C0B726516346EC0002469D3 /* TextFieldCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TextFieldCell.m; sourceTree = "<group>"; };
 		7C165A9416AB11CE00E0BF28 /* ThumbCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ThumbCell.xib; sourceTree = "<group>"; };
 		7C165A9616AB14DD00E0BF28 /* FeedCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = FeedCell.xib; sourceTree = "<group>"; };
+		7C165A9F16AB38B500E0BF28 /* Request.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Request.h; sourceTree = "<group>"; };
+		7C165AA016AB38B500E0BF28 /* Request.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Request.m; sourceTree = "<group>"; };
+		7C165AA516AB38F300E0BF28 /* Reference+Spread.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "Reference+Spread.h"; sourceTree = "<group>"; };
+		7C165AA616AB38F300E0BF28 /* Reference+Spread.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "Reference+Spread.m"; sourceTree = "<group>"; };
+		7C165AA816AB395D00E0BF28 /* Reference.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Reference.h; sourceTree = "<group>"; };
+		7C165AA916AB395D00E0BF28 /* Reference.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Reference.m; sourceTree = "<group>"; };
+		7C165AAB16AB3AC700E0BF28 /* RequestReferenceViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RequestReferenceViewController.h; sourceTree = "<group>"; };
+		7C165AAC16AB3AC700E0BF28 /* RequestReferenceViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RequestReferenceViewController.m; sourceTree = "<group>"; };
 		7C177398169A7BC70054CBDD /* Photo.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Photo.h; sourceTree = "<group>"; };
 		7C177399169A7BC70054CBDD /* Photo.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Photo.m; sourceTree = "<group>"; };
 		7C17739B169A7BC80054CBDD /* Tag.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Tag.h; sourceTree = "<group>"; };
 		7C17739C169A7BC80054CBDD /* Tag.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Tag.m; sourceTree = "<group>"; };
 		7C1773A1169A7BC80054CBDD /* User.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = User.h; sourceTree = "<group>"; };
 		7C1773A2169A7BC80054CBDD /* User.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = User.m; sourceTree = "<group>"; };
-		7C1773A4169A89290054CBDD /* Request.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Request.h; sourceTree = "<group>"; };
-		7C1773A5169A89290054CBDD /* Request.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Request.m; sourceTree = "<group>"; };
 		7C1773A7169A8F000054CBDD /* RequestPhotosViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RequestPhotosViewController.h; sourceTree = "<group>"; };
 		7C1773A8169A8F010054CBDD /* RequestPhotosViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RequestPhotosViewController.m; sourceTree = "<group>"; };
 		7C1DC37A1617569A007EBB48 /* Request+Spread.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "Request+Spread.h"; sourceTree = "<group>"; };
@@ -609,6 +618,8 @@
 				7CC36850164575A800F9409D /* RequestDetailViewController.m */,
 				7CE82C1D16989E2C00CD240B /* RequestBriefViewController.h */,
 				7CE82C1E16989E2C00CD240B /* RequestBriefViewController.m */,
+				7C165AAB16AB3AC700E0BF28 /* RequestReferenceViewController.h */,
+				7C165AAC16AB3AC700E0BF28 /* RequestReferenceViewController.m */,
 			);
 			name = Requests;
 			sourceTree = "<group>";
@@ -660,14 +671,18 @@
 			isa = PBXGroup;
 			children = (
 				7C7F399215CE2CED00EE18DF /* Spread.xcdatamodeld */,
-				7C1773A4169A89290054CBDD /* Request.h */,
-				7C1773A5169A89290054CBDD /* Request.m */,
 				7C1773A1169A7BC80054CBDD /* User.h */,
 				7C1773A2169A7BC80054CBDD /* User.m */,
 				7C81998B14C1187B0019AB8E /* User+Spread.h */,
 				7C81998C14C1187B0019AB8E /* User+Spread.m */,
+				7C165A9F16AB38B500E0BF28 /* Request.h */,
+				7C165AA016AB38B500E0BF28 /* Request.m */,
 				7C1DC37A1617569A007EBB48 /* Request+Spread.h */,
 				7C1DC37B1617569A007EBB48 /* Request+Spread.m */,
+				7C165AA816AB395D00E0BF28 /* Reference.h */,
+				7C165AA916AB395D00E0BF28 /* Reference.m */,
+				7C165AA516AB38F300E0BF28 /* Reference+Spread.h */,
+				7C165AA616AB38F300E0BF28 /* Reference+Spread.m */,
 				7C17739B169A7BC80054CBDD /* Tag.h */,
 				7C17739C169A7BC80054CBDD /* Tag.m */,
 				7CFAFA2414C3A1FA00597A6D /* Tag+Spread.h */,
@@ -1313,9 +1328,12 @@
 				7C17739A169A7BC70054CBDD /* Photo.m in Sources */,
 				7C17739D169A7BC80054CBDD /* Tag.m in Sources */,
 				7C1773A3169A7BC80054CBDD /* User.m in Sources */,
-				7C1773A6169A89290054CBDD /* Request.m in Sources */,
 				7C1773A9169A8F010054CBDD /* RequestPhotosViewController.m in Sources */,
 				7C165A9816AB1C9B00E0BF28 /* UIView+Shortcut.m in Sources */,
+				7C165AA116AB38B500E0BF28 /* Request.m in Sources */,
+				7C165AA716AB38F300E0BF28 /* Reference+Spread.m in Sources */,
+				7C165AAA16AB395E00E0BF28 /* Reference.m in Sources */,
+				7C165AAD16AB3AC700E0BF28 /* RequestReferenceViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

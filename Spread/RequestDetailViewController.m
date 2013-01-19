@@ -52,6 +52,10 @@
     {
         ((RequestBriefViewController *)segue.destinationViewController).request = self.request;
     }
+    else if ([segue.identifier isEqualToString:@"referenceSegue"])
+    {
+        ((RequestBriefViewController *)segue.destinationViewController).request = self.request;
+    }
 }
 
 - (IBAction)submitButtonTapped:(id)sender
