@@ -16,6 +16,4 @@
 - (void)setWidth:(CGFloat)width;
 - (void)setHeight:(CGFloat)height;
 
-CGRect CGRectConvertBetweenOrientations(CGRect frameInWindow, UIInterfaceOrientation fromOrientation, UIInterfaceOrientation toOrientation);
-
 @end

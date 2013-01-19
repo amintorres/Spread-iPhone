@@ -699,6 +699,8 @@
 				7C76DF2014D1D01E007A03B5 /* NSError+Spread.m */,
 				7C2A3F261670D5C0008D6DD2 /* UIImage+Utilities.h */,
 				7C2A3F271670D5C0008D6DD2 /* UIImage+Utilities.m */,
+				7C6CFBFF14BD48760048644C /* UIView+Shortcut.h */,
+				7C6CFC0014BD48760048644C /* UIView+Shortcut.m */,
 			);
 			name = Categories;
 			sourceTree = "<group>";
@@ -787,8 +789,6 @@
 		7C86FF8B14AF8692001B907A /* Categories */ = {
 			isa = PBXGroup;
 			children = (
-				7C6CFBFF14BD48760048644C /* UIView+Shortcut.h */,
-				7C6CFC0014BD48760048644C /* UIView+Shortcut.m */,
 				7C6CFBF914BD46A90048644C /* UILabel+Crossfade.h */,
 				7C6CFBFA14BD46A90048644C /* UILabel+Crossfade.m */,
 				7C3F37D114C4DE3F00E39B3F /* UILabel+Resizing.h */,

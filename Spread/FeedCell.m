@@ -9,8 +9,9 @@
 #import "FeedCell.h"
 #import "UIImageView+WebCache.h"
 #import "EditViewController.h"
+#import "UIView+Shortcut.h"
 
-#define kBottomMargin 10.0
+#define kTextMargin 5.0
 
 
 @implementation FeedCell
@@ -23,10 +24,12 @@
     NSURL *URL = [NSURL URLWithString:photo.feedImageURLString];
     [self.largeImageView setImageWithURL:URL];
     
-    CGFloat textHeight = [FeedCell suggestedTextHeightForPhoto:photo];
-    self.descriptionLabel.frame = CGRectMake(self.descriptionLabel.frame.origin.x, self.descriptionLabel.frame.origin.y, self.descriptionLabel.frame.size.width, textHeight);
-
     self.descriptionLabel.text = photo.photoDescription;
+    CGFloat textHeight = [FeedCell suggestedTextHeightForPhoto:photo];    
+    [self.descriptionLabel setHeight:textHeight];
+
+    self.editButton.hidden = !photo.isCurrentUser;
+    [self.editButton setY:CGRectGetMaxY(self.descriptionLabel.frame) + kTextMargin];
 }
 
 + (CGFloat)suggestedTextHeightForPhoto:(Photo *)photo
@@ -35,16 +38,20 @@
     
     CGSize contrainSize = CGSizeMake(CGRectGetWidth(referenceCell.descriptionLabel.frame), MAXFLOAT);
     CGSize textSize = [photo.photoDescription sizeWithFont:referenceCell.descriptionLabel.font constrainedToSize:contrainSize lineBreakMode:NSLineBreakByWordWrapping];
-    CGFloat textHeight = MAX(CGRectGetHeight(referenceCell.editButton.frame), textSize.height);
+    CGFloat textHeight = textSize.height;
     return textHeight;
 }
 
 + (CGFloat)suggestedHeightForPhoto:(Photo *)photo
 {
     FeedCell *referenceCell = [self referenceCell];
-
     CGFloat textHeight = [self suggestedTextHeightForPhoto:photo];
-    CGFloat height = CGRectGetMinY(referenceCell.descriptionLabel.frame) + textHeight + kBottomMargin;
+    CGFloat height = CGRectGetMinY(referenceCell.descriptionLabel.frame) + textHeight + kTextMargin;
+
+    if (photo.isCurrentUser) {
+        height += CGRectGetHeight(referenceCell.editButton.frame) + kTextMargin;
+    }
+    
     return height;
 }
 

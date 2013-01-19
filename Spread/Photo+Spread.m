@@ -9,7 +9,7 @@
 #import "Photo+Spread.h"
 #import "Tag+Spread.h"
 #import "NSDate+Spread.h"
-
+#import "User+Spread.h"
 
 
 @implementation Photo (Spread)
@@ -40,6 +40,8 @@
         [photo addTagsObject:tag];
     }
     
+    photo.user = (User*)[User objectWithDict:dict[@"entity"] inContext:context];
+    
 	return photo;
 }
 
@@ -60,6 +62,12 @@
     NSArray *sortedTagStrings = [sortedTags valueForKeyPath:@"@unionOfObjects.name"];
     NSString * csvTagsString = [sortedTagStrings componentsJoinedByString:@", "];
     return csvTagsString;
+}
+
+- (BOOL)isCurrentUser
+{
+    BOOL isCurrentUser = (self.user == [User currentUser]);
+    return isCurrentUser;
 }
 
 @end

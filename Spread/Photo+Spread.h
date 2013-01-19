@@ -13,5 +13,6 @@
 @interface Photo (Spread)
 
 @property (nonatomic, strong, readonly) NSString *csvTagsString;
+@property (nonatomic, readonly) BOOL isCurrentUser;
 
 @end
