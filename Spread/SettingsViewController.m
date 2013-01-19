@@ -12,7 +12,7 @@
 #import <MessageUI/MFMailComposeViewController.h>
 
 
-@interface SettingsViewController () <MFMailComposeViewControllerDelegate>
+@interface SettingsViewController () <UIActionSheetDelegate, MFMailComposeViewControllerDelegate>
 @property (strong, nonatomic) IBOutlet UITableViewCell *emailCell;
 @property (strong, nonatomic) IBOutlet UITableViewCell *logoutCell;
 @end
@@ -58,8 +58,8 @@
     
     if (cell == self.logoutCell)
     {
-        [[ServiceManager sharedManager] logout];
-        [self.navigationController popToRootViewControllerAnimated:YES];
+        UIActionSheet *sheet = [[UIActionSheet alloc] initWithTitle:@"Are you sure you want to log out?" delegate:self cancelButtonTitle:@"NO" destructiveButtonTitle:@"YES" otherButtonTitles:nil];
+        [sheet showInView:self.view];
     }
     else if (cell == self.emailCell)
     {
@@ -70,6 +70,16 @@
         [self presentViewController:controller animated:YES completion:NULL];
     }
 }
+
+- (void)actionSheet:(UIActionSheet *)actionSheet didDismissWithButtonIndex:(NSInteger)buttonIndex
+{
+    if (buttonIndex != actionSheet.cancelButtonIndex)
+    {
+        [[ServiceManager sharedManager] logout];
+        [self.navigationController popToRootViewControllerAnimated:YES];
+    }
+}
+
 
 #pragma mark - Mail Composer Controller Delegate
 
