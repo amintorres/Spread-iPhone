@@ -556,126 +556,6 @@
             </objects>
             <point key="canvasLocation" x="796" y="784"/>
         </scene>
-        <!--Photos Collection View Controller-->
-        <scene sceneID="Rh4-cJ-rP9">
-            <objects>
-                <collectionViewController storyboardIdentifier="PhotosCollectionViewController" autoresizesArchivedViewToFullSize="NO" id="L0j-Az-VR7" customClass="PhotosCollectionViewController" sceneMemberID="viewController">
-                    <collectionView key="view" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" minimumZoomScale="0.0" maximumZoomScale="0.0" dataMode="prototypes" id="N85-0o-8Nu">
-                        <rect key="frame" x="0.0" y="20" width="320" height="548"/>
-                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                        <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="7" minimumInteritemSpacing="6" id="Gje-0Y-Svt">
-                            <size key="itemSize" width="70" height="70"/>
-                            <size key="headerReferenceSize" width="0.0" height="0.0"/>
-                            <size key="footerReferenceSize" width="0.0" height="0.0"/>
-                            <inset key="sectionInset" minX="10" minY="10" maxX="10" maxY="10"/>
-                        </collectionViewFlowLayout>
-                        <cells>
-                            <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="ThumbCell" id="75v-GC-IXl" customClass="ThumbCell">
-                                <rect key="frame" x="10" y="10" width="70" height="70"/>
-                                <autoresizingMask key="autoresizingMask"/>
-                                <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
-                                    <rect key="frame" x="0.0" y="0.0" width="70" height="70"/>
-                                    <autoresizingMask key="autoresizingMask"/>
-                                    <subviews>
-                                        <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" translatesAutoresizingMaskIntoConstraints="NO" id="yEu-UH-S2n"/>
-                                    </subviews>
-                                    <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
-                                </view>
-                                <constraints>
-                                    <constraint firstItem="yEu-UH-S2n" firstAttribute="top" secondItem="75v-GC-IXl" secondAttribute="top" type="default" id="NlM-Fy-MhD"/>
-                                    <constraint firstItem="yEu-UH-S2n" firstAttribute="leading" secondItem="75v-GC-IXl" secondAttribute="leading" type="default" id="m1b-4h-kVv"/>
-                                    <constraint firstItem="yEu-UH-S2n" firstAttribute="trailing" secondItem="75v-GC-IXl" secondAttribute="trailing" type="default" id="yWt-MK-FlC"/>
-                                    <constraint firstItem="yEu-UH-S2n" firstAttribute="bottom" secondItem="75v-GC-IXl" secondAttribute="bottom" type="default" id="z5d-Nd-ceE"/>
-                                </constraints>
-                                <connections>
-                                    <outlet property="thumbImageView" destination="yEu-UH-S2n" id="SqF-uV-LSZ"/>
-                                </connections>
-                            </collectionViewCell>
-                        </cells>
-                        <connections>
-                            <outlet property="dataSource" destination="L0j-Az-VR7" id="Jqy-dR-Rj3"/>
-                            <outlet property="delegate" destination="L0j-Az-VR7" id="DDq-Cd-rck"/>
-                        </connections>
-                    </collectionView>
-                </collectionViewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="iIM-HI-REO" userLabel="First Responder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="1282" y="784"/>
-        </scene>
-        <!--Photos Table View Controller-->
-        <scene sceneID="M7V-bU-ebo">
-            <objects>
-                <tableViewController storyboardIdentifier="PhotosTableViewController" id="fto-jp-1mi" customClass="PhotosTableViewController" sceneMemberID="viewController">
-                    <tableView key="view" opaque="NO" clipsSubviews="YES" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" rowHeight="426" sectionHeaderHeight="22" sectionFooterHeight="22" id="jOA-wj-IFW">
-                        <rect key="frame" x="0.0" y="20" width="320" height="548"/>
-                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                        <prototypes>
-                            <tableViewCell contentMode="scaleToFill" selectionStyle="none" indentationWidth="10" reuseIdentifier="PhotoCell" rowHeight="380" id="0Ok-yA-HfO" customClass="FeedCell">
-                                <rect key="frame" x="0.0" y="22" width="320" height="380"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
-                                    <rect key="frame" x="0.0" y="0.0" width="320" height="379"/>
-                                    <autoresizingMask key="autoresizingMask"/>
-                                    <subviews>
-                                        <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" translatesAutoresizingMaskIntoConstraints="NO" id="1Cl-mT-gxx">
-                                            <constraints>
-                                                <constraint firstAttribute="width" constant="300" type="user" id="PoU-o1-TpY"/>
-                                                <constraint firstAttribute="height" constant="310" type="user" id="otx-h8-few"/>
-                                            </constraints>
-                                        </imageView>
-                                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ZMW-KK-7JO">
-                                            <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
-                                            <state key="normal" image="icon-green-edit.png">
-                                                <color key="titleColor" red="0.19607843459999999" green="0.30980393290000002" blue="0.52156865600000002" alpha="1" colorSpace="calibratedRGB"/>
-                                                <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
-                                            </state>
-                                            <state key="highlighted">
-                                                <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                            </state>
-                                            <connections>
-                                                <action selector="editButtonTapped:" destination="0Ok-yA-HfO" eventType="touchUpInside" id="8Xe-P4-hVG"/>
-                                            </connections>
-                                        </button>
-                                        <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" preferredMaxLayoutWidth="260" translatesAutoresizingMaskIntoConstraints="NO" id="77H-Pc-nWM">
-                                            <constraints>
-                                                <constraint firstAttribute="width" constant="260" id="PUd-6w-qgf"/>
-                                                <constraint firstAttribute="height" priority="998" constant="40" type="user" id="y4d-L2-OYn"/>
-                                            </constraints>
-                                            <string key="text">Lorem ipsum dolor sit er elit lamet, consectetaur cillium adipisicing pecuLorem ipsum dolor sit er elit lamet, consectetaur cillium adipisicing pecu</string>
-                                            <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                            <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
-                                            <color key="highlightedColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                        </label>
-                                    </subviews>
-                                    <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
-                                </view>
-                                <constraints>
-                                    <constraint firstItem="1Cl-mT-gxx" firstAttribute="centerX" secondItem="0Ok-yA-HfO" secondAttribute="centerX" type="default" id="8oB-5B-IqD"/>
-                                    <constraint firstItem="ZMW-KK-7JO" firstAttribute="top" secondItem="1Cl-mT-gxx" secondAttribute="bottom" constant="10" type="user" id="9fJ-wq-nxK"/>
-                                    <constraint firstItem="1Cl-mT-gxx" firstAttribute="top" secondItem="0Ok-yA-HfO" secondAttribute="top" constant="5" type="user" id="b2N-er-cWU"/>
-                                    <constraint firstItem="ZMW-KK-7JO" firstAttribute="top" secondItem="77H-Pc-nWM" secondAttribute="top" type="user" id="brZ-iq-wMn"/>
-                                    <constraint firstItem="77H-Pc-nWM" firstAttribute="trailing" secondItem="1Cl-mT-gxx" secondAttribute="trailing" priority="999" type="user" id="brm-DE-vRV"/>
-                                    <constraint firstItem="ZMW-KK-7JO" firstAttribute="leading" secondItem="1Cl-mT-gxx" secondAttribute="leading" type="user" id="rEy-Mg-Fxf"/>
-                                    <constraint firstItem="77H-Pc-nWM" firstAttribute="leading" secondItem="ZMW-KK-7JO" secondAttribute="trailing" constant="10" type="user" id="tLN-tR-ljx"/>
-                                </constraints>
-                                <connections>
-                                    <outlet property="descriptionLabel" destination="77H-Pc-nWM" id="OYJ-b0-m11"/>
-                                    <outlet property="largeImageView" destination="1Cl-mT-gxx" id="50g-PC-jWI"/>
-                                </connections>
-                            </tableViewCell>
-                        </prototypes>
-                        <connections>
-                            <outlet property="dataSource" destination="fto-jp-1mi" id="lfW-Q1-6E7"/>
-                            <outlet property="delegate" destination="fto-jp-1mi" id="dpy-JR-w73"/>
-                        </connections>
-                    </tableView>
-                </tableViewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="UML-ai-LXF" userLabel="First Responder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="1756" y="784"/>
-        </scene>
         <!--Settings View Controller-->
         <scene sceneID="mdS-Gj-8Xl">
             <objects>
@@ -1683,7 +1563,7 @@ Brief</string>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="QIq-vH-JYj" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2291" y="65"/>
+            <point key="canvasLocation" x="2208" y="65"/>
         </scene>
     </scenes>
     <resources>
@@ -1691,7 +1571,6 @@ Brief</string>
         <image name="icon-gray-brief.png" width="30" height="30"/>
         <image name="icon-gray-link.png" width="30" height="30"/>
         <image name="icon-gray-photo.png" width="30" height="30"/>
-        <image name="icon-green-edit.png" width="30" height="30"/>
         <image name="icon-info.png" width="25" height="25"/>
         <image name="icon-more.png" width="60" height="60"/>
         <image name="icon-photo.png" width="60" height="60"/>
@@ -1732,8 +1611,6 @@ Brief</string>
             <relationships>
                 <relationship kind="action" name="cancelButtonTapped:"/>
                 <relationship kind="action" name="deleteButtonTapped:"/>
-                <relationship kind="action" name="rememberDetailsSwitchValueChanged:" candidateClass="UISwitch"/>
-                <relationship kind="action" name="saveButtonTapped:"/>
                 <relationship kind="outlet" name="deleteButton" candidateClass="UIButton"/>
                 <relationship kind="outlet" name="descriptionTextView" candidateClass="PlaceholderTextView"/>
                 <relationship kind="outlet" name="rememberDetailsLabel" candidateClass="UILabel"/>
@@ -1742,21 +1619,12 @@ Brief</string>
                 <relationship kind="outlet" name="titleTextField" candidateClass="UITextField"/>
             </relationships>
         </class>
-        <class className="FeedCell" superclassName="UITableViewCell">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/FeedCell.h"/>
-            <relationships>
-                <relationship kind="action" name="editButtonTapped:"/>
-                <relationship kind="outlet" name="descriptionLabel" candidateClass="UILabel"/>
-                <relationship kind="outlet" name="largeImageView" candidateClass="UIImageView"/>
-            </relationships>
-        </class>
         <class className="IntroTableViewController" superclassName="UITableViewController">
             <source key="sourceIdentifier" type="project" relativePath="./Classes/IntroTableViewController.h"/>
             <relationships>
                 <relationship kind="action" name="facebookLoginButtonTapped:"/>
                 <relationship kind="action" name="goBack:"/>
                 <relationship kind="action" name="loginButtonTapped:"/>
-                <relationship kind="action" name="registerButtonTapped:"/>
                 <relationship kind="outlet" name="captionLabel" candidateClass="UILabel"/>
                 <relationship kind="outlet" name="headerImageView" candidateClass="UIImageView"/>
                 <relationship kind="outlet" name="logoButton" candidateClass="UIButton"/>
@@ -1766,21 +1634,11 @@ Brief</string>
         <class className="MenuViewController" superclassName="UIViewController">
             <source key="sourceIdentifier" type="project" relativePath="./Classes/MenuViewController.h"/>
             <relationships>
-                <relationship kind="action" name="popularButtonTapped:"/>
-                <relationship kind="action" name="profileButtonTapped:"/>
-                <relationship kind="action" name="recentButtonTapped:"/>
-                <relationship kind="action" name="takePhotoButtonTapped:"/>
                 <relationship kind="outlet" name="profileButton" candidateClass="UIButton"/>
             </relationships>
         </class>
         <class className="NSLayoutConstraint" superclassName="NSObject">
             <source key="sourceIdentifier" type="project" relativePath="./Classes/NSLayoutConstraint.h"/>
-        </class>
-        <class className="PhotosCollectionViewController" superclassName="UICollectionViewController">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/PhotosCollectionViewController.h"/>
-        </class>
-        <class className="PhotosTableViewController" superclassName="UITableViewController">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/PhotosTableViewController.h"/>
         </class>
         <class className="PlaceholderTextView" superclassName="UITextView">
             <source key="sourceIdentifier" type="project" relativePath="./Classes/PlaceholderTextView.h"/>
@@ -1788,7 +1646,6 @@ Brief</string>
         <class className="RequestBriefViewController" superclassName="BaseViewController">
             <source key="sourceIdentifier" type="project" relativePath="./Classes/RequestBriefViewController.h"/>
             <relationships>
-                <relationship kind="action" name="submitButtonTapped:"/>
                 <relationship kind="outlet" name="textView" candidateClass="UITextView"/>
             </relationships>
         </class>
@@ -1830,7 +1687,6 @@ Brief</string>
         <class className="SettingsViewController" superclassName="UITableViewController">
             <source key="sourceIdentifier" type="project" relativePath="./Classes/SettingsViewController.h"/>
             <relationships>
-                <relationship kind="action" name="backButtonTapped:"/>
                 <relationship kind="outlet" name="emailCell" candidateClass="UITableViewCell"/>
                 <relationship kind="outlet" name="logoutCell" candidateClass="UITableViewCell"/>
             </relationships>
@@ -1840,27 +1696,6 @@ Brief</string>
             <relationships>
                 <relationship kind="outlet" name="textField" candidateClass="UITextField"/>
             </relationships>
-        </class>
-        <class className="ThumbCell" superclassName="UICollectionViewCell">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/ThumbCell.h"/>
-            <relationships>
-                <relationship kind="outlet" name="thumbImageView" candidateClass="UIImageView"/>
-            </relationships>
-        </class>
-        <class className="UICollectionReusableView" superclassName="UIView">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/UICollectionReusableView.h"/>
-        </class>
-        <class className="UICollectionViewCell" superclassName="UICollectionReusableView">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/UICollectionViewCell.h"/>
-        </class>
-        <class className="UICollectionViewController" superclassName="UIViewController">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/UICollectionViewController.h"/>
-        </class>
-        <class className="UICollectionViewFlowLayout" superclassName="UICollectionViewLayout">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/UICollectionViewFlowLayout.h"/>
-        </class>
-        <class className="UICollectionViewLayout" superclassName="NSObject">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/UICollectionViewLayout.h"/>
         </class>
         <class className="WebViewController" superclassName="BaseViewController">
             <source key="sourceIdentifier" type="project" relativePath="./Classes/WebViewController.h"/>

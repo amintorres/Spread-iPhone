@@ -7,23 +7,22 @@
 //
 
 #import "PhotosViewController.h"
-#import "PhotosCollectionViewController.h"
-#import "PhotosTableViewController.h"
 #import "UploadViewController.h"
+#import "EditViewController.h"
 #import "CameraManager.h"
+#import "ThumbCell.h"
+#import "FeedCell.h"
 
 #define kAnimationDuration 0.2
 
 
 
-@interface PhotosViewController () <UploadViewControllerDelegate, UICollectionViewDelegate, UITableViewDelegate>
+@interface PhotosViewController () <UploadViewControllerDelegate, FeedCellDelegate>
 @property (nonatomic, strong) IBOutlet UIButton *displayModeButton;
 @property (nonatomic, strong) IBOutlet UIView *headerView;
 @property (nonatomic, strong) IBOutlet UIView *contentView;
-@property (nonatomic, strong) PhotosCollectionViewController *collectionViewController;
-@property (nonatomic, strong) PhotosTableViewController *tableViewController;
-@property (nonatomic, strong) UICollectionView *collectionView;
-@property (nonatomic, strong) UITableView *tableView;
+@property (nonatomic, strong) IBOutlet UICollectionView *collectionView;
+@property (nonatomic, strong) IBOutlet UITableView *tableView;
 @property (nonatomic, strong) UploadViewController *uploadViewController;
 @end
 
@@ -42,6 +41,12 @@
 {
     [super viewDidLoad];
     
+    UINib *thumbCellNib = [UINib nibWithNibName:@"ThumbCell" bundle:nil];
+    [self.collectionView registerNib:thumbCellNib forCellWithReuseIdentifier:@"ThumbCell"];
+
+    UINib *feedCellNib = [UINib nibWithNibName:@"FeedCell" bundle:nil];
+    [self.tableView registerNib:feedCellNib forCellReuseIdentifier:@"FeedCell"];
+
     [self displayNumberOfPhotos];
     [self reloadData];
     
@@ -118,9 +123,9 @@
 - (void)setPhotos:(NSArray *)photos
 {
     _photos = photos;
-    self.collectionViewController.photos = photos;
-    self.tableViewController.photos = photos;
     [self displayNumberOfPhotos];
+    [self.collectionView reloadData];
+    [self.tableView reloadData];
 }
 
 - (void)displayNumberOfPhotos
@@ -129,94 +134,101 @@
 }
 
 
-#pragma mark - CollectionView / TableView
+#pragma mark - Collection View
 
 - (void)displayCollectionView
 {
-    self.collectionViewController.photos = self.photos;
-    self.collectionView.frame = self.contentView.bounds;
-    [self addChildViewController:self.collectionViewController];
-    [self.contentView addSubview:self.collectionView];
-
-    self.collectionView.alpha = 0.0;
-    [UIView animateWithDuration:kAnimationDuration animations:^{
-        self.collectionView.alpha = 1.0;
-        self.tableView.alpha = 0.0;
-    } completion:^(BOOL finished) {
-        [self.tableView removeFromSuperview];
-    }];
-}
-
-- (void)displayTableView
-{
-    self.tableViewController.photos = self.photos;
-    self.tableView.frame = self.contentView.bounds;
-    [self addChildViewController:self.tableViewController];
-    [self.contentView addSubview:self.tableView];
-    
-    self.tableView.alpha = 0.0;
-    [UIView animateWithDuration:kAnimationDuration animations:^{
-        self.tableView.alpha = 1.0;
+    if (![self.collectionView superview])
+    {
+        self.collectionView.frame = self.contentView.bounds;
         self.collectionView.alpha = 0.0;
-    } completion:^(BOOL finished) {
-        [self.collectionView removeFromSuperview];
-    }];
+        [self.contentView addSubview:self.collectionView];
+        
+        [UIView animateWithDuration:kAnimationDuration animations:^{
+            self.collectionView.alpha = 1.0;
+            self.tableView.alpha = 0.0;
+        } completion:^(BOOL finished) {
+            [self.tableView removeFromSuperview];
+        }];
+    }
 }
 
-
-#pragma mark -
-
-- (PhotosCollectionViewController *)collectionViewController
+- (NSInteger)collectionView:(UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section
 {
-    if (!_collectionViewController)
-    {
-        UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"MainStoryboard" bundle:nil];
-        _collectionViewController = [storyboard instantiateViewControllerWithIdentifier:@"PhotosCollectionViewController"];
-    }
-    return _collectionViewController;
+    return self.photos.count;
 }
 
-- (PhotosTableViewController *)tableViewController
+- (UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath
 {
-    if (!_tableViewController)
-    {
-        UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"MainStoryboard" bundle:nil];
-        _tableViewController = [storyboard instantiateViewControllerWithIdentifier:@"PhotosTableViewController"];
-    }
-    return _tableViewController;
-}
-
-- (UICollectionView *)collectionView
-{
-    if (!_collectionView)
-    {
-        _collectionView = self.collectionViewController.collectionView;
-        _collectionView.delegate = self;
-    }
-    return _collectionView;
-}
-
-- (UITableView *)tableView
-{
-    if (!_tableView)
-    {
-        _tableView = self.tableViewController.tableView;
-        _tableView.delegate = self;
-    }
-    return _tableView;
+    ThumbCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:@"ThumbCell" forIndexPath:indexPath];
+    cell.photo = self.photos[indexPath.row];
+    return cell;
 }
 
 - (void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath;
 {
     [collectionView deselectItemAtIndexPath:indexPath animated:YES];
-    
     [self displayTableView];
     [self.tableView scrollToRowAtIndexPath:indexPath atScrollPosition:UITableViewScrollPositionTop animated:NO];
+}
+
+
+#pragma mark - Table View
+
+- (void)displayTableView
+{
+    if (![self.tableView superview])
+    {
+        self.tableView.frame = self.contentView.bounds;
+        self.tableView.alpha = 0.0;
+        [self.contentView addSubview:self.tableView];
+        
+        [UIView animateWithDuration:kAnimationDuration animations:^{
+            self.tableView.alpha = 1.0;
+            self.collectionView.alpha = 0.0;
+        } completion:^(BOOL finished) {
+            [self.collectionView removeFromSuperview];
+        }];
+    }
+}
+
+- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
+{
+    return self.photos.count;
+}
+
+//- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
+//{
+//    FeedCell *cell = [tableView dequeueReusableCellWithIdentifier:@"FeedCell" forIndexPath:indexPath];
+//    CGFloat height = [cell suggestedHeightForPhoto:self.photos[indexPath.row]];
+//    return height;
+//}
+
+- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    FeedCell *cell = [tableView dequeueReusableCellWithIdentifier:@"FeedCell" forIndexPath:indexPath];
+    cell.photo = self.photos[indexPath.row];
+    cell.delegate = self;
+    return cell;
 }
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
 }
+
+
+#pragma mark - FeedCell delegate
+
+- (void)editPhoto:(Photo *)photo atFeedCell:(FeedCell *)cell
+{
+    EditViewController* controller = [[UIStoryboard storyboardWithName:@"MainStoryboard" bundle:nil] instantiateViewControllerWithIdentifier:@"EditViewController"];
+    controller.photo = photo;
+    controller.editMode = EditModeUpdate;
+    
+    [self presentViewController:controller animated:YES completion:NULL];
+}
+
+
 
 @end

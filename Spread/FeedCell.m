@@ -22,14 +22,15 @@
     [self.largeImageView setImageWithURL:URL];
     
     self.descriptionLabel.text = photo.photoDescription;
+    [self.descriptionLabel sizeToFit];
 }
 
-- (CGFloat)suggestedCellHeight
+- (CGFloat)suggestedHeightForPhoto:(Photo *)photo
 {
     CGSize contrainSize = CGSizeMake(CGRectGetWidth(self.descriptionLabel.frame), MAXFLOAT);
-    CGSize textSize = [self.photo.photoDescription sizeWithFont:self.descriptionLabel.font constrainedToSize:contrainSize lineBreakMode:NSLineBreakByWordWrapping];
+    CGSize textSize = [photo.photoDescription sizeWithFont:self.descriptionLabel.font constrainedToSize:contrainSize lineBreakMode:NSLineBreakByWordWrapping];
 
-    CGFloat height = CGRectGetMinY(self.descriptionLabel.frame) + textSize.height + 15.0;
+    CGFloat height = CGRectGetMinY(self.descriptionLabel.frame) + textSize.height + 10.0;
     return height;
 }
 
