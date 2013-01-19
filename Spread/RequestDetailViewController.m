@@ -34,7 +34,7 @@
 {
     [super viewDidLoad];
     
-    self.descriptionLabel.text = self.request.requestDescription;
+    self.descriptionLabel.text = self.request.name;
 
     [self.requesterImageView setImageWithURL:[NSURL URLWithString:self.request.requester.imageURLString]];
     self.requesterLabel.text = self.request.requester.name;
