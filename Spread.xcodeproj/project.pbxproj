@@ -13,6 +13,7 @@
 		7C0B726616346EC0002469D3 /* TextFieldCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 7C0B726516346EC0002469D3 /* TextFieldCell.m */; };
 		7C165A9516AB11CE00E0BF28 /* ThumbCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 7C165A9416AB11CE00E0BF28 /* ThumbCell.xib */; };
 		7C165A9716AB14DD00E0BF28 /* FeedCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 7C165A9616AB14DD00E0BF28 /* FeedCell.xib */; };
+		7C165A9816AB1C9B00E0BF28 /* UIView+Shortcut.m in Sources */ = {isa = PBXBuildFile; fileRef = 7C6CFC0014BD48760048644C /* UIView+Shortcut.m */; };
 		7C17739A169A7BC70054CBDD /* Photo.m in Sources */ = {isa = PBXBuildFile; fileRef = 7C177399169A7BC70054CBDD /* Photo.m */; };
 		7C17739D169A7BC80054CBDD /* Tag.m in Sources */ = {isa = PBXBuildFile; fileRef = 7C17739C169A7BC80054CBDD /* Tag.m */; };
 		7C1773A3169A7BC80054CBDD /* User.m in Sources */ = {isa = PBXBuildFile; fileRef = 7C1773A2169A7BC80054CBDD /* User.m */; };
@@ -786,14 +787,14 @@
 		7C86FF8B14AF8692001B907A /* Categories */ = {
 			isa = PBXGroup;
 			children = (
+				7C6CFBFF14BD48760048644C /* UIView+Shortcut.h */,
+				7C6CFC0014BD48760048644C /* UIView+Shortcut.m */,
 				7C6CFBF914BD46A90048644C /* UILabel+Crossfade.h */,
 				7C6CFBFA14BD46A90048644C /* UILabel+Crossfade.m */,
 				7C3F37D114C4DE3F00E39B3F /* UILabel+Resizing.h */,
 				7C3F37D214C4DE3F00E39B3F /* UILabel+Resizing.m */,
 				7C6CFBFC14BD46B80048644C /* UITextField+Crossfade.h */,
 				7C6CFBFD14BD46B80048644C /* UITextField+Crossfade.m */,
-				7C6CFBFF14BD48760048644C /* UIView+Shortcut.h */,
-				7C6CFC0014BD48760048644C /* UIView+Shortcut.m */,
 			);
 			name = Categories;
 			sourceTree = "<group>";
@@ -1314,6 +1315,7 @@
 				7C1773A3169A7BC80054CBDD /* User.m in Sources */,
 				7C1773A6169A89290054CBDD /* Request.m in Sources */,
 				7C1773A9169A8F010054CBDD /* RequestPhotosViewController.m in Sources */,
+				7C165A9816AB1C9B00E0BF28 /* UIView+Shortcut.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

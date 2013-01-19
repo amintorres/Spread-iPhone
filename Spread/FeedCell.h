@@ -21,7 +21,7 @@
 @property (nonatomic, strong) Photo *photo;
 @property (nonatomic, weak) id <FeedCellDelegate> delegate;
 
-- (CGFloat)suggestedHeightForPhoto:(Photo *)photo;
++ (CGFloat)suggestedHeightForPhoto:(Photo *)photo;
 
 @end
 
