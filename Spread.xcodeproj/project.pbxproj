@@ -34,6 +34,17 @@
 		7C2A3F281670D5C0008D6DD2 /* UIImage+Utilities.m in Sources */ = {isa = PBXBuildFile; fileRef = 7C2A3F271670D5C0008D6DD2 /* UIImage+Utilities.m */; };
 		7C2A3F2E1670DA99008D6DD2 /* ThumbCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 7C2A3F2D1670DA99008D6DD2 /* ThumbCell.m */; };
 		7C2CFFB014D4677600D617D8 /* WelcomeViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 7C2CFFAE14D4677600D617D8 /* WelcomeViewController.xib */; };
+		7C3553A616B764970046A6A9 /* icon-filter.png in Resources */ = {isa = PBXBuildFile; fileRef = 7C3553A416B764970046A6A9 /* icon-filter.png */; };
+		7C3553A716B764970046A6A9 /* icon-filter@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 7C3553A516B764970046A6A9 /* icon-filter@2x.png */; };
+		7C3553C316B768A50046A6A9 /* icon-filter-cost-off.png in Resources */ = {isa = PBXBuildFile; fileRef = 7C3553BB16B768A50046A6A9 /* icon-filter-cost-off.png */; };
+		7C3553C416B768A50046A6A9 /* icon-filter-cost-off@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 7C3553BC16B768A50046A6A9 /* icon-filter-cost-off@2x.png */; };
+		7C3553C516B768A50046A6A9 /* icon-filter-cost-on.png in Resources */ = {isa = PBXBuildFile; fileRef = 7C3553BD16B768A50046A6A9 /* icon-filter-cost-on.png */; };
+		7C3553C616B768A50046A6A9 /* icon-filter-cost-on@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 7C3553BE16B768A50046A6A9 /* icon-filter-cost-on@2x.png */; };
+		7C3553C716B768A50046A6A9 /* icon-filter-recent-off.png in Resources */ = {isa = PBXBuildFile; fileRef = 7C3553BF16B768A50046A6A9 /* icon-filter-recent-off.png */; };
+		7C3553C816B768A50046A6A9 /* icon-filter-recent-off@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 7C3553C016B768A50046A6A9 /* icon-filter-recent-off@2x.png */; };
+		7C3553C916B768A50046A6A9 /* icon-filter-recent-on.png in Resources */ = {isa = PBXBuildFile; fileRef = 7C3553C116B768A50046A6A9 /* icon-filter-recent-on.png */; };
+		7C3553CA16B768A50046A6A9 /* icon-filter-recent-on@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 7C3553C216B768A50046A6A9 /* icon-filter-recent-on@2x.png */; };
+		7C3553CD16B76B0C0046A6A9 /* RequestFilterViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7C3553CC16B76B0C0046A6A9 /* RequestFilterViewController.m */; };
 		7C3AC960162A1D6A0046CE81 /* NSError+Spread.m in Sources */ = {isa = PBXBuildFile; fileRef = 7C76DF2014D1D01E007A03B5 /* NSError+Spread.m */; };
 		7C3AC964162A2E4F0046CE81 /* EditViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7C7F7AB214AB74AE00652401 /* EditViewController.m */; };
 		7C3AC965162A321D0046CE81 /* ReviewViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7CFAFA1214C38DA500597A6D /* ReviewViewController.m */; };
@@ -265,6 +276,18 @@
 		7C2CFFAE14D4677600D617D8 /* WelcomeViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = WelcomeViewController.xib; sourceTree = "<group>"; };
 		7C2CFFB314D47ED600D617D8 /* RoundedBorderButton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RoundedBorderButton.h; sourceTree = "<group>"; };
 		7C2CFFB414D47ED600D617D8 /* RoundedBorderButton.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RoundedBorderButton.m; sourceTree = "<group>"; };
+		7C3553A416B764970046A6A9 /* icon-filter.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "icon-filter.png"; sourceTree = "<group>"; };
+		7C3553A516B764970046A6A9 /* icon-filter@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "icon-filter@2x.png"; sourceTree = "<group>"; };
+		7C3553BB16B768A50046A6A9 /* icon-filter-cost-off.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "icon-filter-cost-off.png"; sourceTree = "<group>"; };
+		7C3553BC16B768A50046A6A9 /* icon-filter-cost-off@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "icon-filter-cost-off@2x.png"; sourceTree = "<group>"; };
+		7C3553BD16B768A50046A6A9 /* icon-filter-cost-on.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "icon-filter-cost-on.png"; sourceTree = "<group>"; };
+		7C3553BE16B768A50046A6A9 /* icon-filter-cost-on@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "icon-filter-cost-on@2x.png"; sourceTree = "<group>"; };
+		7C3553BF16B768A50046A6A9 /* icon-filter-recent-off.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "icon-filter-recent-off.png"; sourceTree = "<group>"; };
+		7C3553C016B768A50046A6A9 /* icon-filter-recent-off@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "icon-filter-recent-off@2x.png"; sourceTree = "<group>"; };
+		7C3553C116B768A50046A6A9 /* icon-filter-recent-on.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "icon-filter-recent-on.png"; sourceTree = "<group>"; };
+		7C3553C216B768A50046A6A9 /* icon-filter-recent-on@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "icon-filter-recent-on@2x.png"; sourceTree = "<group>"; };
+		7C3553CB16B76B0C0046A6A9 /* RequestFilterViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RequestFilterViewController.h; sourceTree = "<group>"; };
+		7C3553CC16B76B0C0046A6A9 /* RequestFilterViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RequestFilterViewController.m; sourceTree = "<group>"; };
 		7C382A9914DCC80B0038BC3E /* ToggleButton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ToggleButton.h; sourceTree = "<group>"; };
 		7C382A9A14DCC80B0038BC3E /* ToggleButton.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ToggleButton.m; sourceTree = "<group>"; };
 		7C3F37D114C4DE3F00E39B3F /* UILabel+Resizing.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UILabel+Resizing.h"; sourceTree = "<group>"; };
@@ -614,6 +637,8 @@
 				7C7F38E315CE03DF00EE18DF /* RequestsViewController.m */,
 				7C7F38F215CE0B9800EE18DF /* RequestCell.h */,
 				7C7F38F315CE0B9800EE18DF /* RequestCell.m */,
+				7C3553CB16B76B0C0046A6A9 /* RequestFilterViewController.h */,
+				7C3553CC16B76B0C0046A6A9 /* RequestFilterViewController.m */,
 				7CC3684F164575A800F9409D /* RequestDetailViewController.h */,
 				7CC36850164575A800F9409D /* RequestDetailViewController.m */,
 				7CE82C1D16989E2C00CD240B /* RequestBriefViewController.h */,
@@ -759,6 +784,16 @@
 		7C8211E9167CE87E00BB3EBF /* Feed/Grid */ = {
 			isa = PBXGroup;
 			children = (
+				7C3553A416B764970046A6A9 /* icon-filter.png */,
+				7C3553A516B764970046A6A9 /* icon-filter@2x.png */,
+				7C3553BB16B768A50046A6A9 /* icon-filter-cost-off.png */,
+				7C3553BC16B768A50046A6A9 /* icon-filter-cost-off@2x.png */,
+				7C3553BD16B768A50046A6A9 /* icon-filter-cost-on.png */,
+				7C3553BE16B768A50046A6A9 /* icon-filter-cost-on@2x.png */,
+				7C3553BF16B768A50046A6A9 /* icon-filter-recent-off.png */,
+				7C3553C016B768A50046A6A9 /* icon-filter-recent-off@2x.png */,
+				7C3553C116B768A50046A6A9 /* icon-filter-recent-on.png */,
+				7C3553C216B768A50046A6A9 /* icon-filter-recent-on@2x.png */,
 				7C7F38E715CE059800EE18DF /* icon-back.png */,
 				7C7F38E815CE059800EE18DF /* icon-back@2x.png */,
 				7C7F38EB15CE06F900EE18DF /* icon-info.png */,
@@ -1234,6 +1269,16 @@
 				7C5DA11B1674E3C3002D340C /* icon-white-reload@2x.png in Resources */,
 				7C165A9516AB11CE00E0BF28 /* ThumbCell.xib in Resources */,
 				7C165A9716AB14DD00E0BF28 /* FeedCell.xib in Resources */,
+				7C3553A616B764970046A6A9 /* icon-filter.png in Resources */,
+				7C3553A716B764970046A6A9 /* icon-filter@2x.png in Resources */,
+				7C3553C316B768A50046A6A9 /* icon-filter-cost-off.png in Resources */,
+				7C3553C416B768A50046A6A9 /* icon-filter-cost-off@2x.png in Resources */,
+				7C3553C516B768A50046A6A9 /* icon-filter-cost-on.png in Resources */,
+				7C3553C616B768A50046A6A9 /* icon-filter-cost-on@2x.png in Resources */,
+				7C3553C716B768A50046A6A9 /* icon-filter-recent-off.png in Resources */,
+				7C3553C816B768A50046A6A9 /* icon-filter-recent-off@2x.png in Resources */,
+				7C3553C916B768A50046A6A9 /* icon-filter-recent-on.png in Resources */,
+				7C3553CA16B768A50046A6A9 /* icon-filter-recent-on@2x.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1334,6 +1379,7 @@
 				7C165AA716AB38F300E0BF28 /* Reference+Spread.m in Sources */,
 				7C165AAA16AB395E00E0BF28 /* Reference.m in Sources */,
 				7C165AAD16AB3AC700E0BF28 /* RequestReferenceViewController.m in Sources */,
+				7C3553CD16B76B0C0046A6A9 /* RequestFilterViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

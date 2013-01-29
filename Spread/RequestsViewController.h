@@ -11,8 +11,7 @@
 
 @interface RequestsViewController : BaseViewController
 
-@property (strong, nonatomic) IBOutlet UILabel *totalRequestsLabel;
-@property (strong, nonatomic) IBOutlet UILabel *totalPriceLabel;
+@property (strong, nonatomic) IBOutlet UILabel *infoLabel;
 @property (strong, nonatomic) IBOutlet UITableView *tableView;
 
 @end

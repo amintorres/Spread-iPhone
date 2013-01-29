@@ -12,11 +12,13 @@
 #import "Request+Spread.h"
 #import "NSNumber+Spread.h"
 #import "RequestDetailViewController.h"
+#import "RequestFilterViewController.h"
 
 
 
-@interface RequestsViewController () <NSFetchedResultsControllerDelegate>
+@interface RequestsViewController () <NSFetchedResultsControllerDelegate, RequestFilterViewControllerDelegate>
 @property (nonatomic, strong) NSFetchedResultsController* fetchedResultsController;
+@property (nonatomic, strong) RequestFilterViewController* filterViewController;
 @end
 
 
@@ -27,6 +29,7 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+    [self updateFetchedResultsControllerForFilterType:FilterTypeDate];
 }
 
 - (void)viewDidAppear:(BOOL)animated
@@ -43,12 +46,9 @@
     }];
 }
 
-- (void)updateTableViewHeader
+- (IBAction)filterButtonTapped:(id)sender
 {
-    self.totalRequestsLabel.text = [NSString stringWithFormat:@"%d Requests", [self.fetchedResultsController.fetchedObjects count]];
-    
-    NSString* amountString = [[Request totalAmount] currencyString];
-    self.totalPriceLabel.text = [NSString stringWithFormat:@"%@ up for grabs", amountString];
+    [self showFilter];
 }
 
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
@@ -59,6 +59,16 @@
         Request *request = [self.fetchedResultsController objectAtIndexPath:indexPath];
         ((RequestDetailViewController*)segue.destinationViewController).request = request;
     }
+}
+
+- (void)updateTableViewHeader
+{
+    NSString* totalRequests = [NSString stringWithFormat:@"%d Requests", [self.fetchedResultsController.fetchedObjects count]];
+    
+    NSString* amountString = [[Request totalAmount] currencyString];
+    NSString* totalPrice = [NSString stringWithFormat:@"%@ up for grabs", amountString];
+    
+    self.infoLabel.text = [NSString stringWithFormat:@"%@\n%@", totalRequests, totalPrice];
 }
 
 
@@ -90,26 +100,38 @@
 
 #pragma mark - NSFetchedResultsController
 
-- (NSFetchedResultsController *)fetchedResultsController
+- (void)updateFetchedResultsControllerForFilterType:(FilterType)filterType
 {
-    if (!_fetchedResultsController)
-    {
-        NSManagedObjectContext* context = [Request mainMOC];
-        
-        NSFetchRequest* request = [NSFetchRequest new];
-        
-        request.entity = [Request entityInContext:context];
-        
-        NSSortDescriptor* sortDescriptor = [NSSortDescriptor sortDescriptorWithKey:@"endDate" ascending:NO];
-        request.sortDescriptors = @[sortDescriptor];
-        
-        _fetchedResultsController = [[NSFetchedResultsController alloc] initWithFetchRequest:request managedObjectContext:context sectionNameKeyPath:nil cacheName:nil];
-        _fetchedResultsController.delegate = self;
-        
-        [_fetchedResultsController performFetch:nil];
-        [self updateTableViewHeader];
+    NSManagedObjectContext* context = [Request mainMOC];
+    
+    NSFetchRequest* request = [NSFetchRequest new];
+    
+    request.entity = [Request entityInContext:context];
+    
+    NSSortDescriptor* dateSortDescriptor = [NSSortDescriptor sortDescriptorWithKey:@"endDate" ascending:NO];
+    NSSortDescriptor* highestPriceSortDescriptor = [NSSortDescriptor sortDescriptorWithKey:@"amount" ascending:NO];
+    NSSortDescriptor* lowestPriceSortDescriptor = [NSSortDescriptor sortDescriptorWithKey:@"amount" ascending:YES];
+
+    switch (filterType) {
+        case FilterTypeDate:
+        default:
+            request.sortDescriptors = @[dateSortDescriptor, highestPriceSortDescriptor];
+            break;
+            
+        case FilterTypeHighestPrice:
+            request.sortDescriptors = @[highestPriceSortDescriptor, dateSortDescriptor];
+            break;
+            
+        case FilterTypeLowestPrice:
+            request.sortDescriptors = @[lowestPriceSortDescriptor, dateSortDescriptor];
+            break;
     }
-    return _fetchedResultsController;
+    
+    self.fetchedResultsController = [[NSFetchedResultsController alloc] initWithFetchRequest:request managedObjectContext:context sectionNameKeyPath:nil cacheName:nil];
+    self.fetchedResultsController.delegate = self;
+    [self.fetchedResultsController performFetch:nil];
+
+    [self updateTableViewHeader];
 }
 
 - (void)controllerWillChangeContent:(NSFetchedResultsController *)controller
@@ -163,5 +185,52 @@
     [self.tableView endUpdates];
     [self updateTableViewHeader];
 }
+
+
+#pragma mark - Filter
+
+- (RequestFilterViewController *)filterViewController
+{
+    if (!_filterViewController)
+    {
+        UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"MainStoryboard" bundle:nil];
+        _filterViewController = [storyboard instantiateViewControllerWithIdentifier:@"RequestFilterViewController"];
+        _filterViewController.delegate = self;
+    }
+    return _filterViewController;
+}
+
+- (void)showFilter
+{
+    if (!self.filterViewController.view.superview)
+    {
+        self.filterViewController.view.frame = self.view.bounds;
+        self.filterViewController.view.alpha = 0.0;
+        [self.view addSubview:self.filterViewController.view];
+        
+        [UIView animateWithDuration:0.3 animations:^{
+            self.filterViewController.view.alpha = 1.0;
+        }];
+    }
+}
+
+- (void)hideFilter
+{
+    if (self.filterViewController.view.superview)
+    {
+        [UIView animateWithDuration:0.3 animations:^{
+            self.filterViewController.view.alpha = 0.0;
+        } completion:^(BOOL finished) {
+            [self.filterViewController.view removeFromSuperview];
+        }];
+    }
+}
+
+- (void)dismissFilterViewController:(RequestFilterViewController *)controller
+{
+    [self updateFetchedResultsControllerForFilterType:controller.filterType];
+    [self hideFilter];
+}
+
 
 @end

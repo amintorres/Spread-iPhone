@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="2.0" toolsVersion="2844" systemVersion="12C2037" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" initialViewController="zC0-jL-gdq">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="2.0" toolsVersion="3084" systemVersion="12C2037" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" initialViewController="zC0-jL-gdq">
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="1930"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="2083"/>
     </dependencies>
     <scenes>
         <!--Navigation Controller-->
@@ -556,6 +556,127 @@
             </objects>
             <point key="canvasLocation" x="796" y="784"/>
         </scene>
+        <!--Request Filter View Controller-->
+        <scene sceneID="kAj-Ad-Pfu">
+            <objects>
+                <viewController storyboardIdentifier="RequestFilterViewController" id="rIj-P2-BsO" customClass="RequestFilterViewController" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="KMh-rP-cb6">
+                        <rect key="frame" x="0.0" y="20" width="320" height="548"/>
+                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                        <subviews>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="30f-N8-225">
+                                <subviews>
+                                    <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="Sort by:" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="gxC-yZ-R0O" customClass="AppFontLabel">
+                                        <fontDescription key="fontDescription" type="system" pointSize="16"/>
+                                        <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="calibratedRGB"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <button opaque="NO" contentMode="scaleToFill" selected="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" adjustsImageWhenDisabled="NO" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="voN-PK-S6t" customClass="AppFontButton">
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="57" type="user" id="Xtf-6d-TbM"/>
+                                        </constraints>
+                                        <fontDescription key="fontDescription" type="italicSystem" pointSize="13"/>
+                                        <inset key="titleEdgeInsets" minX="0.0" minY="26" maxX="0.0" maxY="0.0"/>
+                                        <state key="normal" title="recent" backgroundImage="icon-filter-recent-off.png">
+                                            <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                            <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                        </state>
+                                        <state key="selected" backgroundImage="icon-filter-recent-on.png">
+                                            <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                        </state>
+                                        <state key="highlighted">
+                                            <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                        </state>
+                                        <connections>
+                                            <action selector="buttonTapped:" destination="rIj-P2-BsO" eventType="touchUpInside" id="Lea-Sx-bYI"/>
+                                        </connections>
+                                    </button>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" adjustsImageWhenDisabled="NO" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="X15-r3-CZH" customClass="AppFontButton">
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="57" type="user" id="V4H-Du-0ME"/>
+                                        </constraints>
+                                        <fontDescription key="fontDescription" type="italicSystem" pointSize="13"/>
+                                        <inset key="titleEdgeInsets" minX="0.0" minY="26" maxX="0.0" maxY="0.0"/>
+                                        <state key="normal" title="+ highest paid" backgroundImage="icon-filter-cost-off.png">
+                                            <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                            <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                        </state>
+                                        <state key="selected" backgroundImage="icon-filter-cost-on.png">
+                                            <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                        </state>
+                                        <state key="highlighted">
+                                            <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                        </state>
+                                        <connections>
+                                            <action selector="buttonTapped:" destination="rIj-P2-BsO" eventType="touchUpInside" id="xuJ-ys-tva"/>
+                                        </connections>
+                                    </button>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" adjustsImageWhenDisabled="NO" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="RYf-aR-Py5" customClass="AppFontButton">
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="57" type="user" id="S8u-BH-cG7"/>
+                                        </constraints>
+                                        <fontDescription key="fontDescription" type="italicSystem" pointSize="13"/>
+                                        <inset key="titleEdgeInsets" minX="0.0" minY="26" maxX="0.0" maxY="0.0"/>
+                                        <state key="normal" title="- highest paid" backgroundImage="icon-filter-cost-off.png">
+                                            <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                            <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                        </state>
+                                        <state key="selected" backgroundImage="icon-filter-cost-on.png">
+                                            <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                        </state>
+                                        <state key="highlighted">
+                                            <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                        </state>
+                                        <connections>
+                                            <action selector="buttonTapped:" destination="rIj-P2-BsO" eventType="touchUpInside" id="5Bp-kJ-OFx"/>
+                                        </connections>
+                                    </button>
+                                </subviews>
+                                <color key="backgroundColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
+                                <constraints>
+                                    <constraint firstItem="RYf-aR-Py5" firstAttribute="top" secondItem="X15-r3-CZH" secondAttribute="bottom" constant="1" type="user" id="4J6-BG-nW9"/>
+                                    <constraint firstItem="voN-PK-S6t" firstAttribute="trailing" secondItem="30f-N8-225" secondAttribute="trailing" type="user" id="FoQ-0y-gQT"/>
+                                    <constraint firstAttribute="width" constant="188" type="user" id="JwR-zY-8Rc"/>
+                                    <constraint firstItem="X15-r3-CZH" firstAttribute="top" secondItem="voN-PK-S6t" secondAttribute="bottom" constant="1" type="user" id="LqF-Xn-B97"/>
+                                    <constraint firstItem="gxC-yZ-R0O" firstAttribute="top" secondItem="30f-N8-225" secondAttribute="top" type="user" id="VIF-h4-dum"/>
+                                    <constraint firstItem="gxC-yZ-R0O" firstAttribute="leading" secondItem="30f-N8-225" secondAttribute="leading" type="user" id="VPV-wF-ljy"/>
+                                    <constraint firstAttribute="height" constant="200" type="user" id="aCp-if-TeE"/>
+                                    <constraint firstItem="RYf-aR-Py5" firstAttribute="leading" secondItem="30f-N8-225" secondAttribute="leading" type="user" id="aec-Wu-bFo"/>
+                                    <constraint firstItem="X15-r3-CZH" firstAttribute="leading" secondItem="30f-N8-225" secondAttribute="leading" type="user" id="fdM-V8-a6W"/>
+                                    <constraint firstItem="voN-PK-S6t" firstAttribute="leading" secondItem="30f-N8-225" secondAttribute="leading" type="user" id="gAE-UF-AV2"/>
+                                    <constraint firstItem="voN-PK-S6t" firstAttribute="top" secondItem="gxC-yZ-R0O" secondAttribute="bottom" constant="1" type="user" id="hnf-e6-RRj"/>
+                                    <constraint firstItem="RYf-aR-Py5" firstAttribute="bottom" secondItem="30f-N8-225" secondAttribute="bottom" type="user" id="mtq-Wh-AT0"/>
+                                    <constraint firstItem="RYf-aR-Py5" firstAttribute="trailing" secondItem="30f-N8-225" secondAttribute="trailing" type="user" id="wYb-Xw-sRG"/>
+                                    <constraint firstItem="gxC-yZ-R0O" firstAttribute="trailing" secondItem="30f-N8-225" secondAttribute="trailing" type="user" id="xuz-Q1-RML"/>
+                                    <constraint firstItem="X15-r3-CZH" firstAttribute="trailing" secondItem="30f-N8-225" secondAttribute="trailing" type="user" id="zpS-PA-TyG"/>
+                                </constraints>
+                            </view>
+                        </subviews>
+                        <color key="backgroundColor" white="0.0" alpha="0.80000000000000004" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                        <gestureRecognizers/>
+                        <constraints>
+                            <constraint firstItem="30f-N8-225" firstAttribute="centerX" secondItem="KMh-rP-cb6" secondAttribute="centerX" type="default" id="D2l-G1-pS4"/>
+                            <constraint firstItem="30f-N8-225" firstAttribute="centerY" secondItem="KMh-rP-cb6" secondAttribute="centerY" type="user" id="w37-2j-qrq"/>
+                        </constraints>
+                        <connections>
+                            <outletCollection property="gestureRecognizers" destination="OGc-R2-IOg" appends="YES" id="dbg-X1-ZHa"/>
+                        </connections>
+                    </view>
+                    <connections>
+                        <outlet property="byDateButton" destination="voN-PK-S6t" id="5wH-dZ-3RL"/>
+                        <outlet property="byHighestPriceButton" destination="X15-r3-CZH" id="sB0-cH-PNk"/>
+                        <outlet property="byLowestPriceButton" destination="RYf-aR-Py5" id="yaj-bD-0LP"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="1dS-5J-1vm" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <tapGestureRecognizer id="OGc-R2-IOg">
+                    <connections>
+                        <action selector="backgroundTapped:" destination="rIj-P2-BsO" id="mFq-c7-2P9"/>
+                    </connections>
+                </tapGestureRecognizer>
+            </objects>
+            <point key="canvasLocation" x="1282" y="784"/>
+        </scene>
         <!--Settings View Controller-->
         <scene sceneID="mdS-Gj-8Xl">
             <objects>
@@ -919,43 +1040,38 @@ Requests</string>
                             </view>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="kOW-da-Xpq" userLabel="Header View">
                                 <subviews>
-                                    <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="398 Requests" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumFontSize="10" translatesAutoresizingMaskIntoConstraints="NO" id="Cli-GZ-xYM" customClass="AppFontLabel">
+                                    <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" minimumFontSize="10" preferredMaxLayoutWidth="200" translatesAutoresizingMaskIntoConstraints="NO" id="Cli-GZ-xYM" customClass="AppFontLabel">
                                         <constraints>
-                                            <constraint firstAttribute="height" constant="20" id="H2l-O2-KSj"/>
-                                            <constraint firstAttribute="width" constant="150" id="JGo-sI-tjA"/>
+                                            <constraint firstAttribute="width" constant="200" id="L10-D8-vLG"/>
+                                            <constraint firstAttribute="height" constant="40" id="veo-sh-Jhc"/>
                                         </constraints>
+                                        <string key="text">398 Requests
+$45,000 up for grabs</string>
                                         <fontDescription key="fontDescription" type="system" pointSize="12"/>
                                         <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                         <nil key="highlightedColor"/>
                                     </label>
-                                    <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="$45,000 up for grabs" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumFontSize="10" translatesAutoresizingMaskIntoConstraints="NO" id="T2V-Sc-mPN" customClass="AppFontLabel">
-                                        <constraints>
-                                            <constraint firstAttribute="height" constant="20" id="0kc-Qg-yt0"/>
-                                        </constraints>
-                                        <fontDescription key="fontDescription" type="system" pointSize="12"/>
-                                        <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
-                                        <nil key="highlightedColor"/>
-                                    </label>
-                                    <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="Filter by:" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumFontSize="10" translatesAutoresizingMaskIntoConstraints="NO" id="QFF-ew-xch" customClass="AppFontLabel">
-                                        <constraints>
-                                            <constraint firstAttribute="width" constant="60" id="eGR-qG-PpD"/>
-                                        </constraints>
-                                        <fontDescription key="fontDescription" type="system" pointSize="12"/>
-                                        <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
-                                        <nil key="highlightedColor"/>
-                                    </label>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="TpG-gL-tab">
+                                        <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
+                                        <state key="normal" image="icon-filter.png">
+                                            <color key="titleColor" red="0.19607843459999999" green="0.30980393290000002" blue="0.52156865600000002" alpha="1" colorSpace="calibratedRGB"/>
+                                            <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                        </state>
+                                        <state key="highlighted">
+                                            <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                        </state>
+                                        <connections>
+                                            <action selector="filterButtonTapped:" destination="yiB-aC-NVW" eventType="touchUpInside" id="5dR-ED-1Dh"/>
+                                        </connections>
+                                    </button>
                                 </subviews>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                                 <constraints>
-                                    <constraint firstAttribute="bottom" secondItem="T2V-Sc-mPN" secondAttribute="bottom" constant="10" id="22C-1u-C17"/>
-                                    <constraint firstItem="T2V-Sc-mPN" firstAttribute="leading" secondItem="Cli-GZ-xYM" secondAttribute="leading" type="default" id="Am5-Sv-y8Z"/>
-                                    <constraint firstItem="QFF-ew-xch" firstAttribute="top" secondItem="kOW-da-Xpq" secondAttribute="top" constant="20" symbolic="YES" type="default" id="RgF-ee-WNw"/>
-                                    <constraint firstAttribute="bottom" secondItem="QFF-ew-xch" secondAttribute="bottom" constant="20" symbolic="YES" type="default" id="UwD-22-sOi"/>
-                                    <constraint firstItem="Cli-GZ-xYM" firstAttribute="top" secondItem="kOW-da-Xpq" secondAttribute="top" constant="10" id="a41-4E-6Yt"/>
-                                    <constraint firstItem="Cli-GZ-xYM" firstAttribute="leading" secondItem="kOW-da-Xpq" secondAttribute="leading" constant="10" id="gI8-yE-mHW"/>
+                                    <constraint firstItem="Cli-GZ-xYM" firstAttribute="leading" secondItem="kOW-da-Xpq" secondAttribute="leading" constant="10" type="user" id="MXD-1w-EU6"/>
+                                    <constraint firstItem="TpG-gL-tab" firstAttribute="centerY" secondItem="Cli-GZ-xYM" secondAttribute="centerY" type="default" id="RaL-aX-lPx"/>
+                                    <constraint firstItem="TpG-gL-tab" firstAttribute="centerY" secondItem="kOW-da-Xpq" secondAttribute="centerY" type="default" id="bLv-0a-ogC"/>
                                     <constraint firstAttribute="height" constant="60" type="user" id="hti-iX-gAA"/>
-                                    <constraint firstItem="Cli-GZ-xYM" firstAttribute="trailing" secondItem="T2V-Sc-mPN" secondAttribute="trailing" type="default" id="kR6-0z-RMt"/>
-                                    <constraint firstAttribute="trailing" secondItem="QFF-ew-xch" secondAttribute="trailing" constant="80" id="oI5-Br-x6L"/>
+                                    <constraint firstAttribute="trailing" secondItem="TpG-gL-tab" secondAttribute="trailing" constant="20" symbolic="YES" type="default" id="msW-L0-RE7"/>
                                 </constraints>
                             </view>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" rowHeight="80" sectionHeaderHeight="20" sectionFooterHeight="20" translatesAutoresizingMaskIntoConstraints="NO" id="uin-ZM-e3v">
@@ -1065,9 +1181,8 @@ Requests</string>
                     </view>
                     <navigationItem key="navigationItem" id="Vo2-Vk-YKk"/>
                     <connections>
+                        <outlet property="infoLabel" destination="Cli-GZ-xYM" id="Pk6-fg-hJH"/>
                         <outlet property="tableView" destination="uin-ZM-e3v" id="UDb-b0-ZwT"/>
-                        <outlet property="totalPriceLabel" destination="T2V-Sc-mPN" id="NPE-6C-K5K"/>
-                        <outlet property="totalRequestsLabel" destination="Cli-GZ-xYM" id="YKf-jr-GaU"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="TmV-fQ-nQT" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -1711,6 +1826,11 @@ URLs</string>
     </scenes>
     <resources>
         <image name="icon-back.png" width="60" height="60"/>
+        <image name="icon-filter-cost-off.png" width="188" height="57"/>
+        <image name="icon-filter-cost-on.png" width="188" height="57"/>
+        <image name="icon-filter-recent-off.png" width="188" height="57"/>
+        <image name="icon-filter-recent-on.png" width="188" height="57"/>
+        <image name="icon-filter.png" width="30" height="30"/>
         <image name="icon-gray-brief.png" width="30" height="30"/>
         <image name="icon-gray-link.png" width="30" height="30"/>
         <image name="icon-gray-photo.png" width="30" height="30"/>
@@ -1824,6 +1944,16 @@ URLs</string>
                 <relationship kind="outlet" name="requesterLabel" candidateClass="UILabel"/>
             </relationships>
         </class>
+        <class className="RequestFilterViewController" superclassName="UIViewController">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/RequestFilterViewController.h"/>
+            <relationships>
+                <relationship kind="action" name="backgroundTapped:"/>
+                <relationship kind="action" name="buttonTapped:"/>
+                <relationship kind="outlet" name="byDateButton" candidateClass="UIButton"/>
+                <relationship kind="outlet" name="byHighestPriceButton" candidateClass="UIButton"/>
+                <relationship kind="outlet" name="byLowestPriceButton" candidateClass="UIButton"/>
+            </relationships>
+        </class>
         <class className="RequestReferenceViewController" superclassName="BaseViewController">
             <source key="sourceIdentifier" type="project" relativePath="./Classes/RequestReferenceViewController.h"/>
             <relationships>
@@ -1834,9 +1964,9 @@ URLs</string>
         <class className="RequestsViewController" superclassName="BaseViewController">
             <source key="sourceIdentifier" type="project" relativePath="./Classes/RequestsViewController.h"/>
             <relationships>
+                <relationship kind="action" name="filterButtonTapped:"/>
+                <relationship kind="outlet" name="infoLabel" candidateClass="UILabel"/>
                 <relationship kind="outlet" name="tableView" candidateClass="UITableView"/>
-                <relationship kind="outlet" name="totalPriceLabel" candidateClass="UILabel"/>
-                <relationship kind="outlet" name="totalRequestsLabel" candidateClass="UILabel"/>
             </relationships>
         </class>
         <class className="RoundedRectButton" superclassName="AppFontButton">
