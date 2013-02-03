@@ -8,6 +8,7 @@
 
 #import "ReviewViewController.h"
 #import "EditViewController.h"
+#import "CameraManager.h"
 
 
 @implementation ReviewViewController
@@ -43,7 +44,9 @@
 
 - (IBAction)useButtonTapped:(id)sender
 {
-    EditViewController* editViewController = [[UIStoryboard storyboardWithName:@"MainStoryboard" bundle:nil] instantiateViewControllerWithIdentifier:@"EditViewController"];
+    NSString *identifier = ([CameraManager sharedManager].request) ? @"RequestEditViewController" : @"EditViewController";
+
+    EditViewController* editViewController = [[UIStoryboard storyboardWithName:@"MainStoryboard" bundle:nil] instantiateViewControllerWithIdentifier:identifier];
     editViewController.mediaInfo = mediaInfo;
     editViewController.editMode = EditModeCreate;
     

@@ -80,7 +80,9 @@
 {
     if ( picker.sourceType == UIImagePickerControllerSourceTypeCamera )
     {
-        EditViewController* editViewController = [[UIStoryboard storyboardWithName:@"MainStoryboard" bundle:nil] instantiateViewControllerWithIdentifier:@"EditViewController"];
+        NSString *identifier = ([CameraManager sharedManager].request) ? @"RequestEditViewController" : @"EditViewController";
+
+        EditViewController* editViewController = [[UIStoryboard storyboardWithName:@"MainStoryboard" bundle:nil] instantiateViewControllerWithIdentifier:identifier];
         editViewController.mediaInfo = info;
         editViewController.editMode = EditModeCreate;
         [picker pushViewController:editViewController animated:YES];

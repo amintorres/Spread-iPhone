@@ -556,6 +556,160 @@
             </objects>
             <point key="canvasLocation" x="796" y="784"/>
         </scene>
+        <!--Edit View Controller-->
+        <scene sceneID="zhn-lA-fCv">
+            <objects>
+                <tableViewController storyboardIdentifier="RequestEditViewController" id="d88-Su-lEL" customClass="EditViewController" sceneMemberID="viewController">
+                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="static" style="grouped" separatorStyle="singleLineEtched" allowsSelection="NO" rowHeight="44" sectionHeaderHeight="10" sectionFooterHeight="10" id="ChW-tw-0G0">
+                        <rect key="frame" x="0.0" y="20" width="320" height="548"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <view key="tableHeaderView" contentMode="scaleToFill" id="Kpy-Xa-9f7">
+                            <rect key="frame" x="0.0" y="0.0" width="320" height="70"/>
+                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            <subviews>
+                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="jC1-5o-PF7">
+                                    <constraints>
+                                        <constraint firstAttribute="width" constant="80" id="X4a-sb-3at"/>
+                                        <constraint firstAttribute="height" constant="44" id="kMP-Yw-9Lk"/>
+                                    </constraints>
+                                    <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
+                                    <state key="normal" title="Cancel" backgroundImage="texture-gray.png">
+                                        <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                        <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                    </state>
+                                    <state key="highlighted">
+                                        <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                    </state>
+                                    <connections>
+                                        <action selector="cancelButtonTapped:" destination="d88-Su-lEL" eventType="touchUpInside" id="Z8h-Na-jKh"/>
+                                    </connections>
+                                </button>
+                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="SXZ-MS-SZ7">
+                                    <constraints>
+                                        <constraint firstAttribute="width" constant="80" id="UXU-JR-Wo9"/>
+                                    </constraints>
+                                    <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
+                                    <state key="normal" title="Save" backgroundImage="texture-blue.png">
+                                        <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                        <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                    </state>
+                                    <state key="highlighted">
+                                        <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                    </state>
+                                    <connections>
+                                        <action selector="saveButtonTapped:" destination="d88-Su-lEL" eventType="touchUpInside" id="ToL-2e-GQa"/>
+                                    </connections>
+                                </button>
+                            </subviews>
+                            <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                            <constraints>
+                                <constraint firstItem="SXZ-MS-SZ7" firstAttribute="leading" secondItem="jC1-5o-PF7" secondAttribute="trailing" constant="8" symbolic="YES" type="default" id="Xv2-sM-q25"/>
+                                <constraint firstItem="SXZ-MS-SZ7" firstAttribute="bottom" secondItem="jC1-5o-PF7" secondAttribute="bottom" type="default" id="ZVt-QG-OwT"/>
+                                <constraint firstItem="jC1-5o-PF7" firstAttribute="leading" secondItem="Kpy-Xa-9f7" secondAttribute="leading" constant="142" id="fVA-Uo-W6a"/>
+                                <constraint firstItem="SXZ-MS-SZ7" firstAttribute="top" secondItem="jC1-5o-PF7" secondAttribute="top" type="default" id="jg8-Ep-HhI"/>
+                                <constraint firstItem="jC1-5o-PF7" firstAttribute="centerY" secondItem="Kpy-Xa-9f7" secondAttribute="centerY" type="default" id="sgV-kf-Y1F"/>
+                            </constraints>
+                        </view>
+                        <view key="tableFooterView" contentMode="scaleToFill" id="P4u-75-1Vn">
+                            <rect key="frame" x="0.0" y="292" width="320" height="50"/>
+                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            <subviews>
+                                <button hidden="YES" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="G6l-7c-rMn" customClass="RoundedRectButton">
+                                    <constraints>
+                                        <constraint firstAttribute="height" constant="44" id="EK5-VE-Q5F"/>
+                                        <constraint firstAttribute="width" constant="300" id="dCk-Vu-zHT"/>
+                                    </constraints>
+                                    <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
+                                    <state key="normal" title="Delete this photo" backgroundImage="texture-red.png">
+                                        <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                        <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                    </state>
+                                    <state key="highlighted">
+                                        <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                    </state>
+                                    <connections>
+                                        <action selector="deleteButtonTapped:" destination="d88-Su-lEL" eventType="touchUpInside" id="iEi-Xw-odR"/>
+                                    </connections>
+                                </button>
+                                <switch opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" on="YES" translatesAutoresizingMaskIntoConstraints="NO" id="ijc-ov-HjW">
+                                    <connections>
+                                        <action selector="rememberDetailsSwitchValueChanged:" destination="d88-Su-lEL" eventType="valueChanged" id="UaI-kd-fyV"/>
+                                    </connections>
+                                </switch>
+                                <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="Remember these details" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="5Fi-Tk-4Mb">
+                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                    <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                    <nil key="highlightedColor"/>
+                                </label>
+                            </subviews>
+                            <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                            <constraints>
+                                <constraint firstItem="G6l-7c-rMn" firstAttribute="centerX" secondItem="P4u-75-1Vn" secondAttribute="centerX" type="default" id="47t-ns-ZUd"/>
+                                <constraint firstAttribute="centerY" secondItem="5Fi-Tk-4Mb" secondAttribute="centerY" type="user" id="a9z-pn-RQP"/>
+                                <constraint firstItem="5Fi-Tk-4Mb" firstAttribute="leading" secondItem="P4u-75-1Vn" secondAttribute="leading" constant="96" id="nkX-b4-ppG"/>
+                                <constraint firstAttribute="centerY" secondItem="ijc-ov-HjW" secondAttribute="centerY" type="user" id="tOY-cX-gMq"/>
+                                <constraint firstAttribute="centerY" secondItem="G6l-7c-rMn" secondAttribute="centerY" type="user" id="tTg-Gn-Iu5"/>
+                                <constraint firstItem="ijc-ov-HjW" firstAttribute="leading" secondItem="G6l-7c-rMn" secondAttribute="leading" type="default" id="xEY-Kp-rRJ"/>
+                            </constraints>
+                        </view>
+                        <sections>
+                            <tableViewSection id="FuX-h9-B7N">
+                                <cells>
+                                    <tableViewCell contentMode="scaleToFill" selectionStyle="blue" indentationWidth="10" rowHeight="200" id="Th6-Xh-QCl">
+                                        <rect key="frame" x="0.0" y="80" width="320" height="202"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
+                                            <rect key="frame" x="10" y="1" width="300" height="199"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="Description" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="CQe-ar-BxQ">
+                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                    <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                                    <color key="highlightedColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                                </label>
+                                                <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="nnI-iP-vYB" customClass="PlaceholderTextView">
+                                                    <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="width" constant="270" id="kzf-iK-Bi7"/>
+                                                        <constraint firstAttribute="height" constant="150" id="ojq-MW-HQU"/>
+                                                    </constraints>
+                                                    <string key="text">Lorem ipsum dolor sit er elit lamet, consectetaur cillium adipisicing pecu, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. Nam liber te conscient to factor tum poen legum odioque civiuda.</string>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                                    <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
+                                                    <connections>
+                                                        <outlet property="delegate" destination="d88-Su-lEL" id="J8u-Yd-nS2"/>
+                                                    </connections>
+                                                </textView>
+                                            </subviews>
+                                            <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                        </view>
+                                        <constraints>
+                                            <constraint firstItem="CQe-ar-BxQ" firstAttribute="top" secondItem="Th6-Xh-QCl" secondAttribute="top" constant="12" id="Tuw-5F-pwg"/>
+                                            <constraint firstItem="nnI-iP-vYB" firstAttribute="centerX" secondItem="Th6-Xh-QCl" secondAttribute="centerX" type="default" id="msw-6H-XLS"/>
+                                            <constraint firstItem="nnI-iP-vYB" firstAttribute="top" secondItem="Th6-Xh-QCl" secondAttribute="top" constant="31" id="svc-MI-Xtb"/>
+                                            <constraint firstItem="CQe-ar-BxQ" firstAttribute="leading" secondItem="Th6-Xh-QCl" secondAttribute="leading" constant="30" id="uLA-8w-aKQ"/>
+                                        </constraints>
+                                    </tableViewCell>
+                                </cells>
+                            </tableViewSection>
+                        </sections>
+                        <connections>
+                            <outlet property="dataSource" destination="d88-Su-lEL" id="Kbn-61-3WH"/>
+                            <outlet property="delegate" destination="d88-Su-lEL" id="xIS-la-Rew"/>
+                        </connections>
+                    </tableView>
+                    <connections>
+                        <outlet property="deleteButton" destination="G6l-7c-rMn" id="WVp-qN-mTr"/>
+                        <outlet property="descriptionTextView" destination="nnI-iP-vYB" id="Eyf-Z8-IFP"/>
+                        <outlet property="rememberDetailsLabel" destination="5Fi-Tk-4Mb" id="aeA-cA-CdW"/>
+                        <outlet property="rememberDetailsSwitch" destination="ijc-ov-HjW" id="5MB-AQ-L2D"/>
+                    </connections>
+                </tableViewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="Yn7-L3-TY0" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1282" y="784"/>
+        </scene>
         <!--Request Filter View Controller-->
         <scene sceneID="kAj-Ad-Pfu">
             <objects>
@@ -675,7 +829,7 @@
                     </connections>
                 </tapGestureRecognizer>
             </objects>
-            <point key="canvasLocation" x="1282" y="784"/>
+            <point key="canvasLocation" x="1756" y="784"/>
         </scene>
         <!--Settings View Controller-->
         <scene sceneID="mdS-Gj-8Xl">
@@ -1847,153 +2001,6 @@ URLs</string>
         <image name="texture-gray.png" width="40" height="40"/>
         <image name="texture-red.png" width="40" height="40"/>
     </resources>
-    <classes>
-        <class className="AppFontButton" superclassName="UIButton">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/AppFontButton.h"/>
-        </class>
-        <class className="AppFontLabel" superclassName="UILabel">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/AppFontLabel.h"/>
-        </class>
-        <class className="BaseViewController" superclassName="UIViewController">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/BaseViewController.h"/>
-            <relationships>
-                <relationship kind="action" name="backButtonTapped:"/>
-            </relationships>
-        </class>
-        <class className="ButtonCell" superclassName="UITableViewCell">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/ButtonCell.h"/>
-            <relationships>
-                <relationship kind="outlet" name="button" candidateClass="UIButton"/>
-            </relationships>
-        </class>
-        <class className="CurrencyLabel" superclassName="AppFontLabel">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/CurrencyLabel.h"/>
-        </class>
-        <class className="EditViewController" superclassName="UITableViewController">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/EditViewController.h"/>
-            <relationships>
-                <relationship kind="action" name="cancelButtonTapped:"/>
-                <relationship kind="action" name="deleteButtonTapped:"/>
-                <relationship kind="action" name="rememberDetailsSwitchValueChanged:" candidateClass="UISwitch"/>
-                <relationship kind="action" name="saveButtonTapped:"/>
-                <relationship kind="outlet" name="deleteButton" candidateClass="UIButton"/>
-                <relationship kind="outlet" name="descriptionTextView" candidateClass="PlaceholderTextView"/>
-                <relationship kind="outlet" name="rememberDetailsLabel" candidateClass="UILabel"/>
-                <relationship kind="outlet" name="rememberDetailsSwitch" candidateClass="UISwitch"/>
-                <relationship kind="outlet" name="tagsTextField" candidateClass="UITextField"/>
-                <relationship kind="outlet" name="titleTextField" candidateClass="UITextField"/>
-            </relationships>
-        </class>
-        <class className="IntroTableViewController" superclassName="UITableViewController">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/IntroTableViewController.h"/>
-            <relationships>
-                <relationship kind="action" name="facebookLoginButtonTapped:"/>
-                <relationship kind="action" name="goBack:"/>
-                <relationship kind="action" name="loginButtonTapped:"/>
-                <relationship kind="action" name="registerButtonTapped:"/>
-                <relationship kind="outlet" name="captionLabel" candidateClass="UILabel"/>
-                <relationship kind="outlet" name="headerImageView" candidateClass="UIImageView"/>
-                <relationship kind="outlet" name="logoButton" candidateClass="UIButton"/>
-                <relationship kind="outlet" name="swipeGestureRecognizer" candidateClass="UISwipeGestureRecognizer"/>
-            </relationships>
-        </class>
-        <class className="MenuViewController" superclassName="UIViewController">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/MenuViewController.h"/>
-            <relationships>
-                <relationship kind="action" name="popularButtonTapped:"/>
-                <relationship kind="action" name="profileButtonTapped:"/>
-                <relationship kind="action" name="recentButtonTapped:"/>
-                <relationship kind="action" name="takePhotoButtonTapped:"/>
-                <relationship kind="outlet" name="profileButton" candidateClass="UIButton"/>
-            </relationships>
-        </class>
-        <class className="NSLayoutConstraint" superclassName="NSObject">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/NSLayoutConstraint.h"/>
-        </class>
-        <class className="PlaceholderTextView" superclassName="UITextView">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/PlaceholderTextView.h"/>
-        </class>
-        <class className="RequestBriefViewController" superclassName="BaseViewController">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/RequestBriefViewController.h"/>
-            <relationships>
-                <relationship kind="action" name="submitButtonTapped:"/>
-                <relationship kind="outlet" name="textView" candidateClass="UITextView"/>
-            </relationships>
-        </class>
-        <class className="RequestCell" superclassName="UITableViewCell">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/RequestCell.h"/>
-            <relationships>
-                <relationship kind="outlet" name="byLabel" candidateClass="UILabel"/>
-                <relationship kind="outlet" name="dueDateLabel" candidateClass="UILabel"/>
-                <relationship kind="outlet" name="priceLabel" candidateClass="UILabel"/>
-                <relationship kind="outlet" name="quantityLabel" candidateClass="UILabel"/>
-                <relationship kind="outlet" name="titleLabel" candidateClass="UILabel"/>
-            </relationships>
-        </class>
-        <class className="RequestDetailViewController" superclassName="BaseViewController">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/RequestDetailViewController.h"/>
-            <relationships>
-                <relationship kind="action" name="photosButtonTapped:"/>
-                <relationship kind="action" name="submitButtonTapped:"/>
-                <relationship kind="outlet" name="daysLeftLabel" candidateClass="UILabel"/>
-                <relationship kind="outlet" name="descriptionLabel" candidateClass="UILabel"/>
-                <relationship kind="outlet" name="photosButton" candidateClass="UIButton"/>
-                <relationship kind="outlet" name="priceLabel" candidateClass="UILabel"/>
-                <relationship kind="outlet" name="quantityLabel" candidateClass="UILabel"/>
-                <relationship kind="outlet" name="requesterImageView" candidateClass="UIImageView"/>
-                <relationship kind="outlet" name="requesterLabel" candidateClass="UILabel"/>
-            </relationships>
-        </class>
-        <class className="RequestFilterViewController" superclassName="UIViewController">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/RequestFilterViewController.h"/>
-            <relationships>
-                <relationship kind="action" name="backgroundTapped:"/>
-                <relationship kind="action" name="buttonTapped:"/>
-                <relationship kind="outlet" name="byDateButton" candidateClass="UIButton"/>
-                <relationship kind="outlet" name="byHighestPriceButton" candidateClass="UIButton"/>
-                <relationship kind="outlet" name="byLowestPriceButton" candidateClass="UIButton"/>
-            </relationships>
-        </class>
-        <class className="RequestReferenceViewController" superclassName="BaseViewController">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/RequestReferenceViewController.h"/>
-            <relationships>
-                <relationship kind="action" name="submitButtonTapped:"/>
-                <relationship kind="outlet" name="textView" candidateClass="UITextView"/>
-            </relationships>
-        </class>
-        <class className="RequestsViewController" superclassName="BaseViewController">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/RequestsViewController.h"/>
-            <relationships>
-                <relationship kind="action" name="filterButtonTapped:"/>
-                <relationship kind="outlet" name="infoLabel" candidateClass="UILabel"/>
-                <relationship kind="outlet" name="tableView" candidateClass="UITableView"/>
-            </relationships>
-        </class>
-        <class className="RoundedRectButton" superclassName="AppFontButton">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/RoundedRectButton.h"/>
-        </class>
-        <class className="SettingsViewController" superclassName="UITableViewController">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/SettingsViewController.h"/>
-            <relationships>
-                <relationship kind="action" name="backButtonTapped:"/>
-                <relationship kind="outlet" name="emailCell" candidateClass="UITableViewCell"/>
-                <relationship kind="outlet" name="logoutCell" candidateClass="UITableViewCell"/>
-            </relationships>
-        </class>
-        <class className="TextFieldCell" superclassName="UITableViewCell">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/TextFieldCell.h"/>
-            <relationships>
-                <relationship kind="outlet" name="textField" candidateClass="UITextField"/>
-            </relationships>
-        </class>
-        <class className="WebViewController" superclassName="BaseViewController">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/WebViewController.h"/>
-            <relationships>
-                <relationship kind="outlet" name="titleLabel" candidateClass="UILabel"/>
-                <relationship kind="outlet" name="webView" candidateClass="UIWebView"/>
-            </relationships>
-        </class>
-    </classes>
     <simulatedMetricsContainer key="defaultSimulatedMetrics">
         <simulatedStatusBarMetrics key="statusBar"/>
         <simulatedOrientationMetrics key="orientation"/>

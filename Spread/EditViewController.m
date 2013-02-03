@@ -158,7 +158,7 @@
         
         if ([CameraManager sharedManager].request)
         {
-            [[ServiceManager sharedManager] postPhoto:data toRequest:[CameraManager sharedManager].request completionHandler:^(id response, BOOL success, NSError *error) {
+            [[ServiceManager sharedManager] postPhoto:data toRequest:[CameraManager sharedManager].request description:self.descriptionTextView.text completionHandler:^(id response, BOOL success, NSError *error) {
                 
                 if (success)
                 {

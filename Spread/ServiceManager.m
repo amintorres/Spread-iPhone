@@ -367,7 +367,7 @@ static NSString* boundary = nil;
     [self sendPostRequest:request completionHandler:NULL];
 }
 
-- (void)postPhoto:(NSData *)imageData toRequest:(Request *)photoRequest completionHandler:(ServiceManagerHandler)completion
+- (void)postPhoto:(NSData *)imageData toRequest:(Request *)photoRequest description:(NSString *)description completionHandler:(ServiceManagerHandler)completion
 {
     if (!imageData)
     {
@@ -391,6 +391,12 @@ static NSString* boundary = nil;
     
     
     NSMutableData *postBody = [NSMutableData data];
+    
+    // Description
+//    [postBody appendData:[[NSString stringWithFormat:@"--%@\r\n", boundary] dataUsingEncoding:NSUTF8StringEncoding]];
+//    [postBody appendData:[@"Content-Disposition: form-data; name=\"request_photo[name]\"\r\n\r\n" dataUsingEncoding:NSUTF8StringEncoding]];
+//    [postBody appendData:[description dataUsingEncoding:NSUTF8StringEncoding]];
+//    [postBody appendData:[@"\r\n" dataUsingEncoding:NSUTF8StringEncoding]];
     
     // Image
     [postBody appendData:[[NSString stringWithFormat:@"--%@\r\n", boundary] dataUsingEncoding:NSUTF8StringEncoding]];
