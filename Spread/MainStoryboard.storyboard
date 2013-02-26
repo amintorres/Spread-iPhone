@@ -25,7 +25,7 @@
             <objects>
                 <viewController id="GyX-lL-DyD" customClass="MenuViewController" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="t5b-cg-4xy">
-                        <rect key="frame" x="0.0" y="20" width="320" height="548"/>
+                        <rect key="frame" x="0.0" y="20" width="320" height="460"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <subviews>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="bottom" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="FmU-eZ-6TD" customClass="AppFontButton">
@@ -166,7 +166,7 @@
             <objects>
                 <tableViewController id="hux-9d-tGk" customClass="IntroTableViewController" sceneMemberID="viewController">
                     <tableView key="view" opaque="NO" clipsSubviews="YES" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" alwaysBounceVertical="YES" scrollEnabled="NO" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" dataMode="prototypes" style="plain" separatorStyle="none" rowHeight="60" sectionHeaderHeight="22" sectionFooterHeight="22" id="exL-1G-NKq">
-                        <rect key="frame" x="0.0" y="20" width="320" height="548"/>
+                        <rect key="frame" x="0.0" y="20" width="320" height="460"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <gestureRecognizers/>
@@ -339,7 +339,7 @@
             <objects>
                 <tableViewController storyboardIdentifier="EditViewController" id="QTt-Be-NhP" customClass="EditViewController" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="static" style="grouped" separatorStyle="singleLineEtched" allowsSelection="NO" rowHeight="44" sectionHeaderHeight="10" sectionFooterHeight="10" id="LEh-U8-ZvT">
-                        <rect key="frame" x="0.0" y="20" width="320" height="548"/>
+                        <rect key="frame" x="0.0" y="20" width="320" height="460"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <view key="tableHeaderView" contentMode="scaleToFill" id="a7p-bD-CPZ">
@@ -561,7 +561,7 @@
             <objects>
                 <tableViewController storyboardIdentifier="RequestEditViewController" id="d88-Su-lEL" customClass="EditViewController" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="static" style="grouped" separatorStyle="singleLineEtched" allowsSelection="NO" rowHeight="44" sectionHeaderHeight="10" sectionFooterHeight="10" id="ChW-tw-0G0">
-                        <rect key="frame" x="0.0" y="20" width="320" height="548"/>
+                        <rect key="frame" x="0.0" y="20" width="320" height="460"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <view key="tableHeaderView" contentMode="scaleToFill" id="Kpy-Xa-9f7">
@@ -715,7 +715,7 @@
             <objects>
                 <viewController storyboardIdentifier="RequestFilterViewController" id="rIj-P2-BsO" customClass="RequestFilterViewController" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="KMh-rP-cb6">
-                        <rect key="frame" x="0.0" y="20" width="320" height="548"/>
+                        <rect key="frame" x="0.0" y="20" width="320" height="460"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <subviews>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="30f-N8-225">
@@ -836,7 +836,7 @@
             <objects>
                 <tableViewController id="2Lu-wI-fbp" customClass="SettingsViewController" sceneMemberID="viewController">
                     <tableView key="view" opaque="NO" clipsSubviews="YES" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="static" style="plain" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" id="Xfn-uj-GdT">
-                        <rect key="frame" x="0.0" y="20" width="320" height="548"/>
+                        <rect key="frame" x="0.0" y="20" width="320" height="460"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <view key="tableHeaderView" contentMode="scaleToFill" id="tpz-6H-CVP" userLabel="Nav View">
@@ -1059,7 +1059,7 @@ Else</string>
             <objects>
                 <viewController id="FdC-4L-GIQ" customClass="WebViewController" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="NUy-FR-9OM">
-                        <rect key="frame" x="0.0" y="20" width="320" height="548"/>
+                        <rect key="frame" x="0.0" y="20" width="320" height="460"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <subviews>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="KXH-dT-SBD" userLabel="Nav View">
@@ -1135,7 +1135,7 @@ Else</string>
             <objects>
                 <viewController id="yiB-aC-NVW" customClass="RequestsViewController" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="NlJ-9s-Laz">
-                        <rect key="frame" x="0.0" y="20" width="320" height="548"/>
+                        <rect key="frame" x="0.0" y="20" width="320" height="460"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <subviews>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="eYo-K1-3Oz" userLabel="Nav View">
@@ -1348,7 +1348,7 @@ $45,000 up for grabs</string>
             <objects>
                 <viewController id="50T-Ba-oba" customClass="RequestDetailViewController" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="Xqd-Ay-IBH">
-                        <rect key="frame" x="0.0" y="20" width="320" height="548"/>
+                        <rect key="frame" x="0.0" y="20" width="320" height="460"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <subviews>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Qzb-ap-A2y" userLabel="Nav View">
@@ -1668,7 +1668,6 @@ needed</string>
                             <constraint firstItem="7vw-3Y-kZA" firstAttribute="height" secondItem="9Af-23-yCu" secondAttribute="height" type="user" id="OB1-4y-Ufp"/>
                             <constraint firstItem="9Af-23-yCu" firstAttribute="height" secondItem="ITb-nh-9zc" secondAttribute="height" type="user" id="QUx-9c-TuY"/>
                             <constraint firstItem="5TV-HC-waF" firstAttribute="leading" secondItem="Xqd-Ay-IBH" secondAttribute="leading" type="user" id="TnM-Vg-xaB"/>
-                            <constraint firstItem="8uV-LQ-SIT" firstAttribute="top" secondItem="Xqd-Ay-IBH" secondAttribute="top" constant="137" id="WxI-tZ-HeX"/>
                             <constraint firstItem="DDI-YU-jIQ" firstAttribute="trailing" secondItem="Xqd-Ay-IBH" secondAttribute="trailing" type="default" id="YCv-D2-nds"/>
                             <constraint firstItem="DDI-YU-jIQ" firstAttribute="top" secondItem="7vw-3Y-kZA" secondAttribute="bottom" constant="1" type="user" id="Yrl-wv-sDr"/>
                             <constraint firstItem="blt-u9-USc" firstAttribute="bottom" secondItem="eaV-cz-Jcj" secondAttribute="bottom" type="user" id="cn4-O0-dGA"/>
@@ -1681,9 +1680,9 @@ needed</string>
                             <constraint firstItem="8uV-LQ-SIT" firstAttribute="leading" secondItem="Xqd-Ay-IBH" secondAttribute="leading" type="user" id="mXF-Kn-zfR"/>
                             <constraint firstItem="7vw-3Y-kZA" firstAttribute="leading" secondItem="Xqd-Ay-IBH" secondAttribute="leading" type="user" id="n34-ro-4qa"/>
                             <constraint firstItem="ITb-nh-9zc" firstAttribute="trailing" secondItem="Xqd-Ay-IBH" secondAttribute="trailing" type="user" id="qxc-zf-K65"/>
+                            <constraint firstAttribute="bottom" secondItem="DDI-YU-jIQ" secondAttribute="bottom" constant="-2" id="tHd-O8-BsG"/>
                             <constraint firstItem="5TV-HC-waF" firstAttribute="top" secondItem="8uV-LQ-SIT" secondAttribute="bottom" constant="1" type="user" id="tWX-0Y-KfX"/>
                             <constraint firstItem="9Af-23-yCu" firstAttribute="height" secondItem="0jq-6L-Owg" secondAttribute="height" type="user" id="uzK-VP-g51"/>
-                            <constraint firstAttribute="bottom" secondItem="DDI-YU-jIQ" secondAttribute="bottom" type="user" id="w0x-ko-fbZ"/>
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" id="S8j-qb-pgC"/>
@@ -1706,7 +1705,7 @@ needed</string>
             <objects>
                 <viewController id="4km-4u-3xg" customClass="RequestBriefViewController" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="ixi-Ip-c01">
-                        <rect key="frame" x="0.0" y="20" width="320" height="548"/>
+                        <rect key="frame" x="0.0" y="20" width="320" height="460"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <subviews>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="ikd-xh-qea" userLabel="Nav View">
@@ -1843,7 +1842,7 @@ Brief</string>
             <objects>
                 <viewController id="l9u-c1-PGc" customClass="RequestReferenceViewController" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="GbH-ZS-VJ3">
-                        <rect key="frame" x="0.0" y="20" width="320" height="548"/>
+                        <rect key="frame" x="0.0" y="20" width="320" height="460"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <subviews>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="r4g-dv-4wk" userLabel="Nav View">
@@ -2001,10 +2000,145 @@ URLs</string>
         <image name="texture-gray.png" width="40" height="40"/>
         <image name="texture-red.png" width="40" height="40"/>
     </resources>
+    <classes>
+        <class className="AppFontButton" superclassName="UIButton">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/AppFontButton.h"/>
+        </class>
+        <class className="AppFontLabel" superclassName="UILabel">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/AppFontLabel.h"/>
+        </class>
+        <class className="BaseViewController" superclassName="UIViewController">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/BaseViewController.h"/>
+            <relationships>
+                <relationship kind="action" name="backButtonTapped:"/>
+            </relationships>
+        </class>
+        <class className="ButtonCell" superclassName="UITableViewCell">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/ButtonCell.h"/>
+            <relationships>
+                <relationship kind="outlet" name="button" candidateClass="UIButton"/>
+            </relationships>
+        </class>
+        <class className="CurrencyLabel" superclassName="AppFontLabel">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/CurrencyLabel.h"/>
+        </class>
+        <class className="EditViewController" superclassName="UITableViewController">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/EditViewController.h"/>
+            <relationships>
+                <relationship kind="action" name="cancelButtonTapped:"/>
+                <relationship kind="action" name="deleteButtonTapped:"/>
+                <relationship kind="action" name="rememberDetailsSwitchValueChanged:" candidateClass="UISwitch"/>
+                <relationship kind="action" name="saveButtonTapped:"/>
+                <relationship kind="outlet" name="deleteButton" candidateClass="UIButton"/>
+                <relationship kind="outlet" name="descriptionTextView" candidateClass="PlaceholderTextView"/>
+                <relationship kind="outlet" name="rememberDetailsLabel" candidateClass="UILabel"/>
+                <relationship kind="outlet" name="rememberDetailsSwitch" candidateClass="UISwitch"/>
+                <relationship kind="outlet" name="tagsTextField" candidateClass="UITextField"/>
+                <relationship kind="outlet" name="titleTextField" candidateClass="UITextField"/>
+            </relationships>
+        </class>
+        <class className="IntroTableViewController" superclassName="UITableViewController">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/IntroTableViewController.h"/>
+            <relationships>
+                <relationship kind="action" name="facebookLoginButtonTapped:"/>
+                <relationship kind="action" name="goBack:"/>
+                <relationship kind="action" name="loginButtonTapped:"/>
+                <relationship kind="outlet" name="captionLabel" candidateClass="UILabel"/>
+                <relationship kind="outlet" name="headerImageView" candidateClass="UIImageView"/>
+                <relationship kind="outlet" name="logoButton" candidateClass="UIButton"/>
+                <relationship kind="outlet" name="swipeGestureRecognizer" candidateClass="UISwipeGestureRecognizer"/>
+            </relationships>
+        </class>
+        <class className="MenuViewController" superclassName="UIViewController">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/MenuViewController.h"/>
+            <relationships>
+                <relationship kind="outlet" name="profileButton" candidateClass="UIButton"/>
+            </relationships>
+        </class>
+        <class className="NSLayoutConstraint" superclassName="NSObject">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/NSLayoutConstraint.h"/>
+        </class>
+        <class className="PlaceholderTextView" superclassName="UITextView">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/PlaceholderTextView.h"/>
+        </class>
+        <class className="RequestBriefViewController" superclassName="BaseViewController">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/RequestBriefViewController.h"/>
+            <relationships>
+                <relationship kind="outlet" name="textView" candidateClass="UITextView"/>
+            </relationships>
+        </class>
+        <class className="RequestCell" superclassName="UITableViewCell">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/RequestCell.h"/>
+            <relationships>
+                <relationship kind="outlet" name="byLabel" candidateClass="UILabel"/>
+                <relationship kind="outlet" name="dueDateLabel" candidateClass="UILabel"/>
+                <relationship kind="outlet" name="priceLabel" candidateClass="UILabel"/>
+                <relationship kind="outlet" name="quantityLabel" candidateClass="UILabel"/>
+                <relationship kind="outlet" name="titleLabel" candidateClass="UILabel"/>
+            </relationships>
+        </class>
+        <class className="RequestDetailViewController" superclassName="BaseViewController">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/RequestDetailViewController.h"/>
+            <relationships>
+                <relationship kind="outlet" name="daysLeftLabel" candidateClass="UILabel"/>
+                <relationship kind="outlet" name="descriptionLabel" candidateClass="UILabel"/>
+                <relationship kind="outlet" name="photosButton" candidateClass="UIButton"/>
+                <relationship kind="outlet" name="priceLabel" candidateClass="UILabel"/>
+                <relationship kind="outlet" name="quantityLabel" candidateClass="UILabel"/>
+                <relationship kind="outlet" name="requesterImageView" candidateClass="UIImageView"/>
+                <relationship kind="outlet" name="requesterLabel" candidateClass="UILabel"/>
+            </relationships>
+        </class>
+        <class className="RequestFilterViewController" superclassName="UIViewController">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/RequestFilterViewController.h"/>
+            <relationships>
+                <relationship kind="outlet" name="byDateButton" candidateClass="UIButton"/>
+                <relationship kind="outlet" name="byHighestPriceButton" candidateClass="UIButton"/>
+                <relationship kind="outlet" name="byLowestPriceButton" candidateClass="UIButton"/>
+            </relationships>
+        </class>
+        <class className="RequestReferenceViewController" superclassName="BaseViewController">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/RequestReferenceViewController.h"/>
+            <relationships>
+                <relationship kind="action" name="submitButtonTapped:"/>
+                <relationship kind="outlet" name="textView" candidateClass="UITextView"/>
+            </relationships>
+        </class>
+        <class className="RequestsViewController" superclassName="BaseViewController">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/RequestsViewController.h"/>
+            <relationships>
+                <relationship kind="outlet" name="infoLabel" candidateClass="UILabel"/>
+                <relationship kind="outlet" name="tableView" candidateClass="UITableView"/>
+            </relationships>
+        </class>
+        <class className="RoundedRectButton" superclassName="AppFontButton">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/RoundedRectButton.h"/>
+        </class>
+        <class className="SettingsViewController" superclassName="UITableViewController">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/SettingsViewController.h"/>
+            <relationships>
+                <relationship kind="outlet" name="emailCell" candidateClass="UITableViewCell"/>
+                <relationship kind="outlet" name="logoutCell" candidateClass="UITableViewCell"/>
+            </relationships>
+        </class>
+        <class className="TextFieldCell" superclassName="UITableViewCell">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/TextFieldCell.h"/>
+            <relationships>
+                <relationship kind="outlet" name="textField" candidateClass="UITextField"/>
+            </relationships>
+        </class>
+        <class className="WebViewController" superclassName="BaseViewController">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/WebViewController.h"/>
+            <relationships>
+                <relationship kind="outlet" name="titleLabel" candidateClass="UILabel"/>
+                <relationship kind="outlet" name="webView" candidateClass="UIWebView"/>
+            </relationships>
+        </class>
+    </classes>
     <simulatedMetricsContainer key="defaultSimulatedMetrics">
         <simulatedStatusBarMetrics key="statusBar"/>
         <simulatedOrientationMetrics key="orientation"/>
-        <simulatedScreenMetrics key="destination" type="retina4"/>
+        <simulatedScreenMetrics key="destination"/>
     </simulatedMetricsContainer>
     <inferredMetricsTieBreakers>
         <segue reference="eaq-mq-EGu"/>
