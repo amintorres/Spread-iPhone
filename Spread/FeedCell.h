@@ -16,7 +16,10 @@
 @interface FeedCell : UITableViewCell
 
 @property (nonatomic, strong) IBOutlet UIImageView *largeImageView;
+@property (nonatomic, strong) IBOutlet UIButton *favoriteButton;
 @property (nonatomic, strong) IBOutlet UIButton *editButton;
+@property (nonatomic, strong) IBOutlet UILabel *nameLabel;
+@property (nonatomic, strong) IBOutlet UIButton *flagButton;
 @property (nonatomic, strong) IBOutlet UILabel *descriptionLabel;
 @property (nonatomic, strong) Photo *photo;
 @property (nonatomic, weak) id <FeedCellDelegate> delegate;

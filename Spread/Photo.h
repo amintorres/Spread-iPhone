@@ -2,7 +2,7 @@
 //  Photo.h
 //  Spread
 //
-//  Created by Joseph Lin on 1/6/13.
+//  Created by Joseph Lin on 2/28/13.
 //  Copyright (c) 2013 R/GA. All rights reserved.
 //
 
@@ -24,9 +24,10 @@
 @property (nonatomic, retain) NSString * photoDescription;
 @property (nonatomic, retain) NSNumber * photoID;
 @property (nonatomic, retain) NSDate * updatedDate;
+@property (nonatomic, retain) NSNumber * isFavorite;
+@property (nonatomic, retain) Request *request;
 @property (nonatomic, retain) NSSet *tags;
 @property (nonatomic, retain) User *user;
-@property (nonatomic, retain) Request *request;
 @end
 
 @interface Photo (CoreDataGeneratedAccessors)

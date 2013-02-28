@@ -10,6 +10,7 @@
 #import "UIImageView+WebCache.h"
 #import "EditViewController.h"
 #import "UIView+Shortcut.h"
+#import "User+Spread.h"
 
 #define kTextMargin 5.0
 
@@ -24,12 +25,15 @@
     NSURL *URL = [NSURL URLWithString:photo.feedImageURLString];
     [self.largeImageView setImageWithURL:URL];
     
+    self.favoriteButton.selected = [photo.isFavorite boolValue];
+    
+    self.nameLabel.text = photo.user.name;
+    
     self.descriptionLabel.text = photo.photoDescription;
     CGFloat textHeight = [FeedCell suggestedTextHeightForPhoto:photo];    
     [self.descriptionLabel setHeight:textHeight];
 
     self.editButton.hidden = !photo.isCurrentUser;
-    [self.editButton setY:CGRectGetMaxY(self.descriptionLabel.frame) + kTextMargin];
 }
 
 + (CGFloat)suggestedTextHeightForPhoto:(Photo *)photo
@@ -48,9 +52,9 @@
     CGFloat textHeight = [self suggestedTextHeightForPhoto:photo];
     CGFloat height = CGRectGetMinY(referenceCell.descriptionLabel.frame) + textHeight + kTextMargin;
 
-    if (photo.isCurrentUser) {
-        height += CGRectGetHeight(referenceCell.editButton.frame) + kTextMargin;
-    }
+//    if (photo.isCurrentUser) {
+//        height += CGRectGetHeight(referenceCell.editButton.frame) + kTextMargin;
+//    }
     
     return height;
 }
