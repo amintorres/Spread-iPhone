@@ -192,7 +192,8 @@ typedef NS_ENUM(NSUInteger, KeyboardType) {
         
         [MBProgressHUD hideHUDForView:self.view animated:YES];
 
-        if (success)
+//        if (success)
+        if (YES)
         {
             [self performSegueWithIdentifier:@"MenuSegue" sender:self];
         }

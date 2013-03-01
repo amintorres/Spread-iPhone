@@ -20,6 +20,7 @@
 @property (nonatomic, strong) IBOutlet UIButton *editButton;
 @property (nonatomic, strong) IBOutlet UILabel *nameLabel;
 @property (nonatomic, strong) IBOutlet UIButton *flagButton;
+@property (nonatomic, strong) IBOutlet UIImageView *commentImageView;
 @property (nonatomic, strong) IBOutlet UILabel *descriptionLabel;
 @property (nonatomic, strong) Photo *photo;
 @property (nonatomic, weak) id <FeedCellDelegate> delegate;
