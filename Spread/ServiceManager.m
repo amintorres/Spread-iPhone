@@ -144,16 +144,27 @@ static NSString* boundary = nil;
 
 - (void)loadFromEndPoint:(NSString*)endPoint completion:(ServiceManagerHandler)completion
 {
+    [self loadFromEndPoint:endPoint method:@"GET" params:nil completion:completion];
+}
+
+- (void)loadFromEndPoint:(NSString*)endPoint method:(NSString *)method params:(NSDictionary *)params completion:(ServiceManagerHandler)completion
+{
     if (!self.oauthToken)
     {
         NSLog(@"Error! No oauth token!");
         return;
     }
     
-    NSString *param = [@{@"authentication_token": self.oauthToken} paramString];
-    NSString* URLString = [NSString stringWithFormat:@"%@/%@?%@", baseURL, endPoint, param];
+    NSString *token = [@{@"authentication_token": self.oauthToken} paramString];
+    NSString* URLString = [NSString stringWithFormat:@"%@/%@?%@", baseURL, endPoint, token];
     NSURL *URL = [NSURL URLWithString:URLString];
-    NSURLRequest *request = [NSURLRequest requestWithURL:URL];
+    
+    NSMutableURLRequest *request = [NSMutableURLRequest requestWithURL:URL];
+    request.HTTPMethod = method;
+
+    if (params) {
+        request.HTTPBody = [[params paramString] dataUsingEncoding:NSUTF8StringEncoding];
+    }
     
     [UIApplication sharedApplication].networkActivityIndicatorVisible = YES;
     [NSURLConnection sendAsynchronousRequest:request queue:[NSOperationQueue mainQueue] completionHandler:^(NSURLResponse *response, NSData *data, NSError *error) {
@@ -170,12 +181,12 @@ static NSString* boundary = nil;
             if (!JSONError)
             {
                 NSLog(@"result: %@", result);
-                completion(result, YES, nil);
+                if (completion) completion(result, YES, nil);
             }
             else
             {
                 NSLog(@"JSON error: %@", JSONError);
-                completion(nil, NO, JSONError);
+                if (completion) completion(nil, NO, JSONError);
             }
         }
         else
@@ -186,7 +197,7 @@ static NSString* boundary = nil;
             {
                 NSLog(@"Error: %@", error);
             }
-            completion(nil, NO, error);
+            if (completion) completion(nil, NO, error);
         }
     }];
 }

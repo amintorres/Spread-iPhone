@@ -33,6 +33,8 @@ typedef void (^ServiceManagerHandler)(id response, BOOL success, NSError *error)
 - (void)logout;
 - (void)loadEntityWithID:(NSString*)entityID completion:(ServiceManagerHandler)completion;
 
+- (void)loadFromEndPoint:(NSString*)endPoint method:(NSString *)method params:(NSDictionary *)params completion:(ServiceManagerHandler)completion;
+
 - (void)loadRecentPhotosWithHandler:(ServiceManagerHandler)completion;
 - (void)loadPopularPhotosWithHandler:(ServiceManagerHandler)completion;
 - (void)loadUserPhotosWithHandler:(ServiceManagerHandler)completion;

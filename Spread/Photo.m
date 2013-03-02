@@ -2,7 +2,7 @@
 //  Photo.m
 //  Spread
 //
-//  Created by Joseph Lin on 2/28/13.
+//  Created by Joseph Lin on 3/1/13.
 //  Copyright (c) 2013 R/GA. All rights reserved.
 //
 
@@ -20,12 +20,12 @@
 @dynamic feedImageURLString;
 @dynamic gridImageURLString;
 @dynamic impressionsCount;
+@dynamic myFavoriteID;
 @dynamic largeImageURLString;
 @dynamic name;
 @dynamic photoDescription;
 @dynamic photoID;
 @dynamic updatedDate;
-@dynamic isFavorite;
 @dynamic request;
 @dynamic tags;
 @dynamic user;

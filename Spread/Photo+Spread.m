@@ -42,7 +42,64 @@
     
     photo.user = (User*)[User objectWithDict:dict[@"entity"] inContext:context];
     
+    [photo loadFavoriteIDWithCompletionHandler:NULL];
+    
 	return photo;
+}
+
+- (BOOL)isFavorite
+{
+    BOOL isFavorite = (self.myFavoriteID) ? YES : NO;
+    return isFavorite;
+}
+
+- (void)setIsFavorite:(BOOL)isFavorite
+{
+    [self setIsFavorite:isFavorite completionHandler:NULL];
+}
+
+- (void)setIsFavorite:(BOOL)isFavorite completionHandler:(ServiceManagerHandler)completion
+{
+    if (self.myFavoriteID)
+    {
+        NSString *endpoint = [NSString stringWithFormat:@"favorites/%d.json", [self.myFavoriteID integerValue]];
+        [[ServiceManager sharedManager] loadFromEndPoint:endpoint method:@"DELETE" params:nil completion:completion];
+        self.myFavoriteID = nil;
+    }
+    else
+    {
+        self.myFavoriteID = @0; // placeholder ID
+        NSDictionary *params = @{@"favorable_type":@"NewsPhoto", @"favorable_id":self.photoID};
+        [[ServiceManager sharedManager] loadFromEndPoint:@"favorites.json" method:@"POST" params:params completion:^(id response, BOOL success, NSError *error) {
+            if (success)
+            {
+                self.myFavoriteID = response[@"id"];
+                if (completion) completion(response, YES, nil);
+            }
+            else
+            {
+                NSLog(@"Error: %@", error);
+                if (completion) completion(nil, NO, error);
+            }
+        }];
+    }
+}
+
+- (void)loadFavoriteIDWithCompletionHandler:(ServiceManagerHandler)completion
+{
+    NSDictionary *params = @{@"favorable_type":@"NewsPhoto", @"favorable_id":self.photoID};
+    [[ServiceManager sharedManager] loadFromEndPoint:@"favorites.json" method:@"GET" params:params completion:^(id response, BOOL success, NSError *error) {
+        if (success)
+        {
+            self.myFavoriteID = response[@"id"];
+            if (completion) completion(response, YES, nil);
+        }
+        else
+        {
+            NSLog(@"Error loading favorite ID: %@", error);
+            if (completion) completion(nil, NO, error);
+        }
+    }];
 }
 
 + (NSString *)modelIDKey

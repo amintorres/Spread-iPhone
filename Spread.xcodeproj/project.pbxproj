@@ -48,6 +48,7 @@
 		7C3AC964162A2E4F0046CE81 /* EditViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7C7F7AB214AB74AE00652401 /* EditViewController.m */; };
 		7C3AC965162A321D0046CE81 /* ReviewViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7CFAFA1214C38DA500597A6D /* ReviewViewController.m */; };
 		7C3AC966162A327A0046CE81 /* PlaceholderTextView.m in Sources */ = {isa = PBXBuildFile; fileRef = 7C8E2A2514C351AF00E6E714 /* PlaceholderTextView.m */; };
+		7C3B3E5016E178E600535AA3 /* Photo.m in Sources */ = {isa = PBXBuildFile; fileRef = 7C3B3E4F16E178E500535AA3 /* Photo.m */; };
 		7C45353915E19B0000833FA9 /* User+Spread.m in Sources */ = {isa = PBXBuildFile; fileRef = 7C81998C14C1187B0019AB8E /* User+Spread.m */; };
 		7C45353E15E19F3400833FA9 /* OpenSans-Bold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 7C45353B15E19F3400833FA9 /* OpenSans-Bold.ttf */; };
 		7C45353F15E19F3400833FA9 /* OpenSans-Italic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 7C45353C15E19F3400833FA9 /* OpenSans-Italic.ttf */; };
@@ -80,7 +81,6 @@
 		7C6BC6E616E011D2008365AA /* icon-flag@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 7C6BC6E016E011D2008365AA /* icon-flag@2x.png */; };
 		7C6BC6E716E011D2008365AA /* icon-favorite-off.png in Resources */ = {isa = PBXBuildFile; fileRef = 7C6BC6E116E011D2008365AA /* icon-favorite-off.png */; };
 		7C6BC6E816E011D2008365AA /* icon-favorite-off@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 7C6BC6E216E011D2008365AA /* icon-favorite-off@2x.png */; };
-		7C6BC6EE16E016A1008365AA /* Photo.m in Sources */ = {isa = PBXBuildFile; fileRef = 7C6BC6ED16E016A1008365AA /* Photo.m */; };
 		7C6BC6F116E01791008365AA /* icon-favorite-on.png in Resources */ = {isa = PBXBuildFile; fileRef = 7C6BC6EF16E01791008365AA /* icon-favorite-on.png */; };
 		7C6BC6F216E01791008365AA /* icon-favorite-on@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 7C6BC6F016E01791008365AA /* icon-favorite-on@2x.png */; };
 		7C6F8836168AAAA5006118B8 /* WebViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7C62EA2314CCB56E0003FFF4 /* WebViewController.m */; };
@@ -296,6 +296,8 @@
 		7C3553CC16B76B0C0046A6A9 /* RequestFilterViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RequestFilterViewController.m; sourceTree = "<group>"; };
 		7C382A9914DCC80B0038BC3E /* ToggleButton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ToggleButton.h; sourceTree = "<group>"; };
 		7C382A9A14DCC80B0038BC3E /* ToggleButton.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ToggleButton.m; sourceTree = "<group>"; };
+		7C3B3E4E16E178E500535AA3 /* Photo.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Photo.h; sourceTree = "<group>"; };
+		7C3B3E4F16E178E500535AA3 /* Photo.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Photo.m; sourceTree = "<group>"; };
 		7C3F37D114C4DE3F00E39B3F /* UILabel+Resizing.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UILabel+Resizing.h"; sourceTree = "<group>"; };
 		7C3F37D214C4DE3F00E39B3F /* UILabel+Resizing.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UILabel+Resizing.m"; sourceTree = "<group>"; };
 		7C45353B15E19F3400833FA9 /* OpenSans-Bold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "OpenSans-Bold.ttf"; sourceTree = "<group>"; };
@@ -340,8 +342,6 @@
 		7C6BC6E016E011D2008365AA /* icon-flag@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "icon-flag@2x.png"; sourceTree = "<group>"; };
 		7C6BC6E116E011D2008365AA /* icon-favorite-off.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "icon-favorite-off.png"; sourceTree = "<group>"; };
 		7C6BC6E216E011D2008365AA /* icon-favorite-off@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "icon-favorite-off@2x.png"; sourceTree = "<group>"; };
-		7C6BC6EC16E016A1008365AA /* Photo.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Photo.h; sourceTree = "<group>"; };
-		7C6BC6ED16E016A1008365AA /* Photo.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Photo.m; sourceTree = "<group>"; };
 		7C6BC6EF16E01791008365AA /* icon-favorite-on.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "icon-favorite-on.png"; sourceTree = "<group>"; };
 		7C6BC6F016E01791008365AA /* icon-favorite-on@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "icon-favorite-on@2x.png"; sourceTree = "<group>"; };
 		7C6CFBEF14BD2BE70048644C /* RoundedRectButton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RoundedRectButton.h; sourceTree = "<group>"; };
@@ -728,8 +728,8 @@
 				7C17739C169A7BC80054CBDD /* Tag.m */,
 				7CFAFA2414C3A1FA00597A6D /* Tag+Spread.h */,
 				7CFAFA2514C3A1FA00597A6D /* Tag+Spread.m */,
-				7C6BC6EC16E016A1008365AA /* Photo.h */,
-				7C6BC6ED16E016A1008365AA /* Photo.m */,
+				7C3B3E4E16E178E500535AA3 /* Photo.h */,
+				7C3B3E4F16E178E500535AA3 /* Photo.m */,
 				7CFAFA0E14C3890300597A6D /* Photo+Spread.h */,
 				7CFAFA0F14C3890300597A6D /* Photo+Spread.m */,
 			);
@@ -1411,7 +1411,7 @@
 				7C165AAA16AB395E00E0BF28 /* Reference.m in Sources */,
 				7C165AAD16AB3AC700E0BF28 /* RequestReferenceViewController.m in Sources */,
 				7C3553CD16B76B0C0046A6A9 /* RequestFilterViewController.m in Sources */,
-				7C6BC6EE16E016A1008365AA /* Photo.m in Sources */,
+				7C3B3E5016E178E600535AA3 /* Photo.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

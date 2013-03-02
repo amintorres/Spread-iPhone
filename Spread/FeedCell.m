@@ -12,6 +12,7 @@
 #import "UIView+Shortcut.h"
 #import "User+Spread.h"
 #import "UIFont+Spread.h"
+#import "ServiceManager.h"
 
 #define kTextMargin 20.0
 
@@ -26,7 +27,7 @@
     NSURL *URL = [NSURL URLWithString:photo.feedImageURLString];
     [self.largeImageView setImageWithURL:URL];
     
-    self.favoriteButton.selected = [photo.isFavorite boolValue];
+    self.favoriteButton.selected = photo.isFavorite;
     
     self.nameLabel.text = photo.user.name;
     
@@ -63,10 +64,6 @@
     FeedCell *referenceCell = [self referenceCell];
     CGFloat textHeight = [self suggestedTextHeightForPhoto:photo];
     CGFloat height = CGRectGetMinY(referenceCell.descriptionLabel.frame) + textHeight + kTextMargin;
-
-//    if (photo.isCurrentUser) {
-//        height += CGRectGetHeight(referenceCell.editButton.frame) + kTextMargin;
-//    }
     
     return height;
 }
@@ -74,6 +71,12 @@
 - (IBAction)editButtonTapped:(id)sender
 {
     [self.delegate editPhoto:self.photo atFeedCell:self];
+}
+
+- (IBAction)favoriteButtonTapped:(id)sender
+{
+    self.photo.isFavorite = !self.photo.isFavorite;
+    self.favoriteButton.selected = self.photo.isFavorite;
 }
 
 + (FeedCell *)referenceCell
