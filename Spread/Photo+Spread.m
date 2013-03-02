@@ -91,8 +91,18 @@
     [[ServiceManager sharedManager] loadFromEndPoint:@"favorites.json" method:@"GET" params:params completion:^(id response, BOOL success, NSError *error) {
         if (success)
         {
-            self.myFavoriteID = response[@"id"];
-            if (completion) completion(response, YES, nil);
+            [self.managedObjectContext performBlockAndWait:^{
+                self.myFavoriteID = response[@"id"];
+                if (completion) completion(response, YES, nil);
+            }];
+        }
+        else if (!response)
+        {
+            // If the photo is not favorite, the response would be null.
+            [self.managedObjectContext performBlockAndWait:^{
+                self.myFavoriteID = nil;
+                if (completion) completion(response, YES, nil);
+            }];
         }
         else
         {

@@ -155,22 +155,29 @@ static NSString* boundary = nil;
         return;
     }
     
-    NSString *token = [@{@"authentication_token": self.oauthToken} paramString];
-    NSString* URLString = [NSString stringWithFormat:@"%@/%@?%@", baseURL, endPoint, token];
-    NSURL *URL = [NSURL URLWithString:URLString];
+    NSMutableDictionary *query = [@{@"authentication_token": self.oauthToken} mutableCopy];
     
+    if (![method isEqualToString:@"POST"] && params)
+    {
+        [query addEntriesFromDictionary:params];
+    }
+    
+    NSString* URLString = [NSString stringWithFormat:@"%@/%@?%@", baseURL, endPoint, [query paramString]];
+    NSURL *URL = [NSURL URLWithString:URLString];
     NSMutableURLRequest *request = [NSMutableURLRequest requestWithURL:URL];
     request.HTTPMethod = method;
 
-    if (params) {
+    // This is likely a iOS SDK bug: setting HTTPBody to any request other than POST doesn't have effect.
+    if ([method isEqualToString:@"POST"] && params)
+    {
         request.HTTPBody = [[params paramString] dataUsingEncoding:NSUTF8StringEncoding];
     }
-    
+
     [UIApplication sharedApplication].networkActivityIndicatorVisible = YES;
     [NSURLConnection sendAsynchronousRequest:request queue:[NSOperationQueue mainQueue] completionHandler:^(NSURLResponse *response, NSData *data, NSError *error) {
         
         [UIApplication sharedApplication].networkActivityIndicatorVisible = NO;
-
+        
         NSInteger statusCode = [(NSHTTPURLResponse*)response statusCode];
         
         if (statusCode == 200 && data)
@@ -185,14 +192,22 @@ static NSString* boundary = nil;
             }
             else
             {
-                NSLog(@"JSON error: %@", JSONError);
-                if (completion) completion(nil, NO, JSONError);
+                NSString *string = [[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding];
+                if ([string isEqualToString:@"null"])
+                {
+                    // null response; ignore.
+                }
+                else
+                {
+                    NSLog(@"JSON error: %@", JSONError);
+                    if (completion) completion(nil, NO, JSONError);
+                }
             }
         }
         else
         {
             NSLog(@"HTTP Status %d: %@", statusCode, [NSHTTPURLResponse localizedStringForStatusCode:statusCode]);
-            NSLog(@"URL: %@", URL);
+            NSLog(@"URL: %@", request.URL);
             if (error)
             {
                 NSLog(@"Error: %@", error);
@@ -201,6 +216,7 @@ static NSString* boundary = nil;
         }
     }];
 }
+
 
 
 #pragma mark - Entity
