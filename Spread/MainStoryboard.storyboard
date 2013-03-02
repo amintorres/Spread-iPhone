@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="2.0" toolsVersion="3084" systemVersion="12C60" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" initialViewController="zC0-jL-gdq">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="2.0" toolsVersion="3084" systemVersion="12C2037" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" initialViewController="zC0-jL-gdq">
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="2083"/>
     </dependencies>
@@ -1976,14 +1976,340 @@ URLs</string>
             </objects>
             <point key="canvasLocation" x="2208" y="784"/>
         </scene>
+        <!--Flag View Controller-->
+        <scene sceneID="BG2-9d-c3L">
+            <objects>
+                <tableViewController storyboardIdentifier="FlagViewController" id="PTK-y1-wNG" customClass="FlagViewController" sceneMemberID="viewController">
+                    <tableView key="view" opaque="NO" clipsSubviews="YES" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" alwaysBounceVertical="YES" scrollEnabled="NO" dataMode="static" style="plain" rowHeight="50" sectionHeaderHeight="22" sectionFooterHeight="22" id="2W4-pk-fGT">
+                        <rect key="frame" x="0.0" y="20" width="320" height="460"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <view key="tableHeaderView" contentMode="scaleToFill" id="UsT-5K-TxI">
+                            <rect key="frame" x="0.0" y="0.0" width="320" height="142"/>
+                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            <subviews>
+                                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="nVb-TC-ibN" userLabel="Nav View">
+                                    <subviews>
+                                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="AF0-f1-8rL">
+                                            <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
+                                            <state key="normal" backgroundImage="icon-back.png">
+                                                <color key="titleColor" red="0.19607843459999999" green="0.30980393290000002" blue="0.52156865600000002" alpha="1" colorSpace="calibratedRGB"/>
+                                                <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                            </state>
+                                            <state key="highlighted">
+                                                <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                            </state>
+                                            <connections>
+                                                <action selector="backButtonTapped:" destination="50T-Ba-oba" eventType="touchUpInside" id="2BA-N0-lPf"/>
+                                                <action selector="backButtonTapped:" destination="yiB-aC-NVW" eventType="touchUpInside" id="ODK-hZ-mEa"/>
+                                                <action selector="backButtonTapped:" destination="PTK-y1-wNG" eventType="touchUpInside" id="mEc-Ui-nHX"/>
+                                            </connections>
+                                        </button>
+                                        <imageView userInteractionEnabled="NO" contentMode="scaleToFill" image="icon-request.png" translatesAutoresizingMaskIntoConstraints="NO" id="32N-dG-hDt"/>
+                                        <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" minimumFontSize="10" preferredMaxLayoutWidth="100" translatesAutoresizingMaskIntoConstraints="NO" id="9U5-dP-vh7" customClass="AppFontLabel">
+                                            <constraints>
+                                                <constraint firstAttribute="width" constant="100" id="UWD-A2-He8"/>
+                                            </constraints>
+                                            <string key="text">Flagging
+This Image</string>
+                                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                            <color key="textColor" red="0.0" green="0.68627450980000004" blue="0.84705882349999995" alpha="1" colorSpace="calibratedRGB"/>
+                                            <nil key="highlightedColor"/>
+                                        </label>
+                                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="CO4-Mf-WJD">
+                                            <constraints>
+                                                <constraint firstAttribute="width" constant="40" type="user" id="0ga-LN-Ubx"/>
+                                                <constraint firstAttribute="height" constant="40" type="user" id="tmC-AP-Pyj"/>
+                                            </constraints>
+                                            <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
+                                            <state key="normal" image="icon-info.png">
+                                                <color key="titleColor" red="0.19607843459999999" green="0.30980393290000002" blue="0.52156865600000002" alpha="1" colorSpace="calibratedRGB"/>
+                                                <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                            </state>
+                                            <state key="highlighted">
+                                                <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                            </state>
+                                        </button>
+                                    </subviews>
+                                    <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                    <constraints>
+                                        <constraint firstAttribute="height" constant="80" type="user" id="0jC-Zk-bZm"/>
+                                        <constraint firstAttribute="centerY" secondItem="9U5-dP-vh7" secondAttribute="centerY" type="user" id="8O7-DL-ZeW"/>
+                                        <constraint firstItem="AF0-f1-8rL" firstAttribute="top" secondItem="32N-dG-hDt" secondAttribute="top" type="default" id="BrP-lc-McD"/>
+                                        <constraint firstItem="9U5-dP-vh7" firstAttribute="leading" secondItem="32N-dG-hDt" secondAttribute="trailing" constant="6" type="user" id="RvR-QG-frd"/>
+                                        <constraint firstAttribute="centerY" secondItem="32N-dG-hDt" secondAttribute="centerY" type="user" id="amW-so-Puf"/>
+                                        <constraint firstItem="32N-dG-hDt" firstAttribute="leading" secondItem="AF0-f1-8rL" secondAttribute="trailing" constant="4" type="user" id="b9t-q0-yad"/>
+                                        <constraint firstItem="AF0-f1-8rL" firstAttribute="leading" secondItem="nVb-TC-ibN" secondAttribute="leading" constant="10" type="user" id="mCI-ki-PaF"/>
+                                        <constraint firstItem="CO4-Mf-WJD" firstAttribute="trailing" secondItem="nVb-TC-ibN" secondAttribute="trailing" type="user" id="wQ4-Bd-Uah"/>
+                                        <constraint firstAttribute="centerY" secondItem="CO4-Mf-WJD" secondAttribute="centerY" type="user" id="zPS-hT-9Nf"/>
+                                    </constraints>
+                                </view>
+                                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Ckm-GL-AgU">
+                                    <subviews>
+                                        <imageView userInteractionEnabled="NO" contentMode="scaleToFill" image="icon-flag.png" translatesAutoresizingMaskIntoConstraints="NO" id="Pzw-Ux-0K8"/>
+                                        <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" preferredMaxLayoutWidth="200" translatesAutoresizingMaskIntoConstraints="NO" id="z8k-M7-T7n" customClass="AppFontLabel">
+                                            <constraints>
+                                                <constraint firstAttribute="width" constant="200" id="jrU-LZ-1bZ"/>
+                                            </constraints>
+                                            <string key="text">Reporting this 
+image because:</string>
+                                            <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                            <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                            <nil key="highlightedColor"/>
+                                        </label>
+                                    </subviews>
+                                    <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                                    <constraints>
+                                        <constraint firstItem="Pzw-Ux-0K8" firstAttribute="leading" secondItem="Ckm-GL-AgU" secondAttribute="leading" constant="14" type="user" id="J46-JP-TMg"/>
+                                        <constraint firstAttribute="height" constant="60" type="user" id="dnH-az-4Co"/>
+                                        <constraint firstAttribute="centerY" secondItem="Pzw-Ux-0K8" secondAttribute="centerY" type="user" id="fe5-Z6-dVA"/>
+                                        <constraint firstAttribute="centerY" secondItem="z8k-M7-T7n" secondAttribute="centerY" type="user" id="o7V-t2-S8e"/>
+                                        <constraint firstItem="z8k-M7-T7n" firstAttribute="leading" secondItem="Pzw-Ux-0K8" secondAttribute="trailing" constant="8" symbolic="YES" type="default" id="s3D-gX-V2q"/>
+                                    </constraints>
+                                </view>
+                            </subviews>
+                            <color key="backgroundColor" white="0.90000000000000002" alpha="1" colorSpace="calibratedWhite"/>
+                            <constraints>
+                                <constraint firstItem="Ckm-GL-AgU" firstAttribute="trailing" secondItem="UsT-5K-TxI" secondAttribute="trailing" type="default" id="1xj-hm-FTm"/>
+                                <constraint firstItem="nVb-TC-ibN" firstAttribute="top" secondItem="UsT-5K-TxI" secondAttribute="top" type="user" id="A59-s6-ieG"/>
+                                <constraint firstItem="Ckm-GL-AgU" firstAttribute="top" secondItem="nVb-TC-ibN" secondAttribute="bottom" constant="1" type="user" id="MM8-aQ-Vfu"/>
+                                <constraint firstItem="nVb-TC-ibN" firstAttribute="leading" secondItem="UsT-5K-TxI" secondAttribute="leading" type="default" id="VSH-Py-GRb"/>
+                                <constraint firstItem="nVb-TC-ibN" firstAttribute="trailing" secondItem="UsT-5K-TxI" secondAttribute="trailing" type="default" id="cOW-LA-bce"/>
+                                <constraint firstItem="Ckm-GL-AgU" firstAttribute="leading" secondItem="UsT-5K-TxI" secondAttribute="leading" type="default" id="s5B-hu-qnA"/>
+                            </constraints>
+                        </view>
+                        <view key="tableFooterView" contentMode="scaleToFill" id="ph5-2e-pe4">
+                            <rect key="frame" x="0.0" y="392" width="320" height="68"/>
+                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            <subviews>
+                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="UUP-IF-YeI" customClass="RoundedBorderButton">
+                                    <constraints>
+                                        <constraint firstAttribute="width" constant="140" id="Khw-B1-LY4"/>
+                                        <constraint firstAttribute="height" constant="42" id="Pkg-G7-76O"/>
+                                    </constraints>
+                                    <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
+                                    <state key="normal" title="Cancel" backgroundImage="texture-gray.png">
+                                        <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                        <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                    </state>
+                                    <state key="highlighted">
+                                        <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                    </state>
+                                    <connections>
+                                        <action selector="backButtonTapped:" destination="PTK-y1-wNG" eventType="touchUpInside" id="zQS-zT-e8v"/>
+                                        <action selector="cancelButtonTapped:" destination="d88-Su-lEL" eventType="touchUpInside" id="IOS-Q9-ROm"/>
+                                    </connections>
+                                </button>
+                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Hwl-ER-O6z" customClass="RoundedBorderButton">
+                                    <constraints>
+                                        <constraint firstAttribute="width" constant="140" id="Jav-0g-GNM"/>
+                                    </constraints>
+                                    <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
+                                    <state key="normal" title="Save" backgroundImage="texture-blue.png">
+                                        <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                        <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                    </state>
+                                    <state key="highlighted">
+                                        <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                    </state>
+                                    <connections>
+                                        <action selector="saveButtonTapped:" destination="d88-Su-lEL" eventType="touchUpInside" id="HgJ-ah-B12"/>
+                                        <action selector="saveButtonTapped:" destination="PTK-y1-wNG" eventType="touchUpInside" id="m7u-kM-Gs4"/>
+                                    </connections>
+                                </button>
+                            </subviews>
+                            <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                            <constraints>
+                                <constraint firstItem="Hwl-ER-O6z" firstAttribute="bottom" secondItem="UUP-IF-YeI" secondAttribute="bottom" type="default" id="Fzm-Tl-1Te"/>
+                                <constraint firstItem="UUP-IF-YeI" firstAttribute="centerY" secondItem="ph5-2e-pe4" secondAttribute="centerY" type="default" id="KPm-A3-aSy"/>
+                                <constraint firstItem="Hwl-ER-O6z" firstAttribute="leading" secondItem="UUP-IF-YeI" secondAttribute="trailing" constant="8" symbolic="YES" type="default" id="MBu-Jp-3pm"/>
+                                <constraint firstItem="UUP-IF-YeI" firstAttribute="leading" secondItem="ph5-2e-pe4" secondAttribute="leading" constant="16" id="PnK-Jo-Fuq"/>
+                                <constraint firstItem="Hwl-ER-O6z" firstAttribute="top" secondItem="UUP-IF-YeI" secondAttribute="top" type="default" id="jdw-Lh-6CH"/>
+                                <constraint firstItem="Hwl-ER-O6z" firstAttribute="baseline" secondItem="UUP-IF-YeI" secondAttribute="baseline" type="default" id="zyk-ZX-UcX"/>
+                            </constraints>
+                        </view>
+                        <sections>
+                            <tableViewSection id="8UY-hA-jDs">
+                                <cells>
+                                    <tableViewCell contentMode="scaleToFill" selectionStyle="none" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" id="7QS-qb-lhx" customClass="FlagCell">
+                                        <rect key="frame" x="0.0" y="142" width="320" height="50"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
+                                            <rect key="frame" x="0.0" y="0.0" width="320" height="49"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="This photo contains spam or advertisements" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" preferredMaxLayoutWidth="248" translatesAutoresizingMaskIntoConstraints="NO" id="M4v-fk-7EA">
+                                                    <constraints>
+                                                        <constraint firstAttribute="height" constant="38" id="2xa-nV-UzX"/>
+                                                        <constraint firstAttribute="width" constant="248" id="x51-DZ-za8"/>
+                                                    </constraints>
+                                                    <fontDescription key="fontDescription" type="italicSystem" pointSize="13"/>
+                                                    <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                                    <color key="highlightedColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                                </label>
+                                                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" image="icon-checkmark-off.png" highlightedImage="icon-checkmark-on.png" translatesAutoresizingMaskIntoConstraints="NO" id="oVn-1S-rBf"/>
+                                            </subviews>
+                                            <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                        </view>
+                                        <constraints>
+                                            <constraint firstItem="M4v-fk-7EA" firstAttribute="leading" secondItem="oVn-1S-rBf" secondAttribute="trailing" constant="8" symbolic="YES" type="default" id="Bc1-9O-JIm"/>
+                                            <constraint firstItem="oVn-1S-rBf" firstAttribute="centerY" secondItem="7QS-qb-lhx" secondAttribute="centerY" type="default" id="Jpv-3F-tCP"/>
+                                            <constraint firstAttribute="trailing" secondItem="M4v-fk-7EA" secondAttribute="trailing" constant="20" type="default" id="Zkn-xZ-q9m"/>
+                                            <constraint firstItem="oVn-1S-rBf" firstAttribute="centerY" secondItem="M4v-fk-7EA" secondAttribute="centerY" type="default" id="mfZ-iB-ngt"/>
+                                        </constraints>
+                                        <connections>
+                                            <outlet property="checkmarkImageView" destination="oVn-1S-rBf" id="hol-UD-fBS"/>
+                                            <outlet property="descriptionLabel" destination="M4v-fk-7EA" id="PX3-Z0-RKr"/>
+                                        </connections>
+                                    </tableViewCell>
+                                    <tableViewCell contentMode="scaleToFill" selectionStyle="none" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" id="OTT-e5-X1n" customClass="FlagCell">
+                                        <rect key="frame" x="0.0" y="192" width="320" height="50"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
+                                            <rect key="frame" x="0.0" y="0.0" width="320" height="49"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="I took this photo and it was posted here without my consent" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" preferredMaxLayoutWidth="248" translatesAutoresizingMaskIntoConstraints="NO" id="AUL-Y6-g1R">
+                                                    <constraints>
+                                                        <constraint firstAttribute="width" constant="248" id="Jll-Qy-Ne6"/>
+                                                        <constraint firstAttribute="height" constant="38" id="OKD-GM-d3W"/>
+                                                    </constraints>
+                                                    <fontDescription key="fontDescription" type="italicSystem" pointSize="13"/>
+                                                    <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                                    <color key="highlightedColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                                </label>
+                                                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" image="icon-checkmark-off.png" highlightedImage="icon-checkmark-on.png" translatesAutoresizingMaskIntoConstraints="NO" id="RPk-PJ-kZS"/>
+                                            </subviews>
+                                            <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                        </view>
+                                        <constraints>
+                                            <constraint firstAttribute="trailing" secondItem="AUL-Y6-g1R" secondAttribute="trailing" constant="20" type="default" id="3om-fu-Iux"/>
+                                            <constraint firstItem="RPk-PJ-kZS" firstAttribute="centerY" secondItem="AUL-Y6-g1R" secondAttribute="centerY" type="default" id="Qky-6u-mDd"/>
+                                            <constraint firstItem="AUL-Y6-g1R" firstAttribute="leading" secondItem="RPk-PJ-kZS" secondAttribute="trailing" constant="8" symbolic="YES" type="default" id="a7q-Hg-eno"/>
+                                            <constraint firstItem="RPk-PJ-kZS" firstAttribute="centerY" secondItem="OTT-e5-X1n" secondAttribute="centerY" type="default" id="lpE-G6-WpJ"/>
+                                        </constraints>
+                                        <connections>
+                                            <outlet property="checkmarkImageView" destination="RPk-PJ-kZS" id="bnF-RY-w85"/>
+                                            <outlet property="descriptionLabel" destination="AUL-Y6-g1R" id="LHX-92-nkJ"/>
+                                        </connections>
+                                    </tableViewCell>
+                                    <tableViewCell contentMode="scaleToFill" selectionStyle="none" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" id="CbN-mO-nI2" customClass="FlagCell">
+                                        <rect key="frame" x="0.0" y="242" width="320" height="50"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
+                                            <rect key="frame" x="0.0" y="0.0" width="320" height="49"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="I believe this photo was taken by someone else" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" preferredMaxLayoutWidth="248" translatesAutoresizingMaskIntoConstraints="NO" id="EUb-0g-DbE">
+                                                    <constraints>
+                                                        <constraint firstAttribute="height" constant="38" id="I6s-IS-4kL"/>
+                                                        <constraint firstAttribute="width" constant="248" id="Jmf-vq-RFN"/>
+                                                    </constraints>
+                                                    <fontDescription key="fontDescription" type="italicSystem" pointSize="13"/>
+                                                    <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                                    <color key="highlightedColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                                </label>
+                                                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" image="icon-checkmark-off.png" highlightedImage="icon-checkmark-on.png" translatesAutoresizingMaskIntoConstraints="NO" id="aDH-He-rNg"/>
+                                            </subviews>
+                                            <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                        </view>
+                                        <constraints>
+                                            <constraint firstItem="aDH-He-rNg" firstAttribute="centerY" secondItem="CbN-mO-nI2" secondAttribute="centerY" type="default" id="Nfo-dh-8Ae"/>
+                                            <constraint firstItem="EUb-0g-DbE" firstAttribute="leading" secondItem="aDH-He-rNg" secondAttribute="trailing" constant="8" symbolic="YES" type="default" id="SQF-Jx-bGC"/>
+                                            <constraint firstAttribute="trailing" secondItem="EUb-0g-DbE" secondAttribute="trailing" constant="20" type="default" id="n0Y-Um-FO9"/>
+                                            <constraint firstItem="aDH-He-rNg" firstAttribute="centerY" secondItem="EUb-0g-DbE" secondAttribute="centerY" type="default" id="yYE-hz-jzS"/>
+                                        </constraints>
+                                        <connections>
+                                            <outlet property="checkmarkImageView" destination="aDH-He-rNg" id="Cgd-am-g26"/>
+                                            <outlet property="descriptionLabel" destination="EUb-0g-DbE" id="Bl2-pV-BMh"/>
+                                        </connections>
+                                    </tableViewCell>
+                                    <tableViewCell contentMode="scaleToFill" selectionStyle="none" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" id="s3a-jx-txt" customClass="FlagCell">
+                                        <rect key="frame" x="0.0" y="292" width="320" height="50"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
+                                            <rect key="frame" x="0.0" y="0.0" width="320" height="49"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="Contains Nudity or Pornography" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" preferredMaxLayoutWidth="248" translatesAutoresizingMaskIntoConstraints="NO" id="bsb-zo-R3Q">
+                                                    <constraints>
+                                                        <constraint firstAttribute="height" constant="38" id="YFd-Ee-dQc"/>
+                                                        <constraint firstAttribute="width" constant="248" id="jSb-ae-nZ3"/>
+                                                    </constraints>
+                                                    <fontDescription key="fontDescription" type="italicSystem" pointSize="13"/>
+                                                    <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                                    <color key="highlightedColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                                </label>
+                                                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" image="icon-checkmark-off.png" highlightedImage="icon-checkmark-on.png" translatesAutoresizingMaskIntoConstraints="NO" id="uZ9-LF-9X2"/>
+                                            </subviews>
+                                            <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                        </view>
+                                        <constraints>
+                                            <constraint firstItem="uZ9-LF-9X2" firstAttribute="centerY" secondItem="bsb-zo-R3Q" secondAttribute="centerY" type="default" id="NE5-FS-2Xb"/>
+                                            <constraint firstItem="bsb-zo-R3Q" firstAttribute="leading" secondItem="uZ9-LF-9X2" secondAttribute="trailing" constant="8" symbolic="YES" type="default" id="SWh-Kh-Y30"/>
+                                            <constraint firstAttribute="trailing" secondItem="bsb-zo-R3Q" secondAttribute="trailing" constant="20" type="default" id="VDe-Rh-jfi"/>
+                                            <constraint firstItem="uZ9-LF-9X2" firstAttribute="centerY" secondItem="s3a-jx-txt" secondAttribute="centerY" type="default" id="aSu-FS-HCT"/>
+                                        </constraints>
+                                        <connections>
+                                            <outlet property="checkmarkImageView" destination="uZ9-LF-9X2" id="7qC-IQ-QxN"/>
+                                            <outlet property="descriptionLabel" destination="bsb-zo-R3Q" id="Hxx-cQ-lgl"/>
+                                        </connections>
+                                    </tableViewCell>
+                                    <tableViewCell contentMode="scaleToFill" selectionStyle="none" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" id="Uwh-cr-8WF" customClass="FlagCell">
+                                        <rect key="frame" x="0.0" y="342" width="320" height="50"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
+                                            <rect key="frame" x="0.0" y="0.0" width="320" height="49"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="Contains Excessive Graphic Violence" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" preferredMaxLayoutWidth="248" translatesAutoresizingMaskIntoConstraints="NO" id="AA8-OQ-g3R">
+                                                    <constraints>
+                                                        <constraint firstAttribute="height" constant="38" id="fPJ-Ig-e8A"/>
+                                                        <constraint firstAttribute="width" constant="248" id="kIS-v1-QFW"/>
+                                                    </constraints>
+                                                    <fontDescription key="fontDescription" type="italicSystem" pointSize="13"/>
+                                                    <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                                    <color key="highlightedColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                                </label>
+                                                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" image="icon-checkmark-off.png" highlightedImage="icon-checkmark-on.png" translatesAutoresizingMaskIntoConstraints="NO" id="YM9-P9-xnn"/>
+                                            </subviews>
+                                            <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                        </view>
+                                        <constraints>
+                                            <constraint firstItem="AA8-OQ-g3R" firstAttribute="leading" secondItem="YM9-P9-xnn" secondAttribute="trailing" constant="8" symbolic="YES" type="default" id="0fZ-Dy-n4p"/>
+                                            <constraint firstItem="YM9-P9-xnn" firstAttribute="centerY" secondItem="AA8-OQ-g3R" secondAttribute="centerY" type="default" id="6AA-ne-8bP"/>
+                                            <constraint firstItem="YM9-P9-xnn" firstAttribute="centerY" secondItem="Uwh-cr-8WF" secondAttribute="centerY" type="default" id="GSo-NV-VPI"/>
+                                            <constraint firstAttribute="trailing" secondItem="AA8-OQ-g3R" secondAttribute="trailing" constant="20" type="default" id="VmR-AH-inL"/>
+                                        </constraints>
+                                        <connections>
+                                            <outlet property="checkmarkImageView" destination="YM9-P9-xnn" id="3XR-Dl-Bpw"/>
+                                            <outlet property="descriptionLabel" destination="AA8-OQ-g3R" id="Zth-Gu-dnt"/>
+                                        </connections>
+                                    </tableViewCell>
+                                </cells>
+                            </tableViewSection>
+                        </sections>
+                        <connections>
+                            <outlet property="dataSource" destination="PTK-y1-wNG" id="tjg-VD-9Tv"/>
+                            <outlet property="delegate" destination="PTK-y1-wNG" id="6CH-xJ-avw"/>
+                        </connections>
+                    </tableView>
+                </tableViewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="ntx-L8-bNc" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1251" y="1397"/>
+        </scene>
     </scenes>
     <resources>
         <image name="icon-back.png" width="60" height="60"/>
+        <image name="icon-checkmark-off.png" width="30" height="30"/>
+        <image name="icon-checkmark-on.png" width="30" height="30"/>
         <image name="icon-filter-cost-off.png" width="188" height="57"/>
         <image name="icon-filter-cost-on.png" width="188" height="57"/>
         <image name="icon-filter-recent-off.png" width="188" height="57"/>
         <image name="icon-filter-recent-on.png" width="188" height="57"/>
         <image name="icon-filter.png" width="30" height="30"/>
+        <image name="icon-flag.png" width="30" height="30"/>
         <image name="icon-gray-brief.png" width="30" height="30"/>
         <image name="icon-gray-link.png" width="30" height="30"/>
         <image name="icon-gray-photo.png" width="30" height="30"/>
@@ -2000,6 +2326,169 @@ URLs</string>
         <image name="texture-gray.png" width="40" height="40"/>
         <image name="texture-red.png" width="40" height="40"/>
     </resources>
+    <classes>
+        <class className="AppFontButton" superclassName="UIButton">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/AppFontButton.h"/>
+        </class>
+        <class className="AppFontLabel" superclassName="UILabel">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/AppFontLabel.h"/>
+        </class>
+        <class className="BaseViewController" superclassName="UIViewController">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/BaseViewController.h"/>
+            <relationships>
+                <relationship kind="action" name="backButtonTapped:"/>
+            </relationships>
+        </class>
+        <class className="ButtonCell" superclassName="UITableViewCell">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/ButtonCell.h"/>
+            <relationships>
+                <relationship kind="outlet" name="button" candidateClass="UIButton"/>
+            </relationships>
+        </class>
+        <class className="CurrencyLabel" superclassName="AppFontLabel">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/CurrencyLabel.h"/>
+        </class>
+        <class className="EditViewController" superclassName="UITableViewController">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/EditViewController.h"/>
+            <relationships>
+                <relationship kind="action" name="cancelButtonTapped:"/>
+                <relationship kind="action" name="deleteButtonTapped:"/>
+                <relationship kind="action" name="rememberDetailsSwitchValueChanged:" candidateClass="UISwitch"/>
+                <relationship kind="action" name="saveButtonTapped:"/>
+                <relationship kind="outlet" name="deleteButton" candidateClass="UIButton"/>
+                <relationship kind="outlet" name="descriptionTextView" candidateClass="PlaceholderTextView"/>
+                <relationship kind="outlet" name="rememberDetailsLabel" candidateClass="UILabel"/>
+                <relationship kind="outlet" name="rememberDetailsSwitch" candidateClass="UISwitch"/>
+                <relationship kind="outlet" name="tagsTextField" candidateClass="UITextField"/>
+                <relationship kind="outlet" name="titleTextField" candidateClass="UITextField"/>
+            </relationships>
+        </class>
+        <class className="FlagCell" superclassName="UITableViewCell">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/FlagCell.h"/>
+            <relationships>
+                <relationship kind="outlet" name="checkmarkImageView" candidateClass="UIImageView"/>
+                <relationship kind="outlet" name="descriptionLabel" candidateClass="UILabel"/>
+            </relationships>
+        </class>
+        <class className="FlagViewController" superclassName="UITableViewController">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/FlagViewController.h"/>
+            <relationships>
+                <relationship kind="action" name="backButtonTapped:"/>
+            </relationships>
+        </class>
+        <class className="IntroTableViewController" superclassName="UITableViewController">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/IntroTableViewController.h"/>
+            <relationships>
+                <relationship kind="action" name="facebookLoginButtonTapped:"/>
+                <relationship kind="action" name="goBack:"/>
+                <relationship kind="action" name="loginButtonTapped:"/>
+                <relationship kind="action" name="registerButtonTapped:"/>
+                <relationship kind="outlet" name="captionLabel" candidateClass="UILabel"/>
+                <relationship kind="outlet" name="headerImageView" candidateClass="UIImageView"/>
+                <relationship kind="outlet" name="logoButton" candidateClass="UIButton"/>
+                <relationship kind="outlet" name="swipeGestureRecognizer" candidateClass="UISwipeGestureRecognizer"/>
+            </relationships>
+        </class>
+        <class className="MenuViewController" superclassName="UIViewController">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/MenuViewController.h"/>
+            <relationships>
+                <relationship kind="action" name="popularButtonTapped:"/>
+                <relationship kind="action" name="profileButtonTapped:"/>
+                <relationship kind="action" name="recentButtonTapped:"/>
+                <relationship kind="action" name="takePhotoButtonTapped:"/>
+                <relationship kind="outlet" name="profileButton" candidateClass="UIButton"/>
+            </relationships>
+        </class>
+        <class className="NSLayoutConstraint" superclassName="NSObject">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/NSLayoutConstraint.h"/>
+        </class>
+        <class className="PlaceholderTextView" superclassName="UITextView">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/PlaceholderTextView.h"/>
+        </class>
+        <class className="RequestBriefViewController" superclassName="BaseViewController">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/RequestBriefViewController.h"/>
+            <relationships>
+                <relationship kind="action" name="submitButtonTapped:"/>
+                <relationship kind="outlet" name="textView" candidateClass="UITextView"/>
+            </relationships>
+        </class>
+        <class className="RequestCell" superclassName="UITableViewCell">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/RequestCell.h"/>
+            <relationships>
+                <relationship kind="outlet" name="byLabel" candidateClass="UILabel"/>
+                <relationship kind="outlet" name="dueDateLabel" candidateClass="UILabel"/>
+                <relationship kind="outlet" name="priceLabel" candidateClass="UILabel"/>
+                <relationship kind="outlet" name="quantityLabel" candidateClass="UILabel"/>
+                <relationship kind="outlet" name="titleLabel" candidateClass="UILabel"/>
+            </relationships>
+        </class>
+        <class className="RequestDetailViewController" superclassName="BaseViewController">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/RequestDetailViewController.h"/>
+            <relationships>
+                <relationship kind="action" name="photosButtonTapped:"/>
+                <relationship kind="action" name="submitButtonTapped:"/>
+                <relationship kind="outlet" name="daysLeftLabel" candidateClass="UILabel"/>
+                <relationship kind="outlet" name="descriptionLabel" candidateClass="UILabel"/>
+                <relationship kind="outlet" name="photosButton" candidateClass="UIButton"/>
+                <relationship kind="outlet" name="priceLabel" candidateClass="UILabel"/>
+                <relationship kind="outlet" name="quantityLabel" candidateClass="UILabel"/>
+                <relationship kind="outlet" name="requesterImageView" candidateClass="UIImageView"/>
+                <relationship kind="outlet" name="requesterLabel" candidateClass="UILabel"/>
+            </relationships>
+        </class>
+        <class className="RequestFilterViewController" superclassName="UIViewController">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/RequestFilterViewController.h"/>
+            <relationships>
+                <relationship kind="action" name="backgroundTapped:"/>
+                <relationship kind="action" name="buttonTapped:"/>
+                <relationship kind="outlet" name="byDateButton" candidateClass="UIButton"/>
+                <relationship kind="outlet" name="byHighestPriceButton" candidateClass="UIButton"/>
+                <relationship kind="outlet" name="byLowestPriceButton" candidateClass="UIButton"/>
+            </relationships>
+        </class>
+        <class className="RequestReferenceViewController" superclassName="BaseViewController">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/RequestReferenceViewController.h"/>
+            <relationships>
+                <relationship kind="action" name="submitButtonTapped:"/>
+                <relationship kind="outlet" name="textView" candidateClass="UITextView"/>
+            </relationships>
+        </class>
+        <class className="RequestsViewController" superclassName="BaseViewController">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/RequestsViewController.h"/>
+            <relationships>
+                <relationship kind="action" name="filterButtonTapped:"/>
+                <relationship kind="outlet" name="infoLabel" candidateClass="UILabel"/>
+                <relationship kind="outlet" name="tableView" candidateClass="UITableView"/>
+            </relationships>
+        </class>
+        <class className="RoundedBorderButton" superclassName="UIButton">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/RoundedBorderButton.h"/>
+        </class>
+        <class className="RoundedRectButton" superclassName="AppFontButton">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/RoundedRectButton.h"/>
+        </class>
+        <class className="SettingsViewController" superclassName="UITableViewController">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/SettingsViewController.h"/>
+            <relationships>
+                <relationship kind="action" name="backButtonTapped:"/>
+                <relationship kind="outlet" name="emailCell" candidateClass="UITableViewCell"/>
+                <relationship kind="outlet" name="logoutCell" candidateClass="UITableViewCell"/>
+            </relationships>
+        </class>
+        <class className="TextFieldCell" superclassName="UITableViewCell">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/TextFieldCell.h"/>
+            <relationships>
+                <relationship kind="outlet" name="textField" candidateClass="UITextField"/>
+            </relationships>
+        </class>
+        <class className="WebViewController" superclassName="BaseViewController">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/WebViewController.h"/>
+            <relationships>
+                <relationship kind="outlet" name="titleLabel" candidateClass="UILabel"/>
+                <relationship kind="outlet" name="webView" candidateClass="UIWebView"/>
+            </relationships>
+        </class>
+    </classes>
     <simulatedMetricsContainer key="defaultSimulatedMetrics">
         <simulatedStatusBarMetrics key="statusBar"/>
         <simulatedOrientationMetrics key="orientation"/>

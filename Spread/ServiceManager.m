@@ -496,6 +496,26 @@ static NSString* boundary = nil;
     //TODO:
 }
 
+- (void)flagPhoto:(Photo *)photo reason:(FlagReason)reason completionHandler:(ServiceManagerHandler)completion
+{
+    // This endpoint is an anomaly!
+    
+    NSString* URLString = [NSString stringWithFormat:@"http://dev.spread.cm/news_photo_reports"];
+    NSURL *URL = [NSURL URLWithString:URLString];
+    NSMutableURLRequest *request = [NSMutableURLRequest requestWithURL:URL];
+    request.HTTPMethod = @"POST";
+    
+    NSDictionary *params = @{@"authenticity_token" : self.oauthToken,
+                             @"news_photo_report[news_photo_id]" : photo.photoID,
+                             @"news_photo_report[reason]" : @(reason)};
+
+    request.HTTPBody = [[params paramString] dataUsingEncoding:NSUTF8StringEncoding];
+    
+    // 'Complete' means prepare complete and ready to upload.
+    if (completion) completion(nil, YES, nil);
+    [self sendPostRequest:request completionHandler:NULL];
+}
+
 - (NSMutableArray *)uploadQueue
 {
     if (!_uploadQueue)

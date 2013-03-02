@@ -79,6 +79,11 @@
     self.favoriteButton.selected = self.photo.isFavorite;
 }
 
+- (IBAction)flagButtonTapped:(id)sender
+{
+    [self.delegate flagPhoto:self.photo atFeedCell:self];
+}
+
 + (FeedCell *)referenceCell
 {
     static FeedCell *_referenceCell = nil;

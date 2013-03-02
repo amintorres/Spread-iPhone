@@ -47,6 +47,9 @@
 	return photo;
 }
 
+
+#pragma mark - Favorite
+
 - (BOOL)isFavorite
 {
     BOOL isFavorite = (self.myFavoriteID) ? YES : NO;
@@ -111,6 +114,9 @@
         }
     }];
 }
+
+
+#pragma mark -
 
 + (NSString *)modelIDKey
 {

@@ -17,6 +17,13 @@ extern NSString * const SpreadNotificationUploadFinished;
 
 typedef void (^ServiceManagerHandler)(id response, BOOL success, NSError *error);
 
+typedef NS_ENUM(NSUInteger, FlagReason) {
+    FlagReasonSpam = 0,
+    FlagReasonTakenByMe,
+    FlagReasonTakenBySomeoneElse,
+    FlagReasonNudity,
+    FlagReasonViolence,
+};
 
 
 @interface ServiceManager : NSObject
@@ -46,6 +53,7 @@ typedef void (^ServiceManagerHandler)(id response, BOOL success, NSError *error)
 - (void)sendPostRequest:(NSURLRequest *)request completionHandler:(ServiceManagerHandler)completion;
 - (void)updatePhoto:(Photo *)photo;
 - (void)deletePhoto:(Photo *)photo;
+- (void)flagPhoto:(Photo *)photo reason:(FlagReason)reason completionHandler:(ServiceManagerHandler)completion;
 
 - (NSString*)supportEmail;
 

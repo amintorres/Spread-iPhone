@@ -33,6 +33,12 @@
 		7C2A3F281670D5C0008D6DD2 /* UIImage+Utilities.m in Sources */ = {isa = PBXBuildFile; fileRef = 7C2A3F271670D5C0008D6DD2 /* UIImage+Utilities.m */; };
 		7C2A3F2E1670DA99008D6DD2 /* ThumbCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 7C2A3F2D1670DA99008D6DD2 /* ThumbCell.m */; };
 		7C2CFFB014D4677600D617D8 /* WelcomeViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 7C2CFFAE14D4677600D617D8 /* WelcomeViewController.xib */; };
+		7C2F879C16E27F790042135A /* FlagViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7C2F879B16E27F790042135A /* FlagViewController.m */; };
+		7C2F87A216E2813C0042135A /* FlagCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 7C2F87A116E2813C0042135A /* FlagCell.m */; };
+		7C2F87A716E286310042135A /* icon-checkmark-off.png in Resources */ = {isa = PBXBuildFile; fileRef = 7C2F87A316E286310042135A /* icon-checkmark-off.png */; };
+		7C2F87A816E286310042135A /* icon-checkmark-off@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 7C2F87A416E286310042135A /* icon-checkmark-off@2x.png */; };
+		7C2F87A916E286310042135A /* icon-checkmark-on.png in Resources */ = {isa = PBXBuildFile; fileRef = 7C2F87A516E286310042135A /* icon-checkmark-on.png */; };
+		7C2F87AA16E286310042135A /* icon-checkmark-on@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 7C2F87A616E286310042135A /* icon-checkmark-on@2x.png */; };
 		7C3553A616B764970046A6A9 /* icon-filter.png in Resources */ = {isa = PBXBuildFile; fileRef = 7C3553A416B764970046A6A9 /* icon-filter.png */; };
 		7C3553A716B764970046A6A9 /* icon-filter@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 7C3553A516B764970046A6A9 /* icon-filter@2x.png */; };
 		7C3553C316B768A50046A6A9 /* icon-filter-cost-off.png in Resources */ = {isa = PBXBuildFile; fileRef = 7C3553BB16B768A50046A6A9 /* icon-filter-cost-off.png */; };
@@ -282,6 +288,14 @@
 		7C2CFFAE14D4677600D617D8 /* WelcomeViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = WelcomeViewController.xib; sourceTree = "<group>"; };
 		7C2CFFB314D47ED600D617D8 /* RoundedBorderButton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RoundedBorderButton.h; sourceTree = "<group>"; };
 		7C2CFFB414D47ED600D617D8 /* RoundedBorderButton.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RoundedBorderButton.m; sourceTree = "<group>"; };
+		7C2F879A16E27F790042135A /* FlagViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FlagViewController.h; sourceTree = "<group>"; };
+		7C2F879B16E27F790042135A /* FlagViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FlagViewController.m; sourceTree = "<group>"; };
+		7C2F87A016E2813C0042135A /* FlagCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FlagCell.h; sourceTree = "<group>"; };
+		7C2F87A116E2813C0042135A /* FlagCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FlagCell.m; sourceTree = "<group>"; };
+		7C2F87A316E286310042135A /* icon-checkmark-off.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "icon-checkmark-off.png"; sourceTree = "<group>"; };
+		7C2F87A416E286310042135A /* icon-checkmark-off@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "icon-checkmark-off@2x.png"; sourceTree = "<group>"; };
+		7C2F87A516E286310042135A /* icon-checkmark-on.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "icon-checkmark-on.png"; sourceTree = "<group>"; };
+		7C2F87A616E286310042135A /* icon-checkmark-on@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "icon-checkmark-on@2x.png"; sourceTree = "<group>"; };
 		7C3553A416B764970046A6A9 /* icon-filter.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "icon-filter.png"; sourceTree = "<group>"; };
 		7C3553A516B764970046A6A9 /* icon-filter@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "icon-filter@2x.png"; sourceTree = "<group>"; };
 		7C3553BB16B768A50046A6A9 /* icon-filter-cost-off.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "icon-filter-cost-off.png"; sourceTree = "<group>"; };
@@ -834,6 +848,10 @@
 				7C6BC6E216E011D2008365AA /* icon-favorite-off@2x.png */,
 				7C6BC6EF16E01791008365AA /* icon-favorite-on.png */,
 				7C6BC6F016E01791008365AA /* icon-favorite-on@2x.png */,
+				7C2F87A316E286310042135A /* icon-checkmark-off.png */,
+				7C2F87A416E286310042135A /* icon-checkmark-off@2x.png */,
+				7C2F87A516E286310042135A /* icon-checkmark-on.png */,
+				7C2F87A616E286310042135A /* icon-checkmark-on@2x.png */,
 			);
 			name = Feed/Grid;
 			sourceTree = "<group>";
@@ -893,6 +911,10 @@
 				7C25A5D315D7100C0014465B /* UserViewController.m */,
 				7C1773A7169A8F000054CBDD /* RequestPhotosViewController.h */,
 				7C1773A8169A8F010054CBDD /* RequestPhotosViewController.m */,
+				7C2F879A16E27F790042135A /* FlagViewController.h */,
+				7C2F879B16E27F790042135A /* FlagViewController.m */,
+				7C2F87A016E2813C0042135A /* FlagCell.h */,
+				7C2F87A116E2813C0042135A /* FlagCell.m */,
 			);
 			name = "Recent/Popular/User Photo";
 			sourceTree = "<group>";
@@ -1311,6 +1333,10 @@
 				7C6BC6E816E011D2008365AA /* icon-favorite-off@2x.png in Resources */,
 				7C6BC6F116E01791008365AA /* icon-favorite-on.png in Resources */,
 				7C6BC6F216E01791008365AA /* icon-favorite-on@2x.png in Resources */,
+				7C2F87A716E286310042135A /* icon-checkmark-off.png in Resources */,
+				7C2F87A816E286310042135A /* icon-checkmark-off@2x.png in Resources */,
+				7C2F87A916E286310042135A /* icon-checkmark-on.png in Resources */,
+				7C2F87AA16E286310042135A /* icon-checkmark-on@2x.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1412,6 +1438,8 @@
 				7C165AAD16AB3AC700E0BF28 /* RequestReferenceViewController.m in Sources */,
 				7C3553CD16B76B0C0046A6A9 /* RequestFilterViewController.m in Sources */,
 				7C3B3E5016E178E600535AA3 /* Photo.m in Sources */,
+				7C2F879C16E27F790042135A /* FlagViewController.m in Sources */,
+				7C2F87A216E2813C0042135A /* FlagCell.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

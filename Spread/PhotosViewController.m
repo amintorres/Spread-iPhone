@@ -9,6 +9,7 @@
 #import "PhotosViewController.h"
 #import "UploadViewController.h"
 #import "EditViewController.h"
+#import "FlagViewController.h"
 #import "CameraManager.h"
 #import "ThumbCell.h"
 #import "FeedCell.h"
@@ -228,6 +229,13 @@
     [self presentViewController:controller animated:YES completion:NULL];
 }
 
+- (void)flagPhoto:(Photo *)photo atFeedCell:(FeedCell *)cell
+{
+    FlagViewController* controller = [[UIStoryboard storyboardWithName:@"MainStoryboard" bundle:nil] instantiateViewControllerWithIdentifier:@"FlagViewController"];
+    controller.photo = photo;
+    
+    [self.navigationController pushViewController:controller animated:YES];
+}
 
 
 @end

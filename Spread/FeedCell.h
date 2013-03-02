@@ -32,4 +32,5 @@
 
 @protocol FeedCellDelegate <NSObject>
 - (void)editPhoto:(Photo *)photo atFeedCell:(FeedCell *)cell;
+- (void)flagPhoto:(Photo *)photo atFeedCell:(FeedCell *)cell;
 @end
