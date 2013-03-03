@@ -279,14 +279,35 @@ typedef NS_ENUM(NSUInteger, KeyboardType) {
         NSString* password        = ((TextFieldCell*)self.registerFormSecion[4]).textField.text;
         NSString* confirmPassword = ((TextFieldCell*)self.registerFormSecion[5]).textField.text;
         
+        NSString *errorMessage = nil;
         if ([firsName length] && [lastName length] && [nickname length] && [email length] && [password length] && [confirmPassword length])
         {
-            [[[UIAlertView alloc] initWithTitle:nil message:@"Registeration not avaliable yet." delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil] show];
+            if ([password isEqualToString:confirmPassword])
+            {
+                NSString *name = [NSString stringWithFormat:@"%@ %@", firsName, lastName];
+                [[ServiceManager sharedManager] registerUserWithName:name email:email nickname:nickname password:password completion:^(id response, BOOL success, NSError *error) {
+                    
+                    if (success)
+                    {
+                        [[ServiceManager sharedManager] loginWithEmail:email password:password completion:[self loginCompletionHandler]];
+                    }
+                    else
+                    {
+                        [[[UIAlertView alloc] initWithTitle:nil message:error.localizedDescription delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil] show];
+                    }
+                }];
+            }
+            else
+            {
+                errorMessage = @"Passowrd does not match!";
+            }
         }
         else
         {
-            [[[UIAlertView alloc] initWithTitle:nil message:@"All fields are required." delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil] show];
+            errorMessage = @"All fields are required.";
         }
+        
+        [[[UIAlertView alloc] initWithTitle:nil message:errorMessage delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil] show];
     }
 }
 

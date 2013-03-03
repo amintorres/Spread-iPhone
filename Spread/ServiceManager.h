@@ -40,6 +40,7 @@ typedef NS_ENUM(NSUInteger, FlagReason) {
 - (void)loginWithEmail:(NSString*)email password:(NSString*)password completion:(ServiceManagerHandler)completion;
 - (void)loginWithFacebookToken:(NSString*)token completion:(ServiceManagerHandler)completion;
 - (void)logout;
+- (void)registerUserWithName:(NSString *)name email:(NSString *)email nickname:(NSString *)nickname password:(NSString *)password completion:(ServiceManagerHandler)completion;
 - (void)loadEntityWithID:(NSString*)entityID completion:(ServiceManagerHandler)completion;
 
 - (void)loadRecentPhotosWithHandler:(ServiceManagerHandler)completion;

@@ -209,6 +209,49 @@ static NSString* boundary = nil;
 }
 
 
+#pragma mark - Register
+
+- (void)registerUserWithName:(NSString *)name email:(NSString *)email nickname:(NSString *)nickname password:(NSString *)password completion:(ServiceManagerHandler)completion
+{
+    NSDictionary *params = @{
+                             @"user[name]" : name,
+                             @"user[email]" : email,
+                             @"user[nickname]" : nickname,
+                             @"user[password]" : password,
+                             @"user[password_confirmation]" : password,
+                             };
+    
+    NSString* URLString = [NSString stringWithFormat:@"http://dev.spread.cm/users"];
+    NSURL *URL = [NSURL URLWithString:URLString];
+    NSMutableURLRequest *request = [NSMutableURLRequest requestWithURL:URL];
+    request.HTTPMethod = @"POST";
+    request.HTTPBody = [[params paramString] dataUsingEncoding:NSUTF8StringEncoding];
+    
+    [UIApplication sharedApplication].networkActivityIndicatorVisible = YES;
+    [NSURLConnection sendAsynchronousRequest:request queue:[NSOperationQueue mainQueue] completionHandler:^(NSURLResponse *response, NSData *data, NSError *error) {
+        
+        [UIApplication sharedApplication].networkActivityIndicatorVisible = NO;
+        
+        NSInteger statusCode = [(NSHTTPURLResponse*)response statusCode];
+        
+        if (statusCode == 200)
+        {
+            if (completion) completion(nil, YES, nil);
+        }
+        else
+        {
+            NSLog(@"HTTP Status %d: %@", statusCode, [NSHTTPURLResponse localizedStringForStatusCode:statusCode]);
+            NSLog(@"URL: %@", request.URL);
+            if (error)
+            {
+                NSLog(@"Error: %@", error);
+            }
+            if (completion) completion(nil, NO, error);
+        }
+    }];
+}
+
+
 #pragma mark - Entity
 
 - (void)loadEntityWithID:(NSString*)entityID completion:(ServiceManagerHandler)completion
@@ -480,7 +523,15 @@ static NSString* boundary = nil;
     NSMutableURLRequest *URLRequest = [NSMutableURLRequest requestWithURL:URL];
     URLRequest.HTTPMethod = @"PUT";
     
-    [self sendURLRequest:URLRequest withImageData:nil name:name csvTags:csvTags description:description completion:completion];
+    [self sendURLRequest:URLRequest withImageData:nil name:name csvTags:csvTags description:description completion:^(id response, BOOL success, NSError *error) {
+        
+        if (success){
+            
+            [Photo objectWithDict:response inContext:[Photo mainMOC]];
+        }
+        
+        completion(response, success, error);
+    }];
 }
 
 - (void)deletePhoto:(Photo *)photo completionHandler:(ServiceManagerHandler)completion
