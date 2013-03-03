@@ -56,6 +56,93 @@ static NSString* boundary = nil;
 }
 
 
+#pragma mark - Generic
+
+- (void)loadFromEndPoint:(NSString*)endPoint completion:(ServiceManagerHandler)completion
+{
+    [self loadFromEndPoint:endPoint method:@"GET" params:nil completion:completion];
+}
+
+- (void)loadFromEndPoint:(NSString*)endPoint method:(NSString *)method params:(NSDictionary *)params completion:(ServiceManagerHandler)completion
+{
+    if (!self.oauthToken)
+    {
+        NSLog(@"Error! No oauth token!");
+        return;
+    }
+    
+    NSMutableDictionary *query = [@{@"authentication_token": self.oauthToken} mutableCopy];
+    if (([method isEqualToString:@"GET"] || [method isEqualToString:@"DELETE"]) && params)
+    {
+        [query addEntriesFromDictionary:params];
+    }
+    
+    NSString* URLString = [NSString stringWithFormat:@"%@/%@?%@", baseURL, endPoint, [query paramString]];
+    NSURL *URL = [NSURL URLWithString:URLString];
+    NSMutableURLRequest *request = [NSMutableURLRequest requestWithURL:URL];
+    request.HTTPMethod = method;
+
+    // This is likely a iOS SDK bug: setting HTTPBody to any request other than POST doesn't have effect.
+    if (([method isEqualToString:@"POST"] || [method isEqualToString:@"PUT"]) && params)
+    {
+        request.HTTPBody = [[params paramString] dataUsingEncoding:NSUTF8StringEncoding];
+        
+        if ([method isEqualToString:@"PUT"])
+        {
+            [request setValue:@"application/x-www-form-urlencoded" forHTTPHeaderField:@"Content-Type"];
+        }
+    }
+
+    [self sendURLRequest:request completion:completion];
+}
+
+- (void)sendURLRequest:(NSURLRequest *)URLRequest completion:(ServiceManagerHandler)completion
+{
+    [UIApplication sharedApplication].networkActivityIndicatorVisible = YES;
+    [NSURLConnection sendAsynchronousRequest:URLRequest queue:[NSOperationQueue mainQueue] completionHandler:^(NSURLResponse *response, NSData *data, NSError *error) {
+        
+        [UIApplication sharedApplication].networkActivityIndicatorVisible = NO;
+        
+        NSInteger statusCode = [(NSHTTPURLResponse*)response statusCode];
+        
+        if (statusCode == 200 && data)
+        {
+            NSError* JSONError = nil;
+            id result = [NSJSONSerialization JSONObjectWithData:data options:0 error:&JSONError];
+            
+            if (!JSONError)
+            {
+                NSLog(@"result: %@", result);
+                if (completion) completion(result, YES, nil);
+            }
+            else
+            {
+                NSString *string = [[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding];
+                if (!data || [string isEqualToString:@"null"])
+                {
+                    // null response; ignore.
+                }
+                else
+                {
+                    NSLog(@"JSON error: %@", JSONError);
+                    if (completion) completion(nil, NO, JSONError);
+                }
+            }
+        }
+        else
+        {
+            NSLog(@"HTTP Status %d: %@", statusCode, [NSHTTPURLResponse localizedStringForStatusCode:statusCode]);
+            NSLog(@"URL: %@", URLRequest.URL);
+            if (error)
+            {
+                NSLog(@"Error: %@", error);
+            }
+            if (completion) completion(nil, NO, error);
+        }
+    }];
+}
+
+
 #pragma mark - Login/Logout
 
 - (BOOL)isSessionValid
@@ -74,34 +161,16 @@ static NSString* boundary = nil;
 
 - (void)sendLoginRequest:(NSURLRequest*)request completion:(ServiceManagerHandler)completion
 {
-    [NSURLConnection sendAsynchronousRequest:request queue:[NSOperationQueue mainQueue] completionHandler:^(NSURLResponse *response, NSData *data, NSError *error) {
+    [self sendURLRequest:request completion:^(id response, BOOL success, NSError *error) {
         
-        if (data)
+        if (success)
         {
-            NSError* JSONError = nil;
-            id result = [NSJSONSerialization JSONObjectWithData:data options:0 error:&JSONError];
-            NSLog(@"result: %@", result);
-            
-            if ([result[@"success"] boolValue])
-            {
-                self.oauthToken = result[@"authentication_token"];
-                self.currentUserID = result[@"person_id"];
-                
-                [self loadEntityWithID:self.currentUserID completion:completion];
-            }
-            else
-            {
-                NSDictionary* userInfo = [NSDictionary dictionaryWithObjectsAndKeys:result[@"message"], NSLocalizedDescriptionKey, nil];
-                NSError *spreadError = [NSError errorWithDomain:SpreadErrorDomain code:SpreadErrorCodeInvalidPhotoTitle userInfo:userInfo];
-                
-                NSLog(@"error: %@", spreadError);
-                completion(nil, NO, spreadError);
-                
-            }
+            self.oauthToken = response[@"authentication_token"];
+            self.currentUserID = response[@"person_id"];
+            [self loadEntityWithID:self.currentUserID completion:completion];
         }
         else
         {
-            NSLog(@"error: %@", error);
             completion(nil, NO, error);
         }
     }];
@@ -110,13 +179,13 @@ static NSString* boundary = nil;
 - (void)loginWithEmail:(NSString*)email password:(NSString*)password completion:(ServiceManagerHandler)completion
 {
     NSURL *URL = [[NSURL URLWithString:baseURL] URLByAppendingPathComponent:loginPath];
-
+    
     NSMutableURLRequest *request = [NSMutableURLRequest requestWithURL:URL];
     request.HTTPMethod = @"POST";
     NSString *param = [@{@"session[email]": email,
-                        @"session[password]": password} paramString];
+                       @"session[password]": password} paramString];
     request.HTTPBody = [param dataUsingEncoding:NSUTF8StringEncoding];
-
+    
     [self sendLoginRequest:request completion:completion];
 }
 
@@ -138,85 +207,6 @@ static NSString* boundary = nil;
     self.currentUserID = nil;
     [[FBSession activeSession] closeAndClearTokenInformation];
 }
-
-
-#pragma mark - Generic
-
-- (void)loadFromEndPoint:(NSString*)endPoint completion:(ServiceManagerHandler)completion
-{
-    [self loadFromEndPoint:endPoint method:@"GET" params:nil completion:completion];
-}
-
-- (void)loadFromEndPoint:(NSString*)endPoint method:(NSString *)method params:(NSDictionary *)params completion:(ServiceManagerHandler)completion
-{
-    if (!self.oauthToken)
-    {
-        NSLog(@"Error! No oauth token!");
-        return;
-    }
-    
-    NSMutableDictionary *query = [@{@"authentication_token": self.oauthToken} mutableCopy];
-    
-    if (![method isEqualToString:@"POST"] && params)
-    {
-        [query addEntriesFromDictionary:params];
-    }
-    
-    NSString* URLString = [NSString stringWithFormat:@"%@/%@?%@", baseURL, endPoint, [query paramString]];
-    NSURL *URL = [NSURL URLWithString:URLString];
-    NSMutableURLRequest *request = [NSMutableURLRequest requestWithURL:URL];
-    request.HTTPMethod = method;
-
-    // This is likely a iOS SDK bug: setting HTTPBody to any request other than POST doesn't have effect.
-    if ([method isEqualToString:@"POST"] && params)
-    {
-        request.HTTPBody = [[params paramString] dataUsingEncoding:NSUTF8StringEncoding];
-    }
-
-    [UIApplication sharedApplication].networkActivityIndicatorVisible = YES;
-    [NSURLConnection sendAsynchronousRequest:request queue:[NSOperationQueue mainQueue] completionHandler:^(NSURLResponse *response, NSData *data, NSError *error) {
-        
-        [UIApplication sharedApplication].networkActivityIndicatorVisible = NO;
-        
-        NSInteger statusCode = [(NSHTTPURLResponse*)response statusCode];
-        
-        if (statusCode == 200 && data)
-        {
-            NSError* JSONError = nil;
-            id result = [NSJSONSerialization JSONObjectWithData:data options:0 error:&JSONError];
-            
-            if (!JSONError)
-            {
-                NSLog(@"result: %@", result);
-                if (completion) completion(result, YES, nil);
-            }
-            else
-            {
-                NSString *string = [[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding];
-                if ([string isEqualToString:@"null"])
-                {
-                    // null response; ignore.
-                }
-                else
-                {
-                    NSLog(@"JSON error: %@", JSONError);
-                    if (completion) completion(nil, NO, JSONError);
-                }
-            }
-        }
-        else
-        {
-            NSLog(@"HTTP Status %d: %@", statusCode, [NSHTTPURLResponse localizedStringForStatusCode:statusCode]);
-            NSLog(@"URL: %@", request.URL);
-            if (error)
-            {
-                NSLog(@"Error: %@", error);
-            }
-            if (completion) completion(nil, NO, error);
-        }
-    }];
-}
-
 
 
 #pragma mark - Entity
@@ -319,137 +309,76 @@ static NSString* boundary = nil;
 
 #pragma mark - Post Photo
 
-- (void)postUserPhoto:(NSData *)imageData name:(NSString*)name csvTags:(NSString*)csvTags description:(NSString*)description completionHandler:(ServiceManagerHandler)completion
+- (void)sendURLRequest:(NSMutableURLRequest *)URLRequest withImageData:(NSData *)imageData name:(NSString*)name csvTags:(NSString*)csvTags description:(NSString*)description completion:(ServiceManagerHandler)completion
 {
-    if (name.length < 4)
-    {
-        NSError *error = [NSError invalidPhotoTitleError];
-        if (completion) completion(nil, NO, error);
-        return;
-    }
-    
-    if (description.length < 4)
-    {
-        NSError *error = [NSError invalidPhotoDescriptionError];
-        if (completion) completion(nil, NO, error);
-        return;
-    }
-    
-    if (!imageData)
-    {
-        NSError *error = [NSError invalidImageError];
-        if (completion) completion(nil, NO, error);
-        return;
-    }
-    
-    NSString *param = [@{@"authentication_token": self.oauthToken} paramString];
-    NSString* URLString = [NSString stringWithFormat:@"%@/%@?%@", baseURL, postUserPhotoPath, param];
-    NSURL *URL = [NSURL URLWithString:URLString];
-    
-    NSMutableURLRequest *request = [NSMutableURLRequest requestWithURL:URL];
-    request.HTTPMethod = @"POST";
-
-    
     NSString *boundary = [NSString stringWithFormat:@"----------SpReAd--BoUnDaRy--%d----------", arc4random()];
 	NSString *contentType = [NSString stringWithFormat:@"multipart/form-data; boundary=%@",boundary];
-	[request addValue:contentType forHTTPHeaderField: @"Content-Type"];
-	    
+	[URLRequest addValue:contentType forHTTPHeaderField: @"Content-Type"];
+    
     
     NSMutableData *postBody = [NSMutableData data];
-
+    
     // Name
-    [postBody appendData:[[NSString stringWithFormat:@"--%@\r\n", boundary] dataUsingEncoding:NSUTF8StringEncoding]];
-    [postBody appendData:[@"Content-Disposition: form-data; name=\"news_photo[name]\"\r\n\r\n" dataUsingEncoding:NSUTF8StringEncoding]];
-    [postBody appendData:[name dataUsingEncoding:NSUTF8StringEncoding]];
-    [postBody appendData:[@"\r\n" dataUsingEncoding:NSUTF8StringEncoding]];
+    if (name)
+    {
+        [postBody appendData:[[NSString stringWithFormat:@"--%@\r\n", boundary] dataUsingEncoding:NSUTF8StringEncoding]];
+        [postBody appendData:[@"Content-Disposition: form-data; name=\"news_photo[name]\"\r\n\r\n" dataUsingEncoding:NSUTF8StringEncoding]];
+        [postBody appendData:[name dataUsingEncoding:NSUTF8StringEncoding]];
+        [postBody appendData:[@"\r\n" dataUsingEncoding:NSUTF8StringEncoding]];
+    }
     
     // CSV Tags
-    [postBody appendData:[[NSString stringWithFormat:@"--%@\r\n", boundary] dataUsingEncoding:NSUTF8StringEncoding]];
-    [postBody appendData:[@"Content-Disposition: form-data; name=\"news_photo[tags_csv]\"\r\n\r\n" dataUsingEncoding:NSUTF8StringEncoding]];
-    [postBody appendData:[csvTags dataUsingEncoding:NSUTF8StringEncoding]];
-    [postBody appendData:[@"\r\n" dataUsingEncoding:NSUTF8StringEncoding]];
-    
-    // Description
-    [postBody appendData:[[NSString stringWithFormat:@"--%@\r\n", boundary] dataUsingEncoding:NSUTF8StringEncoding]];
-    [postBody appendData:[@"Content-Disposition: form-data; name=\"news_photo[description]\"\r\n\r\n" dataUsingEncoding:NSUTF8StringEncoding]];
-    [postBody appendData:[description dataUsingEncoding:NSUTF8StringEncoding]];
-    [postBody appendData:[@"\r\n" dataUsingEncoding:NSUTF8StringEncoding]];
-    
-    // Image
-    [postBody appendData:[[NSString stringWithFormat:@"--%@\r\n", boundary] dataUsingEncoding:NSUTF8StringEncoding]];
-    [postBody appendData:[@"Content-Disposition: form-data; name=\"news_photo[image]\"; filename=\"image.jpg\"\r\n" dataUsingEncoding:NSUTF8StringEncoding]];
-    [postBody appendData:[@"Content-Type: image/jpeg\r\n" dataUsingEncoding:NSUTF8StringEncoding]];
-    [postBody appendData:[@"Content-Transfer-Encoding: binary\r\n\r\n" dataUsingEncoding:NSUTF8StringEncoding]];    
-    [postBody appendData:imageData];
-    [postBody appendData:[@"\r\n" dataUsingEncoding:NSUTF8StringEncoding]];
-
-    // Final boundary
-    [postBody appendData:[[NSString stringWithFormat:@"--%@--\r\n", boundary] dataUsingEncoding:NSUTF8StringEncoding]];
-    
-
-    request.HTTPBody = postBody;
-    
-    // 'Complete' means prepare complete and ready to upload.
-    if (completion) completion(nil, YES, nil);
-    [self sendPostRequest:request completionHandler:NULL];
-}
-
-- (void)postPhoto:(NSData *)imageData toRequest:(Request *)photoRequest description:(NSString *)description completionHandler:(ServiceManagerHandler)completion
-{
-    if (!imageData)
+    if (csvTags)
     {
-        NSError *error = [NSError invalidImageError];
-        if (completion) completion(nil, NO, error);
-        return;
+        [postBody appendData:[[NSString stringWithFormat:@"--%@\r\n", boundary] dataUsingEncoding:NSUTF8StringEncoding]];
+        [postBody appendData:[@"Content-Disposition: form-data; name=\"news_photo[tags_csv]\"\r\n\r\n" dataUsingEncoding:NSUTF8StringEncoding]];
+        [postBody appendData:[csvTags dataUsingEncoding:NSUTF8StringEncoding]];
+        [postBody appendData:[@"\r\n" dataUsingEncoding:NSUTF8StringEncoding]];
     }
     
-    NSString *param = [@{@"authentication_token": self.oauthToken} paramString];
-    NSString *pathForRequest = [NSString stringWithFormat:postRequestPhotoPath, photoRequest.requestID];
-    NSString* URLString = [NSString stringWithFormat:@"%@/%@?%@", baseURL, pathForRequest, param];
-    NSURL *URL = [NSURL URLWithString:URLString];
-    
-    NSMutableURLRequest *request = [NSMutableURLRequest requestWithURL:URL];
-    request.HTTPMethod = @"POST";
-    
-    
-    NSString *boundary = [NSString stringWithFormat:@"----------SpReAd--BoUnDaRy--%d----------", arc4random()];
-	NSString *contentType = [NSString stringWithFormat:@"multipart/form-data; boundary=%@",boundary];
-	[request addValue:contentType forHTTPHeaderField: @"Content-Type"];
-    
-    
-    NSMutableData *postBody = [NSMutableData data];
-    
     // Description
-//    [postBody appendData:[[NSString stringWithFormat:@"--%@\r\n", boundary] dataUsingEncoding:NSUTF8StringEncoding]];
-//    [postBody appendData:[@"Content-Disposition: form-data; name=\"request_photo[name]\"\r\n\r\n" dataUsingEncoding:NSUTF8StringEncoding]];
-//    [postBody appendData:[description dataUsingEncoding:NSUTF8StringEncoding]];
-//    [postBody appendData:[@"\r\n" dataUsingEncoding:NSUTF8StringEncoding]];
+    if (description)
+    {
+        [postBody appendData:[[NSString stringWithFormat:@"--%@\r\n", boundary] dataUsingEncoding:NSUTF8StringEncoding]];
+        [postBody appendData:[@"Content-Disposition: form-data; name=\"news_photo[description]\"\r\n\r\n" dataUsingEncoding:NSUTF8StringEncoding]];
+        [postBody appendData:[description dataUsingEncoding:NSUTF8StringEncoding]];
+        [postBody appendData:[@"\r\n" dataUsingEncoding:NSUTF8StringEncoding]];
+    }
     
     // Image
-    [postBody appendData:[[NSString stringWithFormat:@"--%@\r\n", boundary] dataUsingEncoding:NSUTF8StringEncoding]];
-    [postBody appendData:[@"Content-Disposition: form-data; name=\"request_photo[image]\"; filename=\"image.jpg\"\r\n" dataUsingEncoding:NSUTF8StringEncoding]];
-    [postBody appendData:[@"Content-Type: image/jpeg\r\n" dataUsingEncoding:NSUTF8StringEncoding]];
-    [postBody appendData:[@"Content-Transfer-Encoding: binary\r\n\r\n" dataUsingEncoding:NSUTF8StringEncoding]];
-    [postBody appendData:imageData];
-    [postBody appendData:[@"\r\n" dataUsingEncoding:NSUTF8StringEncoding]];
+    if (imageData)
+    {
+        [postBody appendData:[[NSString stringWithFormat:@"--%@\r\n", boundary] dataUsingEncoding:NSUTF8StringEncoding]];
+        [postBody appendData:[@"Content-Disposition: form-data; name=\"news_photo[image]\"; filename=\"image.jpg\"\r\n" dataUsingEncoding:NSUTF8StringEncoding]];
+        [postBody appendData:[@"Content-Type: image/jpeg\r\n" dataUsingEncoding:NSUTF8StringEncoding]];
+        [postBody appendData:[@"Content-Transfer-Encoding: binary\r\n\r\n" dataUsingEncoding:NSUTF8StringEncoding]];
+        [postBody appendData:imageData];
+        [postBody appendData:[@"\r\n" dataUsingEncoding:NSUTF8StringEncoding]];
+    }
     
     // Final boundary
     [postBody appendData:[[NSString stringWithFormat:@"--%@--\r\n", boundary] dataUsingEncoding:NSUTF8StringEncoding]];
+    URLRequest.HTTPBody = postBody;
     
     
-    request.HTTPBody = postBody;
-    
-    // 'Complete' means prepare complete and ready to upload.
-    if (completion) completion(nil, YES, nil);
-    [self sendPostRequest:request completionHandler:NULL];
+    if (imageData)
+    {
+        // 'Complete' means prepare complete and ready to upload.
+        if (completion) completion(nil, YES, nil);
+        [self sendUploadURLRequest:URLRequest completionHandler:NULL];
+    }
+    else
+    {
+        [self sendURLRequest:URLRequest completion:completion];
+    }
 }
 
-- (void)sendPostRequest:(NSURLRequest *)request completionHandler:(ServiceManagerHandler)completion
+- (void)sendUploadURLRequest:(NSURLRequest *)URLRequest completionHandler:(ServiceManagerHandler)completion
 {
     [UIApplication sharedApplication].networkActivityIndicatorVisible = YES;
     
     __block ConnectionHelper *helper =
-    [ConnectionHelper sendAsynchronousRequest:request
+    [ConnectionHelper sendAsynchronousRequest:URLRequest
                            didReceiveResponse:^(NSURLResponse *response) {
                                
                                NSLog(@"NSURLResponse %@", response);
@@ -486,14 +415,89 @@ static NSString* boundary = nil;
     [self.uploadQueue addObject:helper];
 }
 
-- (void)updatePhoto:(Photo *)photo
+
+- (void)uploadImageData:(NSData *)imageData name:(NSString*)name csvTags:(NSString*)csvTags description:(NSString*)description completionHandler:(ServiceManagerHandler)completion
 {
-    //TODO:
+    if (name.length < 4)
+    {
+        NSError *error = [NSError invalidPhotoTitleError];
+        if (completion) completion(nil, NO, error);
+        return;
+    }
+    
+    if (description.length < 4)
+    {
+        NSError *error = [NSError invalidPhotoDescriptionError];
+        if (completion) completion(nil, NO, error);
+        return;
+    }
+    
+    if (!imageData)
+    {
+        NSError *error = [NSError invalidImageError];
+        if (completion) completion(nil, NO, error);
+        return;
+    }
+    
+    NSString *param = [@{@"authentication_token": self.oauthToken} paramString];
+    NSString* URLString = [NSString stringWithFormat:@"%@/%@?%@", baseURL, postUserPhotoPath, param];
+    NSURL *URL = [NSURL URLWithString:URLString];
+    
+    NSMutableURLRequest *URLRequest = [NSMutableURLRequest requestWithURL:URL];
+    URLRequest.HTTPMethod = @"POST";
+    
+    [self sendURLRequest:URLRequest withImageData:imageData name:name csvTags:csvTags description:description completion:completion];
 }
 
-- (void)deletePhoto:(Photo *)photo
+- (void)uploadImageData:(NSData *)imageData toRequest:(Request *)photoRequest description:(NSString *)description completionHandler:(ServiceManagerHandler)completion
 {
-    //TODO:
+    if (!imageData)
+    {
+        NSError *error = [NSError invalidImageError];
+        if (completion) completion(nil, NO, error);
+        return;
+    }
+    
+    NSString *param = [@{@"authentication_token": self.oauthToken} paramString];
+    NSString *pathForRequest = [NSString stringWithFormat:postRequestPhotoPath, photoRequest.requestID];
+    NSString* URLString = [NSString stringWithFormat:@"%@/%@?%@", baseURL, pathForRequest, param];
+    NSURL *URL = [NSURL URLWithString:URLString];
+    
+    NSMutableURLRequest *URLRequest = [NSMutableURLRequest requestWithURL:URL];
+    URLRequest.HTTPMethod = @"POST";
+    
+    [self sendURLRequest:URLRequest withImageData:imageData name:nil csvTags:nil description:nil completion:completion];
+}
+
+- (void)updatePhoto:(Photo *)photo name:(NSString*)name csvTags:(NSString*)csvTags description:(NSString*)description completionHandler:(ServiceManagerHandler)completion
+{
+    NSString *endPoint = [NSString stringWithFormat:@"news_photos/%d.json", [photo.photoID integerValue]];
+    
+    NSString *param = [@{@"authentication_token": self.oauthToken} paramString];
+    NSString* URLString = [NSString stringWithFormat:@"%@/%@?%@", baseURL, endPoint, param];
+    NSURL *URL = [NSURL URLWithString:URLString];
+    
+    NSMutableURLRequest *URLRequest = [NSMutableURLRequest requestWithURL:URL];
+    URLRequest.HTTPMethod = @"PUT";
+    
+    [self sendURLRequest:URLRequest withImageData:nil name:name csvTags:csvTags description:description completion:completion];
+}
+
+- (void)deletePhoto:(Photo *)photo completionHandler:(ServiceManagerHandler)completion
+{
+    NSString *endPoint = [NSString stringWithFormat:@"news_photos/%d.json", [photo.photoID integerValue]];
+    [[ServiceManager sharedManager] loadFromEndPoint:endPoint method:@"DELETE" params:nil completion:^(id response, BOOL success, NSError *error) {
+        
+        if (success)
+        {
+            [photo.managedObjectContext deleteObject:photo];
+            if (completion) completion(response, YES, nil);
+        }
+        else
+        {
+            if (completion) completion(nil, NO, error);
+        }
+    }];
 }
 
 - (void)flagPhoto:(Photo *)photo reason:(FlagReason)reason completionHandler:(ServiceManagerHandler)completion
@@ -511,9 +515,7 @@ static NSString* boundary = nil;
 
     request.HTTPBody = [[params paramString] dataUsingEncoding:NSUTF8StringEncoding];
     
-    // 'Complete' means prepare complete and ready to upload.
-    if (completion) completion(nil, YES, nil);
-    [self sendPostRequest:request completionHandler:NULL];
+    [self sendURLRequest:request completion:completion];
 }
 
 - (NSMutableArray *)uploadQueue

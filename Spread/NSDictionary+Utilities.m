@@ -16,6 +16,12 @@
 {
     NSMutableArray* array = [NSMutableArray arrayWithCapacity:[self count]];
     [self enumerateKeysAndObjectsUsingBlock:^(id key, id obj, BOOL *stop) {
+        if ([key isKindOfClass:[NSString class]]) {
+            key = [key stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding];
+        }
+        if ([obj isKindOfClass:[NSString class]]) {
+            obj = [obj stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding];
+        }
         NSString* pair = [NSString stringWithFormat:@"%@=%@", key, obj];
         [array addObject:pair];
     }];

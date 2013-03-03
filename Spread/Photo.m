@@ -2,11 +2,12 @@
 //  Photo.m
 //  Spread
 //
-//  Created by Joseph Lin on 3/1/13.
+//  Created by Joseph Lin on 3/2/13.
 //  Copyright (c) 2013 R/GA. All rights reserved.
 //
 
 #import "Photo.h"
+#import "Permission.h"
 #import "Request.h"
 #import "Tag.h"
 #import "User.h"
@@ -20,8 +21,8 @@
 @dynamic feedImageURLString;
 @dynamic gridImageURLString;
 @dynamic impressionsCount;
-@dynamic myFavoriteID;
 @dynamic largeImageURLString;
+@dynamic myFavoriteID;
 @dynamic name;
 @dynamic photoDescription;
 @dynamic photoID;
@@ -29,5 +30,6 @@
 @dynamic request;
 @dynamic tags;
 @dynamic user;
+@dynamic permission;
 
 @end

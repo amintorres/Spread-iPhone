@@ -1,5 +1,15 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
-<model name="" userDefinedModelVersionIdentifier="" type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="2057" systemVersion="12C60" minimumToolsVersion="Automatic" macOSVersion="Automatic" iOSVersion="Automatic">
+<model name="" userDefinedModelVersionIdentifier="" type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="2057" systemVersion="12C2037" minimumToolsVersion="Automatic" macOSVersion="Automatic" iOSVersion="Automatic">
+    <entity name="Permission" representedClassName="Permission" syncable="YES">
+        <attribute name="create" optional="YES" attributeType="Boolean" syncable="YES"/>
+        <attribute name="destroy" optional="YES" attributeType="Boolean" syncable="YES"/>
+        <attribute name="downloadPrint" optional="YES" attributeType="Boolean" syncable="YES"/>
+        <attribute name="downloadWeb" optional="YES" attributeType="Boolean" syncable="YES"/>
+        <attribute name="read" optional="YES" attributeType="Boolean" syncable="YES"/>
+        <attribute name="readComments" optional="YES" attributeType="Boolean" syncable="YES"/>
+        <attribute name="update" optional="YES" attributeType="Boolean" syncable="YES"/>
+        <relationship name="photo" optional="YES" minCount="1" maxCount="1" deletionRule="Nullify" destinationEntity="Photo" inverseName="permission" inverseEntity="Photo" syncable="YES"/>
+    </entity>
     <entity name="Photo" representedClassName="Photo" syncable="YES">
         <attribute name="commentsCount" optional="YES" attributeType="Integer 64" defaultValueString="0" syncable="YES"/>
         <attribute name="createdDate" optional="YES" attributeType="Date" syncable="YES"/>
@@ -13,6 +23,7 @@
         <attribute name="photoDescription" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="photoID" optional="YES" attributeType="Integer 64" defaultValueString="0" syncable="YES"/>
         <attribute name="updatedDate" optional="YES" attributeType="Date" syncable="YES"/>
+        <relationship name="permission" optional="YES" minCount="1" maxCount="1" deletionRule="Nullify" destinationEntity="Permission" inverseName="photo" inverseEntity="Permission" syncable="YES"/>
         <relationship name="request" optional="YES" minCount="1" maxCount="1" deletionRule="Nullify" destinationEntity="Request" inverseName="photos" inverseEntity="Request" syncable="YES"/>
         <relationship name="tags" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Tag" inverseName="photos" inverseEntity="Tag" syncable="YES"/>
         <relationship name="user" optional="YES" minCount="1" maxCount="1" deletionRule="Nullify" destinationEntity="User" inverseName="photos" inverseEntity="User" syncable="YES"/>
@@ -53,10 +64,11 @@
         <relationship name="requests" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Request" inverseName="requester" inverseEntity="Request" syncable="YES"/>
     </entity>
     <elements>
-        <element name="Photo" positionX="-18" positionY="35" width="128" height="270"/>
+        <element name="Photo" positionX="-18" positionY="35" width="128" height="283"/>
         <element name="Reference" positionX="117" positionY="450" width="128" height="88"/>
         <element name="Request" positionX="-236" positionY="351" width="128" height="268"/>
         <element name="Tag" positionX="306" positionY="144" width="128" height="90"/>
         <element name="User" positionX="-513" positionY="117" width="128" height="133"/>
+        <element name="Permission" positionX="448" positionY="315" width="128" height="163"/>
     </elements>
 </model>

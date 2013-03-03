@@ -95,7 +95,7 @@
 - (IBAction)reloadButtonTapped:(id)sender
 {
     ConnectionHelper *helper = [[ServiceManager sharedManager].uploadQueue lastObject];
-    [[ServiceManager sharedManager] sendPostRequest:helper.connection.originalRequest completionHandler:NULL];
+    [[ServiceManager sharedManager] sendUploadURLRequest:helper.connection.originalRequest completionHandler:NULL];
     [self update];
 }
 

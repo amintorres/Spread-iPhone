@@ -124,7 +124,17 @@
     }
     else
     {
-        [[ServiceManager sharedManager] updatePhoto:self.photo];
+        [[ServiceManager sharedManager] updatePhoto:self.photo name:self.titleTextField.text csvTags:self.tagsTextField.text description:self.descriptionTextView.text completionHandler:^(id response, BOOL success, NSError *error) {
+            
+            if (success)
+            {
+                [self dismissViewControllerAnimated:YES completion:NULL];
+            }
+            else
+            {
+                [[[UIAlertView alloc] initWithTitle:@"Error" message:error.localizedDescription delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil] show];
+            }
+        }];
     }
 }
 
@@ -158,7 +168,7 @@
         
         if ([CameraManager sharedManager].request)
         {
-            [[ServiceManager sharedManager] postPhoto:data toRequest:[CameraManager sharedManager].request description:self.descriptionTextView.text completionHandler:^(id response, BOOL success, NSError *error) {
+            [[ServiceManager sharedManager] uploadImageData:data toRequest:[CameraManager sharedManager].request description:self.descriptionTextView.text completionHandler:^(id response, BOOL success, NSError *error) {
                 
                 if (success)
                 {
@@ -172,7 +182,7 @@
         }
         else
         {
-            [[ServiceManager sharedManager] postUserPhoto:data name:self.titleTextField.text csvTags:self.tagsTextField.text description:self.descriptionTextView.text completionHandler:^(id response, BOOL success, NSError *error) {
+            [[ServiceManager sharedManager] uploadImageData:data name:self.titleTextField.text csvTags:self.tagsTextField.text description:self.descriptionTextView.text completionHandler:^(id response, BOOL success, NSError *error) {
                 
                 if (success)
                 {
@@ -191,11 +201,6 @@
     }];
 }
 
-- (void)updatePhoto:(Photo *)photo
-{
-    //TODO:
-}
-
 - (void)dismiss
 {
     if ([[CameraManager sharedManager].presentingViewController isKindOfClass:[MenuViewController class]])
@@ -212,10 +217,18 @@
 {
     if ( buttonIndex != alertView.cancelButtonIndex )
     {
-        [[ServiceManager sharedManager] deletePhoto:self.photo];
+        [[ServiceManager sharedManager] deletePhoto:self.photo completionHandler:^(id response, BOOL success, NSError *error) {
+            
+            if (success)
+            {
+                [self dismissViewControllerAnimated:YES completion:NULL];
+            }
+            else
+            {
+                [[[UIAlertView alloc] initWithTitle:@"Error" message:error.localizedDescription delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil] show];
+            }
+        }];
     }
-    
-    [self dismissModalViewControllerAnimated:YES];
 }
 
 
