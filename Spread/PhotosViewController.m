@@ -62,6 +62,10 @@
     [super viewWillAppear:animated];
     
     [self.uploadViewController update];
+    
+    [self.collectionView reloadData];
+    [self.tableView reloadData];
+
 }
 
 - (void)reloadData
