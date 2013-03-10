@@ -153,6 +153,23 @@ typedef NS_ENUM(NSUInteger, KeyboardType) {
         [self scrollToBottom];
     }
     
+    else if (_currentState == IntroViewStateRegister && state == IntroViewStateIdle)
+    {
+        [self.dataSource removeObject:self.registerFormSecion];
+        [self.dataSource removeObject:self.registerButtonSection];
+        [self.dataSource insertObject:self.facebookButtonSection atIndex:0];
+        [self.dataSource insertObject:self.loginButtonSection atIndex:1];
+        
+        [self.tableView beginUpdates];
+        [self.tableView deleteSections:[NSIndexSet indexSetWithIndex:0] withRowAnimation:UITableViewRowAnimationFade];
+        [self.tableView deleteSections:[NSIndexSet indexSetWithIndex:1] withRowAnimation:UITableViewRowAnimationFade];
+        [self.tableView insertSections:[NSIndexSet indexSetWithIndex:0] withRowAnimation:UITableViewRowAnimationFade];
+        [self.tableView insertSections:[NSIndexSet indexSetWithIndex:1] withRowAnimation:UITableViewRowAnimationFade];
+        [self.tableView endUpdates];
+        
+        [self scrollToBottom];
+    }
+    
     _currentState = state;
 }
 
@@ -192,8 +209,7 @@ typedef NS_ENUM(NSUInteger, KeyboardType) {
         
         [MBProgressHUD hideHUDForView:self.view animated:YES];
 
-//        if (success)
-        if (YES)
+        if (success)
         {
             [self performSegueWithIdentifier:@"MenuSegue" sender:self];
         }
@@ -204,6 +220,13 @@ typedef NS_ENUM(NSUInteger, KeyboardType) {
             if ([response isKindOfClass:[NSDictionary class]])
             {
                 message = response[@"message"];
+                
+                // Registration error:
+                if (!message && response[@"email"])
+                    message = [NSString stringWithFormat:@"email %@", [response[@"email"] lastObject]];
+
+                else if (!message && response[@"password"])
+                    message = [NSString stringWithFormat:@"password %@", [response[@"password"] lastObject]];
             }
             
             if (!message)
@@ -282,24 +305,18 @@ typedef NS_ENUM(NSUInteger, KeyboardType) {
         NSString *errorMessage = nil;
         if ([firsName length] && [lastName length] && [nickname length] && [email length] && [password length] && [confirmPassword length])
         {
-            if ([password isEqualToString:confirmPassword])
+            if (![password isEqualToString:confirmPassword])
             {
-                NSString *name = [NSString stringWithFormat:@"%@ %@", firsName, lastName];
-                [[ServiceManager sharedManager] registerUserWithName:name email:email nickname:nickname password:password completion:^(id response, BOOL success, NSError *error) {
-                    
-                    if (success)
-                    {
-                        [[ServiceManager sharedManager] loginWithEmail:email password:password completion:[self loginCompletionHandler]];
-                    }
-                    else
-                    {
-                        [[[UIAlertView alloc] initWithTitle:nil message:error.localizedDescription delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil] show];
-                    }
-                }];
+                errorMessage = @"Passowrd does not match!";
+            }
+            else if (password.length < 6)
+            {
+                errorMessage = @"Password is too short (minimum is 6 characters)";
             }
             else
             {
-                errorMessage = @"Passowrd does not match!";
+                NSString *name = [NSString stringWithFormat:@"%@ %@", firsName, lastName];
+                [[ServiceManager sharedManager] registerUserWithName:name email:email nickname:nickname password:password completion:[self loginCompletionHandler]];
             }
         }
         else
@@ -307,7 +324,9 @@ typedef NS_ENUM(NSUInteger, KeyboardType) {
             errorMessage = @"All fields are required.";
         }
         
-        [[[UIAlertView alloc] initWithTitle:nil message:errorMessage delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil] show];
+        if (errorMessage) {
+            [[[UIAlertView alloc] initWithTitle:nil message:errorMessage delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil] show];
+        }
     }
 }
 

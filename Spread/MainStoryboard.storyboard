@@ -2125,7 +2125,6 @@ image because:</string>
                                 <constraint firstItem="Hwl-ER-O6z" firstAttribute="leading" secondItem="UUP-IF-YeI" secondAttribute="trailing" constant="8" symbolic="YES" type="default" id="MBu-Jp-3pm"/>
                                 <constraint firstItem="UUP-IF-YeI" firstAttribute="leading" secondItem="ph5-2e-pe4" secondAttribute="leading" constant="16" id="PnK-Jo-Fuq"/>
                                 <constraint firstItem="Hwl-ER-O6z" firstAttribute="top" secondItem="UUP-IF-YeI" secondAttribute="top" type="default" id="jdw-Lh-6CH"/>
-                                <constraint firstItem="Hwl-ER-O6z" firstAttribute="baseline" secondItem="UUP-IF-YeI" secondAttribute="baseline" type="default" id="zyk-ZX-UcX"/>
                             </constraints>
                         </view>
                         <sections>
@@ -2372,9 +2371,6 @@ image because:</string>
         </class>
         <class className="FlagViewController" superclassName="UITableViewController">
             <source key="sourceIdentifier" type="project" relativePath="./Classes/FlagViewController.h"/>
-            <relationships>
-                <relationship kind="action" name="backButtonTapped:"/>
-            </relationships>
         </class>
         <class className="IntroTableViewController" superclassName="UITableViewController">
             <source key="sourceIdentifier" type="project" relativePath="./Classes/IntroTableViewController.h"/>
@@ -2392,10 +2388,6 @@ image because:</string>
         <class className="MenuViewController" superclassName="UIViewController">
             <source key="sourceIdentifier" type="project" relativePath="./Classes/MenuViewController.h"/>
             <relationships>
-                <relationship kind="action" name="popularButtonTapped:"/>
-                <relationship kind="action" name="profileButtonTapped:"/>
-                <relationship kind="action" name="recentButtonTapped:"/>
-                <relationship kind="action" name="takePhotoButtonTapped:"/>
                 <relationship kind="outlet" name="profileButton" candidateClass="UIButton"/>
             </relationships>
         </class>
@@ -2408,7 +2400,6 @@ image because:</string>
         <class className="RequestBriefViewController" superclassName="BaseViewController">
             <source key="sourceIdentifier" type="project" relativePath="./Classes/RequestBriefViewController.h"/>
             <relationships>
-                <relationship kind="action" name="submitButtonTapped:"/>
                 <relationship kind="outlet" name="textView" candidateClass="UITextView"/>
             </relationships>
         </class>
@@ -2425,8 +2416,6 @@ image because:</string>
         <class className="RequestDetailViewController" superclassName="BaseViewController">
             <source key="sourceIdentifier" type="project" relativePath="./Classes/RequestDetailViewController.h"/>
             <relationships>
-                <relationship kind="action" name="photosButtonTapped:"/>
-                <relationship kind="action" name="submitButtonTapped:"/>
                 <relationship kind="outlet" name="daysLeftLabel" candidateClass="UILabel"/>
                 <relationship kind="outlet" name="descriptionLabel" candidateClass="UILabel"/>
                 <relationship kind="outlet" name="photosButton" candidateClass="UIButton"/>
@@ -2439,8 +2428,6 @@ image because:</string>
         <class className="RequestFilterViewController" superclassName="UIViewController">
             <source key="sourceIdentifier" type="project" relativePath="./Classes/RequestFilterViewController.h"/>
             <relationships>
-                <relationship kind="action" name="backgroundTapped:"/>
-                <relationship kind="action" name="buttonTapped:"/>
                 <relationship kind="outlet" name="byDateButton" candidateClass="UIButton"/>
                 <relationship kind="outlet" name="byHighestPriceButton" candidateClass="UIButton"/>
                 <relationship kind="outlet" name="byLowestPriceButton" candidateClass="UIButton"/>
@@ -2449,14 +2436,12 @@ image because:</string>
         <class className="RequestReferenceViewController" superclassName="BaseViewController">
             <source key="sourceIdentifier" type="project" relativePath="./Classes/RequestReferenceViewController.h"/>
             <relationships>
-                <relationship kind="action" name="submitButtonTapped:"/>
                 <relationship kind="outlet" name="textView" candidateClass="UITextView"/>
             </relationships>
         </class>
         <class className="RequestsViewController" superclassName="BaseViewController">
             <source key="sourceIdentifier" type="project" relativePath="./Classes/RequestsViewController.h"/>
             <relationships>
-                <relationship kind="action" name="filterButtonTapped:"/>
                 <relationship kind="outlet" name="infoLabel" candidateClass="UILabel"/>
                 <relationship kind="outlet" name="tableView" candidateClass="UITableView"/>
             </relationships>
@@ -2470,7 +2455,6 @@ image because:</string>
         <class className="SettingsViewController" superclassName="UITableViewController">
             <source key="sourceIdentifier" type="project" relativePath="./Classes/SettingsViewController.h"/>
             <relationships>
-                <relationship kind="action" name="backButtonTapped:"/>
                 <relationship kind="outlet" name="emailCell" candidateClass="UITableViewCell"/>
                 <relationship kind="outlet" name="logoutCell" candidateClass="UITableViewCell"/>
             </relationships>

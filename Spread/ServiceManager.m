@@ -137,7 +137,9 @@ static NSString* boundary = nil;
             {
                 NSLog(@"Error: %@", error);
             }
-            if (completion) completion(nil, NO, error);
+            
+            id result = [NSJSONSerialization JSONObjectWithData:data options:0 error:nil]; // error might be in json form
+            if (completion) completion(result, NO, error);
         }
     }];
 }
@@ -221,32 +223,23 @@ static NSString* boundary = nil;
                              @"user[password_confirmation]" : password,
                              };
     
-    NSString* URLString = [NSString stringWithFormat:@"http://dev.spread.cm/users"];
+    NSString* URLString = [NSString stringWithFormat:@"%@/users", baseURL];
     NSURL *URL = [NSURL URLWithString:URLString];
     NSMutableURLRequest *request = [NSMutableURLRequest requestWithURL:URL];
     request.HTTPMethod = @"POST";
     request.HTTPBody = [[params paramString] dataUsingEncoding:NSUTF8StringEncoding];
-    
-    [UIApplication sharedApplication].networkActivityIndicatorVisible = YES;
-    [NSURLConnection sendAsynchronousRequest:request queue:[NSOperationQueue mainQueue] completionHandler:^(NSURLResponse *response, NSData *data, NSError *error) {
+
+    [self sendURLRequest:request completion:^(id response, BOOL success, NSError *error) {
         
-        [UIApplication sharedApplication].networkActivityIndicatorVisible = NO;
-        
-        NSInteger statusCode = [(NSHTTPURLResponse*)response statusCode];
-        
-        if (statusCode == 200)
+        if (success)
         {
-            if (completion) completion(nil, YES, nil);
+            self.oauthToken = response[@"authentication_token"];
+            self.currentUserID = response[@"person_id"];
+            [self loadEntityWithID:self.currentUserID completion:completion];
         }
         else
         {
-            NSLog(@"HTTP Status %d: %@", statusCode, [NSHTTPURLResponse localizedStringForStatusCode:statusCode]);
-            NSLog(@"URL: %@", request.URL);
-            if (error)
-            {
-                NSLog(@"Error: %@", error);
-            }
-            if (completion) completion(nil, NO, error);
+            completion(response, NO, error);
         }
     }];
 }
