@@ -181,7 +181,7 @@ typedef NS_ENUM(NSUInteger, KeyboardType) {
 
 - (void)scrollCellBelowIndexPathToVisible:(NSIndexPath *)indexPath
 {
-    if (indexPath.row < [self.dataSource[indexPath.section] count]  - 1)
+    if (indexPath.row + 1 < [self.dataSource[indexPath.section] count])
     {
         NSIndexPath *indexPathBelow = [NSIndexPath indexPathForRow:indexPath.row + 1 inSection:indexPath.section];
         [self.tableView scrollToRowAtIndexPath:indexPathBelow atScrollPosition:UITableViewScrollPositionBottom animated:YES];
@@ -505,16 +505,8 @@ typedef NS_ENUM(NSUInteger, KeyboardType) {
     
     if ([cell isKindOfClass:[UITableViewCell class]])
     {
-        // If keyboard is not shown, do the scrolling in [keyboardWillShow:]; othwise, scroll here.
-        BOOL shouldScroll = (!self.activeIndexPath);
-        
         self.activeIndexPath = [self.tableView indexPathForCell:cell];
-
-        // Scroll a row below to visible, so the user can continue to input.
-        if (shouldScroll)
-        {
-            [self scrollCellBelowIndexPathToVisible:self.activeIndexPath];
-        }
+        [self scrollCellBelowIndexPathToVisible:self.activeIndexPath];
     }
     
     return YES;
