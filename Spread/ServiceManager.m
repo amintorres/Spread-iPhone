@@ -125,7 +125,7 @@ static NSString* boundary = nil;
                 else
                 {
                     NSLog(@"JSON error: %@", JSONError);
-                    if (completion) completion(nil, NO, JSONError);
+                    if (completion) completion(response, NO, JSONError);
                 }
             }
         }
@@ -173,7 +173,7 @@ static NSString* boundary = nil;
         }
         else
         {
-            completion(nil, NO, error);
+            completion(response, NO, error);
         }
     }];
 }
@@ -261,7 +261,7 @@ static NSString* boundary = nil;
         }
         else
         {
-            completion(nil, NO, error);
+            completion(response, NO, error);
         }
     }];
 }
@@ -281,7 +281,7 @@ static NSString* boundary = nil;
         }
         else
         {
-            completion(nil, NO, error);
+            completion(response, NO, error);
         }
     }];
 }
@@ -298,7 +298,7 @@ static NSString* boundary = nil;
         }
         else
         {
-            completion(nil, NO, error);
+            completion(response, NO, error);
         }
     }];
 }
@@ -317,7 +317,7 @@ static NSString* boundary = nil;
         }
         else
         {
-            completion(nil, NO, error);
+            completion(response, NO, error);
         }
     }];
 }
@@ -337,7 +337,7 @@ static NSString* boundary = nil;
         }
         else
         {
-            completion(nil, NO, error);
+            completion(response, NO, error);
         }
     }];
 }
@@ -539,7 +539,7 @@ static NSString* boundary = nil;
         }
         else
         {
-            if (completion) completion(nil, NO, error);
+            if (completion) completion(response, NO, error);
         }
     }];
 }
