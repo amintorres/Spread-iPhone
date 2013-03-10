@@ -251,7 +251,7 @@ typedef NS_ENUM(NSUInteger, KeyboardType) {
                                       if ( session.isOpen )
                                       {
                                           NSLog(@"Facebook login successed!");
-                                          [[ServiceManager sharedManager] loginWithFacebookToken:session.accessToken completion:[self loginCompletionHandler]];
+                                          [[ServiceManager sharedManager] loginWithFacebookToken:session.accessTokenData.accessToken completion:[self loginCompletionHandler]];
                                       }
                                       
                                       if (error)
