@@ -125,7 +125,7 @@ static NSString* boundary = nil;
                 else
                 {
                     NSLog(@"JSON error: %@", JSONError);
-                    if (completion) completion(response, NO, JSONError);
+                    if (completion) completion(nil, NO, JSONError);
                 }
             }
         }
@@ -133,13 +133,17 @@ static NSString* boundary = nil;
         {
             NSLog(@"HTTP Status %d: %@", statusCode, [NSHTTPURLResponse localizedStringForStatusCode:statusCode]);
             NSLog(@"URL: %@", URLRequest.URL);
-            if (error)
-            {
+            if (error) {
                 NSLog(@"Error: %@", error);
             }
             
-            id result = [NSJSONSerialization JSONObjectWithData:data options:0 error:nil]; // error might be in json form
-            if (completion) completion(result, NO, error);
+            if (data) {
+                id result = [NSJSONSerialization JSONObjectWithData:data options:0 error:nil]; // error might be in json form
+                if (completion) completion(result, NO, error);
+            }
+            else {
+                if (completion) completion(nil, NO, error);
+            }
         }
     }];
 }
