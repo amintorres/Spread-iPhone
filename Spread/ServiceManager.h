@@ -51,7 +51,7 @@ typedef NS_ENUM(NSUInteger, FlagReason) {
 
 - (void)sendUploadURLRequest:(NSURLRequest *)URLRequest completionHandler:(ServiceManagerHandler)completion;
 - (void)uploadImageData:(NSData *)imageData name:(NSString*)name csvTags:(NSString*)csvTags description:(NSString*)description completionHandler:(ServiceManagerHandler)completion;
-- (void)uploadImageData:(NSData *)imageData toRequest:(Request *)photoRequest description:(NSString *)description completionHandler:(ServiceManagerHandler)completion;
+- (void)uploadImageData:(NSData *)imageData toRequest:(Request *)photoRequest completionHandler:(ServiceManagerHandler)completion;
 - (void)updatePhoto:(Photo *)photo name:(NSString*)name csvTags:(NSString*)csvTags description:(NSString*)description completionHandler:(ServiceManagerHandler)completion;
 - (void)deletePhoto:(Photo *)photo completionHandler:(ServiceManagerHandler)completion;
 - (void)flagPhoto:(Photo *)photo reason:(FlagReason)reason completionHandler:(ServiceManagerHandler)completion;

@@ -8,6 +8,7 @@
 
 #import "CameraManager.h"
 #import "EditViewController.h"
+#import "RequestEditViewController.h"
 #import "ReviewViewController.h"
 #import "PhotosViewController.h"
 
@@ -80,12 +81,20 @@
 {
     if ( picker.sourceType == UIImagePickerControllerSourceTypeCamera )
     {
-        NSString *identifier = ([CameraManager sharedManager].request) ? @"RequestEditViewController" : @"EditViewController";
-
-        EditViewController* editViewController = [[UIStoryboard storyboardWithName:@"MainStoryboard" bundle:nil] instantiateViewControllerWithIdentifier:identifier];
-        editViewController.mediaInfo = info;
-        editViewController.editMode = EditModeCreate;
-        [picker pushViewController:editViewController animated:YES];
+        UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"MainStoryboard" bundle:nil];
+        if ([CameraManager sharedManager].request)
+        {
+            RequestEditViewController* controller = [storyboard instantiateViewControllerWithIdentifier:@"RequestEditViewController"];
+            controller.mediaInfo = info;
+            [picker pushViewController:controller animated:YES];
+        }
+        else
+        {
+            EditViewController* controller = [storyboard instantiateViewControllerWithIdentifier:@"EditViewController"];
+            controller.mediaInfo = info;
+            controller.editMode = EditModeCreate;
+            [picker pushViewController:controller animated:YES];
+        }
     }
     else
     {

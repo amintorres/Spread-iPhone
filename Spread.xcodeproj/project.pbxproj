@@ -136,6 +136,7 @@
 		7C886F5515D0BCA00024603C /* icon-gray-photo@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 7C886F5315D0BCA00024603C /* icon-gray-photo@2x.png */; };
 		7C886F6415D0C73F0024603C /* NSManagedObject+Utilities.m in Sources */ = {isa = PBXBuildFile; fileRef = 7C886F6315D0C73F0024603C /* NSManagedObject+Utilities.m */; };
 		7C8D9BC014A28F3200D1D5DC /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7C8D9BBF14A28F3200D1D5DC /* QuartzCore.framework */; };
+		7C91BF1416F4D43100B31A93 /* RequestEditViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7C91BF1316F4D43100B31A93 /* RequestEditViewController.m */; };
 		7C9F93B4149960C300126908 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7C9F93B3149960C300126908 /* UIKit.framework */; };
 		7C9F93B6149960C300126908 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7C9F93B5149960C300126908 /* Foundation.framework */; };
 		7C9F93B8149960C300126908 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7C9F93B7149960C300126908 /* CoreGraphics.framework */; };
@@ -404,6 +405,8 @@
 		7C8D9BC314A2994500D1D5DC /* ServiceManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ServiceManager.m; sourceTree = "<group>"; };
 		7C8E2A2414C351AF00E6E714 /* PlaceholderTextView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PlaceholderTextView.h; sourceTree = "<group>"; };
 		7C8E2A2514C351AF00E6E714 /* PlaceholderTextView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PlaceholderTextView.m; sourceTree = "<group>"; };
+		7C91BF1216F4D43100B31A93 /* RequestEditViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RequestEditViewController.h; sourceTree = "<group>"; };
+		7C91BF1316F4D43100B31A93 /* RequestEditViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RequestEditViewController.m; sourceTree = "<group>"; };
 		7C9F93AF149960C300126908 /* Spread.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Spread.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		7C9F93B3149960C300126908 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		7C9F93B5149960C300126908 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
@@ -525,6 +528,8 @@
 				7CFAFA1314C38DA500597A6D /* ReviewViewController.xib */,
 				7C7F7AB114AB74AE00652401 /* EditViewController.h */,
 				7C7F7AB214AB74AE00652401 /* EditViewController.m */,
+				7C91BF1216F4D43100B31A93 /* RequestEditViewController.h */,
+				7C91BF1316F4D43100B31A93 /* RequestEditViewController.m */,
 				7C5DA10F1674E2C3002D340C /* UploadViewController.h */,
 				7C5DA1101674E2C3002D340C /* UploadViewController.m */,
 				7C5DA1111674E2C3002D340C /* UploadViewController.xib */,
@@ -1314,6 +1319,7 @@
 				7C2F87A216E2813C0042135A /* FlagCell.m in Sources */,
 				7C30A2F016E2B44300A2A330 /* Permission.m in Sources */,
 				7C30A2F616E2B44E00A2A330 /* Photo.m in Sources */,
+				7C91BF1416F4D43100B31A93 /* RequestEditViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

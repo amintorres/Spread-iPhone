@@ -403,9 +403,10 @@ static NSString* boundary = nil;
     
     if (imageData)
     {
+        [self sendUploadURLRequest:URLRequest completionHandler:NULL];
+
         // 'Complete' means prepare complete and ready to upload.
         if (completion) completion(nil, YES, nil);
-        [self sendUploadURLRequest:URLRequest completionHandler:NULL];
     }
     else
     {
@@ -489,7 +490,7 @@ static NSString* boundary = nil;
     [self sendURLRequest:URLRequest withImageData:imageData name:name csvTags:csvTags description:description completion:completion];
 }
 
-- (void)uploadImageData:(NSData *)imageData toRequest:(Request *)photoRequest description:(NSString *)description completionHandler:(ServiceManagerHandler)completion
+- (void)uploadImageData:(NSData *)imageData toRequest:(Request *)photoRequest completionHandler:(ServiceManagerHandler)completion
 {
     if (!imageData)
     {

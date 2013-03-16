@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="2.0" toolsVersion="3084" systemVersion="12C2037" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" initialViewController="zC0-jL-gdq">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="2.0" toolsVersion="3084" systemVersion="12D78" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" initialViewController="zC0-jL-gdq">
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="2083"/>
     </dependencies>
@@ -556,159 +556,126 @@
             </objects>
             <point key="canvasLocation" x="796" y="784"/>
         </scene>
-        <!--Edit View Controller-->
-        <scene sceneID="zhn-lA-fCv">
+        <!--Request Edit View Controller-->
+        <scene sceneID="n4A-hc-BT5">
             <objects>
-                <tableViewController storyboardIdentifier="RequestEditViewController" id="d88-Su-lEL" customClass="EditViewController" sceneMemberID="viewController">
-                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="static" style="grouped" separatorStyle="singleLineEtched" allowsSelection="NO" rowHeight="44" sectionHeaderHeight="10" sectionFooterHeight="10" id="ChW-tw-0G0">
+                <viewController storyboardIdentifier="RequestEditViewController" id="IU8-cu-11N" customClass="RequestEditViewController" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="jTN-pb-HV7">
                         <rect key="frame" x="0.0" y="20" width="320" height="460"/>
-                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                        <view key="tableHeaderView" contentMode="scaleToFill" id="Kpy-Xa-9f7">
-                            <rect key="frame" x="0.0" y="0.0" width="320" height="70"/>
-                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                            <subviews>
-                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="jC1-5o-PF7">
-                                    <constraints>
-                                        <constraint firstAttribute="width" constant="80" id="X4a-sb-3at"/>
-                                        <constraint firstAttribute="height" constant="44" id="kMP-Yw-9Lk"/>
-                                    </constraints>
-                                    <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
-                                    <state key="normal" title="Cancel" backgroundImage="texture-gray.png">
-                                        <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                        <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
-                                    </state>
-                                    <state key="highlighted">
-                                        <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                    </state>
-                                    <connections>
-                                        <action selector="cancelButtonTapped:" destination="d88-Su-lEL" eventType="touchUpInside" id="Z8h-Na-jKh"/>
-                                    </connections>
-                                </button>
-                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="SXZ-MS-SZ7">
-                                    <constraints>
-                                        <constraint firstAttribute="width" constant="80" id="UXU-JR-Wo9"/>
-                                    </constraints>
-                                    <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
-                                    <state key="normal" title="Save" backgroundImage="texture-blue.png">
-                                        <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                        <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
-                                    </state>
-                                    <state key="highlighted">
-                                        <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                    </state>
-                                    <connections>
-                                        <action selector="saveButtonTapped:" destination="d88-Su-lEL" eventType="touchUpInside" id="ToL-2e-GQa"/>
-                                    </connections>
-                                </button>
-                            </subviews>
-                            <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
-                            <constraints>
-                                <constraint firstItem="SXZ-MS-SZ7" firstAttribute="leading" secondItem="jC1-5o-PF7" secondAttribute="trailing" constant="8" symbolic="YES" type="default" id="Xv2-sM-q25"/>
-                                <constraint firstItem="SXZ-MS-SZ7" firstAttribute="bottom" secondItem="jC1-5o-PF7" secondAttribute="bottom" type="default" id="ZVt-QG-OwT"/>
-                                <constraint firstItem="jC1-5o-PF7" firstAttribute="leading" secondItem="Kpy-Xa-9f7" secondAttribute="leading" constant="142" id="fVA-Uo-W6a"/>
-                                <constraint firstItem="SXZ-MS-SZ7" firstAttribute="top" secondItem="jC1-5o-PF7" secondAttribute="top" type="default" id="jg8-Ep-HhI"/>
-                                <constraint firstItem="jC1-5o-PF7" firstAttribute="centerY" secondItem="Kpy-Xa-9f7" secondAttribute="centerY" type="default" id="sgV-kf-Y1F"/>
-                            </constraints>
-                        </view>
-                        <view key="tableFooterView" contentMode="scaleToFill" id="P4u-75-1Vn">
-                            <rect key="frame" x="0.0" y="292" width="320" height="50"/>
-                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                            <subviews>
-                                <button hidden="YES" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="G6l-7c-rMn" customClass="RoundedRectButton">
-                                    <constraints>
-                                        <constraint firstAttribute="height" constant="44" id="EK5-VE-Q5F"/>
-                                        <constraint firstAttribute="width" constant="300" id="dCk-Vu-zHT"/>
-                                    </constraints>
-                                    <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
-                                    <state key="normal" title="Delete this photo" backgroundImage="texture-red.png">
-                                        <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                        <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
-                                    </state>
-                                    <state key="highlighted">
-                                        <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                    </state>
-                                    <connections>
-                                        <action selector="deleteButtonTapped:" destination="d88-Su-lEL" eventType="touchUpInside" id="iEi-Xw-odR"/>
-                                    </connections>
-                                </button>
-                                <switch opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" on="YES" translatesAutoresizingMaskIntoConstraints="NO" id="ijc-ov-HjW">
-                                    <connections>
-                                        <action selector="rememberDetailsSwitchValueChanged:" destination="d88-Su-lEL" eventType="valueChanged" id="UaI-kd-fyV"/>
-                                    </connections>
-                                </switch>
-                                <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="Remember these details" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="5Fi-Tk-4Mb">
-                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                    <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
-                                    <nil key="highlightedColor"/>
-                                </label>
-                            </subviews>
-                            <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
-                            <constraints>
-                                <constraint firstItem="G6l-7c-rMn" firstAttribute="centerX" secondItem="P4u-75-1Vn" secondAttribute="centerX" type="default" id="47t-ns-ZUd"/>
-                                <constraint firstAttribute="centerY" secondItem="5Fi-Tk-4Mb" secondAttribute="centerY" type="user" id="a9z-pn-RQP"/>
-                                <constraint firstItem="5Fi-Tk-4Mb" firstAttribute="leading" secondItem="P4u-75-1Vn" secondAttribute="leading" constant="96" id="nkX-b4-ppG"/>
-                                <constraint firstAttribute="centerY" secondItem="ijc-ov-HjW" secondAttribute="centerY" type="user" id="tOY-cX-gMq"/>
-                                <constraint firstAttribute="centerY" secondItem="G6l-7c-rMn" secondAttribute="centerY" type="user" id="tTg-Gn-Iu5"/>
-                                <constraint firstItem="ijc-ov-HjW" firstAttribute="leading" secondItem="G6l-7c-rMn" secondAttribute="leading" type="default" id="xEY-Kp-rRJ"/>
-                            </constraints>
-                        </view>
-                        <sections>
-                            <tableViewSection id="FuX-h9-B7N">
-                                <cells>
-                                    <tableViewCell contentMode="scaleToFill" selectionStyle="blue" indentationWidth="10" rowHeight="200" id="Th6-Xh-QCl">
-                                        <rect key="frame" x="0.0" y="80" width="320" height="202"/>
-                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                        <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
-                                            <rect key="frame" x="10" y="1" width="300" height="199"/>
-                                            <autoresizingMask key="autoresizingMask"/>
-                                            <subviews>
-                                                <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="Description" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="CQe-ar-BxQ">
-                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                                    <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
-                                                    <color key="highlightedColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                                </label>
-                                                <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="nnI-iP-vYB" customClass="PlaceholderTextView">
-                                                    <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
-                                                    <constraints>
-                                                        <constraint firstAttribute="width" constant="270" id="kzf-iK-Bi7"/>
-                                                        <constraint firstAttribute="height" constant="150" id="ojq-MW-HQU"/>
-                                                    </constraints>
-                                                    <string key="text">Lorem ipsum dolor sit er elit lamet, consectetaur cillium adipisicing pecu, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. Nam liber te conscient to factor tum poen legum odioque civiuda.</string>
-                                                    <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                                    <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
-                                                    <connections>
-                                                        <outlet property="delegate" destination="d88-Su-lEL" id="J8u-Yd-nS2"/>
-                                                    </connections>
-                                                </textView>
-                                            </subviews>
-                                            <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
-                                        </view>
+                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                        <subviews>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Kpy-Xa-9f7">
+                                <subviews>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="jC1-5o-PF7">
                                         <constraints>
-                                            <constraint firstItem="CQe-ar-BxQ" firstAttribute="top" secondItem="Th6-Xh-QCl" secondAttribute="top" constant="12" id="Tuw-5F-pwg"/>
-                                            <constraint firstItem="nnI-iP-vYB" firstAttribute="centerX" secondItem="Th6-Xh-QCl" secondAttribute="centerX" type="default" id="msw-6H-XLS"/>
-                                            <constraint firstItem="nnI-iP-vYB" firstAttribute="top" secondItem="Th6-Xh-QCl" secondAttribute="top" constant="31" id="svc-MI-Xtb"/>
-                                            <constraint firstItem="CQe-ar-BxQ" firstAttribute="leading" secondItem="Th6-Xh-QCl" secondAttribute="leading" constant="30" id="uLA-8w-aKQ"/>
+                                            <constraint firstAttribute="width" constant="80" type="user" id="X4a-sb-3at"/>
                                         </constraints>
-                                    </tableViewCell>
-                                </cells>
-                            </tableViewSection>
-                        </sections>
-                        <connections>
-                            <outlet property="dataSource" destination="d88-Su-lEL" id="Kbn-61-3WH"/>
-                            <outlet property="delegate" destination="d88-Su-lEL" id="xIS-la-Rew"/>
-                        </connections>
-                    </tableView>
+                                        <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
+                                        <state key="normal" title="Cancel" backgroundImage="texture-gray.png">
+                                            <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                            <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                        </state>
+                                        <state key="highlighted">
+                                            <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                        </state>
+                                        <connections>
+                                            <action selector="cancelButtonTapped:" destination="IU8-cu-11N" eventType="touchUpInside" id="4mt-9Z-s4q"/>
+                                        </connections>
+                                    </button>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="SXZ-MS-SZ7">
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="44" type="user" id="0KY-Ce-0By"/>
+                                            <constraint firstAttribute="width" constant="80" type="user" id="UXU-JR-Wo9"/>
+                                        </constraints>
+                                        <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
+                                        <state key="normal" title="Save" backgroundImage="texture-blue.png">
+                                            <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                            <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                        </state>
+                                        <state key="highlighted">
+                                            <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                        </state>
+                                        <connections>
+                                            <action selector="saveButtonTapped:" destination="IU8-cu-11N" eventType="touchUpInside" id="oaC-I9-RHQ"/>
+                                        </connections>
+                                    </button>
+                                </subviews>
+                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                <constraints>
+                                    <constraint firstItem="jC1-5o-PF7" firstAttribute="centerY" secondItem="Kpy-Xa-9f7" secondAttribute="centerY" type="default" id="GvM-1o-1de"/>
+                                    <constraint firstAttribute="trailing" secondItem="SXZ-MS-SZ7" secondAttribute="trailing" constant="10" type="user" id="NH4-c9-jCO"/>
+                                    <constraint firstAttribute="height" constant="70" type="user" id="Xdh-Zi-fJZ"/>
+                                    <constraint firstItem="SXZ-MS-SZ7" firstAttribute="leading" secondItem="jC1-5o-PF7" secondAttribute="trailing" constant="8" symbolic="YES" type="user" id="Xv2-sM-q25"/>
+                                    <constraint firstItem="SXZ-MS-SZ7" firstAttribute="bottom" secondItem="jC1-5o-PF7" secondAttribute="bottom" type="user" id="ZVt-QG-OwT"/>
+                                    <constraint firstItem="SXZ-MS-SZ7" firstAttribute="top" secondItem="jC1-5o-PF7" secondAttribute="top" type="user" id="jg8-Ep-HhI"/>
+                                </constraints>
+                            </view>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="5Oo-7R-une">
+                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="40" type="user" id="LAg-ld-n30"/>
+                                </constraints>
+                            </view>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="irz-fC-OBg">
+                                <subviews>
+                                    <button opaque="NO" userInteractionEnabled="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ECE-sl-993">
+                                        <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
+                                        <state key="normal">
+                                            <color key="titleColor" red="0.19607843459999999" green="0.30980393290000002" blue="0.52156865600000002" alpha="1" colorSpace="calibratedRGB"/>
+                                            <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                        </state>
+                                        <state key="highlighted">
+                                            <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                        </state>
+                                    </button>
+                                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" translatesAutoresizingMaskIntoConstraints="NO" id="Rdw-ui-jYd">
+                                        <constraints>
+                                            <constraint firstAttribute="width" constant="80" id="zhU-vz-hsN"/>
+                                            <constraint firstAttribute="height" constant="80" id="zsZ-R2-WHb"/>
+                                        </constraints>
+                                    </imageView>
+                                    <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="Looks good!" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="1fQ-zu-jot">
+                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                        <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                        <color key="highlightedColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                    </label>
+                                </subviews>
+                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                <constraints>
+                                    <constraint firstItem="Rdw-ui-jYd" firstAttribute="leading" secondItem="irz-fC-OBg" secondAttribute="leading" constant="20" symbolic="YES" type="default" id="586-fv-7fh"/>
+                                    <constraint firstItem="1fQ-zu-jot" firstAttribute="leading" secondItem="Rdw-ui-jYd" secondAttribute="trailing" constant="8" symbolic="YES" type="default" id="AVV-mL-5g0"/>
+                                    <constraint firstAttribute="height" constant="100" type="user" id="HLz-PS-Amw"/>
+                                    <constraint firstItem="ECE-sl-993" firstAttribute="leading" secondItem="irz-fC-OBg" secondAttribute="leading" constant="10" type="user" id="Iq0-9s-CZF"/>
+                                    <constraint firstItem="Rdw-ui-jYd" firstAttribute="centerY" secondItem="ECE-sl-993" secondAttribute="centerY" type="default" id="PId-wH-dtQ"/>
+                                    <constraint firstItem="1fQ-zu-jot" firstAttribute="centerY" secondItem="Rdw-ui-jYd" secondAttribute="centerY" type="default" id="R1D-YL-6Dt"/>
+                                    <constraint firstItem="ECE-sl-993" firstAttribute="top" secondItem="irz-fC-OBg" secondAttribute="top" type="user" id="Ywt-ga-7H7"/>
+                                    <constraint firstAttribute="bottom" secondItem="ECE-sl-993" secondAttribute="bottom" type="user" id="mHI-6F-XBE"/>
+                                    <constraint firstAttribute="trailing" secondItem="ECE-sl-993" secondAttribute="trailing" constant="10" type="user" id="uIg-8T-OZU"/>
+                                </constraints>
+                            </view>
+                        </subviews>
+                        <color key="backgroundColor" white="0.90000000000000002" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="irz-fC-OBg" firstAttribute="trailing" secondItem="jTN-pb-HV7" secondAttribute="trailing" type="user" id="40Y-rJ-J3b"/>
+                            <constraint firstItem="Kpy-Xa-9f7" firstAttribute="top" secondItem="jTN-pb-HV7" secondAttribute="top" type="user" id="7wZ-iJ-sAc"/>
+                            <constraint firstItem="5Oo-7R-une" firstAttribute="top" secondItem="Kpy-Xa-9f7" secondAttribute="bottom" constant="8" symbolic="YES" type="user" id="BPr-d1-pga"/>
+                            <constraint firstItem="5Oo-7R-une" firstAttribute="leading" secondItem="jTN-pb-HV7" secondAttribute="leading" type="default" id="Coh-kt-9gm"/>
+                            <constraint firstItem="irz-fC-OBg" firstAttribute="top" secondItem="5Oo-7R-une" secondAttribute="bottom" constant="8" symbolic="YES" type="user" id="KfH-Zb-4Fc"/>
+                            <constraint firstItem="5Oo-7R-une" firstAttribute="trailing" secondItem="jTN-pb-HV7" secondAttribute="trailing" type="default" id="d5n-Fx-Aqc"/>
+                            <constraint firstItem="irz-fC-OBg" firstAttribute="leading" secondItem="jTN-pb-HV7" secondAttribute="leading" type="user" id="iP8-CU-9Fb"/>
+                            <constraint firstItem="Kpy-Xa-9f7" firstAttribute="trailing" secondItem="jTN-pb-HV7" secondAttribute="trailing" type="user" id="pKO-T2-bgY"/>
+                            <constraint firstItem="Kpy-Xa-9f7" firstAttribute="leading" secondItem="jTN-pb-HV7" secondAttribute="leading" type="user" id="suP-ey-SVh"/>
+                        </constraints>
+                    </view>
                     <connections>
-                        <outlet property="deleteButton" destination="G6l-7c-rMn" id="WVp-qN-mTr"/>
-                        <outlet property="descriptionTextView" destination="nnI-iP-vYB" id="Eyf-Z8-IFP"/>
-                        <outlet property="rememberDetailsLabel" destination="5Fi-Tk-4Mb" id="aeA-cA-CdW"/>
-                        <outlet property="rememberDetailsSwitch" destination="ijc-ov-HjW" id="5MB-AQ-L2D"/>
+                        <outlet property="imageView" destination="Rdw-ui-jYd" id="QC4-ca-zQk"/>
+                        <outlet property="textLabel" destination="1fQ-zu-jot" id="Txf-vb-t28"/>
+                        <outlet property="uploadContainer" destination="5Oo-7R-une" id="jVe-3S-LCz"/>
                     </connections>
-                </tableViewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="Yn7-L3-TY0" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="LYw-9Q-6Sk" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1282" y="784"/>
+            <point key="canvasLocation" x="1244" y="784"/>
         </scene>
         <!--Request Filter View Controller-->
         <scene sceneID="kAj-Ad-Pfu">
@@ -2097,7 +2064,6 @@ image because:</string>
                                     </state>
                                     <connections>
                                         <action selector="backButtonTapped:" destination="PTK-y1-wNG" eventType="touchUpInside" id="zQS-zT-e8v"/>
-                                        <action selector="cancelButtonTapped:" destination="d88-Su-lEL" eventType="touchUpInside" id="IOS-Q9-ROm"/>
                                     </connections>
                                 </button>
                                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Hwl-ER-O6z" customClass="RoundedBorderButton">
@@ -2113,7 +2079,6 @@ image because:</string>
                                         <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                     </state>
                                     <connections>
-                                        <action selector="saveButtonTapped:" destination="d88-Su-lEL" eventType="touchUpInside" id="HgJ-ah-B12"/>
                                         <action selector="saveButtonTapped:" destination="PTK-y1-wNG" eventType="touchUpInside" id="m7u-kM-Gs4"/>
                                     </connections>
                                 </button>
@@ -2352,8 +2317,6 @@ image because:</string>
             <relationships>
                 <relationship kind="action" name="cancelButtonTapped:"/>
                 <relationship kind="action" name="deleteButtonTapped:"/>
-                <relationship kind="action" name="rememberDetailsSwitchValueChanged:" candidateClass="UISwitch"/>
-                <relationship kind="action" name="saveButtonTapped:"/>
                 <relationship kind="outlet" name="deleteButton" candidateClass="UIButton"/>
                 <relationship kind="outlet" name="descriptionTextView" candidateClass="PlaceholderTextView"/>
                 <relationship kind="outlet" name="rememberDetailsLabel" candidateClass="UILabel"/>
@@ -2371,6 +2334,10 @@ image because:</string>
         </class>
         <class className="FlagViewController" superclassName="UITableViewController">
             <source key="sourceIdentifier" type="project" relativePath="./Classes/FlagViewController.h"/>
+            <relationships>
+                <relationship kind="action" name="backButtonTapped:"/>
+                <relationship kind="action" name="saveButtonTapped:"/>
+            </relationships>
         </class>
         <class className="IntroTableViewController" superclassName="UITableViewController">
             <source key="sourceIdentifier" type="project" relativePath="./Classes/IntroTableViewController.h"/>
@@ -2378,7 +2345,6 @@ image because:</string>
                 <relationship kind="action" name="facebookLoginButtonTapped:"/>
                 <relationship kind="action" name="goBack:"/>
                 <relationship kind="action" name="loginButtonTapped:"/>
-                <relationship kind="action" name="registerButtonTapped:"/>
                 <relationship kind="outlet" name="captionLabel" candidateClass="UILabel"/>
                 <relationship kind="outlet" name="headerImageView" candidateClass="UIImageView"/>
                 <relationship kind="outlet" name="logoButton" candidateClass="UIButton"/>
@@ -2416,6 +2382,8 @@ image because:</string>
         <class className="RequestDetailViewController" superclassName="BaseViewController">
             <source key="sourceIdentifier" type="project" relativePath="./Classes/RequestDetailViewController.h"/>
             <relationships>
+                <relationship kind="action" name="photosButtonTapped:"/>
+                <relationship kind="action" name="submitButtonTapped:"/>
                 <relationship kind="outlet" name="daysLeftLabel" candidateClass="UILabel"/>
                 <relationship kind="outlet" name="descriptionLabel" candidateClass="UILabel"/>
                 <relationship kind="outlet" name="photosButton" candidateClass="UIButton"/>
@@ -2425,9 +2393,21 @@ image because:</string>
                 <relationship kind="outlet" name="requesterLabel" candidateClass="UILabel"/>
             </relationships>
         </class>
+        <class className="RequestEditViewController" superclassName="UIViewController">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/RequestEditViewController.h"/>
+            <relationships>
+                <relationship kind="action" name="cancelButtonTapped:"/>
+                <relationship kind="action" name="saveButtonTapped:"/>
+                <relationship kind="outlet" name="imageView" candidateClass="UIImageView"/>
+                <relationship kind="outlet" name="textLabel" candidateClass="UILabel"/>
+                <relationship kind="outlet" name="uploadContainer" candidateClass="UIView"/>
+            </relationships>
+        </class>
         <class className="RequestFilterViewController" superclassName="UIViewController">
             <source key="sourceIdentifier" type="project" relativePath="./Classes/RequestFilterViewController.h"/>
             <relationships>
+                <relationship kind="action" name="backgroundTapped:"/>
+                <relationship kind="action" name="buttonTapped:"/>
                 <relationship kind="outlet" name="byDateButton" candidateClass="UIButton"/>
                 <relationship kind="outlet" name="byHighestPriceButton" candidateClass="UIButton"/>
                 <relationship kind="outlet" name="byLowestPriceButton" candidateClass="UIButton"/>
@@ -2436,6 +2416,7 @@ image because:</string>
         <class className="RequestReferenceViewController" superclassName="BaseViewController">
             <source key="sourceIdentifier" type="project" relativePath="./Classes/RequestReferenceViewController.h"/>
             <relationships>
+                <relationship kind="action" name="submitButtonTapped:"/>
                 <relationship kind="outlet" name="textView" candidateClass="UITextView"/>
             </relationships>
         </class>
@@ -2446,15 +2427,13 @@ image because:</string>
                 <relationship kind="outlet" name="tableView" candidateClass="UITableView"/>
             </relationships>
         </class>
-        <class className="RoundedBorderButton" superclassName="UIButton">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/RoundedBorderButton.h"/>
-        </class>
         <class className="RoundedRectButton" superclassName="AppFontButton">
             <source key="sourceIdentifier" type="project" relativePath="./Classes/RoundedRectButton.h"/>
         </class>
         <class className="SettingsViewController" superclassName="UITableViewController">
             <source key="sourceIdentifier" type="project" relativePath="./Classes/SettingsViewController.h"/>
             <relationships>
+                <relationship kind="action" name="backButtonTapped:"/>
                 <relationship kind="outlet" name="emailCell" candidateClass="UITableViewCell"/>
                 <relationship kind="outlet" name="logoutCell" candidateClass="UITableViewCell"/>
             </relationships>

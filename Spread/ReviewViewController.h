@@ -14,7 +14,4 @@
 @property (strong, nonatomic) IBOutlet UIImageView *imageView;
 @property (strong, nonatomic) NSDictionary* mediaInfo;
 
-- (IBAction)useButtonTapped:(id)sender;
-- (IBAction)retakeButtonTapped:(id)sender;
-
 @end

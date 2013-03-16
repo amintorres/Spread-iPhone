@@ -7,18 +7,14 @@
 //
 
 #import "ReviewViewController.h"
+#import "RequestEditViewController.h"
 #import "EditViewController.h"
 #import "CameraManager.h"
 
 
 @implementation ReviewViewController
 
-@synthesize imageView;
-@synthesize mediaInfo;
-
-
-#pragma mark -
-#pragma mark View lifecycle
+#pragma mark - View lifecycle
 
 - (void)viewDidLoad
 {
@@ -27,30 +23,26 @@
     self.title = @"Preview";
     self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithTitle:@"Use" style:UIBarButtonItemStyleDone target:self action:@selector(useButtonTapped:)];
     
-    UIImage* image = [mediaInfo objectForKey:UIImagePickerControllerOriginalImage];
+    UIImage* image = [self.mediaInfo objectForKey:UIImagePickerControllerOriginalImage];
     self.imageView.image = image;
-}
-
-- (void)viewDidUnload
-{
-    [self setImageView:nil];
-    [super viewDidUnload];
-}
-
-- (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation
-{
-    return YES;
 }
 
 - (IBAction)useButtonTapped:(id)sender
 {
-    NSString *identifier = ([CameraManager sharedManager].request) ? @"RequestEditViewController" : @"EditViewController";
-
-    EditViewController* editViewController = [[UIStoryboard storyboardWithName:@"MainStoryboard" bundle:nil] instantiateViewControllerWithIdentifier:identifier];
-    editViewController.mediaInfo = mediaInfo;
-    editViewController.editMode = EditModeCreate;
-    
-    [self.navigationController pushViewController:editViewController animated:YES];
+    UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"MainStoryboard" bundle:nil];
+    if ([CameraManager sharedManager].request)
+    {
+        RequestEditViewController* controller = [storyboard instantiateViewControllerWithIdentifier:@"RequestEditViewController"];
+        controller.mediaInfo = self.mediaInfo;
+        [self.navigationController pushViewController:controller animated:YES];
+    }
+    else
+    {
+        EditViewController* controller = [storyboard instantiateViewControllerWithIdentifier:@"EditViewController"];
+        controller.mediaInfo = self.mediaInfo;
+        controller.editMode = EditModeCreate;
+        [self.navigationController pushViewController:controller animated:YES];
+    }
 }
 
 - (IBAction)retakeButtonTapped:(id)sender
