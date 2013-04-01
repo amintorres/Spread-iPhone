@@ -67,7 +67,7 @@ static NSString* boundary = nil;
 {
     if (!self.oauthToken)
     {
-        NSLog(@"Error! No oauth token!");
+        DLog(@"Error! No oauth token!");
         return;
     }
     
@@ -112,7 +112,7 @@ static NSString* boundary = nil;
             
             if (!JSONError)
             {
-                NSLog(@"result: %@", result);
+                DLog(@"result: %@", result);
                 if (completion) completion(result, YES, nil);
             }
             else
@@ -124,17 +124,17 @@ static NSString* boundary = nil;
                 }
                 else
                 {
-                    NSLog(@"JSON error: %@", JSONError);
+                    DLog(@"JSON error: %@", JSONError);
                     if (completion) completion(nil, NO, JSONError);
                 }
             }
         }
         else
         {
-            NSLog(@"HTTP Status %d: %@", statusCode, [NSHTTPURLResponse localizedStringForStatusCode:statusCode]);
-            NSLog(@"URL: %@", URLRequest.URL);
+            DLog(@"HTTP Status %d: %@", statusCode, [NSHTTPURLResponse localizedStringForStatusCode:statusCode]);
+            DLog(@"URL: %@", URLRequest.URL);
             if (error) {
-                NSLog(@"Error: %@", error);
+                DLog(@"Error: %@", error);
             }
             
             if (data) {
@@ -422,16 +422,16 @@ static NSString* boundary = nil;
     [ConnectionHelper sendAsynchronousRequest:URLRequest
                            didReceiveResponse:^(NSURLResponse *response) {
                                
-                               NSLog(@"NSURLResponse %@", response);
+                               DLog(@"NSURLResponse %@", response);
                                
                            } didSendData:^(float progress) {
                                
-                               NSLog(@"Upload progress: %f", progress);
+                               DLog(@"Upload progress: %f", progress);
                                [[NSNotificationCenter defaultCenter] postNotificationName:SpreadNotificationUploadProgressChanged object:self];
                                
                            } didWriteData:^(float progress) {
                                
-                               NSLog(@"Download progress: %f", progress);
+                               DLog(@"Download progress: %f", progress);
                                
                            } completion:^(id data, BOOL success, NSError *error) {
                                
@@ -439,13 +439,13 @@ static NSString* boundary = nil;
                                {
                                    NSError* JSONError = nil;
                                    id result = [NSJSONSerialization JSONObjectWithData:data options:0 error:&JSONError];
-                                   NSLog(@"result: %@", result);
+                                   DLog(@"result: %@", result);
                                    if (completion) completion(nil, YES, nil);
                                    [self.uploadQueue removeObject:helper];
                                }
                                else
                                {
-                                   NSLog(@"error: %@", error);
+                                   DLog(@"error: %@", error);
                                    if (completion) completion(nil, NO, error);
                                }
                                

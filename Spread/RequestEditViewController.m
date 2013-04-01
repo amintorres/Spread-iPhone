@@ -107,7 +107,7 @@
         
     } failureBlock:^(NSError *error) {
         
-        NSLog(@"Error loading image: %@", error);
+        DLog(@"Error loading image: %@", error);
     }];
 }
 

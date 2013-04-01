@@ -42,11 +42,4 @@
 }
 
 
-#pragma mark - Table View
-
-- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
-{
-    NSLog(@"");
-}
-
 @end

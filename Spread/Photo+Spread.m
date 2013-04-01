@@ -81,7 +81,7 @@
             }
             else
             {
-                NSLog(@"Error: %@", error);
+                DLog(@"Error: %@", error);
                 if (completion) completion(nil, NO, error);
             }
         }];
@@ -109,7 +109,7 @@
         }
         else
         {
-            NSLog(@"Error loading favorite ID: %@", error);
+            DLog(@"Error loading favorite ID: %@", error);
             if (completion) completion(nil, NO, error);
         }
     }];
