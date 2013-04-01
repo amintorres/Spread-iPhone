@@ -24,6 +24,7 @@
 @property (strong, nonatomic) IBOutlet UILabel *quantityLabel;
 @property (strong, nonatomic) IBOutlet UILabel *daysLeftLabel;
 @property (strong, nonatomic) IBOutlet UIButton *photosButton;
+@property (strong, nonatomic) IBOutlet UIButton *submitButton;
 @end
 
 
@@ -44,6 +45,14 @@
     self.daysLeftLabel.text = [NSString stringWithFormat:@"%02d", self.request.daysLeft];
     
     [self.photosButton setTitle:[NSString stringWithFormat:@"Photos (%d)", [self.request.photos count]] forState:UIControlStateNormal];
+    
+    self.submitButton.titleLabel.adjustsFontSizeToFitWidth = YES;
+    
+    if ([self.request.requester.userID isEqual:[User currentUser].userID])
+    {
+        self.submitButton.enabled = NO;
+        [self.submitButton setTitle:@"Cannot submit to your own request" forState:UIControlStateNormal];
+    }
 }
 
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender

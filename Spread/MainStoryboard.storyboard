@@ -1571,6 +1571,7 @@ needed</string>
                                             <constraint firstAttribute="height" constant="40" type="user" id="ViH-9b-KIf"/>
                                         </constraints>
                                         <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
+                                        <inset key="titleEdgeInsets" minX="4" minY="0.0" maxX="4" maxY="0.0"/>
                                         <state key="normal" title="Submit photos to this request" backgroundImage="texture-blue.png">
                                             <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                             <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
@@ -1639,6 +1640,7 @@ needed</string>
                         <outlet property="quantityLabel" destination="yci-iH-gLy" id="rEG-Ly-P1h"/>
                         <outlet property="requesterImageView" destination="REH-wX-7o7" id="Q2Z-Dy-Dwi"/>
                         <outlet property="requesterLabel" destination="T8N-73-fMD" id="Tt9-uA-ZTE"/>
+                        <outlet property="submitButton" destination="ZWE-I8-sId" id="sfY-wg-zze"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="vCM-no-enj" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -2314,10 +2316,6 @@ image because:</string>
         </class>
         <class className="FlagViewController" superclassName="UITableViewController">
             <source key="sourceIdentifier" type="project" relativePath="./Classes/FlagViewController.h"/>
-            <relationships>
-                <relationship kind="action" name="backButtonTapped:"/>
-                <relationship kind="action" name="saveButtonTapped:"/>
-            </relationships>
         </class>
         <class className="IntroTableViewController" superclassName="UITableViewController">
             <source key="sourceIdentifier" type="project" relativePath="./Classes/IntroTableViewController.h"/>
@@ -2371,6 +2369,7 @@ image because:</string>
                 <relationship kind="outlet" name="quantityLabel" candidateClass="UILabel"/>
                 <relationship kind="outlet" name="requesterImageView" candidateClass="UIImageView"/>
                 <relationship kind="outlet" name="requesterLabel" candidateClass="UILabel"/>
+                <relationship kind="outlet" name="submitButton" candidateClass="UIButton"/>
             </relationships>
         </class>
         <class className="RequestEditViewController" superclassName="UIViewController">
@@ -2386,8 +2385,6 @@ image because:</string>
         <class className="RequestFilterViewController" superclassName="UIViewController">
             <source key="sourceIdentifier" type="project" relativePath="./Classes/RequestFilterViewController.h"/>
             <relationships>
-                <relationship kind="action" name="backgroundTapped:"/>
-                <relationship kind="action" name="buttonTapped:"/>
                 <relationship kind="outlet" name="byDateButton" candidateClass="UIButton"/>
                 <relationship kind="outlet" name="byHighestPriceButton" candidateClass="UIButton"/>
                 <relationship kind="outlet" name="byLowestPriceButton" candidateClass="UIButton"/>
@@ -2403,7 +2400,6 @@ image because:</string>
         <class className="RequestsViewController" superclassName="BaseViewController">
             <source key="sourceIdentifier" type="project" relativePath="./Classes/RequestsViewController.h"/>
             <relationships>
-                <relationship kind="action" name="filterButtonTapped:"/>
                 <relationship kind="outlet" name="infoLabel" candidateClass="UILabel"/>
                 <relationship kind="outlet" name="tableView" candidateClass="UITableView"/>
             </relationships>
@@ -2414,7 +2410,6 @@ image because:</string>
         <class className="SettingsViewController" superclassName="UITableViewController">
             <source key="sourceIdentifier" type="project" relativePath="./Classes/SettingsViewController.h"/>
             <relationships>
-                <relationship kind="action" name="backButtonTapped:"/>
                 <relationship kind="outlet" name="emailCell" candidateClass="UITableViewCell"/>
                 <relationship kind="outlet" name="logoutCell" candidateClass="UITableViewCell"/>
             </relationships>
