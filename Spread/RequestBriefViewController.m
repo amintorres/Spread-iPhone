@@ -9,10 +9,12 @@
 #import "RequestBriefViewController.h"
 #import "UIFont+Spread.h"
 #import "CameraManager.h"
+#import "User+Spread.h"
 
 
 @interface RequestBriefViewController ()
 @property (weak, nonatomic) IBOutlet UITextView *textView;
+@property (weak, nonatomic) IBOutlet UIButton *submitButton;
 @end
 
 
@@ -25,6 +27,11 @@
 
     self.textView.font = [UIFont appFontOfSize:self.textView.font.pointSize];
     self.textView.text = self.request.requestDescription;
+    
+    if ([self.request.requester.userID isEqual:[User currentUser].userID])
+    {
+        self.submitButton.hidden = YES;
+    }
 }
 
 - (IBAction)submitButtonTapped:(id)sender

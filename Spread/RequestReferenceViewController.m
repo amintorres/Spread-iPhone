@@ -9,10 +9,12 @@
 #import "RequestReferenceViewController.h"
 #import "UIFont+Spread.h"
 #import "CameraManager.h"
+#import "User+Spread.h"
 
 
 @interface RequestReferenceViewController ()
 @property (weak, nonatomic) IBOutlet UITextView *textView;
+@property (weak, nonatomic) IBOutlet UIButton *submitButton;
 @end
 
 
@@ -27,6 +29,11 @@
     
     NSArray *URLs = [self.request.sortedReferences valueForKeyPath:@"@unionOfObjects.referenceURL"];
     self.textView.text = [URLs componentsJoinedByString:@"\n"];
+    
+    if ([self.request.requester.userID isEqual:[User currentUser].userID])
+    {
+        self.submitButton.hidden = YES;
+    }
 }
 
 - (IBAction)submitButtonTapped:(id)sender
