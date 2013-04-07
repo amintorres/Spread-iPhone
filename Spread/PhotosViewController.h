@@ -15,6 +15,7 @@
 @property (nonatomic, strong) IBOutlet UIImageView *iconImageView;
 @property (nonatomic, strong) IBOutlet UILabel *titleLabel;
 @property (nonatomic, strong) IBOutlet UILabel *numberOfPhotosLabel;
+@property (nonatomic, strong) IBOutlet UIButton *submitButton;
 @property (nonatomic, strong) NSArray *photos;
 
 - (void)reloadData;

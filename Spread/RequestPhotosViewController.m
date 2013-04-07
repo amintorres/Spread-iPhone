@@ -7,6 +7,7 @@
 //
 
 #import "RequestPhotosViewController.h"
+#import "User+Spread.h"
 
 
 @interface RequestPhotosViewController ()
@@ -23,6 +24,11 @@
     
     self.iconImageView.image = [UIImage imageNamed:@"icon-request"];
     self.titleLabel.text = self.request.name;
+    
+    if ([self.request.requester.userID isEqual:[User currentUser].userID])
+    {
+        self.submitButton.hidden = YES;
+    }
 }
 
 - (void)reloadData
