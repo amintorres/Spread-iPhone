@@ -17,7 +17,15 @@
 NSString * const SpreadNotificationUploadProgressChanged  = @"SpreadNotificationUploadProgressChanged";
 NSString * const SpreadNotificationUploadFinished = @"SpreadNotificationUploadFinished";
 
-static NSString* const baseURL =                @"http://dev.spread.cm/api/v1";
+#ifdef DEV
+static NSString* const baseURL =    @"http://dev.spread.cm/api/v1";
+static NSString* const flagURL =    @"http://dev.spread.cm/news_photo_reports"; // This endpoint is an anomaly!
+
+#else
+static NSString* const baseURL =    @"http://www.spread.cm/api/v1";
+static NSString* const flagURL =    @"http://www.spread.cm/news_photo_reports";
+#endif
+
 static NSString* const loginPath =              @"users/login.json";
 static NSString* const facebookLoginPath =      @"fb_authenticate";
 static NSString* const entityInfoPath =         @"entities/%@";
@@ -550,10 +558,8 @@ static NSString* boundary = nil;
 }
 
 - (void)flagPhoto:(Photo *)photo reason:(FlagReason)reason completionHandler:(ServiceManagerHandler)completion
-{
-    // This endpoint is an anomaly!
-    
-    NSString* URLString = [NSString stringWithFormat:@"http://dev.spread.cm/news_photo_reports"];
+{    
+    NSString* URLString = [NSString stringWithFormat:flagURL];
     NSURL *URL = [NSURL URLWithString:URLString];
     NSMutableURLRequest *request = [NSMutableURLRequest requestWithURL:URL];
     request.HTTPMethod = @"POST";
