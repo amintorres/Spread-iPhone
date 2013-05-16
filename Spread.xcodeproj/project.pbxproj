@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		77B640993433460EA39B73F5 /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = F2CAA3090C87444DBC7D2620 /* libPods.a */; };
 		7C0B725D16345C87002469D3 /* Default-568h@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 7C0B725C16345C87002469D3 /* Default-568h@2x.png */; };
 		7C0B7260163464AB002469D3 /* IntroTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7C0B725F163464AB002469D3 /* IntroTableViewController.m */; };
 		7C0B726316346E96002469D3 /* ButtonCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 7C0B726216346E96002469D3 /* ButtonCell.m */; };
@@ -62,7 +63,6 @@
 		7C45354315E19FB200833FA9 /* UIFont+Spread.m in Sources */ = {isa = PBXBuildFile; fileRef = 7C45354215E19FB200833FA9 /* UIFont+Spread.m */; };
 		7C45354615E1A09E00833FA9 /* AppFontLabel.m in Sources */ = {isa = PBXBuildFile; fileRef = 7C45354515E1A09E00833FA9 /* AppFontLabel.m */; };
 		7C45354915E1A51400833FA9 /* AppFontButton.m in Sources */ = {isa = PBXBuildFile; fileRef = 7C45354815E1A51400833FA9 /* AppFontButton.m */; };
-		7C4991D21531BEC0007A4663 /* libTestFlight.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 7C4991CE1531BEC0007A4663 /* libTestFlight.a */; };
 		7C4991D61531BF58007A4663 /* libz.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 7C4991D51531BF58007A4663 /* libz.dylib */; };
 		7C4991D81531BF75007A4663 /* MapKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7C4991D71531BF75007A4663 /* MapKit.framework */; };
 		7C519FBB15F556F30075E6C8 /* Tag+Spread.m in Sources */ = {isa = PBXBuildFile; fileRef = 7CFAFA2514C3A1FA00597A6D /* Tag+Spread.m */; };
@@ -153,7 +153,6 @@
 		7CA359D1167E3D1100117423 /* CameraManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 7CA359D0167E3D1100117423 /* CameraManager.m */; };
 		7CA359D4167E525E00117423 /* NSUserDefaults+Spread.m in Sources */ = {isa = PBXBuildFile; fileRef = 7CA359D3167E525E00117423 /* NSUserDefaults+Spread.m */; };
 		7CA359D7167E624600117423 /* SettingsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7CA359D6167E624500117423 /* SettingsViewController.m */; };
-		7CAC9E8015D8587500E30562 /* libfacebook_ios_sdk.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 7CAC9E7D15D8586100E30562 /* libfacebook_ios_sdk.a */; };
 		7CC36851164575A800F9409D /* RequestDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7CC36850164575A800F9409D /* RequestDetailViewController.m */; };
 		7CC3685316457D8800F9409D /* CoreText.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7CC3685216457D8800F9409D /* CoreText.framework */; };
 		7CC36856164582EC00F9409D /* CurrencyLabel.m in Sources */ = {isa = PBXBuildFile; fileRef = 7CC36855164582EC00F9409D /* CurrencyLabel.m */; };
@@ -169,10 +168,8 @@
 		7CC43469166F861200E7D840 /* icon-green-edit@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 7CC43467166F861200E7D840 /* icon-green-edit@2x.png */; };
 		7CC4346C166F8A6200E7D840 /* PhotosViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7CC4346B166F8A6200E7D840 /* PhotosViewController.m */; };
 		7CC43475166F8E0000E7D840 /* FeedCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 7CC43474166F8E0000E7D840 /* FeedCell.m */; };
-		7CCBE0701670E0430030C952 /* libSDWebImage.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 7CE85AE814A221A6002874EA /* libSDWebImage.a */; };
 		7CCBE0781670E6440030C952 /* PhotosViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 7CCBE0771670E6440030C952 /* PhotosViewController.xib */; };
 		7CE82C1F16989E2C00CD240B /* RequestBriefViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7CE82C1E16989E2C00CD240B /* RequestBriefViewController.m */; };
-		7CF04758163CE5AE00A905C1 /* MBProgressHUD.m in Sources */ = {isa = PBXBuildFile; fileRef = 7CF04757163CE5AE00A905C1 /* MBProgressHUD.m */; };
 		7CF5879815D4B6F200769AA7 /* NSDate+Spread.m in Sources */ = {isa = PBXBuildFile; fileRef = 7CF5879715D4B6F200769AA7 /* NSDate+Spread.m */; };
 		7CF9557C149FE63700786B4F /* CFNetwork.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7CF9557B149FE63700786B4F /* CFNetwork.framework */; };
 		7CF9557E149FE64500786B4F /* MobileCoreServices.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7CF9557D149FE64500786B4F /* MobileCoreServices.framework */; };
@@ -181,24 +178,9 @@
 		7CF95584149FE66100786B4F /* libxml2.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 7CF95583149FE66100786B4F /* libxml2.dylib */; };
 		7CFAFA1514C38DA500597A6D /* ReviewViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 7CFAFA1314C38DA500597A6D /* ReviewViewController.xib */; };
 		7CFAFA1D14C39D4900597A6D /* TODO.txt in Resources */ = {isa = PBXBuildFile; fileRef = 7CFAFA1C14C39D4900597A6D /* TODO.txt */; };
-		7CFC5A0714D1176D008AC151 /* libFlurryAnalytics.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 7CFC5A0614D1176D008AC151 /* libFlurryAnalytics.a */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
-		7C7F387415CDF55900EE18DF /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 7CE85AE014A221A6002874EA /* SDWebImage.xcodeproj */;
-			proxyType = 2;
-			remoteGlobalIDString = 531041E0157EAFA400BBABC3;
-			remoteInfo = "SDWebImage ARC+MKAnnotation";
-		};
-		7C7F387915CDF63E00EE18DF /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 7CE85AE014A221A6002874EA /* SDWebImage.xcodeproj */;
-			proxyType = 1;
-			remoteGlobalIDString = 53761307155AD0D5005750A4;
-			remoteInfo = "SDWebImage ARC";
-		};
 		7C9F93E1149960C400126908 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = 7C9F93A6149960C300126908 /* Project object */;
@@ -206,37 +188,10 @@
 			remoteGlobalIDString = 7C9F93AE149960C300126908;
 			remoteInfo = Spread;
 		};
-		7CAC9E7C15D8586100E30562 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 7CAC9E7415D8586100E30562 /* facebook-ios-sdk.xcodeproj */;
-			proxyType = 2;
-			remoteGlobalIDString = D2AAC07E0554694100DB518D;
-			remoteInfo = "facebook-ios-sdk";
-		};
-		7CAC9E7E15D8586100E30562 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 7CAC9E7415D8586100E30562 /* facebook-ios-sdk.xcodeproj */;
-			proxyType = 2;
-			remoteGlobalIDString = B9CBC519152537270036AA71;
-			remoteInfo = FacebookSDKTests;
-		};
-		7CAC9E8115D858D500E30562 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 7CAC9E7415D8586100E30562 /* facebook-ios-sdk.xcodeproj */;
-			proxyType = 1;
-			remoteGlobalIDString = D2AAC07D0554694100DB518D;
-			remoteInfo = "facebook-ios-sdk";
-		};
-		7CE85AE714A221A6002874EA /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 7CE85AE014A221A6002874EA /* SDWebImage.xcodeproj */;
-			proxyType = 2;
-			remoteGlobalIDString = 53922D6F148C55820056699D;
-			remoteInfo = SDWebImage;
-		};
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		2A87E5EEA5E742B4B31A0D38 /* Pods.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.xcconfig; path = Pods/Pods.xcconfig; sourceTree = SOURCE_ROOT; };
 		7C0B725C16345C87002469D3 /* Default-568h@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "Default-568h@2x.png"; path = "../../Default-568h@2x.png"; sourceTree = "<group>"; };
 		7C0B725E163464AB002469D3 /* IntroTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IntroTableViewController.h; sourceTree = "<group>"; };
 		7C0B725F163464AB002469D3 /* IntroTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = IntroTableViewController.m; sourceTree = "<group>"; };
@@ -312,8 +267,6 @@
 		7C45354515E1A09E00833FA9 /* AppFontLabel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AppFontLabel.m; sourceTree = "<group>"; };
 		7C45354715E1A51400833FA9 /* AppFontButton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AppFontButton.h; sourceTree = "<group>"; };
 		7C45354815E1A51400833FA9 /* AppFontButton.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AppFontButton.m; sourceTree = "<group>"; };
-		7C4991CE1531BEC0007A4663 /* libTestFlight.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libTestFlight.a; sourceTree = "<group>"; };
-		7C4991D11531BEC0007A4663 /* TestFlight.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TestFlight.h; sourceTree = "<group>"; };
 		7C4991D51531BF58007A4663 /* libz.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libz.dylib; path = usr/lib/libz.dylib; sourceTree = SDKROOT; };
 		7C4991D71531BF75007A4663 /* MapKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MapKit.framework; path = System/Library/Frameworks/MapKit.framework; sourceTree = SDKROOT; };
 		7C57F26C14BFA5A300906DE8 /* Entitlements.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Entitlements.plist; sourceTree = SOURCE_ROOT; };
@@ -430,7 +383,6 @@
 		7CA359D3167E525E00117423 /* NSUserDefaults+Spread.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSUserDefaults+Spread.m"; sourceTree = "<group>"; };
 		7CA359D5167E624500117423 /* SettingsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SettingsViewController.h; sourceTree = "<group>"; };
 		7CA359D6167E624500117423 /* SettingsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SettingsViewController.m; sourceTree = "<group>"; };
-		7CAC9E7415D8586100E30562 /* facebook-ios-sdk.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = "facebook-ios-sdk.xcodeproj"; path = "facebook-ios-sdk/src/facebook-ios-sdk.xcodeproj"; sourceTree = "<group>"; };
 		7CC3684F164575A800F9409D /* RequestDetailViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RequestDetailViewController.h; sourceTree = "<group>"; };
 		7CC36850164575A800F9409D /* RequestDetailViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RequestDetailViewController.m; sourceTree = "<group>"; };
 		7CC3685216457D8800F9409D /* CoreText.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreText.framework; path = System/Library/Frameworks/CoreText.framework; sourceTree = SDKROOT; };
@@ -453,9 +405,6 @@
 		7CCBE0771670E6440030C952 /* PhotosViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = PhotosViewController.xib; sourceTree = "<group>"; };
 		7CE82C1D16989E2C00CD240B /* RequestBriefViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RequestBriefViewController.h; sourceTree = "<group>"; };
 		7CE82C1E16989E2C00CD240B /* RequestBriefViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RequestBriefViewController.m; sourceTree = "<group>"; };
-		7CE85AE014A221A6002874EA /* SDWebImage.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = SDWebImage.xcodeproj; path = SDWebImage/SDWebImage.xcodeproj; sourceTree = "<group>"; };
-		7CF04756163CE5AE00A905C1 /* MBProgressHUD.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = MBProgressHUD.h; path = MBProgressHUD/MBProgressHUD.h; sourceTree = "<group>"; };
-		7CF04757163CE5AE00A905C1 /* MBProgressHUD.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = MBProgressHUD.m; path = MBProgressHUD/MBProgressHUD.m; sourceTree = "<group>"; };
 		7CF5879615D4B6F200769AA7 /* NSDate+Spread.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSDate+Spread.h"; sourceTree = "<group>"; };
 		7CF5879715D4B6F200769AA7 /* NSDate+Spread.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSDate+Spread.m"; sourceTree = "<group>"; };
 		7CF9557B149FE63700786B4F /* CFNetwork.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CFNetwork.framework; path = System/Library/Frameworks/CFNetwork.framework; sourceTree = SDKROOT; };
@@ -471,8 +420,7 @@
 		7CFAFA1C14C39D4900597A6D /* TODO.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = TODO.txt; sourceTree = SOURCE_ROOT; };
 		7CFAFA2414C3A1FA00597A6D /* Tag+Spread.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "Tag+Spread.h"; sourceTree = "<group>"; };
 		7CFAFA2514C3A1FA00597A6D /* Tag+Spread.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "Tag+Spread.m"; sourceTree = "<group>"; };
-		7CFC5A0514D1176D008AC151 /* FlurryAnalytics.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FlurryAnalytics.h; sourceTree = "<group>"; };
-		7CFC5A0614D1176D008AC151 /* libFlurryAnalytics.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libFlurryAnalytics.a; sourceTree = "<group>"; };
+		F2CAA3090C87444DBC7D2620 /* libPods.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libPods.a; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -480,13 +428,11 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				7CCBE0701670E0430030C952 /* libSDWebImage.a in Frameworks */,
 				7CC3685316457D8800F9409D /* CoreText.framework in Frameworks */,
 				7C2824C7161511CE004532A3 /* AdSupport.framework in Frameworks */,
 				7C2824C5161511B1004532A3 /* Accounts.framework in Frameworks */,
 				7C7F387B15CDF65B00EE18DF /* ImageIO.framework in Frameworks */,
 				7C2824C316151199004532A3 /* Social.framework in Frameworks */,
-				7CAC9E8015D8587500E30562 /* libfacebook_ios_sdk.a in Frameworks */,
 				7C4991D81531BF75007A4663 /* MapKit.framework in Frameworks */,
 				7C4991D61531BF58007A4663 /* libz.dylib in Frameworks */,
 				7C62EA2814CCB77B0003FFF4 /* MessageUI.framework in Frameworks */,
@@ -501,8 +447,7 @@
 				7C9F93B6149960C300126908 /* Foundation.framework in Frameworks */,
 				7C9F93B8149960C300126908 /* CoreGraphics.framework in Frameworks */,
 				7C9F93BA149960C300126908 /* CoreData.framework in Frameworks */,
-				7CFC5A0714D1176D008AC151 /* libFlurryAnalytics.a in Frameworks */,
-				7C4991D21531BEC0007A4663 /* libTestFlight.a in Frameworks */,
+				77B640993433460EA39B73F5 /* libPods.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -547,15 +492,6 @@
 			path = fonts;
 			sourceTree = "<group>";
 		};
-		7C4991CD1531BEC0007A4663 /* TestFlightSDK */ = {
-			isa = PBXGroup;
-			children = (
-				7C4991CE1531BEC0007A4663 /* libTestFlight.a */,
-				7C4991D11531BEC0007A4663 /* TestFlight.h */,
-			);
-			path = TestFlightSDK;
-			sourceTree = "<group>";
-		};
 		7C62EA1B14CCB5400003FFF4 /* HTML */ = {
 			isa = PBXGroup;
 			children = (
@@ -564,18 +500,6 @@
 				7C62EA1E14CCB5400003FFF4 /* terms.html */,
 			);
 			path = HTML;
-			sourceTree = "<group>";
-		};
-		7C633037149FE4FB00BF2049 /* External */ = {
-			isa = PBXGroup;
-			children = (
-				7CF04755163CE5A000A905C1 /* MBProgressHUD */,
-				7CFC5A0414D1176D008AC151 /* FlurryAnalytics */,
-				7C4991CD1531BEC0007A4663 /* TestFlightSDK */,
-				7CAC9E7415D8586100E30562 /* facebook-ios-sdk.xcodeproj */,
-				7CE85AE014A221A6002874EA /* SDWebImage.xcodeproj */,
-			);
-			name = External;
 			sourceTree = "<group>";
 		};
 		7C7F38B915CDFE0F00EE18DF /* View Controller */ = {
@@ -840,11 +764,11 @@
 		7C9F93A4149960C300126908 = {
 			isa = PBXGroup;
 			children = (
-				7C633037149FE4FB00BF2049 /* External */,
 				7C9F93BB149960C300126908 /* Spread */,
 				7C9F93E3149960C400126908 /* SpreadTests */,
 				7C9F93B2149960C300126908 /* Frameworks */,
 				7C9F93B0149960C300126908 /* Products */,
+				2A87E5EEA5E742B4B31A0D38 /* Pods.xcconfig */,
 			);
 			sourceTree = "<group>";
 		};
@@ -880,6 +804,7 @@
 				7C9F93B7149960C300126908 /* CoreGraphics.framework */,
 				7C9F93B9149960C300126908 /* CoreData.framework */,
 				7C9F93DC149960C400126908 /* SenTestingKit.framework */,
+				F2CAA3090C87444DBC7D2620 /* libPods.a */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -946,24 +871,6 @@
 			name = "Everything Else";
 			sourceTree = "<group>";
 		};
-		7CAC9E7515D8586100E30562 /* Products */ = {
-			isa = PBXGroup;
-			children = (
-				7CAC9E7D15D8586100E30562 /* libfacebook_ios_sdk.a */,
-				7CAC9E7F15D8586100E30562 /* FacebookSDKTests.octest */,
-			);
-			name = Products;
-			sourceTree = "<group>";
-		};
-		7CE85AE114A221A6002874EA /* Products */ = {
-			isa = PBXGroup;
-			children = (
-				7CE85AE814A221A6002874EA /* libSDWebImage.a */,
-				7C7F387515CDF55900EE18DF /* libSDWebImage+MKAnnotation.a */,
-			);
-			name = Products;
-			sourceTree = "<group>";
-		};
 		7CE85AEC14A223EB002874EA /* Images */ = {
 			isa = PBXGroup;
 			children = (
@@ -981,15 +888,6 @@
 			path = Images;
 			sourceTree = "<group>";
 		};
-		7CF04755163CE5A000A905C1 /* MBProgressHUD */ = {
-			isa = PBXGroup;
-			children = (
-				7CF04756163CE5AE00A905C1 /* MBProgressHUD.h */,
-				7CF04757163CE5AE00A905C1 /* MBProgressHUD.m */,
-			);
-			name = MBProgressHUD;
-			sourceTree = "<group>";
-		};
 		7CF8A615149BFA69009FF755 /* Intro */ = {
 			isa = PBXGroup;
 			children = (
@@ -1003,15 +901,6 @@
 			name = Intro;
 			sourceTree = "<group>";
 		};
-		7CFC5A0414D1176D008AC151 /* FlurryAnalytics */ = {
-			isa = PBXGroup;
-			children = (
-				7CFC5A0514D1176D008AC151 /* FlurryAnalytics.h */,
-				7CFC5A0614D1176D008AC151 /* libFlurryAnalytics.a */,
-			);
-			path = FlurryAnalytics;
-			sourceTree = "<group>";
-		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -1019,16 +908,16 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 7C9F93EE149960C400126908 /* Build configuration list for PBXNativeTarget "Spread" */;
 			buildPhases = (
+				69ED869E092340878A82DB0E /* Check Pods Manifest.lock */,
 				7C9F93AB149960C300126908 /* Sources */,
 				7C9F93AC149960C300126908 /* Frameworks */,
 				7CFAFA1914C39B2D00597A6D /* ShellScript */,
 				7C9F93AD149960C300126908 /* Resources */,
+				1D3CE5AEFABF499D9EC9C32A /* Copy Pods Resources */,
 			);
 			buildRules = (
 			);
 			dependencies = (
-				7CAC9E8215D858D500E30562 /* PBXTargetDependency */,
-				7C7F387A15CDF63E00EE18DF /* PBXTargetDependency */,
 			);
 			name = Spread;
 			productName = Spread;
@@ -1073,16 +962,6 @@
 			mainGroup = 7C9F93A4149960C300126908;
 			productRefGroup = 7C9F93B0149960C300126908 /* Products */;
 			projectDirPath = "";
-			projectReferences = (
-				{
-					ProductGroup = 7CAC9E7515D8586100E30562 /* Products */;
-					ProjectRef = 7CAC9E7415D8586100E30562 /* facebook-ios-sdk.xcodeproj */;
-				},
-				{
-					ProductGroup = 7CE85AE114A221A6002874EA /* Products */;
-					ProjectRef = 7CE85AE014A221A6002874EA /* SDWebImage.xcodeproj */;
-				},
-			);
 			projectRoot = "";
 			targets = (
 				7C9F93AE149960C300126908 /* Spread */,
@@ -1090,37 +969,6 @@
 			);
 		};
 /* End PBXProject section */
-
-/* Begin PBXReferenceProxy section */
-		7C7F387515CDF55900EE18DF /* libSDWebImage+MKAnnotation.a */ = {
-			isa = PBXReferenceProxy;
-			fileType = archive.ar;
-			path = "libSDWebImage+MKAnnotation.a";
-			remoteRef = 7C7F387415CDF55900EE18DF /* PBXContainerItemProxy */;
-			sourceTree = BUILT_PRODUCTS_DIR;
-		};
-		7CAC9E7D15D8586100E30562 /* libfacebook_ios_sdk.a */ = {
-			isa = PBXReferenceProxy;
-			fileType = archive.ar;
-			path = libfacebook_ios_sdk.a;
-			remoteRef = 7CAC9E7C15D8586100E30562 /* PBXContainerItemProxy */;
-			sourceTree = BUILT_PRODUCTS_DIR;
-		};
-		7CAC9E7F15D8586100E30562 /* FacebookSDKTests.octest */ = {
-			isa = PBXReferenceProxy;
-			fileType = wrapper.cfbundle;
-			path = FacebookSDKTests.octest;
-			remoteRef = 7CAC9E7E15D8586100E30562 /* PBXContainerItemProxy */;
-			sourceTree = BUILT_PRODUCTS_DIR;
-		};
-		7CE85AE814A221A6002874EA /* libSDWebImage.a */ = {
-			isa = PBXReferenceProxy;
-			fileType = archive.ar;
-			path = libSDWebImage.a;
-			remoteRef = 7CE85AE714A221A6002874EA /* PBXContainerItemProxy */;
-			sourceTree = BUILT_PRODUCTS_DIR;
-		};
-/* End PBXReferenceProxy section */
 
 /* Begin PBXResourcesBuildPhase section */
 		7C9F93AD149960C300126908 /* Resources */ = {
@@ -1229,6 +1077,34 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
+		1D3CE5AEFABF499D9EC9C32A /* Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "Copy Pods Resources";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Pods-resources.sh\"\n";
+		};
+		69ED869E092340878A82DB0E /* Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "Check Pods Manifest.lock";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [[ $? != 0 ]] ; then\n    cat << EOM\nerror: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\nEOM\n    exit 1\nfi\n";
+		};
 		7C9F93D9149960C400126908 /* ShellScript */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
@@ -1292,7 +1168,6 @@
 				7C0B7260163464AB002469D3 /* IntroTableViewController.m in Sources */,
 				7C0B726316346E96002469D3 /* ButtonCell.m in Sources */,
 				7C0B726616346EC0002469D3 /* TextFieldCell.m in Sources */,
-				7CF04758163CE5AE00A905C1 /* MBProgressHUD.m in Sources */,
 				7CC36851164575A800F9409D /* RequestDetailViewController.m in Sources */,
 				7CC36856164582EC00F9409D /* CurrencyLabel.m in Sources */,
 				7CC4346C166F8A6200E7D840 /* PhotosViewController.m in Sources */,
@@ -1334,20 +1209,10 @@
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXTargetDependency section */
-		7C7F387A15CDF63E00EE18DF /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			name = "SDWebImage ARC";
-			targetProxy = 7C7F387915CDF63E00EE18DF /* PBXContainerItemProxy */;
-		};
 		7C9F93E2149960C400126908 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
 			target = 7C9F93AE149960C300126908 /* Spread */;
 			targetProxy = 7C9F93E1149960C400126908 /* PBXContainerItemProxy */;
-		};
-		7CAC9E8215D858D500E30562 /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			name = "facebook-ios-sdk";
-			targetProxy = 7CAC9E8115D858D500E30562 /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
 
@@ -1399,6 +1264,7 @@
 		};
 		7C57F23E14BF744900906DE8 /* Ad Hoc */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 2A87E5EEA5E742B4B31A0D38 /* Pods.xcconfig */;
 			buildSettings = {
 				CODE_SIGN_ENTITLEMENTS = Entitlements.plist;
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution";
@@ -1406,21 +1272,11 @@
 				FRAMEWORK_SEARCH_PATHS = "$(inherited)";
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "Spread/Spread-Prefix.pch";
-				HEADER_SEARCH_PATHS = (
-					"\"$(SOURCE_ROOT)/SDWebImage\"/**",
-					"\"$(SOURCE_ROOT)/facebook-ios-sdk/src\"",
-				);
+				HEADER_SEARCH_PATHS = "$(inherited)";
 				INFOPLIST_FILE = "Spread/Spread-Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 5.0;
-				LIBRARY_SEARCH_PATHS = (
-					"$(inherited)",
-					"\"$(SRCROOT)/FlurryAnalytics\"",
-					"\"$(SRCROOT)/TestFlightSDK\"",
-				);
-				OTHER_LDFLAGS = (
-					"-ObjC",
-					"-lsqlite3.0",
-				);
+				LIBRARY_SEARCH_PATHS = "$(inherited)";
+				OTHER_LDFLAGS = "$(inherited)";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "";
 				WRAPPER_EXTENSION = app;
@@ -1501,26 +1357,17 @@
 		};
 		7C9F93EF149960C400126908 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 2A87E5EEA5E742B4B31A0D38 /* Pods.xcconfig */;
 			buildSettings = {
 				COMPRESS_PNG_FILES = NO;
 				FRAMEWORK_SEARCH_PATHS = "$(inherited)";
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "Spread/Spread-Prefix.pch";
-				HEADER_SEARCH_PATHS = (
-					"\"$(SOURCE_ROOT)/SDWebImage\"/**",
-					"\"$(SOURCE_ROOT)/facebook-ios-sdk/src\"",
-				);
+				HEADER_SEARCH_PATHS = "$(inherited)";
 				INFOPLIST_FILE = "Spread/Spread-Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 5.0;
-				LIBRARY_SEARCH_PATHS = (
-					"$(inherited)",
-					"\"$(SRCROOT)/FlurryAnalytics\"",
-					"\"$(SRCROOT)/TestFlightSDK\"",
-				);
-				OTHER_LDFLAGS = (
-					"-ObjC",
-					"-lsqlite3.0",
-				);
+				LIBRARY_SEARCH_PATHS = "$(inherited)";
+				OTHER_LDFLAGS = "$(inherited)";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				WRAPPER_EXTENSION = app;
 			};
@@ -1528,27 +1375,18 @@
 		};
 		7C9F93F0149960C400126908 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 2A87E5EEA5E742B4B31A0D38 /* Pods.xcconfig */;
 			buildSettings = {
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution";
 				COMPRESS_PNG_FILES = NO;
 				FRAMEWORK_SEARCH_PATHS = "$(inherited)";
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "Spread/Spread-Prefix.pch";
-				HEADER_SEARCH_PATHS = (
-					"\"$(SOURCE_ROOT)/SDWebImage\"/**",
-					"\"$(SOURCE_ROOT)/facebook-ios-sdk/src\"",
-				);
+				HEADER_SEARCH_PATHS = "$(inherited)";
 				INFOPLIST_FILE = "Spread/Spread-Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 5.0;
-				LIBRARY_SEARCH_PATHS = (
-					"$(inherited)",
-					"\"$(SRCROOT)/FlurryAnalytics\"",
-					"\"$(SRCROOT)/TestFlightSDK\"",
-				);
-				OTHER_LDFLAGS = (
-					"-ObjC",
-					"-lsqlite3.0",
-				);
+				LIBRARY_SEARCH_PATHS = "$(inherited)";
+				OTHER_LDFLAGS = "$(inherited)";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "";
 				WRAPPER_EXTENSION = app;

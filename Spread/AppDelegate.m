@@ -8,7 +8,7 @@
 
 #import "AppDelegate.h"
 #import "TestFlight.h"
-#import "FlurryAnalytics.h"
+#import "Flurry.h"
 #import "MenuViewController.h"
 #import "FacebookSDK.h"
 
@@ -29,8 +29,8 @@
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
     [TestFlight takeOff:@"f319601b6e6c25b7c3f258bcdaa9e768_NTI4NDQyMDEyLTAxLTExIDEwOjU2OjEzLjE1NDkxNQ"];
-    [FlurryAnalytics startSession:@"ZY7N6UAGKKFHYMUJ4LK1"];
-    [FlurryAnalytics logAllPageViews:self.navigationController];
+    [Flurry startSession:@"ZY7N6UAGKKFHYMUJ4LK1"];
+    [Flurry logAllPageViews:self.navigationController];
 
     return YES;
 }
