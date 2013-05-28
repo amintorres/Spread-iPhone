@@ -108,6 +108,22 @@ typedef NS_ENUM(NSUInteger, KeyboardType) {
 
         [self scrollToBottom];
     }
+    else if (_currentState == IntroViewStateIdle && state == IntroViewStateRegister)
+    {
+        [self.dataSource removeObject:self.facebookButtonSection];
+        [self.dataSource removeObject:self.loginButtonSection];
+        [self.dataSource insertObject:self.registerFormSecion atIndex:0];
+        [self.dataSource insertObject:self.registerButtonSection atIndex:1];
+        
+        [self.tableView beginUpdates];
+        [self.tableView deleteSections:[NSIndexSet indexSetWithIndex:0] withRowAnimation:UITableViewRowAnimationFade];
+        [self.tableView deleteSections:[NSIndexSet indexSetWithIndex:1] withRowAnimation:UITableViewRowAnimationFade];
+        [self.tableView insertSections:[NSIndexSet indexSetWithIndex:0] withRowAnimation:UITableViewRowAnimationFade];
+        [self.tableView insertSections:[NSIndexSet indexSetWithIndex:1] withRowAnimation:UITableViewRowAnimationFade];
+        [self.tableView endUpdates];
+        
+        [self scrollToBottom];
+    }
     else if (_currentState == IntroViewStateLogin && state == IntroViewStateIdle)
     {
         [self.dataSource removeObject:self.loginFormSecion];
@@ -248,16 +264,27 @@ typedef NS_ENUM(NSUInteger, KeyboardType) {
                                        allowLoginUI:YES
                                   completionHandler:^(FBSession *session, FBSessionState status, NSError *error) {
                                       
+                                      [MBProgressHUD hideHUDForView:self.view animated:YES];
+
                                       if ( session.isOpen )
                                       {
                                           DLog(@"Facebook login successed!");
-                                          [[ServiceManager sharedManager] loginWithFacebookToken:session.accessTokenData.accessToken completion:[self loginCompletionHandler]];
+                                          [[ServiceManager sharedManager] loginWithFacebookToken:session.accessTokenData.accessToken completion:^(id response, BOOL success, NSError *error) {
+                                              
+                                              id isNew = response[@"new_user"];
+                                              if ([isNew boolValue])
+                                              {
+                                                  self.currentState = IntroViewStateRegister;
+                                              }
+                                              else
+                                              {
+                                                  [self loginCompletionHandler](response, success, error);
+                                              }
+                                          }];
                                       }
                                       
                                       if (error)
                                       {
-                                          [MBProgressHUD hideHUDForView:self.view animated:YES];
-
                                           UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:@"Error" message:error.localizedDescription delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil];
                                           [alertView show];
                                       }

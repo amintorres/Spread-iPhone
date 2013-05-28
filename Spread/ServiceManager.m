@@ -179,9 +179,17 @@ static NSString* boundary = nil;
         
         if (success)
         {
-            self.oauthToken = response[@"authentication_token"];
-            self.currentUserID = response[@"person_id"];
-            [self loadEntityWithID:self.currentUserID completion:completion];
+            id isNew = response[@"new_user"];
+            if (![isNew boolValue])
+            {
+                self.oauthToken = response[@"authentication_token"];
+                self.currentUserID = response[@"person_id"];
+                [self loadEntityWithID:self.currentUserID completion:completion];
+            }
+            else
+            {
+                completion(response, NO, nil);
+            }
         }
         else
         {
