@@ -273,7 +273,7 @@ typedef NS_ENUM(NSUInteger, KeyboardType) {
                                               
                                               if (!success)
                                               {
-                                                  NSLog(@"loginWithFacebookToken failed. Response: %@", response);
+                                                  DLog(@"loginWithFacebookToken failed. Response: %@", response);
                                                   [[FBRequest requestForMe] startWithCompletionHandler:^(FBRequestConnection *connection, NSDictionary<FBGraphUser> *user, NSError *error) {
                                                        if (!error) {
                                                            ((TextFieldCell*)self.registerFormSecion[0]).textField.text = user.first_name;
