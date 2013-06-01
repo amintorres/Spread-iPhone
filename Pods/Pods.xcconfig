@@ -2,7 +2,7 @@ ALWAYS_SEARCH_USER_PATHS = YES
 GCC_PREPROCESSOR_DEFINITIONS = $(inherited) COCOAPODS=1
 HEADER_SEARCH_PATHS = ${PODS_HEADERS_SEARCH_PATHS}
 LIBRARY_SEARCH_PATHS = "$(PODS_ROOT)/FlurrySDK/Flurry" "$(PODS_ROOT)/TestFlightSDK"
-OTHER_LDFLAGS = -ObjC -lFlurry -lTestFlight -lsqlite3.0 -lz -framework CoreGraphics -framework CoreLocation -framework ImageIO -framework MapKit -framework SystemConfiguration -framework UIKit -weak_framework Accounts -weak_framework AdSupport -weak_framework Security -weak_framework Social
+OTHER_LDFLAGS = -ObjC -lFlurry -lTestFlight -lsqlite3.0 -lz -framework CoreGraphics -framework CoreLocation -framework ImageIO -framework SystemConfiguration -framework UIKit -weak_framework Accounts -weak_framework AdSupport -weak_framework Security -weak_framework Social
 PODS_BUILD_HEADERS_SEARCH_PATHS = "${PODS_ROOT}/BuildHeaders" "${PODS_ROOT}/BuildHeaders/Facebook-iOS-SDK" "${PODS_ROOT}/BuildHeaders/Facebook-iOS-SDK/FacebookSDK" "${PODS_ROOT}/BuildHeaders/FlurrySDK" "${PODS_ROOT}/BuildHeaders/MBProgressHUD" "${PODS_ROOT}/BuildHeaders/SDWebImage" "${PODS_ROOT}/BuildHeaders/TestFlightSDK"
 PODS_HEADERS_SEARCH_PATHS = ${PODS_PUBLIC_HEADERS_SEARCH_PATHS}
 PODS_PUBLIC_HEADERS_SEARCH_PATHS = "${PODS_ROOT}/Headers" "${PODS_ROOT}/Headers/Facebook-iOS-SDK" "${PODS_ROOT}/Headers/Facebook-iOS-SDK/FacebookSDK" "${PODS_ROOT}/Headers/FlurrySDK" "${PODS_ROOT}/Headers/MBProgressHUD" "${PODS_ROOT}/Headers/SDWebImage" "${PODS_ROOT}/Headers/TestFlightSDK"
