@@ -260,7 +260,7 @@ typedef NS_ENUM(NSUInteger, KeyboardType) {
 {
     [MBProgressHUD showHUDAddedTo:self.view animated:YES];
 
-    [FBSession openActiveSessionWithReadPermissions:nil
+    [FBSession openActiveSessionWithReadPermissions:@[@"email"]
                                        allowLoginUI:YES
                                   completionHandler:^(FBSession *session, FBSessionState status, NSError *error) {
                                       
@@ -271,10 +271,18 @@ typedef NS_ENUM(NSUInteger, KeyboardType) {
                                           DLog(@"Facebook login successed!");
                                           [[ServiceManager sharedManager] loginWithFacebookToken:session.accessTokenData.accessToken completion:^(id response, BOOL success, NSError *error) {
                                               
-                                              id isNew = response[@"new_user"];
-                                              if ([isNew boolValue])
+                                              if (!success)
                                               {
-                                                  self.currentState = IntroViewStateRegister;
+                                                  NSLog(@"loginWithFacebookToken failed. Response: %@", response);
+                                                  [[FBRequest requestForMe] startWithCompletionHandler:^(FBRequestConnection *connection, NSDictionary<FBGraphUser> *user, NSError *error) {
+                                                       if (!error) {
+                                                           ((TextFieldCell*)self.registerFormSecion[0]).textField.text = user.first_name;
+                                                           ((TextFieldCell*)self.registerFormSecion[1]).textField.text = user.last_name;
+                                                           ((TextFieldCell*)self.registerFormSecion[2]).textField.text = user.username;
+                                                           ((TextFieldCell*)self.registerFormSecion[3]).textField.text = user[@"email"];
+                                                           self.currentState = IntroViewStateRegister;
+                                                       }
+                                                   }];
                                               }
                                               else
                                               {
