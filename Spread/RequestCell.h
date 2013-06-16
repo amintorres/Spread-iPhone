@@ -17,6 +17,7 @@
 @property (nonatomic, strong) IBOutlet UILabel *quantityLabel;
 @property (nonatomic, strong) IBOutlet UILabel *dueDateLabel;
 @property (nonatomic, strong) IBOutlet UILabel *priceLabel;
+@property (nonatomic, strong) IBOutlet UILabel *closedLabel;
 @property (nonatomic, strong) Request* request;
 
 @end

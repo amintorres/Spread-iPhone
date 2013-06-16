@@ -89,7 +89,7 @@
     return sum;
 }
 
-- (NSUInteger)daysLeft
+- (NSInteger)daysLeft
 {
     NSDate *startDate = [NSDate date];
     NSDate *endDate = self.endDate;
@@ -97,6 +97,11 @@
     NSDateComponents *comps = [[NSCalendar currentCalendar] components:unitFlags fromDate:startDate toDate:endDate options:0];
     
     return comps.day;
+}
+
+- (BOOL)isClosed
+{
+    return (self.daysLeft <= 0);
 }
 
 - (NSArray *)sortedReferences

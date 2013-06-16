@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="2.0" toolsVersion="3084" systemVersion="12D78" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" initialViewController="zC0-jL-gdq">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="2.0" toolsVersion="3084" systemVersion="13A476u" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" initialViewController="zC0-jL-gdq">
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="2083"/>
     </dependencies>
@@ -1212,8 +1212,8 @@ $45,000 up for grabs</string>
                                                 </label>
                                                 <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="$" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumFontSize="10" translatesAutoresizingMaskIntoConstraints="NO" id="4eK-OD-Cfm" customClass="AppFontLabel">
                                                     <constraints>
+                                                        <constraint firstAttribute="height" constant="26" id="MYI-tQ-oxt"/>
                                                         <constraint firstAttribute="width" constant="15" id="YZG-gH-L0M"/>
-                                                        <constraint firstAttribute="height" constant="20" id="sMD-Bg-iT1"/>
                                                     </constraints>
                                                     <fontDescription key="fontDescription" type="system" pointSize="12"/>
                                                     <color key="textColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
@@ -1227,28 +1227,41 @@ $45,000 up for grabs</string>
                                                     <color key="textColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
                                                     <color key="highlightedColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                                 </label>
+                                                <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="Closed" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="FOY-lW-pvo" customClass="AppFontLabel">
+                                                    <color key="backgroundColor" red="0.99215686270000003" green="0.45098039220000002" blue="0.45882352939999999" alpha="1" colorSpace="calibratedRGB"/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="width" constant="50" type="user" id="BaZ-Mj-ybC"/>
+                                                        <constraint firstAttribute="height" constant="15" type="user" id="vVz-VI-B7H"/>
+                                                    </constraints>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="12"/>
+                                                    <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                                    <color key="highlightedColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                                </label>
                                             </subviews>
                                             <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                         </view>
                                         <constraints>
-                                            <constraint firstItem="otr-wV-Mnz" firstAttribute="leading" secondItem="4eK-OD-Cfm" secondAttribute="leading" type="default" id="8dM-I3-GVC"/>
-                                            <constraint firstItem="4eK-OD-Cfm" firstAttribute="centerY" secondItem="4zM-CF-0eD" secondAttribute="centerY" type="default" id="8xp-BX-J6R"/>
+                                            <constraint firstItem="otr-wV-Mnz" firstAttribute="leading" secondItem="4eK-OD-Cfm" secondAttribute="leading" type="user" id="8dM-I3-GVC"/>
                                             <constraint firstAttribute="bottom" secondItem="p2o-2R-wRz" secondAttribute="bottom" constant="20" type="default" id="CK2-pD-KCa"/>
+                                            <constraint firstItem="FOY-lW-pvo" firstAttribute="leading" secondItem="4eK-OD-Cfm" secondAttribute="leading" type="default" id="GJv-0Q-0Bv"/>
                                             <constraint firstItem="Hxm-tt-7Uh" firstAttribute="leading" secondItem="p2o-2R-wRz" secondAttribute="leading" type="default" id="GY7-gn-IzU"/>
                                             <constraint firstItem="4eK-OD-Cfm" firstAttribute="top" secondItem="nqJ-vG-0YF" secondAttribute="top" type="default" id="Iqg-hM-YWJ"/>
-                                            <constraint firstItem="otr-wV-Mnz" firstAttribute="leading" secondItem="4zM-CF-0eD" secondAttribute="leading" constant="10" id="OX0-1Y-i5i"/>
-                                            <constraint firstAttribute="bottom" secondItem="nqJ-vG-0YF" secondAttribute="bottom" constant="20" type="default" id="Php-cl-Ci2"/>
+                                            <constraint firstItem="FOY-lW-pvo" firstAttribute="baseline" secondItem="niH-nO-2L3" secondAttribute="baseline" type="default" id="Isw-6f-o9c"/>
+                                            <constraint firstItem="otr-wV-Mnz" firstAttribute="leading" secondItem="4zM-CF-0eD" secondAttribute="leading" constant="10" type="user" id="OX0-1Y-i5i"/>
+                                            <constraint firstAttribute="bottom" secondItem="nqJ-vG-0YF" secondAttribute="bottom" constant="20" type="user" id="Php-cl-Ci2"/>
+                                            <constraint firstItem="4eK-OD-Cfm" firstAttribute="baseline" secondItem="nqJ-vG-0YF" secondAttribute="baseline" type="default" id="Qm8-re-lsB"/>
                                             <constraint firstItem="otr-wV-Mnz" firstAttribute="trailing" secondItem="Hxm-tt-7Uh" secondAttribute="trailing" type="default" id="ZwW-Zz-6fz"/>
                                             <constraint firstItem="Hxm-tt-7Uh" firstAttribute="top" secondItem="nqJ-vG-0YF" secondAttribute="top" type="default" id="ewc-KJ-aTZ"/>
                                             <constraint firstItem="Hxm-tt-7Uh" firstAttribute="trailing" secondItem="p2o-2R-wRz" secondAttribute="trailing" type="default" id="ggc-Av-vWh"/>
                                             <constraint firstItem="otr-wV-Mnz" firstAttribute="top" secondItem="4zM-CF-0eD" secondAttribute="top" type="default" id="jgM-j5-hTY"/>
-                                            <constraint firstAttribute="bottom" secondItem="niH-nO-2L3" secondAttribute="bottom" constant="5" id="q38-bs-GgO"/>
+                                            <constraint firstItem="niH-nO-2L3" firstAttribute="leading" secondItem="p2o-2R-wRz" secondAttribute="leading" type="default" id="nmP-xv-Rli"/>
+                                            <constraint firstAttribute="bottom" secondItem="FOY-lW-pvo" secondAttribute="bottom" constant="5" id="p7m-yw-6Gd"/>
                                             <constraint firstItem="p2o-2R-wRz" firstAttribute="trailing" secondItem="niH-nO-2L3" secondAttribute="trailing" type="default" id="tRy-LU-dvW"/>
                                             <constraint firstItem="nqJ-vG-0YF" firstAttribute="leading" secondItem="4zM-CF-0eD" secondAttribute="leading" constant="25" id="u0d-qy-B4f"/>
-                                            <constraint firstItem="p2o-2R-wRz" firstAttribute="leading" secondItem="niH-nO-2L3" secondAttribute="leading" type="default" id="wYc-fX-ubu"/>
                                         </constraints>
                                         <connections>
                                             <outlet property="byLabel" destination="Hxm-tt-7Uh" id="w3Q-Xk-plg"/>
+                                            <outlet property="closedLabel" destination="FOY-lW-pvo" id="ZX4-61-s75"/>
                                             <outlet property="dueDateLabel" destination="niH-nO-2L3" id="lX9-Sj-aRY"/>
                                             <outlet property="priceLabel" destination="nqJ-vG-0YF" id="nAI-oA-U5f"/>
                                             <outlet property="quantityLabel" destination="p2o-2R-wRz" id="9xn-eK-myy"/>
@@ -2272,6 +2285,158 @@ image because:</string>
         <image name="texture-gray.png" width="40" height="40"/>
         <image name="texture-red.png" width="40" height="40"/>
     </resources>
+    <classes>
+        <class className="AppFontButton" superclassName="UIButton">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/AppFontButton.h"/>
+        </class>
+        <class className="AppFontLabel" superclassName="UILabel">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/AppFontLabel.h"/>
+        </class>
+        <class className="BaseViewController" superclassName="UIViewController">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/BaseViewController.h"/>
+            <relationships>
+                <relationship kind="action" name="backButtonTapped:"/>
+            </relationships>
+        </class>
+        <class className="ButtonCell" superclassName="UITableViewCell">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/ButtonCell.h"/>
+            <relationships>
+                <relationship kind="outlet" name="button" candidateClass="UIButton"/>
+            </relationships>
+        </class>
+        <class className="CurrencyLabel" superclassName="AppFontLabel">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/CurrencyLabel.h"/>
+        </class>
+        <class className="EditViewController" superclassName="UITableViewController">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/EditViewController.h"/>
+            <relationships>
+                <relationship kind="outlet" name="deleteButton" candidateClass="UIButton"/>
+                <relationship kind="outlet" name="descriptionTextView" candidateClass="PlaceholderTextView"/>
+                <relationship kind="outlet" name="rememberDetailsLabel" candidateClass="UILabel"/>
+                <relationship kind="outlet" name="rememberDetailsSwitch" candidateClass="UISwitch"/>
+                <relationship kind="outlet" name="tagsTextField" candidateClass="UITextField"/>
+                <relationship kind="outlet" name="titleTextField" candidateClass="UITextField"/>
+            </relationships>
+        </class>
+        <class className="FlagCell" superclassName="UITableViewCell">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/FlagCell.h"/>
+            <relationships>
+                <relationship kind="outlet" name="checkmarkImageView" candidateClass="UIImageView"/>
+                <relationship kind="outlet" name="descriptionLabel" candidateClass="UILabel"/>
+            </relationships>
+        </class>
+        <class className="FlagViewController" superclassName="UITableViewController">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/FlagViewController.h"/>
+        </class>
+        <class className="IntroTableViewController" superclassName="UITableViewController">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/IntroTableViewController.h"/>
+            <relationships>
+                <relationship kind="action" name="facebookLoginButtonTapped:"/>
+                <relationship kind="action" name="goBack:"/>
+                <relationship kind="action" name="loginButtonTapped:"/>
+                <relationship kind="outlet" name="captionLabel" candidateClass="UILabel"/>
+                <relationship kind="outlet" name="headerImageView" candidateClass="UIImageView"/>
+                <relationship kind="outlet" name="logoButton" candidateClass="UIButton"/>
+                <relationship kind="outlet" name="swipeGestureRecognizer" candidateClass="UISwipeGestureRecognizer"/>
+            </relationships>
+        </class>
+        <class className="MenuViewController" superclassName="UIViewController">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/MenuViewController.h"/>
+            <relationships>
+                <relationship kind="outlet" name="profileButton" candidateClass="UIButton"/>
+            </relationships>
+        </class>
+        <class className="NSLayoutConstraint" superclassName="NSObject">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/NSLayoutConstraint.h"/>
+        </class>
+        <class className="PlaceholderTextView" superclassName="UITextView">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/PlaceholderTextView.h"/>
+        </class>
+        <class className="RequestBriefViewController" superclassName="BaseViewController">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/RequestBriefViewController.h"/>
+            <relationships>
+                <relationship kind="outlet" name="submitButton" candidateClass="UIButton"/>
+                <relationship kind="outlet" name="textView" candidateClass="UITextView"/>
+            </relationships>
+        </class>
+        <class className="RequestCell" superclassName="UITableViewCell">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/RequestCell.h"/>
+            <relationships>
+                <relationship kind="outlet" name="byLabel" candidateClass="UILabel"/>
+                <relationship kind="outlet" name="closedLabel" candidateClass="UILabel"/>
+                <relationship kind="outlet" name="dueDateLabel" candidateClass="UILabel"/>
+                <relationship kind="outlet" name="priceLabel" candidateClass="UILabel"/>
+                <relationship kind="outlet" name="quantityLabel" candidateClass="UILabel"/>
+                <relationship kind="outlet" name="titleLabel" candidateClass="UILabel"/>
+            </relationships>
+        </class>
+        <class className="RequestDetailViewController" superclassName="BaseViewController">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/RequestDetailViewController.h"/>
+            <relationships>
+                <relationship kind="outlet" name="daysLeftLabel" candidateClass="UILabel"/>
+                <relationship kind="outlet" name="descriptionLabel" candidateClass="UILabel"/>
+                <relationship kind="outlet" name="photosButton" candidateClass="UIButton"/>
+                <relationship kind="outlet" name="priceLabel" candidateClass="UILabel"/>
+                <relationship kind="outlet" name="quantityLabel" candidateClass="UILabel"/>
+                <relationship kind="outlet" name="requesterImageView" candidateClass="UIImageView"/>
+                <relationship kind="outlet" name="requesterLabel" candidateClass="UILabel"/>
+                <relationship kind="outlet" name="submitButton" candidateClass="UIButton"/>
+            </relationships>
+        </class>
+        <class className="RequestEditViewController" superclassName="UIViewController">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/RequestEditViewController.h"/>
+            <relationships>
+                <relationship kind="outlet" name="imageView" candidateClass="UIImageView"/>
+                <relationship kind="outlet" name="textLabel" candidateClass="UILabel"/>
+                <relationship kind="outlet" name="uploadContainer" candidateClass="UIView"/>
+            </relationships>
+        </class>
+        <class className="RequestFilterViewController" superclassName="UIViewController">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/RequestFilterViewController.h"/>
+            <relationships>
+                <relationship kind="outlet" name="byDateButton" candidateClass="UIButton"/>
+                <relationship kind="outlet" name="byHighestPriceButton" candidateClass="UIButton"/>
+                <relationship kind="outlet" name="byLowestPriceButton" candidateClass="UIButton"/>
+            </relationships>
+        </class>
+        <class className="RequestReferenceViewController" superclassName="BaseViewController">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/RequestReferenceViewController.h"/>
+            <relationships>
+                <relationship kind="outlet" name="submitButton" candidateClass="UIButton"/>
+                <relationship kind="outlet" name="textView" candidateClass="UITextView"/>
+            </relationships>
+        </class>
+        <class className="RequestsViewController" superclassName="BaseViewController">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/RequestsViewController.h"/>
+            <relationships>
+                <relationship kind="outlet" name="infoLabel" candidateClass="UILabel"/>
+                <relationship kind="outlet" name="tableView" candidateClass="UITableView"/>
+            </relationships>
+        </class>
+        <class className="RoundedRectButton" superclassName="AppFontButton">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/RoundedRectButton.h"/>
+        </class>
+        <class className="SettingsViewController" superclassName="UITableViewController">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/SettingsViewController.h"/>
+            <relationships>
+                <relationship kind="outlet" name="emailCell" candidateClass="UITableViewCell"/>
+                <relationship kind="outlet" name="logoutCell" candidateClass="UITableViewCell"/>
+            </relationships>
+        </class>
+        <class className="TextFieldCell" superclassName="UITableViewCell">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/TextFieldCell.h"/>
+            <relationships>
+                <relationship kind="outlet" name="textField" candidateClass="UITextField"/>
+            </relationships>
+        </class>
+        <class className="WebViewController" superclassName="BaseViewController">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/WebViewController.h"/>
+            <relationships>
+                <relationship kind="outlet" name="titleLabel" candidateClass="UILabel"/>
+                <relationship kind="outlet" name="webView" candidateClass="UIWebView"/>
+            </relationships>
+        </class>
+    </classes>
     <simulatedMetricsContainer key="defaultSimulatedMetrics">
         <simulatedStatusBarMetrics key="statusBar"/>
         <simulatedOrientationMetrics key="orientation"/>

@@ -10,6 +10,7 @@
 #import "User+Spread.h"
 #import "NSDate+Spread.h"
 #import "NSNumber+Spread.h"
+#import <QuartzCore/QuartzCore.h>
 
 
 @implementation RequestCell
@@ -24,6 +25,9 @@
     self.quantityLabel.text = [NSString stringWithFormat:@"%d image(s) needed", [request.quantity integerValue]];
     self.dueDateLabel.text = [NSString stringWithFormat:@"Due on: %@", [request.endDate dateString]];
     self.priceLabel.text = [NSString stringWithFormat:@"%d", [request.amount integerValue]];
+    
+    self.closedLabel.hidden = !request.isClosed;
+    self.closedLabel.layer.cornerRadius = 3.0;
 }
 
 @end

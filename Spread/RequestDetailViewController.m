@@ -42,7 +42,15 @@
     
     self.priceLabel.text = [self.request.amount currencyString];
     self.quantityLabel.text = [NSString stringWithFormat:@"%02d", [self.request.quantity integerValue]];
-    self.daysLeftLabel.text = [NSString stringWithFormat:@"%02d", self.request.daysLeft];
+    
+    if (!self.request.isClosed)
+    {
+        self.daysLeftLabel.text = [NSString stringWithFormat:@"%02d", self.request.daysLeft];
+    }
+    else
+    {
+        self.daysLeftLabel.text = @"0";
+    }
     
     [self.photosButton setTitle:[NSString stringWithFormat:@"Photos (%d)", [self.request.photos count]] forState:UIControlStateNormal];
     
@@ -52,6 +60,11 @@
     {
         self.submitButton.enabled = NO;
         [self.submitButton setTitle:@"Cannot submit to your own request" forState:UIControlStateNormal];
+    }
+    else if (self.request.isClosed)
+    {
+        self.submitButton.enabled = NO;
+        [self.submitButton setTitle:@"Submitting photos to this request has ended" forState:UIControlStateNormal];
     }
 }
 

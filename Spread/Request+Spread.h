@@ -12,7 +12,8 @@
 
 @interface Request (Spread)
 
-@property (nonatomic, readonly) NSUInteger daysLeft;
+@property (nonatomic, readonly) NSInteger daysLeft;
+@property (nonatomic, readonly) BOOL isClosed;
 @property (nonatomic, readonly) NSArray *sortedReferences;
 
 // Override: Clears requests deleted on the server.
