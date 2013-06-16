@@ -28,7 +28,7 @@
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
-    [TestFlight takeOff:@"f319601b6e6c25b7c3f258bcdaa9e768_NTI4NDQyMDEyLTAxLTExIDEwOjU2OjEzLjE1NDkxNQ"];
+    [TestFlight takeOff:@"2c28d0c0-5b27-4715-9ba7-e1c082c19b23"];
     [Flurry startSession:@"ZY7N6UAGKKFHYMUJ4LK1"];
     [Flurry logAllPageViews:self.navigationController];
 
