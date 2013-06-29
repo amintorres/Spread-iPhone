@@ -14,14 +14,18 @@
 #import "NSUserDefaults+Spread.h"
 #import "MenuViewController.h"
 #import "CameraManager.h"
+#import "UIFont+Spread.h"
 
 
 @interface EditViewController () <UIAlertViewDelegate>
+@property (strong, nonatomic) IBOutlet UILabel *titleLabel;
+@property (strong, nonatomic) IBOutlet UILabel *tagsLabel;
+@property (strong, nonatomic) IBOutlet UILabel *descriptionLabel;
+@property (strong, nonatomic) IBOutlet UILabel *rememberDetailsLabel;
 @property (strong, nonatomic) IBOutlet UITextField *titleTextField;
 @property (strong, nonatomic) IBOutlet UITextField *tagsTextField;
 @property (strong, nonatomic) IBOutlet PlaceholderTextView *descriptionTextView;
 @property (strong, nonatomic) IBOutlet UISwitch *rememberDetailsSwitch;
-@property (strong, nonatomic) IBOutlet UILabel *rememberDetailsLabel;
 @property (strong, nonatomic) IBOutlet UIButton *deleteButton;
 @end
 
@@ -38,6 +42,17 @@
     
     [[UIApplication sharedApplication] setStatusBarHidden:NO withAnimation:UIStatusBarAnimationSlide];
     [self.navigationController setNavigationBarHidden:YES animated:YES];
+    
+    
+    self.titleLabel.font = [UIFont appFontOfSize:16];
+    self.tagsLabel.font = [UIFont appFontOfSize:16];
+    self.descriptionLabel.font = [UIFont appFontOfSize:16];
+    self.titleTextField.font = [UIFont appFontOfSize:16];
+    self.tagsTextField.font = [UIFont appFontOfSize:16];
+    self.descriptionTextView.font = [UIFont appFontOfSize:16];
+    self.rememberDetailsLabel.font = [UIFont appFontOfSize:16];
+    
+    
 
     self.descriptionTextView.placeholder = @"Add as much detail as possible";
     
@@ -215,10 +230,10 @@
 
 #pragma mark - TableView
 
-- (NSString *)tableView:(UITableView *)tableView titleForHeaderInSection:(NSInteger)section
-{
-    return @"Details";
-}
+//- (NSString *)tableView:(UITableView *)tableView titleForHeaderInSection:(NSInteger)section
+//{
+//    return @"Details";
+//}
 
 
 #pragma mark - TextField Delegate

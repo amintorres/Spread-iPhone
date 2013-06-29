@@ -346,7 +346,7 @@
                             <rect key="frame" x="0.0" y="0.0" width="320" height="70"/>
                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             <subviews>
-                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="F4d-Uq-U7z">
+                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="F4d-Uq-U7z" customClass="RoundedRectButton">
                                     <constraints>
                                         <constraint firstAttribute="width" constant="80" id="cbX-lI-LXa"/>
                                         <constraint firstAttribute="height" constant="44" id="syf-s4-fEd"/>
@@ -363,7 +363,7 @@
                                         <action selector="cancelButtonTapped:" destination="QTt-Be-NhP" eventType="touchUpInside" id="BGN-wZ-uMW"/>
                                     </connections>
                                 </button>
-                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Nfz-hS-Q4V">
+                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Nfz-hS-Q4V" customClass="RoundedRectButton">
                                     <constraints>
                                         <constraint firstAttribute="width" constant="80" id="aJS-9j-K3Y"/>
                                     </constraints>
@@ -417,7 +417,7 @@
                                 </switch>
                                 <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="Remember these details" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="P1Y-ti-kWR">
                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                    <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                    <color key="textColor" red="0.40000000000000002" green="0.40000000000000002" blue="0.40000000000000002" alpha="1" colorSpace="calibratedRGB"/>
                                     <nil key="highlightedColor"/>
                                 </label>
                             </subviews>
@@ -443,9 +443,10 @@
                                             <subviews>
                                                 <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="title" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="9XR-XO-02P">
                                                     <constraints>
-                                                        <constraint firstAttribute="width" constant="200" id="UJL-wc-eSY"/>
+                                                        <constraint firstAttribute="width" constant="220" type="user" id="UJL-wc-eSY"/>
                                                         <constraint firstAttribute="height" constant="44" id="Uq4-eL-VsG"/>
                                                     </constraints>
+                                                    <color key="textColor" red="0.40000000000000002" green="0.40000000000000002" blue="0.40000000000000002" alpha="1" colorSpace="calibratedRGB"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                                     <textInputTraits key="textInputTraits"/>
                                                     <connections>
@@ -454,14 +455,14 @@
                                                 </textField>
                                                 <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="Title" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Ifb-11-5lU">
                                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                                    <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                                    <color key="textColor" red="0.40000000000000002" green="0.40000000000000002" blue="0.40000000000000002" alpha="1" colorSpace="calibratedRGB"/>
                                                     <color key="highlightedColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                                 </label>
                                             </subviews>
                                             <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                         </view>
                                         <constraints>
-                                            <constraint firstItem="9XR-XO-02P" firstAttribute="leading" secondItem="jws-Vo-zP5" secondAttribute="leading" constant="90" id="PdR-Gn-YtF"/>
+                                            <constraint firstItem="9XR-XO-02P" firstAttribute="leading" secondItem="jws-Vo-zP5" secondAttribute="leading" constant="80" type="user" id="PdR-Gn-YtF"/>
                                             <constraint firstItem="9XR-XO-02P" firstAttribute="bottom" secondItem="jws-Vo-zP5" secondAttribute="bottom" type="default" id="Xlt-Qp-mYr"/>
                                             <constraint firstItem="Ifb-11-5lU" firstAttribute="centerY" secondItem="jws-Vo-zP5" secondAttribute="centerY" type="default" id="efH-fX-zbW"/>
                                             <constraint firstItem="Ifb-11-5lU" firstAttribute="leading" secondItem="jws-Vo-zP5" secondAttribute="leading" constant="30" id="qyH-rS-ye7"/>
@@ -476,8 +477,9 @@
                                             <subviews>
                                                 <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Separated by comma" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="EWj-48-utj">
                                                     <constraints>
-                                                        <constraint firstAttribute="width" constant="200" id="djq-po-lOU"/>
+                                                        <constraint firstAttribute="width" constant="220" type="user" id="djq-po-lOU"/>
                                                     </constraints>
+                                                    <color key="textColor" red="0.40000000000000002" green="0.40000000000000002" blue="0.40000000000000002" alpha="1" colorSpace="calibratedRGB"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                                     <textInputTraits key="textInputTraits"/>
                                                     <connections>
@@ -486,14 +488,14 @@
                                                 </textField>
                                                 <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="Tags" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="hmO-B9-X47">
                                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                                    <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                                    <color key="textColor" red="0.40000000000000002" green="0.40000000000000002" blue="0.40000000000000002" alpha="1" colorSpace="calibratedRGB"/>
                                                     <color key="highlightedColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                                 </label>
                                             </subviews>
                                             <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                         </view>
                                         <constraints>
-                                            <constraint firstItem="EWj-48-utj" firstAttribute="leading" secondItem="PeU-eh-obH" secondAttribute="leading" constant="90" id="7Td-d0-kVV"/>
+                                            <constraint firstItem="EWj-48-utj" firstAttribute="leading" secondItem="PeU-eh-obH" secondAttribute="leading" constant="80" type="user" id="7Td-d0-kVV"/>
                                             <constraint firstItem="EWj-48-utj" firstAttribute="top" secondItem="PeU-eh-obH" secondAttribute="top" type="default" id="9Ax-rs-Vrr"/>
                                             <constraint firstItem="EWj-48-utj" firstAttribute="bottom" secondItem="PeU-eh-obH" secondAttribute="bottom" type="default" id="ERq-9B-obf"/>
                                             <constraint firstItem="hmO-B9-X47" firstAttribute="top" secondItem="PeU-eh-obH" secondAttribute="top" constant="11" id="F8n-nh-JnF"/>
@@ -509,16 +511,17 @@
                                             <subviews>
                                                 <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="Description" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="vv9-si-9Ke">
                                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                                    <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                                    <color key="textColor" red="0.40000000000000002" green="0.40000000000000002" blue="0.40000000000000002" alpha="1" colorSpace="calibratedRGB"/>
                                                     <color key="highlightedColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                                 </label>
                                                 <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="xyR-wH-w6T" customClass="PlaceholderTextView">
                                                     <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                                     <constraints>
-                                                        <constraint firstAttribute="width" constant="270" id="NDL-uy-ADy"/>
+                                                        <constraint firstAttribute="width" constant="274" type="user" id="NDL-uy-ADy"/>
                                                         <constraint firstAttribute="height" constant="150" id="QBo-bW-pkZ"/>
                                                     </constraints>
                                                     <string key="text">Lorem ipsum dolor sit er elit lamet, consectetaur cillium adipisicing pecu, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. Nam liber te conscient to factor tum poen legum odioque civiuda.</string>
+                                                    <color key="textColor" red="0.40000000000000002" green="0.40000000000000002" blue="0.40000000000000002" alpha="1" colorSpace="calibratedRGB"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                                     <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
                                                     <connections>
@@ -529,9 +532,9 @@
                                             <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                         </view>
                                         <constraints>
+                                            <constraint firstAttribute="centerX" secondItem="xyR-wH-w6T" secondAttribute="centerX" type="user" id="BDD-uU-NEN"/>
                                             <constraint firstItem="vv9-si-9Ke" firstAttribute="top" secondItem="ZyW-FO-4Y4" secondAttribute="top" constant="11" id="NX1-yW-sRb"/>
                                             <constraint firstItem="xyR-wH-w6T" firstAttribute="top" secondItem="ZyW-FO-4Y4" secondAttribute="top" constant="30" id="Rnw-iy-UwB"/>
-                                            <constraint firstItem="xyR-wH-w6T" firstAttribute="centerX" secondItem="ZyW-FO-4Y4" secondAttribute="centerX" type="default" id="sVc-sm-3La"/>
                                             <constraint firstItem="vv9-si-9Ke" firstAttribute="leading" secondItem="ZyW-FO-4Y4" secondAttribute="leading" constant="30" id="zLr-5h-MiS"/>
                                         </constraints>
                                     </tableViewCell>
@@ -545,10 +548,13 @@
                     </tableView>
                     <connections>
                         <outlet property="deleteButton" destination="npR-ac-a2y" id="jYx-hc-Qfo"/>
+                        <outlet property="descriptionLabel" destination="vv9-si-9Ke" id="HXy-hh-5bL"/>
                         <outlet property="descriptionTextView" destination="xyR-wH-w6T" id="h5B-gR-g6P"/>
                         <outlet property="rememberDetailsLabel" destination="P1Y-ti-kWR" id="my4-Wr-uEC"/>
                         <outlet property="rememberDetailsSwitch" destination="aBj-MD-9zS" id="thM-dW-ajJ"/>
+                        <outlet property="tagsLabel" destination="hmO-B9-X47" id="kts-E2-ApB"/>
                         <outlet property="tagsTextField" destination="EWj-48-utj" id="lGb-f7-poC"/>
+                        <outlet property="titleLabel" destination="Ifb-11-5lU" id="cE3-mR-XCj"/>
                         <outlet property="titleTextField" destination="9XR-XO-02P" id="acr-qV-g32"/>
                     </connections>
                 </tableViewController>
@@ -566,7 +572,7 @@
                         <subviews>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Kpy-Xa-9f7">
                                 <subviews>
-                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="jC1-5o-PF7">
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="jC1-5o-PF7" customClass="RoundedRectButton">
                                         <constraints>
                                             <constraint firstAttribute="width" constant="80" type="user" id="X4a-sb-3at"/>
                                         </constraints>
@@ -582,7 +588,7 @@
                                             <action selector="cancelButtonTapped:" destination="IU8-cu-11N" eventType="touchUpInside" id="4mt-9Z-s4q"/>
                                         </connections>
                                     </button>
-                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="SXZ-MS-SZ7">
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="SXZ-MS-SZ7" customClass="RoundedRectButton">
                                         <constraints>
                                             <constraint firstAttribute="height" constant="44" type="user" id="0KY-Ce-0By"/>
                                             <constraint firstAttribute="width" constant="80" type="user" id="UXU-JR-Wo9"/>
@@ -2285,6 +2291,161 @@ image because:</string>
         <image name="texture-gray.png" width="40" height="40"/>
         <image name="texture-red.png" width="40" height="40"/>
     </resources>
+    <classes>
+        <class className="AppFontButton" superclassName="UIButton">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/AppFontButton.h"/>
+        </class>
+        <class className="AppFontLabel" superclassName="UILabel">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/AppFontLabel.h"/>
+        </class>
+        <class className="BaseViewController" superclassName="UIViewController">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/BaseViewController.h"/>
+            <relationships>
+                <relationship kind="action" name="backButtonTapped:"/>
+            </relationships>
+        </class>
+        <class className="ButtonCell" superclassName="UITableViewCell">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/ButtonCell.h"/>
+            <relationships>
+                <relationship kind="outlet" name="button" candidateClass="UIButton"/>
+            </relationships>
+        </class>
+        <class className="CurrencyLabel" superclassName="AppFontLabel">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/CurrencyLabel.h"/>
+        </class>
+        <class className="EditViewController" superclassName="UITableViewController">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/EditViewController.h"/>
+            <relationships>
+                <relationship kind="outlet" name="deleteButton" candidateClass="UIButton"/>
+                <relationship kind="outlet" name="descriptionLabel" candidateClass="UILabel"/>
+                <relationship kind="outlet" name="descriptionTextView" candidateClass="PlaceholderTextView"/>
+                <relationship kind="outlet" name="rememberDetailsLabel" candidateClass="UILabel"/>
+                <relationship kind="outlet" name="rememberDetailsSwitch" candidateClass="UISwitch"/>
+                <relationship kind="outlet" name="tagsLabel" candidateClass="UILabel"/>
+                <relationship kind="outlet" name="tagsTextField" candidateClass="UITextField"/>
+                <relationship kind="outlet" name="titleLabel" candidateClass="UILabel"/>
+                <relationship kind="outlet" name="titleTextField" candidateClass="UITextField"/>
+            </relationships>
+        </class>
+        <class className="FlagCell" superclassName="UITableViewCell">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/FlagCell.h"/>
+            <relationships>
+                <relationship kind="outlet" name="checkmarkImageView" candidateClass="UIImageView"/>
+                <relationship kind="outlet" name="descriptionLabel" candidateClass="UILabel"/>
+            </relationships>
+        </class>
+        <class className="FlagViewController" superclassName="UITableViewController">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/FlagViewController.h"/>
+        </class>
+        <class className="IntroTableViewController" superclassName="UITableViewController">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/IntroTableViewController.h"/>
+            <relationships>
+                <relationship kind="action" name="facebookLoginButtonTapped:"/>
+                <relationship kind="action" name="goBack:"/>
+                <relationship kind="action" name="loginButtonTapped:"/>
+                <relationship kind="outlet" name="captionLabel" candidateClass="UILabel"/>
+                <relationship kind="outlet" name="headerImageView" candidateClass="UIImageView"/>
+                <relationship kind="outlet" name="logoButton" candidateClass="UIButton"/>
+                <relationship kind="outlet" name="swipeGestureRecognizer" candidateClass="UISwipeGestureRecognizer"/>
+            </relationships>
+        </class>
+        <class className="MenuViewController" superclassName="UIViewController">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/MenuViewController.h"/>
+            <relationships>
+                <relationship kind="outlet" name="profileButton" candidateClass="UIButton"/>
+            </relationships>
+        </class>
+        <class className="NSLayoutConstraint" superclassName="NSObject">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/NSLayoutConstraint.h"/>
+        </class>
+        <class className="PlaceholderTextView" superclassName="UITextView">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/PlaceholderTextView.h"/>
+        </class>
+        <class className="RequestBriefViewController" superclassName="BaseViewController">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/RequestBriefViewController.h"/>
+            <relationships>
+                <relationship kind="outlet" name="submitButton" candidateClass="UIButton"/>
+                <relationship kind="outlet" name="textView" candidateClass="UITextView"/>
+            </relationships>
+        </class>
+        <class className="RequestCell" superclassName="UITableViewCell">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/RequestCell.h"/>
+            <relationships>
+                <relationship kind="outlet" name="byLabel" candidateClass="UILabel"/>
+                <relationship kind="outlet" name="closedLabel" candidateClass="UILabel"/>
+                <relationship kind="outlet" name="dueDateLabel" candidateClass="UILabel"/>
+                <relationship kind="outlet" name="priceLabel" candidateClass="UILabel"/>
+                <relationship kind="outlet" name="quantityLabel" candidateClass="UILabel"/>
+                <relationship kind="outlet" name="titleLabel" candidateClass="UILabel"/>
+            </relationships>
+        </class>
+        <class className="RequestDetailViewController" superclassName="BaseViewController">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/RequestDetailViewController.h"/>
+            <relationships>
+                <relationship kind="outlet" name="daysLeftLabel" candidateClass="UILabel"/>
+                <relationship kind="outlet" name="descriptionLabel" candidateClass="UILabel"/>
+                <relationship kind="outlet" name="photosButton" candidateClass="UIButton"/>
+                <relationship kind="outlet" name="priceLabel" candidateClass="UILabel"/>
+                <relationship kind="outlet" name="quantityLabel" candidateClass="UILabel"/>
+                <relationship kind="outlet" name="requesterImageView" candidateClass="UIImageView"/>
+                <relationship kind="outlet" name="requesterLabel" candidateClass="UILabel"/>
+                <relationship kind="outlet" name="submitButton" candidateClass="UIButton"/>
+            </relationships>
+        </class>
+        <class className="RequestEditViewController" superclassName="UIViewController">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/RequestEditViewController.h"/>
+            <relationships>
+                <relationship kind="outlet" name="imageView" candidateClass="UIImageView"/>
+                <relationship kind="outlet" name="textLabel" candidateClass="UILabel"/>
+                <relationship kind="outlet" name="uploadContainer" candidateClass="UIView"/>
+            </relationships>
+        </class>
+        <class className="RequestFilterViewController" superclassName="UIViewController">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/RequestFilterViewController.h"/>
+            <relationships>
+                <relationship kind="outlet" name="byDateButton" candidateClass="UIButton"/>
+                <relationship kind="outlet" name="byHighestPriceButton" candidateClass="UIButton"/>
+                <relationship kind="outlet" name="byLowestPriceButton" candidateClass="UIButton"/>
+            </relationships>
+        </class>
+        <class className="RequestReferenceViewController" superclassName="BaseViewController">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/RequestReferenceViewController.h"/>
+            <relationships>
+                <relationship kind="outlet" name="submitButton" candidateClass="UIButton"/>
+                <relationship kind="outlet" name="textView" candidateClass="UITextView"/>
+            </relationships>
+        </class>
+        <class className="RequestsViewController" superclassName="BaseViewController">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/RequestsViewController.h"/>
+            <relationships>
+                <relationship kind="outlet" name="infoLabel" candidateClass="UILabel"/>
+                <relationship kind="outlet" name="tableView" candidateClass="UITableView"/>
+            </relationships>
+        </class>
+        <class className="RoundedRectButton" superclassName="AppFontButton">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/RoundedRectButton.h"/>
+        </class>
+        <class className="SettingsViewController" superclassName="UITableViewController">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/SettingsViewController.h"/>
+            <relationships>
+                <relationship kind="outlet" name="emailCell" candidateClass="UITableViewCell"/>
+                <relationship kind="outlet" name="logoutCell" candidateClass="UITableViewCell"/>
+            </relationships>
+        </class>
+        <class className="TextFieldCell" superclassName="UITableViewCell">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/TextFieldCell.h"/>
+            <relationships>
+                <relationship kind="outlet" name="textField" candidateClass="UITextField"/>
+            </relationships>
+        </class>
+        <class className="WebViewController" superclassName="BaseViewController">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/WebViewController.h"/>
+            <relationships>
+                <relationship kind="outlet" name="titleLabel" candidateClass="UILabel"/>
+                <relationship kind="outlet" name="webView" candidateClass="UIWebView"/>
+            </relationships>
+        </class>
+    </classes>
     <simulatedMetricsContainer key="defaultSimulatedMetrics">
         <simulatedStatusBarMetrics key="statusBar"/>
         <simulatedOrientationMetrics key="orientation"/>
