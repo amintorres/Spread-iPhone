@@ -16,7 +16,10 @@
 {
     Reference* reference = (Reference*)[super objectWithDict:dict inContext:context];
     reference.referenceID = dict[[self jsonIDKey]];
-    reference.referenceURL = dict[@"url"];
+    
+    NSString *url = dict[@"url"];
+    NSArray *array = [url componentsSeparatedByString:@" "];
+    reference.referenceURL = [array lastObject];
     
 	return reference;
 }

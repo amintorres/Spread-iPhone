@@ -79,6 +79,7 @@
 		7C62EA2014CCB5400003FFF4 /* privacy.html in Resources */ = {isa = PBXBuildFile; fileRef = 7C62EA1D14CCB5400003FFF4 /* privacy.html */; };
 		7C62EA2114CCB5400003FFF4 /* terms.html in Resources */ = {isa = PBXBuildFile; fileRef = 7C62EA1E14CCB5400003FFF4 /* terms.html */; };
 		7C62EA2814CCB77B0003FFF4 /* MessageUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7C62EA2714CCB77B0003FFF4 /* MessageUI.framework */; };
+		7C69795A177FBC69004E56D0 /* RequestWebViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7C697959177FBC69004E56D0 /* RequestWebViewController.m */; };
 		7C6BC6E316E011D2008365AA /* icon-comment.png in Resources */ = {isa = PBXBuildFile; fileRef = 7C6BC6DD16E011D2008365AA /* icon-comment.png */; };
 		7C6BC6E416E011D2008365AA /* icon-comment@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 7C6BC6DE16E011D2008365AA /* icon-comment@2x.png */; };
 		7C6BC6E516E011D2008365AA /* icon-flag.png in Resources */ = {isa = PBXBuildFile; fileRef = 7C6BC6DF16E011D2008365AA /* icon-flag.png */; };
@@ -286,6 +287,8 @@
 		7C62EA2214CCB56E0003FFF4 /* WebViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WebViewController.h; sourceTree = "<group>"; };
 		7C62EA2314CCB56E0003FFF4 /* WebViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WebViewController.m; sourceTree = "<group>"; };
 		7C62EA2714CCB77B0003FFF4 /* MessageUI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MessageUI.framework; path = System/Library/Frameworks/MessageUI.framework; sourceTree = SDKROOT; };
+		7C697958177FBC69004E56D0 /* RequestWebViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RequestWebViewController.h; sourceTree = "<group>"; };
+		7C697959177FBC69004E56D0 /* RequestWebViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RequestWebViewController.m; sourceTree = "<group>"; };
 		7C6BC6DD16E011D2008365AA /* icon-comment.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "icon-comment.png"; sourceTree = "<group>"; };
 		7C6BC6DE16E011D2008365AA /* icon-comment@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "icon-comment@2x.png"; sourceTree = "<group>"; };
 		7C6BC6DF16E011D2008365AA /* icon-flag.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "icon-flag.png"; sourceTree = "<group>"; };
@@ -541,6 +544,8 @@
 				7CE82C1E16989E2C00CD240B /* RequestBriefViewController.m */,
 				7C165AAB16AB3AC700E0BF28 /* RequestReferenceViewController.h */,
 				7C165AAC16AB3AC700E0BF28 /* RequestReferenceViewController.m */,
+				7C697958177FBC69004E56D0 /* RequestWebViewController.h */,
+				7C697959177FBC69004E56D0 /* RequestWebViewController.m */,
 			);
 			name = Requests;
 			sourceTree = "<group>";
@@ -1195,6 +1200,7 @@
 				7C30A2F016E2B44300A2A330 /* Permission.m in Sources */,
 				7C30A2F616E2B44E00A2A330 /* Photo.m in Sources */,
 				7C91BF1416F4D43100B31A93 /* RequestEditViewController.m in Sources */,
+				7C69795A177FBC69004E56D0 /* RequestWebViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
