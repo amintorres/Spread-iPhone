@@ -36,6 +36,8 @@
     [[UIApplication sharedApplication] setStatusBarHidden:NO withAnimation:UIStatusBarAnimationSlide];
     [self.navigationController setNavigationBarHidden:YES animated:YES];
     
+    self.textLabel.font = [UIFont appFontOfSize:16];
+
     self.imageView.image = [self.mediaInfo objectForKey:UIImagePickerControllerOriginalImage];
     
     self.uploadViewController = [UploadViewController new];
