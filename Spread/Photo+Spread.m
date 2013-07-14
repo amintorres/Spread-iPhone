@@ -19,11 +19,11 @@
 {
     Photo* photo = (Photo*)[super objectWithDict:dict inContext:context];
     photo.photoID = dict[[self jsonIDKey]];
-    photo.name = dict[@"name"];
-    photo.photoDescription = dict[@"description"];
-    photo.impressionsCount = dict[@"impressions_count"];
-    photo.favoritesCount = dict[@"favorites_count"];
-    photo.commentsCount = dict[@"comments_count"];
+    photo.name = objectOrNil(dict[@"name"]);
+    photo.photoDescription = objectOrNil(dict[@"description"]);
+    photo.impressionsCount = objectOrNil(dict[@"impressions_count"]);
+    photo.favoritesCount = objectOrNil(dict[@"favorites_count"]);
+    photo.commentsCount = objectOrNil(dict[@"comments_count"]);
     photo.createdDate = [NSDate dateFromServerString:dict[@"created_at"]];
     photo.updatedDate = [NSDate dateFromServerString:dict[@"updated_at"]];
 

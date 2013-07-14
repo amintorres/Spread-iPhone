@@ -8,9 +8,16 @@
 
 #import "NSManagedObject+Utilities.h"
 
+id objectOrNil(id object)
+{
+    if ([object isEqual:[NSNull null]]) {
+        return nil;
+    }
+    return object;
+}
+
 
 @implementation NSManagedObject (Utilities)
-
 
 #pragma mark -
 

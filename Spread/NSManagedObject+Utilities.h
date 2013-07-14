@@ -8,6 +8,8 @@
 
 #import <CoreData/CoreData.h>
 
+extern id objectOrNil(id object);
+
 
 @interface NSManagedObject (Utilities)
 

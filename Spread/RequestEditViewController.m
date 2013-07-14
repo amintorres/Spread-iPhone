@@ -39,7 +39,7 @@
     
     self.textLabel.font = [UIFont appFontOfSize:16];
 
-    self.imageView.image = [self.mediaInfo objectForKey:UIImagePickerControllerOriginalImage];
+    self.imageView.image = self.mediaInfo[@"FPPickerControllerOriginalImage"];
     
     self.uploadViewController = [UploadViewController new];
     self.uploadViewController.delegate = self;
@@ -62,55 +62,25 @@
 
 - (IBAction)saveButtonTapped:(id)sender
 {
-    UIImage* image = [self.mediaInfo objectForKey:UIImagePickerControllerOriginalImage];
-    NSDictionary* metaData = [self.mediaInfo objectForKey:UIImagePickerControllerMediaMetadata];
-    
-    ALAssetsLibrary *assetsLibrary = [[ALAssetsLibrary alloc] init];
-    UIImagePickerController* picker = (UIImagePickerController*)self.navigationController;
-    
-    if ( picker.sourceType == UIImagePickerControllerSourceTypeCamera )
-    {
-        [assetsLibrary writeImageToSavedPhotosAlbum:image.CGImage metadata:metaData completionBlock:^(NSURL* assetURL, NSError* error){
-            
-            [self postPhotoAtURL:assetURL];
-        }];
-    }
-    else
-    {
-        NSURL* assetURL = [self.mediaInfo objectForKey:UIImagePickerControllerReferenceURL];
-        [self postPhotoAtURL:assetURL];
-    }
+    NSString* remoteURL = self.mediaInfo[@"FPPickerControllerRemoteURL"];
+    [self postPhotoAtURL:remoteURL];
 }
 
 
 #pragma mark - Post
 
-- (void)postPhotoAtURL:(NSURL*)assetURL
+- (void)postPhotoAtURL:(NSString *)remoteURL
 {
-    ALAssetsLibrary *assetsLibrary = [[ALAssetsLibrary alloc] init];
-    
-    [assetsLibrary assetForURL:assetURL resultBlock:^(ALAsset *asset) {
+    [[ServiceManager sharedManager] uploadImageURL:remoteURL toRequest:[CameraManager sharedManager].request completionHandler:^(id response, BOOL success, NSError *error) {
         
-        ALAssetRepresentation *imageRepresentation = [asset defaultRepresentation];
-        Byte *buffer = (Byte*)malloc(imageRepresentation.size);
-        NSUInteger buffered = [imageRepresentation getBytes:buffer fromOffset:0.0 length:imageRepresentation.size error:nil];
-        NSData *data = [NSData dataWithBytesNoCopy:buffer length:buffered freeWhenDone:YES];
-        
-        [[ServiceManager sharedManager] uploadImageData:data toRequest:[CameraManager sharedManager].request completionHandler:^(id response, BOOL success, NSError *error) {
-            
-            if (success)
-            {
-                [self.uploadViewController update];
-            }
-            else
-            {
-                [[[UIAlertView alloc] initWithTitle:@"Error" message:error.localizedDescription delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil] show];
-            }
-        }];
-        
-    } failureBlock:^(NSError *error) {
-        
-        DLog(@"Error loading image: %@", error);
+        if (success)
+        {
+            [self.uploadViewController update];
+        }
+        else
+        {
+            [[[UIAlertView alloc] initWithTitle:@"Error" message:error.localizedDescription delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil] show];
+        }
     }];
 }
 

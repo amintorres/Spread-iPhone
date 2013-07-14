@@ -54,7 +54,6 @@
 		7C3553CD16B76B0C0046A6A9 /* RequestFilterViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7C3553CC16B76B0C0046A6A9 /* RequestFilterViewController.m */; };
 		7C3AC960162A1D6A0046CE81 /* NSError+Spread.m in Sources */ = {isa = PBXBuildFile; fileRef = 7C76DF2014D1D01E007A03B5 /* NSError+Spread.m */; };
 		7C3AC964162A2E4F0046CE81 /* EditViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7C7F7AB214AB74AE00652401 /* EditViewController.m */; };
-		7C3AC965162A321D0046CE81 /* ReviewViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7CFAFA1214C38DA500597A6D /* ReviewViewController.m */; };
 		7C3AC966162A327A0046CE81 /* PlaceholderTextView.m in Sources */ = {isa = PBXBuildFile; fileRef = 7C8E2A2514C351AF00E6E714 /* PlaceholderTextView.m */; };
 		7C45353915E19B0000833FA9 /* User+Spread.m in Sources */ = {isa = PBXBuildFile; fileRef = 7C81998C14C1187B0019AB8E /* User+Spread.m */; };
 		7C45353E15E19F3400833FA9 /* OpenSans-Bold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 7C45353B15E19F3400833FA9 /* OpenSans-Bold.ttf */; };
@@ -67,6 +66,8 @@
 		7C4991D81531BF75007A4663 /* MapKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7C4991D71531BF75007A4663 /* MapKit.framework */; };
 		7C519FBB15F556F30075E6C8 /* Tag+Spread.m in Sources */ = {isa = PBXBuildFile; fileRef = 7CFAFA2514C3A1FA00597A6D /* Tag+Spread.m */; };
 		7C57F26D14BFA5A300906DE8 /* Entitlements.plist in Resources */ = {isa = PBXBuildFile; fileRef = 7C57F26C14BFA5A300906DE8 /* Entitlements.plist */; };
+		7C5A94D21793645900C688BA /* FPPicker.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 7C5A94D01793645900C688BA /* FPPicker.bundle */; };
+		7C5A94D31793645900C688BA /* FPPicker.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7C5A94D11793645900C688BA /* FPPicker.framework */; };
 		7C5DA1121674E2C3002D340C /* UploadViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7C5DA1101674E2C3002D340C /* UploadViewController.m */; };
 		7C5DA1131674E2C3002D340C /* UploadViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 7C5DA1111674E2C3002D340C /* UploadViewController.xib */; };
 		7C5DA1181674E3C3002D340C /* icon-white-close.png in Resources */ = {isa = PBXBuildFile; fileRef = 7C5DA1141674E3C3002D340C /* icon-white-close.png */; };
@@ -177,7 +178,6 @@
 		7CF95580149FE64D00786B4F /* Security.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7CF9557F149FE64D00786B4F /* Security.framework */; };
 		7CF95582149FE65700786B4F /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7CF95581149FE65700786B4F /* SystemConfiguration.framework */; };
 		7CF95584149FE66100786B4F /* libxml2.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 7CF95583149FE66100786B4F /* libxml2.dylib */; };
-		7CFAFA1514C38DA500597A6D /* ReviewViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 7CFAFA1314C38DA500597A6D /* ReviewViewController.xib */; };
 		7CFAFA1D14C39D4900597A6D /* TODO.txt in Resources */ = {isa = PBXBuildFile; fileRef = 7CFAFA1C14C39D4900597A6D /* TODO.txt */; };
 /* End PBXBuildFile section */
 
@@ -271,6 +271,8 @@
 		7C4991D51531BF58007A4663 /* libz.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libz.dylib; path = usr/lib/libz.dylib; sourceTree = SDKROOT; };
 		7C4991D71531BF75007A4663 /* MapKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MapKit.framework; path = System/Library/Frameworks/MapKit.framework; sourceTree = SDKROOT; };
 		7C57F26C14BFA5A300906DE8 /* Entitlements.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Entitlements.plist; sourceTree = SOURCE_ROOT; };
+		7C5A94D01793645900C688BA /* FPPicker.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = FPPicker.bundle; sourceTree = "<group>"; };
+		7C5A94D11793645900C688BA /* FPPicker.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = FPPicker.framework; sourceTree = "<group>"; };
 		7C5AC38614AC083D00856DC9 /* ImageIO.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = ImageIO.framework; path = System/Library/Frameworks/ImageIO.framework; sourceTree = SDKROOT; };
 		7C5DA10F1674E2C3002D340C /* UploadViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UploadViewController.h; sourceTree = "<group>"; };
 		7C5DA1101674E2C3002D340C /* UploadViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UploadViewController.m; sourceTree = "<group>"; };
@@ -417,9 +419,6 @@
 		7CF95583149FE66100786B4F /* libxml2.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libxml2.dylib; path = usr/lib/libxml2.dylib; sourceTree = SDKROOT; };
 		7CFAFA0E14C3890300597A6D /* Photo+Spread.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "Photo+Spread.h"; sourceTree = "<group>"; };
 		7CFAFA0F14C3890300597A6D /* Photo+Spread.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "Photo+Spread.m"; sourceTree = "<group>"; };
-		7CFAFA1114C38DA500597A6D /* ReviewViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ReviewViewController.h; sourceTree = "<group>"; };
-		7CFAFA1214C38DA500597A6D /* ReviewViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ReviewViewController.m; sourceTree = "<group>"; };
-		7CFAFA1314C38DA500597A6D /* ReviewViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ReviewViewController.xib; sourceTree = "<group>"; };
 		7CFAFA1C14C39D4900597A6D /* TODO.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = TODO.txt; sourceTree = SOURCE_ROOT; };
 		7CFAFA2414C3A1FA00597A6D /* Tag+Spread.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "Tag+Spread.h"; sourceTree = "<group>"; };
 		7CFAFA2514C3A1FA00597A6D /* Tag+Spread.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "Tag+Spread.m"; sourceTree = "<group>"; };
@@ -451,6 +450,7 @@
 				7C9F93B8149960C300126908 /* CoreGraphics.framework in Frameworks */,
 				7C9F93BA149960C300126908 /* CoreData.framework in Frameworks */,
 				77B640993433460EA39B73F5 /* libPods.a in Frameworks */,
+				7C5A94D31793645900C688BA /* FPPicker.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -471,9 +471,6 @@
 		7C3AC963162A2E380046CE81 /* Post Photo */ = {
 			isa = PBXGroup;
 			children = (
-				7CFAFA1114C38DA500597A6D /* ReviewViewController.h */,
-				7CFAFA1214C38DA500597A6D /* ReviewViewController.m */,
-				7CFAFA1314C38DA500597A6D /* ReviewViewController.xib */,
 				7C7F7AB114AB74AE00652401 /* EditViewController.h */,
 				7C7F7AB214AB74AE00652401 /* EditViewController.m */,
 				7C91BF1216F4D43100B31A93 /* RequestEditViewController.h */,
@@ -493,6 +490,15 @@
 				7C45353D15E19F3400833FA9 /* OpenSans-Regular.ttf */,
 			);
 			path = fonts;
+			sourceTree = "<group>";
+		};
+		7C5A94CF1793645900C688BA /* InkFilePicker */ = {
+			isa = PBXGroup;
+			children = (
+				7C5A94D01793645900C688BA /* FPPicker.bundle */,
+				7C5A94D11793645900C688BA /* FPPicker.framework */,
+			);
+			path = InkFilePicker;
 			sourceTree = "<group>";
 		};
 		7C62EA1B14CCB5400003FFF4 /* HTML */ = {
@@ -770,6 +776,7 @@
 			isa = PBXGroup;
 			children = (
 				7C9F93BB149960C300126908 /* Spread */,
+				7C5A94CF1793645900C688BA /* InkFilePicker */,
 				7C9F93E3149960C400126908 /* SpreadTests */,
 				7C9F93B2149960C300126908 /* Frameworks */,
 				7C9F93B0149960C300126908 /* Products */,
@@ -982,7 +989,6 @@
 			files = (
 				7C9F93C0149960C300126908 /* InfoPlist.strings in Resources */,
 				7C57F26D14BFA5A300906DE8 /* Entitlements.plist in Resources */,
-				7CFAFA1514C38DA500597A6D /* ReviewViewController.xib in Resources */,
 				7CFAFA1D14C39D4900597A6D /* TODO.txt in Resources */,
 				7C62EA1F14CCB5400003FFF4 /* About.html in Resources */,
 				7C62EA2014CCB5400003FFF4 /* privacy.html in Resources */,
@@ -1068,6 +1074,7 @@
 				7C2F87A816E286310042135A /* icon-checkmark-off@2x.png in Resources */,
 				7C2F87A916E286310042135A /* icon-checkmark-on.png in Resources */,
 				7C2F87AA16E286310042135A /* icon-checkmark-on@2x.png in Resources */,
+				7C5A94D21793645900C688BA /* FPPicker.bundle in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1168,7 +1175,6 @@
 				7C1DC39016177031007EBB48 /* NSNumber+Spread.m in Sources */,
 				7C3AC960162A1D6A0046CE81 /* NSError+Spread.m in Sources */,
 				7C3AC964162A2E4F0046CE81 /* EditViewController.m in Sources */,
-				7C3AC965162A321D0046CE81 /* ReviewViewController.m in Sources */,
 				7C3AC966162A327A0046CE81 /* PlaceholderTextView.m in Sources */,
 				7C0B7260163464AB002469D3 /* IntroTableViewController.m in Sources */,
 				7C0B726316346E96002469D3 /* ButtonCell.m in Sources */,
@@ -1275,7 +1281,10 @@
 				CODE_SIGN_ENTITLEMENTS = Entitlements.plist;
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution";
 				COMPRESS_PNG_FILES = NO;
-				FRAMEWORK_SEARCH_PATHS = "$(inherited)";
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"\"$(SRCROOT)/InkFilePicker\"",
+				);
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "Spread/Spread-Prefix.pch";
 				HEADER_SEARCH_PATHS = "$(inherited)";
@@ -1366,7 +1375,10 @@
 			baseConfigurationReference = 2A87E5EEA5E742B4B31A0D38 /* Pods.xcconfig */;
 			buildSettings = {
 				COMPRESS_PNG_FILES = NO;
-				FRAMEWORK_SEARCH_PATHS = "$(inherited)";
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"\"$(SRCROOT)/InkFilePicker\"",
+				);
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "Spread/Spread-Prefix.pch";
 				HEADER_SEARCH_PATHS = "$(inherited)";
@@ -1385,7 +1397,10 @@
 			buildSettings = {
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution";
 				COMPRESS_PNG_FILES = NO;
-				FRAMEWORK_SEARCH_PATHS = "$(inherited)";
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"\"$(SRCROOT)/InkFilePicker\"",
+				);
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "Spread/Spread-Prefix.pch";
 				HEADER_SEARCH_PATHS = "$(inherited)";

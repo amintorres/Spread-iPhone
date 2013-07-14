@@ -48,9 +48,11 @@
 		</dict>
 	</array>
 	<key>CFBundleVersion</key>
-	<string>1409</string>
+	<string>1427</string>
 	<key>FacebookAppID</key>
 	<string>282760368429715</string>
+	<key>Filepicker API Key</key>
+	<string>AvfS8WAfQadoyBRsuUxgCz</string>
 	<key>LSRequiresIPhoneOS</key>
 	<true/>
 	<key>UIAppFonts</key>

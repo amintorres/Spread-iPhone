@@ -113,14 +113,14 @@ static NSString* boundary = nil;
         
         NSInteger statusCode = [(NSHTTPURLResponse*)response statusCode];
         
-        if (statusCode == 200 && data)
+        if ((statusCode == 200 || statusCode == 201) && data)
         {
             NSError* JSONError = nil;
             id result = [NSJSONSerialization JSONObjectWithData:data options:0 error:&JSONError];
             
             if (!JSONError)
             {
-                DLog(@"result: %@", result);
+//                DLog(@"result: %@", result);
                 if (completion) completion(result, YES, nil);
             }
             else
@@ -365,69 +365,22 @@ static NSString* boundary = nil;
 
 #pragma mark - Post Photo
 
-- (void)sendURLRequest:(NSMutableURLRequest *)URLRequest withImageData:(NSData *)imageData name:(NSString*)name csvTags:(NSString*)csvTags description:(NSString*)description completion:(ServiceManagerHandler)completion
+- (void)sendURLRequest:(NSMutableURLRequest *)URLRequest withImageURL:(NSString *)remoteURL name:(NSString*)name csvTags:(NSString*)csvTags description:(NSString*)description completion:(ServiceManagerHandler)completion
 {
-    NSString *boundary = [NSString stringWithFormat:@"----------SpReAd--BoUnDaRy--%d----------", arc4random()];
-	NSString *contentType = [NSString stringWithFormat:@"multipart/form-data; boundary=%@",boundary];
-	[URLRequest addValue:contentType forHTTPHeaderField: @"Content-Type"];
-    
-    
-    NSMutableData *postBody = [NSMutableData data];
-    
-    // Name
-    if (name)
-    {
-        [postBody appendData:[[NSString stringWithFormat:@"--%@\r\n", boundary] dataUsingEncoding:NSUTF8StringEncoding]];
-        [postBody appendData:[@"Content-Disposition: form-data; name=\"news_photo[name]\"\r\n\r\n" dataUsingEncoding:NSUTF8StringEncoding]];
-        [postBody appendData:[name dataUsingEncoding:NSUTF8StringEncoding]];
-        [postBody appendData:[@"\r\n" dataUsingEncoding:NSUTF8StringEncoding]];
-    }
-    
-    // CSV Tags
-    if (csvTags)
-    {
-        [postBody appendData:[[NSString stringWithFormat:@"--%@\r\n", boundary] dataUsingEncoding:NSUTF8StringEncoding]];
-        [postBody appendData:[@"Content-Disposition: form-data; name=\"news_photo[tags_csv]\"\r\n\r\n" dataUsingEncoding:NSUTF8StringEncoding]];
-        [postBody appendData:[csvTags dataUsingEncoding:NSUTF8StringEncoding]];
-        [postBody appendData:[@"\r\n" dataUsingEncoding:NSUTF8StringEncoding]];
-    }
-    
-    // Description
-    if (description)
-    {
-        [postBody appendData:[[NSString stringWithFormat:@"--%@\r\n", boundary] dataUsingEncoding:NSUTF8StringEncoding]];
-        [postBody appendData:[@"Content-Disposition: form-data; name=\"news_photo[description]\"\r\n\r\n" dataUsingEncoding:NSUTF8StringEncoding]];
-        [postBody appendData:[description dataUsingEncoding:NSUTF8StringEncoding]];
-        [postBody appendData:[@"\r\n" dataUsingEncoding:NSUTF8StringEncoding]];
-    }
-    
-    // Image
-    if (imageData)
-    {
-        [postBody appendData:[[NSString stringWithFormat:@"--%@\r\n", boundary] dataUsingEncoding:NSUTF8StringEncoding]];
-        [postBody appendData:[@"Content-Disposition: form-data; name=\"news_photo[image]\"; filename=\"image.jpg\"\r\n" dataUsingEncoding:NSUTF8StringEncoding]];
-        [postBody appendData:[@"Content-Type: image/jpeg\r\n" dataUsingEncoding:NSUTF8StringEncoding]];
-        [postBody appendData:[@"Content-Transfer-Encoding: binary\r\n\r\n" dataUsingEncoding:NSUTF8StringEncoding]];
-        [postBody appendData:imageData];
-        [postBody appendData:[@"\r\n" dataUsingEncoding:NSUTF8StringEncoding]];
-    }
-    
-    // Final boundary
-    [postBody appendData:[[NSString stringWithFormat:@"--%@--\r\n", boundary] dataUsingEncoding:NSUTF8StringEncoding]];
-    URLRequest.HTTPBody = postBody;
-    
-    
-    if (imageData)
-    {
-        [self sendUploadURLRequest:URLRequest completionHandler:NULL];
+    NSMutableDictionary *params = [NSMutableDictionary dictionary];
 
-        // 'Complete' means prepare complete and ready to upload.
-        if (completion) completion(nil, YES, nil);
-    }
-    else
-    {
-        [self sendURLRequest:URLRequest completion:completion];
-    }
+    if (name)
+        params[@"news_photo[name]"] = name;
+    if (csvTags)
+        params[@"news_photo[tags_csv]"] = csvTags;
+    if (description)
+        params[@"news_photo[description]"] = description;
+    if (remoteURL)
+        params[@"news_photo[remote_image_url]"] = remoteURL;
+    
+    URLRequest.HTTPBody = [[params paramString] dataUsingEncoding:NSUTF8StringEncoding];
+    
+    [self sendURLRequest:URLRequest completion:completion];
 }
 
 - (void)sendUploadURLRequest:(NSURLRequest *)URLRequest completionHandler:(ServiceManagerHandler)completion
@@ -473,7 +426,7 @@ static NSString* boundary = nil;
 }
 
 
-- (void)uploadImageData:(NSData *)imageData name:(NSString*)name csvTags:(NSString*)csvTags description:(NSString*)description completionHandler:(ServiceManagerHandler)completion
+- (void)uploadImageURL:(NSString *)remoteURL name:(NSString*)name csvTags:(NSString*)csvTags description:(NSString*)description completionHandler:(ServiceManagerHandler)completion
 {
     if (name.length < 4)
     {
@@ -489,7 +442,7 @@ static NSString* boundary = nil;
         return;
     }
     
-    if (!imageData)
+    if (!remoteURL)
     {
         NSError *error = [NSError invalidImageError];
         if (completion) completion(nil, NO, error);
@@ -503,12 +456,12 @@ static NSString* boundary = nil;
     NSMutableURLRequest *URLRequest = [NSMutableURLRequest requestWithURL:URL];
     URLRequest.HTTPMethod = @"POST";
     
-    [self sendURLRequest:URLRequest withImageData:imageData name:name csvTags:csvTags description:description completion:completion];
+    [self sendURLRequest:URLRequest withImageURL:remoteURL name:name csvTags:csvTags description:description completion:completion];
 }
 
-- (void)uploadImageData:(NSData *)imageData toRequest:(Request *)photoRequest completionHandler:(ServiceManagerHandler)completion
+- (void)uploadImageURL:(NSString *)remoteURL toRequest:(Request *)photoRequest completionHandler:(ServiceManagerHandler)completion
 {
-    if (!imageData)
+    if (!remoteURL)
     {
         NSError *error = [NSError invalidImageError];
         if (completion) completion(nil, NO, error);
@@ -523,7 +476,7 @@ static NSString* boundary = nil;
     NSMutableURLRequest *URLRequest = [NSMutableURLRequest requestWithURL:URL];
     URLRequest.HTTPMethod = @"POST";
     
-    [self sendURLRequest:URLRequest withImageData:imageData name:nil csvTags:nil description:nil completion:completion];
+    [self sendURLRequest:URLRequest withImageURL:remoteURL name:nil csvTags:nil description:nil completion:completion];
 }
 
 - (void)updatePhoto:(Photo *)photo name:(NSString*)name csvTags:(NSString*)csvTags description:(NSString*)description completionHandler:(ServiceManagerHandler)completion
@@ -537,7 +490,7 @@ static NSString* boundary = nil;
     NSMutableURLRequest *URLRequest = [NSMutableURLRequest requestWithURL:URL];
     URLRequest.HTTPMethod = @"PUT";
     
-    [self sendURLRequest:URLRequest withImageData:nil name:name csvTags:csvTags description:description completion:^(id response, BOOL success, NSError *error) {
+    [self sendURLRequest:URLRequest withImageURL:nil name:name csvTags:csvTags description:description completion:^(id response, BOOL success, NSError *error) {
         
         if (success){
             
